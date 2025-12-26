@@ -33,33 +33,33 @@ const App: React.FC = () => {
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} lang={lang} setLang={setLang} />
       <main>
         <Hero lang={lang} />
-        
+
         {/* Statistics Banner */}
         <section className="bg-brand py-12">
-           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-                <div>
-                  <div className="text-4xl font-extrabold mb-1">5,000,000+</div>
-                  <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsUsers')}</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-extrabold mb-1">10,000+</div>
-                  <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsFood')}</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-extrabold mb-1">4.9/5</div>
-                  <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsRatings')}</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-extrabold mb-1">24/7</div>
-                  <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsAvailability')}</div>
-                </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+              <div>
+                <div className="text-4xl font-extrabold mb-1">5,000,000+</div>
+                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsUsers')}</div>
               </div>
-           </div>
+              <div>
+                <div className="text-4xl font-extrabold mb-1">10,000+</div>
+                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsFood')}</div>
+              </div>
+              <div>
+                <div className="text-4xl font-extrabold mb-1">4.9/5</div>
+                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsRatings')}</div>
+              </div>
+              <div>
+                <div className="text-4xl font-extrabold mb-1">24/7</div>
+                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">{t('statsAvailability')}</div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <Features lang={lang} />
-        
+
         <AppPreview lang={lang} />
 
         {/* Call to Action Section */}
@@ -72,10 +72,12 @@ const App: React.FC = () => {
                 {t('ctaSubtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                <button className="bg-white text-brand px-10 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-colors shadow-lg">
+                <button className="bg-white text-brand px-10 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-colors shadow-lg flex items-center justify-center gap-2">
+                  <img src="/apple-store.svg" alt="App Store" className="w-6 h-6" />
                   {t('ctaPrimary')}
                 </button>
-                <button className="bg-brand-dark/50 border border-white/30 text-white px-10 py-4 rounded-2xl font-bold hover:bg-brand-dark transition-colors">
+                <button className="bg-brand-dark/50 border border-white/30 text-white px-10 py-4 rounded-2xl font-bold hover:bg-brand-dark transition-colors flex items-center justify-center gap-2">
+                  <img src="/google-play.svg" alt="Google Play" className="w-6 h-6" />
                   {t('ctaSecondary')}
                 </button>
               </div>

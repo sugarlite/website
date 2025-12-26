@@ -17,9 +17,9 @@ export const FEATURES: Feature[] = [
   {
     id: 'glucose',
     title: { zh: '血糖精准追踪', en: 'Glucose Tracking' },
-    description: { 
-      zh: '通过直观的图表展示全天血糖趋势，支持多种维度数据切换，让波动一目了然。', 
-      en: 'Visualize glucose trends with intuitive charts. Support multi-dimensional data views for clear insights.' 
+    description: {
+      zh: '通过直观的图表展示全天血糖趋势，支持多种维度数据切换，让波动一目了然。',
+      en: 'Visualize glucose trends with intuitive charts. Support multi-dimensional data views for clear insights.'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,9 +30,9 @@ export const FEATURES: Feature[] = [
   {
     id: 'ai-analysis',
     title: { zh: 'AI 趋势分析', en: 'AI Trend Analysis' },
-    description: { 
-      zh: '基于大数据智能预测血糖趋势，提前预警潜在波动风险，为您提供个性化健康建议。', 
-      en: 'Predict trends based on AI. Get early warnings for potential fluctuations and personalized advice.' 
+    description: {
+      zh: '基于大数据智能预测血糖趋势，提前预警潜在波动风险，为您提供个性化健康建议。',
+      en: 'Predict trends based on AI. Get early warnings for potential fluctuations and personalized advice.'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,9 +43,9 @@ export const FEATURES: Feature[] = [
   {
     id: 'report',
     title: { zh: '专业报告共享', en: 'Report Sharing' },
-    description: { 
-      zh: '一键生成并导出详尽的 PDF 健康报告，方便您在问诊时与医生进行深度沟通。', 
-      en: 'Generate and export detailed PDF health reports with one tap for better doctor consultations.' 
+    description: {
+      zh: '一键生成并导出详尽的 PDF 健康报告，方便您在问诊时与医生进行深度沟通。',
+      en: 'Generate and export detailed PDF health reports with one tap for better doctor consultations.'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,12 +59,12 @@ export const UI_STRINGS: Record<string, LocalizedString> = {
   heroTag: { zh: '2025 全新升级版现已发布', en: '2025 New Version Now Live' },
   heroTitle: { zh: '掌控血糖，', en: 'Master Your Glucose,' },
   heroTitleHighlight: { zh: '定义健康新生活', en: 'Define Your Healthy Life' },
-  heroSubtitle: { 
-    zh: '轻糖 (SugarLite) 是一款专为血糖健康设计的管理工具。通过智能分析、科学的可视化看板以及全方位的追踪记录，助您轻松管理健康每一天。', 
-    en: 'SugarLite is a management tool designed for glucose health. Manage your wellness through AI analysis and scientific visualization dashboards.' 
+  heroSubtitle: {
+    zh: '轻糖 (SugarLite) 是一款专为血糖健康设计的管理工具。通过智能分析、科学的可视化看板以及全方位的追踪记录，助您轻松管理健康每一天。',
+    en: 'SugarLite is a management tool designed for glucose health. Manage your wellness through AI analysis and scientific visualization dashboards.'
   },
   downloadAppStore: { zh: 'App Store 下载', en: 'App Store' },
-  downloadGooglePlay: { zh: 'Google Play 下载', en: 'Google Play' },
+  downloadGooglePlay: { zh: 'Google Play 下载(即将上线)', en: 'Google Play (coming soon)' },
   nowDownload: { zh: '立即下载', en: 'Download Now' },
   overview: { zh: '血糖概览', en: 'Overview' },
   dailyAvg: { zh: '今日均值', en: 'Daily Avg' },
@@ -75,14 +75,14 @@ export const UI_STRINGS: Record<string, LocalizedString> = {
   statsAvailability: { zh: '全天候陪伴', en: '24/7 Support' },
   featuresTag: { zh: '核心功能', en: 'Core Features' },
   featuresTitle: { zh: '科学管理，智能护航', en: 'Scientific & Smart' },
-  featuresSubtitle: { 
-    zh: '集血糖监测、智能分析与趋势预警于一体，为您提供多维度的健康管理建议。', 
-    en: 'Integrating monitoring, AI analysis, and trend warnings for multi-dimensional health advice.' 
+  featuresSubtitle: {
+    zh: '集血糖监测、智能分析与趋势预警于一体，为您提供多维度的健康管理建议。',
+    en: 'Integrating monitoring, AI analysis, and trend warnings for multi-dimensional health advice.'
   },
   previewTitle: { zh: '更懂你的数据可视化看板', en: 'Visual Dashboard That Understands You' },
-  previewSubtitle: { 
-    zh: '拒绝复杂枯燥的数据。我们用优雅的波形图和清晰的颜色标识，直观呈现您的健康状态。无论是餐前还是餐后，波动一目了然。', 
-    en: 'No more boring data. Elegant wave charts and clear color indicators visualize your status at a glance.' 
+  previewSubtitle: {
+    zh: '拒绝复杂枯燥的数据。我们用优雅的波形图和清晰的颜色标识，直观呈现您的健康状态。无论是餐前还是餐后，波动一目了然。',
+    en: 'No more boring data. Elegant wave charts and clear color indicators visualize your status at a glance.'
   },
   previewPoint1Title: { zh: '多维度趋势分析', en: 'Trend Analysis' },
   previewPoint1Desc: { zh: '支持日、周、月、季不同维度的统计分析。', en: 'Support daily, weekly, monthly, and quarterly analysis.' },
@@ -91,9 +91,9 @@ export const UI_STRINGS: Record<string, LocalizedString> = {
   previewPoint3Title: { zh: '跨设备同步', en: 'Cloud Sync' },
   previewPoint3Desc: { zh: '数据多端同步，多名家属可共同守护。', en: 'Sync data across devices for family care management.' },
   ctaTitle: { zh: '准备好开启健康新旅程了吗？', en: 'Ready to Start Your Journey?' },
-  ctaSubtitle: { 
-    zh: '立即下载轻糖 (SugarLite)，享受 7 天专业版免费试用。让科技成为您管理健康的得力助手。', 
-    en: 'Download SugarLite today and enjoy a 7-day Pro trial. Let technology be your health assistant.' 
+  ctaSubtitle: {
+    zh: '立即下载轻糖 (SugarLite)，享受 7 天专业版免费试用。让科技成为您管理健康的得力助手。',
+    en: 'Download SugarLite today and enjoy a 7-day Pro trial. Let technology be your health assistant.'
   },
   ctaPrimary: { zh: '立即免费下载', en: 'Free Download' },
   ctaSecondary: { zh: '了解更多详情', en: 'Learn More' },

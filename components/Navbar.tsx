@@ -25,10 +25,8 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode, lang, setLang })
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand/20">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand/20 overflow-hidden p-1">
+              <img src="/logo.svg" alt="SugarLite Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-dark">{APP_NAME[lang]}</span>
           </div>
@@ -39,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode, lang, setLang })
                 {item.label[lang]}
               </a>
             ))}
-            
+
             <div className="flex items-center gap-2 border-l dark:border-slate-700 pl-6 ml-2">
               <button
                 onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
@@ -47,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode, lang, setLang })
               >
                 {lang === 'zh' ? 'EN' : '中文'}
               </button>
-              
+
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors"
@@ -59,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode, lang, setLang })
                 )}
               </button>
             </div>
-            
+
             <button className="bg-brand text-white px-6 py-2 rounded-full font-bold hover:bg-brand-dark transition-all transform hover:scale-105">
               {lang === 'zh' ? '立即下载' : 'Download'}
             </button>
@@ -67,10 +65,10 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode, lang, setLang })
 
           <div className="md:hidden flex items-center gap-4">
             <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600">
-               {lang === 'zh' ? 'EN' : '中'}
+              {lang === 'zh' ? 'EN' : '中'}
             </button>
             <button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600">
-               {darkMode ? '☀️' : '🌙'}
+              {darkMode ? '☀️' : '🌙'}
             </button>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600 dark:text-slate-300">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
