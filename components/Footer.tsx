@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
             <h4 className="font-bold mb-4 dark:text-white">{t('footerContact')}</h4>
             <ul className="space-y-2 text-slate-500 text-sm">
               <li><a href="mailto:support@sugarlite.com" className="hover:text-brand transition-colors">support@sugarlite.com</a></li>
-              <li>{lang === 'zh' ? '关注公众号：SugarLite 轻糖' : 'Follow us on Social Media'}</li>
+              <li>{lang === 'zh' ? `关注公众号：${APP_NAME.zh}` : `Follow us: ${APP_NAME.en}`}</li>
             </ul>
           </div>
         </div>
