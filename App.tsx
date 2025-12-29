@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
@@ -9,11 +9,13 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import { Language } from "./types";
 import { UI_STRINGS } from "./constants";
+import { useOpenGraph } from "./hooks/useOpenGraph";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [lang, setLang] = useState<Language>("zh");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Sync with system preference on mount
@@ -30,6 +32,23 @@ const App: React.FC = () => {
   }, [darkMode]);
 
   const t = (key: string) => UI_STRINGS[key][lang];
+
+  // Set OpenGraph metadata based on current page
+  useOpenGraph({
+    title: location.pathname === "/" 
+      ? "SugarLite 轻糖 - 掌控您的血糖健康" 
+      : location.pathname === "/privacy"
+      ? "隐私政策 - SugarLite 轻糖"
+      : "服务条款 - SugarLite 轻糖",
+    description: location.pathname === "/"
+      ? "SugarLite（轻糖）是一款专业的血糖监测、趋势分析与健康管理应用，通过科学的数据看板助您掌控健康生活。"
+      : location.pathname === "/privacy"
+      ? "了解 SugarLite 轻糖的隐私政策和数据保护措施。"
+      : "查看 SugarLite 轻糖的服务条款和使用协议。",
+    url: `https://sugarlite.app${location.pathname}`,
+    image: "https://sugarlite.app/og-image.png",
+    type: "website"
+  });
 
   // Navigate to different pages
   const handleNavigate = (page: string) => {
