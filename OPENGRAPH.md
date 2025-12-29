@@ -12,23 +12,24 @@
 
 ```typescript
 interface OpenGraphMeta {
-  title: string;           // 页面标题
-  description: string;     // 页面描述
-  url: string;            // 页面 URL
-  image?: string;         // OG 图片
-  type?: string;          // OG 类型（默认 'website'）
-  twitterCard?: string;   // Twitter 卡片类型
+  title: string; // 页面标题
+  description: string; // 页面描述
+  url: string; // 页面 URL
+  image?: string; // OG 图片
+  type?: string; // OG 类型（默认 'website'）
+  twitterCard?: string; // Twitter 卡片类型
 }
 
 useOpenGraph({
   title: "页面标题",
   description: "页面描述",
   url: "https://example.com/page",
-  image: "https://example.com/image.png"
+  image: "https://example.com/image.png",
 });
 ```
 
 **功能特性：**
+
 - 自动创建或更新 meta 标签
 - 支持 OpenGraph 和 Twitter Card
 - 智能处理 `property` 和 `name` 属性
@@ -40,22 +41,22 @@ useOpenGraph({
 
 ```html
 <!-- OpenGraph Meta Tags -->
-<meta property="og:title" content="...">
-<meta property="og:description" content="...">
-<meta property="og:type" content="website">
-<meta property="og:url" content="...">
-<meta property="og:image" content="...">
+<meta property="og:title" content="..." />
+<meta property="og:description" content="..." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="..." />
+<meta property="og:image" content="..." />
 
 <!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="...">
-<meta name="twitter:description" content="...">
-<meta name="twitter:image" content="...">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="..." />
+<meta name="twitter:description" content="..." />
+<meta name="twitter:image" content="..." />
 
 <!-- Basic Meta Tags -->
-<meta name="description" content="...">
-<meta name="keywords" content="...">
-<meta name="author" content="...">
+<meta name="description" content="..." />
+<meta name="keywords" content="..." />
+<meta name="author" content="..." />
 ```
 
 ### 3. **更新 App.tsx**
@@ -66,15 +67,16 @@ useOpenGraph({
 const location = useLocation();
 
 useOpenGraph({
-  title: location.pathname === "/" 
-    ? "SugarLite 轻糖 - 掌控您的血糖健康" 
-    : location.pathname === "/privacy"
-    ? "隐私政策 - SugarLite 轻糖"
-    : "服务条款 - SugarLite 轻糖",
+  title:
+    location.pathname === "/"
+      ? "SugarLite 轻糖 - 掌控您的血糖健康"
+      : location.pathname === "/privacy"
+      ? "隐私政策 - SugarLite 轻糖"
+      : "服务条款 - SugarLite 轻糖",
   description: "...",
   url: `https://sugarlite.app${location.pathname}`,
   image: "https://sugarlite.app/og-image.png",
-  type: "website"
+  type: "website",
 });
 ```
 
@@ -96,7 +98,7 @@ useOpenGraph({
   description: "自定义描述",
   url: "https://yourdomain.com/path",
   image: "https://yourdomain.com/custom-image.png",
-  type: "website"
+  type: "website",
 });
 ```
 
@@ -107,9 +109,7 @@ useOpenGraph({
 
 ```typescript
 useOpenGraph({
-  title: location.pathname === "/new-page"
-    ? "新页面标题"
-    : "...",
+  title: location.pathname === "/new-page" ? "新页面标题" : "...",
   // ... 其他配置
 });
 ```
@@ -120,7 +120,7 @@ useOpenGraph({
 2. 更新 `og:image` URL：
 
 ```typescript
-image: "https://sugarlite.app/your-og-image.png"
+image: "https://sugarlite.app/your-og-image.png";
 ```
 
 ## OG 图片建议
@@ -146,6 +146,7 @@ image: "https://sugarlite.app/your-og-image.png"
 ## SEO 相关
 
 本实现已包含：
+
 - ✅ OpenGraph (og:title, og:description, og:image, og:url, og:type)
 - ✅ Twitter Card (twitter:card, twitter:title, twitter:description, twitter:image)
 - ✅ Meta Description
