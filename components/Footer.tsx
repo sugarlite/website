@@ -49,20 +49,28 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                 </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate("privacy")}
-                  className="p-0 bg-none border-none cursor-pointer hover:text-brand transition-colors"
+                <a
+                  href="/privacy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("privacy");
+                  }}
+                  className="hover:text-brand transition-colors"
                 >
                   {lang === "zh" ? "隐私政策" : "Privacy"}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate("terms")}
-                  className="p-0 bg-none border-none cursor-pointer hover:text-brand transition-colors"
+                <a
+                  href="/terms"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("terms");
+                  }}
+                  className="hover:text-brand transition-colors"
                 >
                   {lang === "zh" ? "服务条款" : "Terms"}
-                </button>
+                </a>
               </li>
             </ul>
           </div>
