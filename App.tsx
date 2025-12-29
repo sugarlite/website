@@ -47,8 +47,8 @@ const App: React.FC = () => {
         : location.pathname === "/privacy"
         ? "了解 SugarLite 轻糖的隐私政策和数据保护措施。"
         : "查看 SugarLite 轻糖的服务条款和使用协议。",
-    url: `https://sugarlite.app${location.pathname}`,
-    image: "https://sugarlite.app/og-image.png",
+    url: `https://sugerlite.top${location.pathname}`,
+    image: "https://sugerlite.top/og-image.png",
     type: "website",
   });
 
