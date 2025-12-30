@@ -92,8 +92,8 @@ export const UI_STRINGS: Record<string, LocalizedString> = {
   previewPoint3Desc: { zh: '数据多端同步，多名家属可共同守护。', en: 'Sync data across devices for family care management.' },
   ctaTitle: { zh: '准备好开启健康新旅程了吗？', en: 'Ready to Start Your Journey?' },
   ctaSubtitle: {
-    zh: '立即下载轻糖 (SugarLite)，享受 7 天专业版免费试用。让科技成为您管理健康的得力助手。',
-    en: 'Download SugarLite today and enjoy a 7-day Pro trial. Let technology be your health assistant.'
+    zh: '立即下载轻糖 (SugarLite)。让科技成为您管理健康的得力助手。',
+    en: 'Download SugarLite today and enjoy. Let technology be your health assistant.'
   },
   ctaPrimary: { zh: '立即免费下载', en: 'Free Download' },
   ctaSecondary: { zh: '了解更多详情', en: 'Learn More' },
@@ -101,5 +101,5 @@ export const UI_STRINGS: Record<string, LocalizedString> = {
   footerAbout: { zh: '关于我们', en: 'About' },
   footerProduct: { zh: '产品服务', en: 'Product' },
   footerContact: { zh: '联系我们', en: 'Contact' },
-  footerRights: { zh: '© 2025 轻糖 (SugarLite) Health Tech Co., Ltd. 版权所有', en: '© 2025 SugarLite Health Tech Co., Ltd. All rights reserved.' }
+  footerRights: { zh: '© 2025 轻糖 (SugarLite) 版权所有', en: '© 2025 SugarLite All rights reserved.' }
 };
