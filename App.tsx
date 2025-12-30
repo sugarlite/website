@@ -206,6 +206,10 @@ const App: React.FC = () => {
       {/* Redirect root to default language (zh) */}
       <Route path="/" element={<Navigate to="/zh" replace />} />
 
+      {/* Redirect privacy and terms without language to English */}
+      <Route path="/privacy" element={<Navigate to="/en/privacy" replace />} />
+      <Route path="/terms" element={<Navigate to="/en/terms" replace />} />
+
       {/* Language-based routes */}
       <Route path="/:lang/*" element={<LanguageWrapper />} />
     </Routes>
