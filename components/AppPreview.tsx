@@ -1,93 +1,51 @@
+
 import React from "react";
-import { UI_STRINGS } from "../constants";
 import { Language } from "../types";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 interface AppPreviewProps {
   lang: Language;
 }
 
 const AppPreview: React.FC<AppPreviewProps> = ({ lang }) => {
-  const t = (key: string) => UI_STRINGS[key][lang];
-
-  // 从 public/preview 文件夹中随机选择两张图片
-  const totalImages = 6;
-  const getRandomImages = () => {
-    const indices = Array.from({ length: totalImages }, (_, i) => i + 1);
-    const shuffled = indices.sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 2);
-  };
-  const [img1, img2] = React.useMemo(() => getRandomImages(), []);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
   return (
-    <section
-      id="preview"
-      className="py-24 overflow-hidden bg-slate-50 dark:bg-slate-950"
-    >
+    <section id="preview" className="py-32 bg-white dark:bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          <div className="flex-1 space-y-12">
-            <div className="space-y-4">
-              <h2 className="text-3xl lg:text-5xl font-extrabold leading-tight">
-                {t("previewTitle")}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                {t("previewSubtitle")}
-              </p>
-            </div>
+        <div
+          ref={headerRef}
+          className={`text-center mb-20 space-y-4 ${headerVisible ? 'visible' : ''}`}
+        >
+          <h2 className="reveal stagger-1 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">
+            {lang === "zh" ? "轻松记录，科学控糖" : "Easy Logging, Smarter Control"}
+          </h2>
+          <p className="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+            {lang === "zh"
+              ? "从血糖追踪到饮食分析，一切尽在掌握"
+              : "From glucose tracking to diet analysis, everything at your fingertips"}
+          </p>
+        </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-brand font-bold">1</span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl dark:text-white">
-                    {t("previewPoint1Title")}
-                  </h4>
-                  <p className="text-slate-500">{t("previewPoint1Desc")}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-brand font-bold">2</span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl dark:text-white">
-                    {t("previewPoint2Title")}
-                  </h4>
-                  <p className="text-slate-500">{t("previewPoint2Desc")}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-brand font-bold">3</span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl dark:text-white">
-                    {t("previewPoint3Title")}
-                  </h4>
-                  <p className="text-slate-500">{t("previewPoint3Desc")}</p>
-                </div>
+        <div
+          ref={gridRef}
+          className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 ${gridVisible ? 'visible' : ''}`}
+        >
+          {[1, 2, 3, 4, 5].map((n, idx) => (
+            <div
+              key={n}
+              className={`reveal-scale stagger-${Math.min(idx + 1, 6)}`}
+            >
+              <div className="rounded-[2rem] overflow-hidden shadow-xl shadow-slate-900/10">
+                <img
+                  src={`/preview/Screenshot ${String(n).padStart(2, "0")}.png`}
+                  alt={`SugarLite Preview ${n}`}
+                  className="w-full h-auto block"
+                />
               </div>
             </div>
-          </div>
-
-          <div className="flex-1 relative">
-            <div className="relative z-10 grid grid-cols-2 gap-4">
-              <img
-                src={`/preview/Screenshot ${String(img1).padStart(2, "0")}.png`}
-                className="rounded-3xl shadow-2xl border-4 border-white dark:border-slate-800 mt-12 transform -translate-y-4"
-                alt="App Preview 1"
-              />
-              <img
-                src={`/preview/Screenshot ${String(img2).padStart(2, "0")}.png`}
-                className="rounded-3xl shadow-2xl border-4 border-white dark:border-slate-800 transform translate-y-4"
-                alt="App Preview 2"
-              />
-            </div>
-            {/* Background Decorative Element */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand/5 blur-3xl rounded-full"></div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

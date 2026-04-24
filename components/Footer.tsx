@@ -1,5 +1,5 @@
 import React from "react";
-import { APP_NAME, UI_STRINGS } from "../constants";
+import { APP_NAME, UI_STRINGS, APP_LINKS } from "../constants";
 import { Language } from "../types";
 
 interface FooterProps {
@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
   const t = (key: string) => UI_STRINGS[key][lang];
 
   return (
-    <footer className="bg-white dark:bg-slate-900 pt-20 pb-10 border-t dark:border-slate-800 transition-colors">
+    <footer className="bg-[#f5f5f7] dark:bg-[#0d0d0f] pt-20 pb-10 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2 md:col-span-1 space-y-4">
@@ -44,9 +44,9 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
-                <a href="#" className="hover:text-brand transition-colors">
+                <span className="text-slate-400">
                   {lang === "zh" ? "核心团队" : "Team"}
-                </a>
+                </span>
               </li>
               <li>
                 <a
@@ -81,19 +81,24 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
-                <a href="#" className="hover:text-brand transition-colors">
+                <a
+                  href={APP_LINKS.appStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand transition-colors"
+                >
                   iOS 版本
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-brand transition-colors">
-                  Android 版本
-                </a>
+                <span className="text-slate-400">
+                  Android 版本（即将上线）
+                </span>
               </li>
               <li>
-                <a href="#" className="hover:text-brand transition-colors">
+                <span className="text-slate-400">
                   {lang === "zh" ? "企业合作" : "B2B"}
-                </a>
+                </span>
               </li>
             </ul>
           </div>
@@ -105,10 +110,10 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
                 <a
-                  href="mailto:support@sugarlite.com"
+                  href="mailto:support@sugarlite.top"
                   className="hover:text-brand transition-colors"
                 >
-                  support@sugarlite.com
+                  support@sugarlite.top
                 </a>
               </li>
               <li>
@@ -120,8 +125,17 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
           </div>
         </div>
 
-        <div className="pt-8 border-t dark:border-slate-800 text-center text-slate-400 text-xs">
-          {t("footerRights")}
+        <div className="pt-8">
+          <div className="flex justify-center mb-6">
+            <div className="bg-slate-100 rounded-xl px-4 py-2">
+              <img
+                src="/apple-health-badge.svg"
+                alt="Works with Apple Health"
+                className="h-8 w-auto"
+              />
+            </div>
+          </div>
+          <div className="text-center text-slate-400 text-xs">{t("footerRights")}</div>
         </div>
       </div>
     </footer>

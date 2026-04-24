@@ -1,21 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://sugerlite.top/</loc>
+    <loc>https://sugarlite.top/zh</loc>
     <lastmod>2025-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
   </url>
   <url>
-    <loc>https://sugerlite.top/privacy</loc>
+    <loc>https://sugarlite.top/en</loc>
     <lastmod>2025-12-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
   </url>
   <url>
-    <loc>https://sugerlite.top/terms</loc>
+    <loc>https://sugarlite.top/zh/privacy</loc>
     <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/en/privacy</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh/terms</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/en/terms</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
   </url>
 </urlset>

@@ -15,8 +15,10 @@ import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import { Language } from "./types";
-import { UI_STRINGS } from "./constants";
+import { APP_LINKS, UI_STRINGS } from "./constants";
 import { useOpenGraph } from "./hooks/useOpenGraph";
+import { useScrollReveal } from "./hooks/useScrollReveal";
+import { useCountUp } from "./hooks/useCountUp";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -50,6 +52,34 @@ const App: React.FC = () => {
       navigate(`/${newLang}${currentPath ? "/" + currentPath : ""}`);
     };
 
+    // Update HTML lang attribute
+    useEffect(() => {
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en-US";
+    }, [lang]);
+
+    // Manage alternate language links for SEO
+    useEffect(() => {
+      const currentPath = location.pathname.split("/").slice(2).join("/") || "";
+      const langs: Language[] = ["zh", "en"];
+      const existingAlts = document.querySelectorAll('link[rel="alternate"]');
+      existingAlts.forEach((el) => el.remove());
+
+      langs.forEach((l) => {
+        const link = document.createElement("link");
+        link.setAttribute("rel", "alternate");
+        link.setAttribute("hreflang", l);
+        link.setAttribute("href", `https://sugarlite.top/${l}${currentPath ? "/" + currentPath : ""}`);
+        document.head.appendChild(link);
+      });
+
+      // x-default points to zh
+      const defaultLink = document.createElement("link");
+      defaultLink.setAttribute("rel", "alternate");
+      defaultLink.setAttribute("hreflang", "x-default");
+      defaultLink.setAttribute("href", `https://sugarlite.top/zh${currentPath ? "/" + currentPath : ""}`);
+      document.head.appendChild(defaultLink);
+    }, [location.pathname]);
+
     // Set OpenGraph metadata based on current page
     useOpenGraph({
       title:
@@ -76,8 +106,8 @@ const App: React.FC = () => {
           : lang === "zh"
           ? "查看 SugarLite 轻糖的服务条款和使用协议。"
           : "View SugarLite's terms of service and usage agreement.",
-      url: `https://sugerlite.top${location.pathname}`,
-      image: "https://sugerlite.top/og-image.png",
+      url: `https://sugarlite.top${location.pathname}`,
+      image: "https://sugarlite.top/og-image.png",
       type: "website",
     });
 
@@ -94,85 +124,142 @@ const App: React.FC = () => {
     };
 
     // Home page content
-    const HomePage = () => (
-      <main>
-        <Hero lang={lang} />
+    const HomePage = () => {
+      const { ref: statsRef, isVisible: statsVisible } = useScrollReveal();
+      const { ref: suitableRef, isVisible: suitableVisible } = useScrollReveal();
+      const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
-        {/* Statistics Banner */}
-        <section className="bg-brand py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-              <div>
-                <div className="text-4xl font-extrabold mb-1">5,000,000+</div>
-                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">
-                  {t("statsUsers")}
+      const userCount = useCountUp(5000000, 2000, 0, statsVisible);
+      const foodCount = useCountUp(10000, 2000, 0, statsVisible);
+
+      return (
+        <main>
+          <Hero lang={lang} />
+
+          {/* Statistics Banner */}
+          <section className="py-20 bg-[#f5f5f7] dark:bg-[#0d0d0f]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div
+                ref={statsRef}
+                className={`grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center ${statsVisible ? 'visible' : ''}`}
+              >
+                <div className="reveal stagger-1">
+                  <div className="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">
+                    {userCount.toLocaleString()}+
+                  </div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400">
+                    {t("statsUsers")}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="text-4xl font-extrabold mb-1">10,000+</div>
-                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">
-                  {t("statsFood")}
+                <div className="reveal stagger-2">
+                  <div className="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">
+                    {foodCount.toLocaleString()}+
+                  </div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400">
+                    {t("statsFood")}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="text-4xl font-extrabold mb-1">4.9/5</div>
-                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">
-                  {t("statsRatings")}
+                <div className="reveal stagger-3">
+                  <div className="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">4.9/5</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400">
+                    {t("statsRatings")}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="text-4xl font-extrabold mb-1">24/7</div>
-                <div className="text-sm opacity-80 uppercase tracking-wider font-semibold">
-                  {t("statsAvailability")}
+                <div className="reveal stagger-4">
+                  <div className="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">24/7</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400">
+                    {t("statsAvailability")}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <Features lang={lang} />
+          <Features lang={lang} />
 
-        <AppPreview lang={lang} />
+          <AppPreview lang={lang} />
 
-        {/* Call to Action Section */}
-        <section
-          id="download"
-          className="py-24 bg-white dark:bg-slate-900 transition-colors"
-        >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-brand rounded-[3rem] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl shadow-brand/20">
-              <div className="absolute top-0 right-0 p-8 text-white/10 text-9xl font-bold italic">
-                HEALTH
+          {/* Suitable Users & Disclaimer */}
+          <section className="py-32 bg-white dark:bg-black">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div
+                ref={suitableRef}
+                className={`grid lg:grid-cols-2 gap-16 ${suitableVisible ? 'visible' : ''}`}
+              >
+                <div>
+                  <h3 className="reveal stagger-1 text-4xl lg:text-5xl font-extrabold mb-8 text-slate-900 dark:text-white">
+                    {t("suitableUsersTitle")}
+                  </h3>
+                  <ul className="space-y-4 text-lg text-slate-500 dark:text-slate-400">
+                    <li className="reveal stagger-2 flex items-start gap-3">
+                      <span className="text-brand mt-1.5 text-xs">●</span>
+                      <span>{t("suitableUser1")}</span>
+                    </li>
+                    <li className="reveal stagger-3 flex items-start gap-3">
+                      <span className="text-brand mt-1.5 text-xs">●</span>
+                      <span>{t("suitableUser2")}</span>
+                    </li>
+                    <li className="reveal stagger-4 flex items-start gap-3">
+                      <span className="text-brand mt-1.5 text-xs">●</span>
+                      <span>{t("suitableUser3")}</span>
+                    </li>
+                    <li className="reveal stagger-5 flex items-start gap-3">
+                      <span className="text-brand mt-1.5 text-xs">●</span>
+                      <span>{t("suitableUser4")}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="reveal stagger-1 text-4xl lg:text-5xl font-extrabold mb-8 text-slate-900 dark:text-white">
+                    {t("disclaimerTitle")}
+                  </h3>
+                  <p className="reveal stagger-3 text-lg leading-relaxed text-slate-500 dark:text-slate-400">
+                    {t("disclaimerText")}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold mb-6 relative z-10">
+            </div>
+          </section>
+
+          {/* Call to Action Section */}
+          <section id="download" className="py-32 bg-[#f5f5f7] dark:bg-[#0d0d0f]">
+            <div
+              ref={ctaRef}
+              className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${ctaVisible ? 'visible' : ''}`}
+            >
+              <h2 className="reveal stagger-1 text-4xl lg:text-5xl font-extrabold mb-6 text-slate-900 dark:text-white">
                 {t("ctaTitle")}
               </h2>
-              <p className="text-lg opacity-90 mb-10 max-w-xl mx-auto relative z-10">
+              <p className="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto">
                 {t("ctaSubtitle")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                <button className="bg-white text-brand px-10 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-colors shadow-lg flex items-center justify-center gap-2">
-                  <img
-                    src="/apple-store.svg"
-                    alt="App Store"
-                    className="w-6 h-6"
-                  />
+              <div className="reveal stagger-3 flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href={APP_LINKS.appStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-brand text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors flex items-center justify-center gap-2"
+                >
+                  <img src="/apple-store.svg" alt="App Store" className="w-6 h-6" />
                   {t("ctaPrimary")}
-                </button>
-                <button className="bg-brand-dark/50 border border-white/30 text-white px-10 py-4 rounded-2xl font-bold hover:bg-brand-dark transition-colors flex items-center justify-center gap-2">
-                  <img
-                    src="/google-play.svg"
-                    alt="Google Play"
-                    className="w-6 h-6"
-                  />
+                </a>
+                <a
+                  href={APP_LINKS.supportUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-10 py-4 rounded-full font-bold hover:opacity-90 transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   {t("ctaSecondary")}
-                </button>
+                </a>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
-    );
+          </section>
+        </main>
+      );
+    };
 
     return (
       <div className="min-h-screen transition-colors duration-300 dark:bg-slate-950">

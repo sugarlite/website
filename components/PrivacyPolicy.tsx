@@ -264,7 +264,11 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
                 ? "如果您对本隐私政策有任何疑问，请通过以下方式联系我们："
                 : "If you have any questions about this privacy policy, please contact us at:"}
             </p>
-            <div className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg"></div>
+            <div className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+              <p className="text-slate-700 dark:text-slate-300">
+                {isZh ? "电子邮件" : "Email"}: support@sugarlite.top
+              </p>
+            </div>
           </section>
         </div>
       </div>
