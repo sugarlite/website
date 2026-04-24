@@ -44,8 +44,8 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({
           </h1>
           <p className="text-slate-500 dark:text-slate-400">
             {isZh
-              ? `最后更新于 2025 年 12 月。使用 ${APP_NAME.zh} 即表示您同意本条款。`
-              : `Last updated December 2025. Using ${APP_NAME.en} means you agree to these terms.`}
+              ? `最后更新于 2026 年 4 月。使用 ${APP_NAME.zh} 即表示您同意本条款。`
+              : `Last updated April 2026. Using ${APP_NAME.en} means you agree to these terms.`}
           </p>
         </div>
 
@@ -184,7 +184,38 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({
           {/* Section 8 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "8. 条款修改" : "8. Modification of Terms"}
+              {isZh
+                ? "8. Apple 健康（HealthKit）使用条款"
+                : "8. Apple Health (HealthKit) Terms"}
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isZh
+                ? "若您启用 Apple 健康（HealthKit）功能，即表示您同意本应用在您授权范围内访问相关健康数据，用于血糖记录同步、趋势分析和健康管理展示。"
+                : "If you enable Apple Health (HealthKit) features, you agree that this app may access related health data within your authorized scope for glucose sync, trend analysis, and health management display."}
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
+              <li>
+                {isZh
+                  ? "HealthKit 功能为可选功能，您可自行决定是否授权。"
+                  : "HealthKit functionality is optional, and you decide whether to grant permission."}
+              </li>
+              <li>
+                {isZh
+                  ? "您可随时在 iOS“健康”应用或系统设置中撤销授权，撤销后本应用将不再访问对应的 HealthKit 数据。"
+                  : "You may revoke permission at any time in the iOS Health app or system settings; after revocation, this app will no longer access the corresponding HealthKit data."}
+              </li>
+              <li>
+                {isZh
+                  ? "我们不会将 HealthKit 数据用于广告、营销或出售给第三方。"
+                  : "We do not use HealthKit data for advertising, marketing, or sale to third parties."}
+              </li>
+            </ul>
+          </section>
+
+          {/* Section 9 */}
+          <section>
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">
+              {isZh ? "9. 条款修改" : "9. Modification of Terms"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh
@@ -193,10 +224,10 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({
             </p>
           </section>
 
-          {/* Section 9 */}
+          {/* Section 10 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "9. 帐户终止" : "9. Account Termination"}
+              {isZh ? "10. 帐户终止" : "10. Account Termination"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh
@@ -205,10 +236,10 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({
             </p>
           </section>
 
-          {/* Section 10 */}
+          {/* Section 11 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "10. 准用法律" : "10. Governing Law"}
+              {isZh ? "11. 准用法律" : "11. Governing Law"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh
@@ -217,10 +248,10 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({
             </p>
           </section>
 
-          {/* Section 11 */}
+          {/* Section 12 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "11. 联系我们" : "11. Contact Us"}
+              {isZh ? "12. 联系我们" : "12. Contact Us"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh

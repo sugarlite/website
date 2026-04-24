@@ -41,8 +41,8 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
           </h1>
           <p className="text-slate-500 dark:text-slate-400">
             {isZh
-              ? `最后更新于 2025 年 12 月。${APP_NAME.zh} 致力于保护您的隐私。`
-              : `Last updated December 2025. ${APP_NAME.en} is committed to protecting your privacy.`}
+              ? `最后更新于 2026 年 4 月。${APP_NAME.zh} 致力于保护您的隐私。`
+              : `Last updated April 2026. ${APP_NAME.en} is committed to protecting your privacy.`}
           </p>
         </div>
 
@@ -211,7 +211,41 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
           {/* Section 7 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "7. 政策更新" : "7. Policy Updates"}
+              {isZh ? "7. Apple 健康（HealthKit）说明" : "7. Apple Health (HealthKit) Notice"}
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isZh
+                ? "本应用支持与 Apple 健康（HealthKit）集成。相关功能会在应用内明确标注为“Apple 健康同步”或类似名称，并仅在您主动授权后读取或写入健康数据。"
+                : 'This app supports integration with Apple Health (HealthKit). Related features are clearly labeled in the app as "Apple Health Sync" or similar, and health data is read or written only after you explicitly grant permission.'}
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
+              <li>
+                {isZh
+                  ? "我们可能会在您授权后读取或写入与血糖管理相关的数据（例如血糖记录等）。"
+                  : "After authorization, we may read or write data related to glucose management (such as glucose records)."}
+              </li>
+              <li>
+                {isZh
+                  ? "HealthKit 数据仅用于在应用内展示、分析与健康管理功能，不用于广告、营销或画像。"
+                  : "HealthKit data is used only for in-app display, analysis, and health management features, and is not used for advertising, marketing, or profiling."}
+              </li>
+              <li>
+                {isZh
+                  ? "除非获得您的明确同意或法律要求，我们不会向第三方出售或共享您的 HealthKit 数据。"
+                  : "Unless required by law or with your explicit consent, we do not sell or share your HealthKit data with third parties."}
+              </li>
+              <li>
+                {isZh
+                  ? "您可以随时在 iOS 系统“健康”应用或“设置 > 隐私与安全性 > 健康”中管理或撤销授权。"
+                  : 'You can manage or revoke permissions at any time in the iOS Health app or in "Settings > Privacy & Security > Health".'}
+              </li>
+            </ul>
+          </section>
+
+          {/* Section 8 */}
+          <section>
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">
+              {isZh ? "8. 政策更新" : "8. Policy Updates"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh
@@ -220,10 +254,10 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
             </p>
           </section>
 
-          {/* Section 8 */}
+          {/* Section 9 */}
           <section>
             <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              {isZh ? "8. 联系我们" : "8. Contact Us"}
+              {isZh ? "9. 联系我们" : "9. Contact Us"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {isZh
