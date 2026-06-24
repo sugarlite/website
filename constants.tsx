@@ -1,31 +1,29 @@
 
 import React from 'react';
-import { Feature, NavItem, LocalizedString } from './types';
+import { Feature } from './types';
 
 export const APP_NAME = {
   zh: '轻糖',
-  en: 'SugarLite'
+  en: 'SugarLite',
+  ja: '軽糖',
+  'zh-Hant': '輕糖'
 };
 
 export const APP_LINKS = {
   appStore: 'https://apps.apple.com/us/app/sugarlite/id6753901096',
-  marketingUrl: 'https://sugar-lite-web.vercel.app/',
+  marketingUrl: 'https://sugarlite.top/',
   supportUrl: 'https://my.feishu.cn/wiki/SwYAw2DDEiLFMSk11mOcHMgtnnh?from=from_copylink'
 };
-
-export const NAV_ITEMS: NavItem[] = [
-  { label: { zh: '功能特性', en: 'Features' }, href: '#features' },
-  { label: { zh: '应用预览', en: 'Preview' }, href: '#preview' },
-  { label: { zh: '下载中心', en: 'Download' }, href: '#download' }
-];
 
 export const FEATURES: Feature[] = [
   {
     id: 'glucose',
-    title: { zh: '血糖趋势追踪', en: 'Glucose Trend Tracking' },
+    title: { zh: '血糖趋势追踪', en: 'Glucose Trend Tracking', ja: '血糖トレンド追跡', 'zh-Hant': '血糖趨勢追蹤' },
     description: {
       zh: '轻松记录餐前、餐后血糖值，自动生成可视化趋势曲线，参考 IDF 目标范围。',
-      en: 'Log pre- and post-meal glucose easily and get visual trend curves with IDF-aligned target references.'
+      en: 'Log pre- and post-meal glucose easily and get visual trend curves with IDF-aligned target references.',
+      ja: '食前・食後の血糖値を簡単に記録し、IDF基準の目標範囲に基づく視覚的なトレンド曲線を自動生成します。',
+      'zh-Hant': '輕鬆記錄餐前、餐後血糖值，自動生成可視化趨勢曲線，參考 IDF 目標範圍。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,10 +33,12 @@ export const FEATURES: Feature[] = [
   },
   {
     id: 'food',
-    title: { zh: '饮食记录管理', en: 'Food Logging' },
+    title: { zh: '饮食记录管理', en: 'Food Logging', ja: '食事記録管理', 'zh-Hant': '飲食記錄管理' },
     description: {
       zh: '快速记录每日饮食，支持丰富食物数据库与自定义食物，自动估算碳水摄入。',
-      en: 'Track meals quickly with rich food data and custom items, with automatic carbohydrate estimation.'
+      en: 'Track meals quickly with rich food data and custom items, with automatic carbohydrate estimation.',
+      ja: '豊富な食品データベースとカスタム食品に対応し、炭水化物摂取量を自動推定しながら毎日の食事を素早く記録します。',
+      'zh-Hant': '快速記錄每日飲食，支援豐富食物資料庫與自訂食物，自動估算碳水攝取。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,10 +48,12 @@ export const FEATURES: Feature[] = [
   },
   {
     id: 'pgrs',
-    title: { zh: '个性化血糖反应分析', en: 'Personalized Glucose Response' },
+    title: { zh: '个性化血糖反应分析', en: 'Personalized Glucose Response', ja: '個別化血糖反応分析', 'zh-Hant': '個人化血糖反應分析' },
     description: {
       zh: '通过餐前餐后血糖配对分析（PGRS），识别友好食物与风险食物。',
-      en: 'Use PGRS pairing analysis to identify glucose-friendly foods and foods that need caution.'
+      en: 'Use PGRS pairing analysis to identify glucose-friendly foods and foods that need caution.',
+      ja: 'PGRSペアリング分析を使用して、血糖に優しい食品と注意が必要な食品を特定します。',
+      'zh-Hant': '透過餐前餐後血糖配對分析（PGRS），識別友好食物與風險食物。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,10 +63,12 @@ export const FEATURES: Feature[] = [
   },
   {
     id: 'exercise',
-    title: { zh: '运动记录', en: 'Exercise Tracking' },
+    title: { zh: '运动记录', en: 'Exercise Tracking', ja: '運動記録', 'zh-Hant': '運動記錄' },
     description: {
       zh: '记录日常运动，观察不同强度活动对血糖波动的影响。',
-      en: 'Track daily activity and understand how exercise intensity affects glucose fluctuations.'
+      en: 'Track daily activity and understand how exercise intensity affects glucose fluctuations.',
+      ja: '日常の運動を記録し、運動強度が血糖変動にどのように影響するかを理解します。',
+      'zh-Hant': '記錄日常運動，觀察不同強度活動對血糖波動的影響。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,10 +78,12 @@ export const FEATURES: Feature[] = [
   },
   {
     id: 'insights',
-    title: { zh: 'AI 智能洞察', en: 'AI Insights' },
+    title: { zh: 'AI 智能洞察', en: 'AI Insights', ja: 'AI インサイト', 'zh-Hant': 'AI 智能洞察' },
     description: {
       zh: '基于多次记录生成个性化建议，帮助形成更可持续的控糖方案。',
-      en: 'Generate personalized insights from repeated records to build a more sustainable glucose plan.'
+      en: 'Generate personalized insights from repeated records to build a more sustainable glucose plan.',
+      ja: '複数回の記録に基づいてパーソナライズされた提案を生成し、より持続可能な血糖管理計画を構築します。',
+      'zh-Hant': '基於多次記錄生成個人化建議，幫助形成更永續的控糖方案。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,10 +93,12 @@ export const FEATURES: Feature[] = [
   },
   {
     id: 'cloud',
-    title: { zh: '云端同步', en: 'Cloud Sync' },
+    title: { zh: '云端同步', en: 'Cloud Sync', ja: 'クラウド同期', 'zh-Hant': '雲端同步' },
     description: {
       zh: '登录后自动同步数据，跨设备使用更连续，换机也不丢记录。',
-      en: 'Sync data automatically after sign-in for seamless cross-device use and zero record loss.'
+      en: 'Sync data automatically after sign-in for seamless cross-device use and zero record loss.',
+      ja: 'サインイン後にデータを自動同期し、シームレスなクロスデバイス使用と記録の紛失ゼロを実現します。',
+      'zh-Hant': '登入後自動同步資料，跨裝置使用更連續，換機也不丟記錄。'
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,62 +107,3 @@ export const FEATURES: Feature[] = [
     )
   }
 ];
-
-export const UI_STRINGS: Record<string, LocalizedString> = {
-  heroTag: { zh: '支持 Apple Health 同步与 AI 洞察', en: 'Apple Health Sync and AI Insights' },
-  heroTitle: { zh: '记录血糖规律，', en: 'Track Your Glucose,' },
-  heroTitleHighlight: { zh: '找到适合你的饮食方案', en: 'Find Your Best Diet Plan' },
-  heroSubtitle: {
-    zh: '「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁记录与科学分析，帮助你更好了解血糖变化并持续优化日常饮食。',
-    en: 'SugarLite is a smart glucose management app for people who care about blood sugar health, combining simple logging with practical data insights.'
-  },
-  downloadAppStore: { zh: 'App Store 下载', en: 'App Store' },
-  downloadGooglePlay: { zh: 'Google Play 下载(即将上线)', en: 'Google Play (coming soon)' },
-  nowDownload: { zh: '立即下载', en: 'Download Now' },
-  overview: { zh: '血糖概览', en: 'Overview' },
-  dailyAvg: { zh: '今日均值', en: 'Daily Avg' },
-  unit: { zh: 'mmol/L', en: 'mmol/L' },
-  statsUsers: { zh: '用户信赖选择', en: 'Trusted Users' },
-  statsFood: { zh: '专业数据支撑', en: 'Scientific Data' },
-  statsRatings: { zh: 'App Store 评分', en: 'App Store Rating' },
-  statsAvailability: { zh: '全天候陪伴', en: '24/7 Support' },
-  featuresTag: { zh: '核心功能', en: 'Core Features' },
-  featuresTitle: { zh: '围绕控糖场景的 6 大能力', en: 'Six Core Capabilities for Glucose Care' },
-  featuresSubtitle: {
-    zh: '从记录、分析到提醒和同步，帮助你把控餐前餐后变化，形成长期可执行的血糖管理节奏。',
-    en: 'From logging and analysis to reminders and syncing, build a long-term and actionable glucose routine.'
-  },
-  previewTitle: { zh: '更贴近日常的血糖管理体验', en: 'A Practical Daily Glucose Experience' },
-  previewSubtitle: {
-    zh: '你可以从记录中快速看到趋势变化，并结合饮食、运动与个性化分析，逐步找到适合自己的控糖方案。',
-    en: 'Understand trends faster from your logs and combine food, exercise, and personalized analysis to improve outcomes.'
-  },
-  previewPoint1Title: { zh: 'PGRS 配对分析', en: 'PGRS Pairing Analysis' },
-  previewPoint1Desc: { zh: '通过餐前餐后配对，判断食物对你血糖的真实影响。', en: 'Pair pre- and post-meal values to see real food impact on your glucose.' },
-  previewPoint2Title: { zh: 'HealthKit 数据同步', en: 'HealthKit Sync' },
-  previewPoint2Desc: { zh: '支持 Apple Health 同步，减少重复录入。', en: 'Sync with Apple Health to reduce manual entry.' },
-  previewPoint3Title: { zh: '血糖定时提醒', en: 'Timed Glucose Reminders' },
-  previewPoint3Desc: { zh: '按你的节奏设置提醒，降低漏测漏记。', en: 'Set reminders on your own schedule to avoid missed checks.' },
-  ctaTitle: { zh: '开始你的轻量化控糖管理', en: 'Start Smarter Glucose Management' },
-  ctaSubtitle: {
-    zh: '现在下载轻糖，记录、分析、提醒一站完成。每一次记录，都会变成下一次更好的选择。',
-    en: 'Download SugarLite to log, analyze, and get reminders in one place. Every record helps your next better choice.'
-  },
-  ctaPrimary: { zh: '立即免费下载', en: 'Free Download' },
-  ctaSecondary: { zh: '获取支持', en: 'Get Support' },
-  suitableUsersTitle: { zh: '适合人群', en: 'Who It Is For' },
-  suitableUser1: { zh: '糖尿病前期及糖尿病患者', en: 'People with prediabetes or diabetes' },
-  suitableUser2: { zh: '关注血糖健康的普通人群', en: 'Anyone focused on glucose health' },
-  suitableUser3: { zh: '执行低糖或控糖饮食计划的用户', en: 'People following low-sugar diet plans' },
-  suitableUser4: { zh: '需要监测餐后血糖反应的人群', en: 'People monitoring post-meal glucose responses' },
-  disclaimerTitle: { zh: '重要提示', en: 'Important Notice' },
-  disclaimerText: {
-    zh: '「轻糖」不提供医疗诊断建议，所有数据仅供参考。如有健康问题，请咨询专业医生。',
-    en: 'SugarLite does not provide medical diagnosis. All data is for reference only. Please consult a qualified doctor for medical concerns.'
-  },
-  footerTagline: { zh: '致力于为全球用户提供最专业的血糖与健康管理方案。', en: 'Dedicated to providing the most professional health solutions globally.' },
-  footerAbout: { zh: '关于我们', en: 'About' },
-  footerProduct: { zh: '产品服务', en: 'Product' },
-  footerContact: { zh: '联系我们', en: 'Contact' },
-  footerRights: { zh: '© 2025 轻糖 (SugarLite) 版权所有', en: '© 2025 SugarLite All rights reserved.' }
-};

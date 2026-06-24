@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { FEATURES, UI_STRINGS } from '../constants';
+import { FEATURES } from '../constants';
 import { Language } from '../types';
+import { useTranslation } from '../hooks/useTranslation';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface FeaturesProps {
@@ -9,7 +10,7 @@ interface FeaturesProps {
 }
 
 const Features: React.FC<FeaturesProps> = ({ lang }) => {
-  const t = (key: string) => UI_STRINGS[key][lang];
+  const { t } = useTranslation(lang);
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
   const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
@@ -20,10 +21,10 @@ const Features: React.FC<FeaturesProps> = ({ lang }) => {
           ref={headerRef}
           className={`text-center mb-20 space-y-4 ${headerVisible ? 'visible' : ''}`}
         >
-          <p className="reveal stagger-1 text-brand font-semibold tracking-wide uppercase text-sm">{t('featuresTag')}</p>
-          <h2 className="reveal stagger-2 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">{t('featuresTitle')}</h2>
+          <p className="reveal stagger-1 text-brand font-semibold tracking-wide uppercase text-sm">{t('features.tag')}</p>
+          <h2 className="reveal stagger-2 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">{t('features.title')}</h2>
           <p className="reveal stagger-3 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-            {t('featuresSubtitle')}
+            {t('features.subtitle')}
           </p>
         </div>
 
@@ -39,9 +40,9 @@ const Features: React.FC<FeaturesProps> = ({ lang }) => {
               <div className="w-14 h-14 bg-gradient-to-br from-brand to-emerald-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-brand/20">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{feature.title[lang]}</h3>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{t(`features.${feature.id === 'cloud' ? 'sync' : feature.id}.title`)}</h3>
               <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
-                {feature.description[lang]}
+                {t(`features.${feature.id === 'cloud' ? 'sync' : feature.id}.description`)}
               </p>
             </div>
           ))}

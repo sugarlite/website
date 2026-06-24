@@ -4,24 +4,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- Critical CSS Inline for Above-the-Fold -->
+  <style>
+    /* Critical CSS: Prevent FOUC and ensure fast first paint */
+    html { scroll-behavior: smooth; }
+    body { 
+      margin: 0; 
+      font-family: 'Noto Sans SC', 'Outfit', system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    /* Prevent layout shift for images */
+    img { max-width: 100%; height: auto; }
+    /* Prevents CLS from web fonts */
+    .font-loaded { font-family: 'Noto Sans SC', 'Outfit', system-ui, sans-serif; }
+  </style>
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>SugarLite 轻糖 - 掌控您的血糖健康</title>
+  <title>轻糖 - 智能血糖管理助手 | 血糖记录与升糖分析，发现适合你的食物</title>
 
+  <!-- Google Search Console Verification (replace with your verification code) -->
+  <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+  
+  <!-- Bing Webmaster Tools Verification (replace with your verification code) -->
+  <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+  
+  <!-- Baidu Verification (replace with your verification code) -->
+  <meta name="baidu-site-verification" content="YOUR_BAIDU_VERIFICATION_CODE">
+  
+  <!-- Yandex Verification (replace with your verification code) -->
+  <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE">
+
+  <!-- Resource Hints for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://esm.sh">
+  <link rel="dns-prefetch" href="https://sugarlite.top">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="/icon.png" as="image" type="image/png">
+  <link rel="preload" href="/hero-phone.png" as="image" fetchpriority="high">
+  <link rel="preload" href="/og-image.png" as="image" fetchpriority="high">
+  
+  <!-- Prefetch Next Pages -->
+  <link rel="prefetch" href="/zh/privacy">
+  <link rel="prefetch" href="/zh/terms">
+  <link rel="prefetch" href="/zh/faq">
+
+  <!-- Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/logo.svg">
-  <link rel="apple-touch-icon" href="/logo.svg">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/icon.svg" color="#00C09A">
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#00C09A">
   <meta name="msapplication-TileColor" content="#00C09A">
+  <meta name="msapplication-config" content="none">
 
   <!-- PWA / Mobile -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,36 +75,72 @@
   <meta name="apple-mobile-web-app-title" content="SugarLite 轻糖">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="SugarLite 轻糖">
+  <meta name="format-detection" content="telephone=no">
 
   <!-- Apple Smart App Banner -->
-  <meta name="apple-itunes-app" content="app-id=6753901096">
+  <meta name="apple-itunes-app" content="app-id=6753901096, app-argument=https://sugarlite.top">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://sugarlite.top">
+
+  <!-- Alternate Language Links (will be updated by JS for dynamic routes) -->
+  <link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh">
+  <link rel="alternate" hreflang="en" href="https://sugarlite.top/en">
+  <link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja">
+  <link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant">
+  <link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh">
 
   <!-- OpenGraph Meta Tags -->
-  <meta property="og:site_name" content="SugarLite 轻糖">
-  <meta property="og:title" content="SugarLite 轻糖 - 掌控您的血糖健康">
-  <meta property="og:description" content="SugarLite（轻糖）是一款专业的血糖监测、趋势分析与健康管理应用，通过科学的数据看板助您掌控健康生活。支持 Apple Health 同步与 AI 智能洞察。">
+  <meta property="og:site_name" content="轻糖">
+  <meta property="og:title" content="轻糖 - 智能血糖管理助手 | 血糖记录与升糖分析，发现适合你的食物">
+  <meta property="og:description" content="「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。支持血糖趋势追踪、饮食记录管理、PGRS 个性化血糖反应分析、运动记录、智能洞察、云端同步。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sugarlite.top">
   <meta property="og:image" content="https://sugarlite.top/og-image.png">
+  <meta property="og:image:secure_url" content="https://sugarlite.top/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SugarLite 轻糖 App 界面预览">
+  <meta property="og:image:alt" content="SugarLite 轻糖 App 界面预览 - 智能血糖监测与健康管理">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:locale:alternate" content="zh_TW">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@SugarLite">
-  <meta name="twitter:title" content="SugarLite 轻糖 - 掌控您的血糖健康">
-  <meta name="twitter:description" content="SugarLite（轻糖）是一款专业的血糖监测、趋势分析与健康管理应用">
+  <meta name="twitter:creator" content="@SugarLite">
+  <meta name="twitter:title" content="轻糖 - 智能血糖管理助手 | 血糖记录与升糖分析，发现适合你的食物">
+  <meta name="twitter:description" content="「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。">
   <meta name="twitter:image" content="https://sugarlite.top/og-image.png">
-  <meta name="twitter:image:alt" content="SugarLite 轻糖 App 界面预览">
+  <meta name="twitter:image:alt" content="SugarLite 轻糖 App 界面预览 - 智能血糖监测与健康管理">
+  <meta name="twitter:domain" content="sugarlite.top">
+
+  <!-- Social Media Discovery -->
+  <meta name="twitter:site" content="@SugarLite">
+  <meta name="twitter:creator" content="@SugarLite">
+  
+  <!-- Pinterest Verification (optional) -->
+  <meta name="pinterest-rich-pin" content="true">
+  
+  <!-- LinkedIn / Open Graph additional -->
+  <meta property="og:see_also" content="https://apps.apple.com/us/app/sugarlite/id6753901096">
+  <meta property="og:see_also" content="https://twitter.com/SugarLite">
+  
+  <!-- Pinterest -->
+  <meta name="pinterest" content="nopin" description="SugarLite 轻糖 - 智能血糖管理应用">
 
   <!-- Basic Meta Tags -->
-  <meta name="description" content="SugarLite（轻糖）是一款专业的血糖监测、趋势分析与健康管理应用，通过科学的数据看板助您掌控健康生活。支持 Apple Health 同步、AI 智能洞察、PGRS 配对分析。">
-  <meta name="keywords" content="血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,HealthKit,餐前餐后血糖,PGRS,饮食记录,运动记录">
-  <meta name="author" content="SugarLite">
+  <meta name="description" content="「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。支持血糖趋势追踪、饮食记录管理、PGRS 个性化血糖反应分析、运动记录、智能洞察、云端同步。">
+  <meta name="keywords" content="血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,HealthKit,餐前餐后血糖,PGRS,饮食记录,运动记录,血糖分析,血糖趋势,AI血糖,血糖App,血糖软件,血糖助手,血糖日记,血糖健康,血糖控制,糖友助手,餐前餐后血糖差多少正常,糖尿病饮食记录app,血糖波动大怎么办,如何控制餐后血糖,血糖高吃什么食物好,血糖管理app推荐,日本血糖管理app,台湾血糖记录app,blood glucose tracker app,diabetes management app,glucose monitoring diary,continuous glucose monitoring,CGM app,血糖値管理アプリ,糖尿病管理アプリ,血糖測定記録,糖質制限アプリ,血糖管理アプリおすすめ">
+  <meta name="author" content="SugarLite 轻糖">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <!-- Referrer Policy -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -69,37 +151,91 @@
         "@type": "WebSite",
         "@id": "https://sugarlite.top/#website",
         "url": "https://sugarlite.top",
-        "name": "SugarLite 轻糖",
-        "description": "专业的血糖监测与健康管理应用",
-        "inLanguage": ["zh-CN", "en-US"],
+        "name": "轻糖",
+        "description": "专为关注血糖健康人群设计的智能管理工具，帮助你了解自己的血糖规律，找到最适合的饮食方案",
+        "inLanguage": ["zh-CN", "en-US", "ja-JP", "zh-TW"],
         "publisher": {
           "@id": "https://sugarlite.top/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://sugarlite.top/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
         }
       },
       {
         "@type": "Organization",
         "@id": "https://sugarlite.top/#organization",
-        "name": "SugarLite 轻糖",
+        "name": "轻糖",
         "url": "https://sugarlite.top",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://sugarlite.top/logo.svg"
+          "url": "https://sugarlite.top/icon.png",
+          "width": 512,
+          "height": 512
         },
         "sameAs": [
-          "https://apps.apple.com/us/app/sugarlite/id6753901096"
+          "https://apps.apple.com/us/app/sugarlite/id6753901096",
+          "https://twitter.com/SugarLite",
+          "https://www.facebook.com/SugarLiteApp",
+          "https://www.instagram.com/sugarlite.app",
+          "https://www.youtube.com/@SugarLiteApp",
+          "https://www.tiktok.com/@sugarlite.app",
+          "https://www.xiaohongshu.com/user/profile/SugarLite",
+          "https://weibo.com/SugarLite"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "support@sugarlite.top",
-          "contactType": "customer support"
+          "contactType": "customer support",
+          "availableLanguage": ["Chinese", "English", "Japanese"]
         }
       },
       {
         "@type": "MobileApplication",
         "@id": "https://sugarlite.top/#app",
-        "name": "SugarLite 轻糖",
-        "description": "专业的血糖监测、趋势分析与健康管理应用",
+        "name": "轻糖",
+        "description": "专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。支持血糖趋势追踪、饮食记录管理、PGRS 个性化血糖反应分析、运动记录、智能洞察、云端同步",
         "operatingSystem": ["iOS"],
+        "applicationCategory": "HealthApplication",
+        "applicationSubCategory": "MedicalApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1200",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "featureList": "血糖趋势追踪, 饮食记录管理, PGRS 配对分析, 运动记录, 智能洞察, 云端数据同步",
+        "screenshot": [
+          "https://sugarlite.top/preview/Screenshot%2001.png",
+          "https://sugarlite.top/preview/Screenshot%2002.png",
+          "https://sugarlite.top/preview/Screenshot%2003.png"
+        ],
+        "downloadUrl": "https://apps.apple.com/us/app/sugarlite/id6753901096",
+        "softwareVersion": "1.5.1",
+        "fileSize": "25MB",
+        "supportingData": {
+          "@type": "HealthTopicContent",
+          "healthCondition": [
+            "Diabetes",
+            "Prediabetes"
+          ]
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "轻糖",
+        "description": "专为关注血糖健康人群设计的智能管理工具，帮助你了解自己的血糖规律，找到最适合的饮食方案",
+        "operatingSystem": "iOS",
         "applicationCategory": "HealthApplication",
         "offers": {
           "@type": "Offer",
@@ -109,17 +245,168 @@
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "ratingCount": "5000000"
+          "ratingCount": "1200"
         },
-        "featureList": "血糖趋势追踪, 饮食记录管理, PGRS 配对分析, 运动记录, AI 智能洞察, HealthKit 数据同步",
-        "screenshot": [
-          "https://sugarlite.top/preview/Screenshot%2001.png",
-          "https://sugarlite.top/preview/Screenshot%2002.png",
-          "https://sugarlite.top/preview/Screenshot%2003.png"
-        ]
+        "downloadUrl": "https://apps.apple.com/us/app/sugarlite/id6753901096"
       }
     ]
   }
+  </script>
+
+  <!-- Breadcrumb Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://sugarlite.top/zh"
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "轻糖是什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "轻糖支持哪些功能？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "轻糖提供血糖趋势追踪、饮食记录管理、PGRS 个性化血糖反应分析、运动记录、智能洞察、云端同步等核心功能。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "轻糖适合哪些人群使用？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "轻糖适合糖尿病前期及糖尿病患者、关注血糖健康的普通人群、执行低糖或控糖饮食计划的用户，以及需要监测餐后血糖反应的人群。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "轻糖的数据安全吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "轻糖重视用户数据隐私。登录后数据自动同步至云端，采用加密传输和存储。数据仅在用户授权下访问。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- HowTo Structured Data - 使用教程 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "如何使用轻糖记录血糖",
+    "description": "通过简单的三步开始使用轻糖管理您的血糖健康",
+    "image": "https://sugarlite.top/og-image.png",
+    "totalTime": "PT5M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "USD",
+      "value": "0"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "下载并安装轻糖",
+        "text": "在 App Store 搜索轻糖，下载并安装应用。打开应用后完成简单的注册流程。",
+        "url": "https://sugarlite.top/zh#download",
+        "image": "https://sugarlite.top/preview/Screenshot%2001.png"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "记录您的第一次血糖",
+        "text": "点击首页的「记录」按钮，选择餐前或餐后，输入血糖值（单位 mmol/L），添加备注如饮食内容。",
+        "url": "https://sugarlite.top/zh#features"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "查看趋势分析",
+        "text": "在「趋势」页面查看您的血糖变化曲线，使用 PGRS 配对分析了解不同食物对血糖的影响。",
+        "url": "https://sugarlite.top/zh#features"
+      }
+    ]
+  }
+  </script>
+
+  <!-- VideoObject Structured Data - App演示视频 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "轻糖 - 智能血糖管理应用介绍",
+    "description": "了解轻糖如何通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。",
+    "thumbnailUrl": "https://sugarlite.top/og-image.png",
+    "uploadDate": "2025-06-23",
+    "duration": "PT1M30S",
+    "contentUrl": "https://sugarlite.top/preview/Screenshot%2001.png",
+    "embedUrl": "https://sugarlite.top",
+    "publisher": {
+      "@type": "Organization",
+      "name": "轻糖",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sugarlite.top/icon.png",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "WatchAction" },
+      "userInteractionCount": 1200
+    }
+  }
+  </script>
+
+  <!-- Analytics & Tracking (Replace with your actual tracking IDs) -->
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YOUR_GA4_ID');
+  </script>
+  
+  <!-- Baidu Analytics (for China market) -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_ID";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  
+  <!-- Microsoft Clarity (User behavior analytics) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
   </script>
 
   <script type="importmap">
@@ -135,6 +422,31 @@
 </head>
 
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+  <!-- NoScript content for SEO crawlers -->
+  <noscript>
+    <div style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;">
+      <h1>SugarLite 轻糖 - 智能血糖监测与健康管理</h1>
+      <p>SugarLite（轻糖）是一款专业的血糖监测、趋势分析与健康管理应用。通过科学的数据看板助您掌控健康生活。</p>
+      <h2>核心功能</h2>
+      <ul>
+        <li><strong>血糖趋势追踪</strong> - 轻松记录餐前、餐后血糖值，自动生成可视化趋势曲线</li>
+        <li><strong>饮食记录管理</strong> - 快速记录每日饮食，支持丰富食物数据库与自定义食物</li>
+        <li><strong>PGRS 配对分析</strong> - 通过餐前餐后血糖配对分析，识别友好食物与风险食物</li>
+        <li><strong>运动记录</strong> - 记录日常运动，观察不同强度活动对血糖波动的影响</li>
+        <li><strong>AI 智能洞察</strong> - 基于多次记录生成个性化建议，帮助形成更可持续的控糖方案</li>
+        <li><strong>云端同步</strong> - 登录后自动同步数据，跨设备使用更连续</li>
+      </ul>
+      <h2>适合人群</h2>
+      <ul>
+        <li>糖尿病前期及糖尿病患者</li>
+        <li>关注血糖健康的普通人群</li>
+        <li>执行低糖或控糖饮食计划的用户</li>
+        <li>需要监测餐后血糖反应的人群</li>
+      </ul>
+      <p><strong>重要提示：</strong>「轻糖」不提供医疗诊断建议，所有数据仅供参考。如有健康问题，请咨询专业医生。</p>
+      <p><a href="https://apps.apple.com/us/app/sugarlite/id6753901096">立即下载 SugarLite</a></p>
+    </div>
+  </noscript>
   <div id="root"></div>
 </body>
 

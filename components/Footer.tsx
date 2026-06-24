@@ -1,6 +1,8 @@
+
 import React from "react";
-import { APP_NAME, UI_STRINGS, APP_LINKS } from "../constants";
+import { APP_NAME, APP_LINKS } from "../constants";
 import { Language } from "../types";
+import { useTranslation } from "../hooks/useTranslation";
 
 interface FooterProps {
   lang: Language;
@@ -8,7 +10,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
-  const t = (key: string) => UI_STRINGS[key][lang];
+  const { t } = useTranslation(lang);
 
   return (
     <footer className="bg-[#f5f5f7] dark:bg-[#0d0d0f] pt-20 pb-10 transition-colors">
@@ -16,38 +18,25 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2 md:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+                <img
+                  src="/icon.png"
+                  alt="SugarLite Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-dark">
                 {APP_NAME[lang]}
               </span>
             </div>
-            <p className="text-slate-500 text-sm">{t("footerTagline")}</p>
+            <p className="text-slate-500 text-sm">{t("footer.tagline")}</p>
           </div>
 
           <div>
             <h4 className="font-bold mb-4 dark:text-white">
-              {t("footerAbout")}
+              {t("footer.about")}
             </h4>
             <ul className="space-y-2 text-slate-500 text-sm">
-              <li>
-                <span className="text-slate-400">
-                  {lang === "zh" ? "核心团队" : "Team"}
-                </span>
-              </li>
               <li>
                 <a
                   href="/privacy"
@@ -57,7 +46,19 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   }}
                   className="hover:text-brand transition-colors"
                 >
-                  {lang === "zh" ? "隐私政策" : "Privacy"}
+                  {t("nav.privacy")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/faq"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("faq");
+                  }}
+                  className="hover:text-brand transition-colors"
+                >
+                  {t("nav.faq")}
                 </a>
               </li>
               <li>
@@ -69,7 +70,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   }}
                   className="hover:text-brand transition-colors"
                 >
-                  {lang === "zh" ? "服务条款" : "Terms"}
+                  {t("nav.terms")}
                 </a>
               </li>
             </ul>
@@ -77,7 +78,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
           <div>
             <h4 className="font-bold mb-4 dark:text-white">
-              {t("footerProduct")}
+              {t("footer.product")}
             </h4>
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
@@ -87,17 +88,12 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   rel="noopener noreferrer"
                   className="hover:text-brand transition-colors"
                 >
-                  iOS 版本
+                  {t("footer.iosVersion")}
                 </a>
               </li>
               <li>
                 <span className="text-slate-400">
-                  Android 版本（即将上线）
-                </span>
-              </li>
-              <li>
-                <span className="text-slate-400">
-                  {lang === "zh" ? "企业合作" : "B2B"}
+                  {t("footer.androidVersion")}
                 </span>
               </li>
             </ul>
@@ -105,7 +101,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
           <div>
             <h4 className="font-bold mb-4 dark:text-white">
-              {t("footerContact")}
+              {t("footer.contact")}
             </h4>
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
@@ -115,11 +111,6 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                 >
                   support@sugarlite.top
                 </a>
-              </li>
-              <li>
-                {lang === "zh"
-                  ? `关注公众号：${APP_NAME.zh}`
-                  : `Follow us: ${APP_NAME.en}`}
               </li>
             </ul>
           </div>
@@ -135,7 +126,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
               />
             </div>
           </div>
-          <div className="text-center text-slate-400 text-xs">{t("footerRights")}</div>
+          <div className="text-center text-slate-400 text-xs">{t("footer.rights")}</div>
         </div>
       </div>
     </footer>

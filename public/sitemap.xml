@@ -1,54 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/1.1">
   <url>
     <loc>https://sugarlite.top/zh</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
+    <image:image>
+      <image:loc>https://sugarlite.top/og-image.png</image:loc>
+      <image:title>SugarLite 轻糖 - 智能血糖监测应用</image:title>
+      <image:caption>SugarLite 轻糖 App 界面预览</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sugarlite.top/preview/Screenshot%2001.png</image:loc>
+      <image:title>血糖概览界面</image:title>
+      <image:caption>SugarLite 血糖数据概览截图</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://sugarlite.top/en</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
+    <image:image>
+      <image:loc>https://sugarlite.top/og-image.png</image:loc>
+      <image:title>SugarLite - Smart Blood Sugar Monitoring App</image:title>
+      <image:caption>SugarLite App Interface Preview</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/ja</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
+    <image:image>
+      <image:loc>https://sugarlite.top/og-image.png</image:loc>
+      <image:title>SugarLite - スマートな血糖モニタリングアプリ</image:title>
+      <image:caption>SugarLite アプリインターフェースのプレビュー</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh-Hant</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugarlite.top/zh"/>
+    <image:image>
+      <image:loc>https://sugarlite.top/og-image.png</image:loc>
+      <image:title>SugarLite 輕糖 - 智能血糖監測應用</image:title>
+      <image:caption>SugarLite 輕糖 App 介面預覽</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://sugarlite.top/zh/privacy</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/privacy"/>
   </url>
   <url>
     <loc>https://sugarlite.top/en/privacy</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/privacy"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/ja/privacy</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/privacy"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh-Hant/privacy</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/privacy"/>
   </url>
   <url>
     <loc>https://sugarlite.top/zh/terms</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/terms"/>
   </url>
   <url>
     <loc>https://sugarlite.top/en/terms</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/terms"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/ja/terms</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/terms"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh-Hant/terms</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/terms"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh/faq</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/faq"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/en/faq</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/faq"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/ja/faq</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/faq"/>
+  </url>
+  <url>
+    <loc>https://sugarlite.top/zh-Hant/faq</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sugarlite.top/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sugarlite.top/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://sugarlite.top/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://sugarlite.top/zh-Hant/faq"/>
   </url>
 </urlset>

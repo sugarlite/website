@@ -1,0 +1,295 @@
+{
+  "appName": "SugarLite",
+  "nav": {
+    "features": "Features",
+    "preview": "Preview",
+    "download": "Download",
+    "faq": "FAQ",
+    "about": "About Us",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "hero": {
+    "tag": "Apple Health Sync and AI Insights",
+    "title": "Track Your Glucose,",
+    "titleHighlight": "Find Foods That Work for You",
+    "subtitle": "SugarLite is an intelligent blood sugar management app for people living with diabetes, prediabetes, or anyone concerned about glucose health. By pairing fasting, pre-meal, and post-meal readings with meals, exercise, and insulin doses, it helps you spot your personal glucose patterns and build a diet that keeps your A1C in range.",
+    "downloadAppStore": "App Store",
+    "downloadGooglePlay": "Google Play (coming soon)",
+    "helpCenter": "Help Center"
+  },
+  "stats": {
+    "users": "Trusted Users",
+    "food": "Scientific Data",
+    "ratings": "App Store Rating",
+    "availability": "24/7 Support"
+  },
+  "features": {
+    "tag": "Core Features",
+    "title": "Six Core Capabilities for Glucose Care",
+    "subtitle": "From logging and analysis to reminders and syncing, build a long-term and actionable glucose routine.",
+    "glucose": {
+      "title": "Glucose Trend Tracking",
+      "description": "Log fasting, pre-meal, and post-meal blood sugar values and see automatic visual trend curves based on IDF guidelines."
+    },
+    "food": {
+      "title": "Diet & Carb Counter",
+      "description": "Quickly log daily meals with a rich food database and custom food support, with automatic carbohydrate calculation."
+    },
+    "pgrs": {
+      "title": "Personalized Glycemic Response (PGRS)",
+      "description": "Pair pre/post-meal readings to discover which foods are glucose-friendly for you and which need caution."
+    },
+    "exercise": {
+      "title": "Exercise & Insulin Tracking",
+      "description": "Log workouts and insulin doses to understand their impact on blood sugar."
+    },
+    "insights": {
+      "title": "Smart Insights",
+      "description": "Get personalized recommendations based on your records, identifying safe foods and foods to watch."
+    },
+    "sync": {
+      "title": "Cloud & Device Sync",
+      "description": "Automatic data sync when logged in. Import readings from your compatible Roche glucometer via Bluetooth."
+    }
+  },
+  "preview": {
+    "title": "A Practical Daily Glucose Experience",
+    "subtitle": "Understand trends faster from your logs and combine food, exercise, and personalized analysis to improve outcomes.",
+    "point1": {
+      "title": "PGRS Pairing Analysis",
+      "desc": "Pair pre- and post-meal values to see real food impact on your glucose."
+    },
+    "point2": {
+      "title": "HealthKit Sync",
+      "desc": "Sync with Apple Health to reduce manual entry."
+    },
+    "point3": {
+      "title": "Timed Glucose Reminders",
+      "desc": "Set reminders on your own schedule to avoid missed checks."
+    }
+  },
+  "cta": {
+    "title": "Start Smarter Glucose Management",
+    "subtitle": "Download SugarLite to log, analyze, and get reminders in one place. Every record helps your next better choice.",
+    "primary": "Free Download",
+    "secondary": "Get Support"
+  },
+  "suitableFor": {
+    "title": "Who It Is For",
+    "users": [
+      "People with type 1 diabetes (T1D) or type 2 diabetes (T2D)",
+      "People with prediabetes or gestational diabetes",
+      "General population concerned about glucose health",
+      "Users following a low-sugar, low-carb, or glucose-control diet"
+    ]
+  },
+  "disclaimer": {
+    "title": "Important Notice",
+    "text": "SugarLite does not provide medical diagnosis advice. All data is for reference only. Please consult a professional doctor for health concerns."
+  },
+  "footer": {
+    "tagline": "Dedicated to providing the most professional health solutions globally.",
+    "about": "About",
+    "product": "Product",
+    "contact": "Contact",
+    "iosVersion": "iOS Version",
+    "androidVersion": "Android Version (coming soon)",
+    "b2b": "B2B",
+    "email": "support@sugarlite.top",
+    "rights": "© 2025 SugarLite All rights reserved."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "backToHome": "Back to Home",
+    "lastUpdated": "Last updated April 2026. {appName} is committed to protecting your privacy.",
+    "sections": [
+      {
+        "title": "1. Information Collection",
+        "intro": "We collect the following types of information to provide you with better services:",
+        "items": [
+          "Personal identification information (such as name, email address, phone number)",
+          "Health data (glucose readings, medication history, medical records)",
+          "Device information (device type, operating system, app version)",
+          "Usage data (app usage frequency, feature usage patterns)"
+        ]
+      },
+      {
+        "title": "2. Information Usage",
+        "intro": "We use the collected information only for the following purposes:",
+        "items": [
+          "Provide, maintain and improve application features",
+          "Personalize your user experience",
+          "Send important notifications and updates",
+          "Conduct research and data analysis",
+          "Comply with legal and regulatory requirements"
+        ]
+      },
+      {
+        "title": "3. Information Security",
+        "content": "We use industry-standard security measures to protect your personal information, including SSL encryption and regular security audits. Your health data is stored in verified data centers and accessed only by authorized personnel."
+      },
+      {
+        "title": "4. Data Sharing",
+        "intro": "We will not sell, rent, or otherwise provide your personal information to third parties for marketing purposes. We share data only in the following cases:",
+        "items": [
+          "With your explicit consent",
+          "As required by law",
+          "For data processing with trusted service providers",
+          "To protect our legitimate interests"
+        ]
+      },
+      {
+        "title": "5. Your Rights",
+        "intro": "You have the right to:",
+        "items": [
+          "Access the personal data we store about you",
+          "Request correction or deletion of your data",
+          "Withdraw consent for data processing",
+          "Obtain a copy of your data",
+          "File a complaint with relevant authorities"
+        ]
+      },
+      {
+        "title": "6. Cookies and Tracking Technologies",
+        "content": "We use cookies and similar technologies to improve your app experience and analyze user behavior. You can control cookie usage through your browser settings."
+      },
+      {
+        "title": "7. Apple Health (HealthKit) Notice",
+        "intro": "This app supports integration with Apple Health (HealthKit). Related features are clearly labeled in the app as Apple Health Sync or similar, and health data is read or written only after you explicitly grant permission.",
+        "items": [
+          "After authorization, we may read or write data related to glucose management (such as glucose records).",
+          "HealthKit data is used only for in-app display, analysis, and health management features, and is not used for advertising, marketing, or profiling.",
+          "Unless required by law or with your explicit consent, we do not sell or share your HealthKit data with third parties.",
+          "You can manage or revoke permissions at any time in the iOS Health app or in Settings > Privacy & Security > Health."
+        ]
+      },
+      {
+        "title": "8. Policy Updates",
+        "content": "We may update this privacy policy periodically to reflect changes in technology, law, or business practices. We will notify you of any significant changes through the app."
+      },
+      {
+        "title": "9. Contact Us",
+        "intro": "If you have any questions about this privacy policy, please contact us at:",
+        "emailLabel": "Email"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "backToHome": "Back to Home",
+    "lastUpdated": "Last updated April 2026. Using {appName} means you agree to these terms.",
+    "sections": [
+      {
+        "title": "1. Service Overview",
+        "content": "{appName} is a mobile application designed for glucose health management. This app provides glucose tracking, data analysis, trend forecasting, and health reports to help users better manage their wellness."
+      },
+      {
+        "title": "2. User Responsibilities",
+        "intro": "You agree to:",
+        "items": [
+          "Provide true, accurate and complete personal information",
+          "Keep your account information and password confidential",
+          "Be responsible for all account activities",
+          "Comply with all applicable laws and regulations",
+          "Not interfere with or disrupt the normal operation of the app"
+        ]
+      },
+      {
+        "title": "3. Medical Disclaimer",
+        "content": "Important Notice: This app is not a medical device and cannot replace professional medical advice. The data and analysis provided by this app are for reference only and do not constitute medical diagnosis, treatment recommendations, or prescriptions. Do not rely on this app for medical decisions. Please consult qualified medical professionals for any health concerns."
+      },
+      {
+        "title": "4. Intellectual Property",
+        "content": "This app and all its content (including text, images, charts, and code) are protected by copyright, trademark, and other intellectual property laws. You may download and use the app for personal use, but may not copy, modify, distribute, or publicly display any content."
+      },
+      {
+        "title": "5. Usage Restrictions",
+        "intro": "You may not:",
+        "items": [
+          "Use the app for any illegal purpose",
+          "Harass or harm others",
+          "Attempt to gain unauthorized access",
+          "Reverse engineer or crack the app",
+          "Use automated tools to scrape data"
+        ]
+      },
+      {
+        "title": "6. Disclaimer of Warranties",
+        "content": "This app is provided as is. We make no express or implied warranties, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement."
+      },
+      {
+        "title": "7. Limitation of Liability",
+        "content": "To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, or consequential damages (including data loss or business interruption)."
+      },
+      {
+        "title": "8. Apple Health (HealthKit) Terms",
+        "intro": "If you enable Apple Health (HealthKit) features, you agree that this app may access related health data within your authorized scope for glucose sync, trend analysis, and health management display.",
+        "items": [
+          "HealthKit functionality is optional, and you decide whether to grant permission.",
+          "You may revoke permission at any time in the iOS Health app or system settings; after revocation, this app will no longer access the corresponding HealthKit data.",
+          "We do not use HealthKit data for advertising, marketing, or sale to third parties."
+        ]
+      },
+      {
+        "title": "9. Modification of Terms",
+        "content": "We reserve the right to modify these terms at any time. Modified terms become effective immediately upon posting to the app. Your continued use of the app constitutes acceptance of the modified terms."
+      },
+      {
+        "title": "10. Account Termination",
+        "content": "We reserve the right to terminate your account at any time for any reason, including if you violate these terms. Upon account termination, you lose access to the app and all your stored data."
+      },
+      {
+        "title": "11. Governing Law",
+        "content": "These terms are governed by the laws of the People's Republic of China. Any disputes shall be resolved through friendly negotiation. If negotiation fails, disputes shall be submitted to the competent courts."
+      },
+      {
+        "title": "12. Contact Us",
+        "intro": "If you have any questions or comments about these Terms of Service, please contact us at:",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone"
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "backToHome": "Back to Home",
+    "subtitle": "Frequently asked questions about {appName}",
+    "stillHaveQuestions": "Still have questions?",
+    "contactUs": "Contact Us",
+    "items": [
+      {
+        "q": "What is SugarLite?",
+        "a": "SugarLite is a professional blood sugar monitoring, trend analysis and health management app that helps users understand glucose changes and optimize daily diet through simple logging and scientific analysis."
+      },
+      {
+        "q": "What features does SugarLite support?",
+        "a": "SugarLite provides glucose trend tracking, food logging, PGRS personalized glucose response analysis, exercise tracking, AI insights, HealthKit sync, cloud sync, and timed glucose reminders."
+      },
+      {
+        "q": "Who is SugarLite suitable for?",
+        "a": "SugarLite is suitable for people with prediabetes or diabetes, anyone focused on glucose health, people following low-sugar diet plans, and those monitoring post-meal glucose responses."
+      },
+      {
+        "q": "Is my data safe with SugarLite?",
+        "a": "SugarLite prioritizes user data privacy. After login, data is automatically synced to the cloud with encrypted transmission and storage. HealthKit data is only accessed with user authorization."
+      },
+      {
+        "q": "How do I use PGRS pairing analysis?",
+        "a": "After logging pre-meal glucose, log again 2 hours post-meal. SugarLite automatically pairs these readings, calculates the change, and marks the food's impact on your glucose."
+      },
+      {
+        "q": "Does SugarLite support Android?",
+        "a": "Currently SugarLite only supports iOS (iPhone). An Android version is in development and will be released soon. Subscribe to our website for release notifications."
+      },
+      {
+        "q": "How do I sync Apple Health data?",
+        "a": "Enable 'Apple Health Sync' in SugarLite settings and authorize access to health data. Once authorized, your glucose records will sync bidirectionally with Apple Health."
+      },
+      {
+        "q": "Is SugarLite free?",
+        "a": "SugarLite offers a free basic version with core features like glucose logging, trend analysis, and food tracking. Some advanced features like AI deep insights may require a subscription."
+      }
+    ]
+  }
+}

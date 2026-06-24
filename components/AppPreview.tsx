@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Language } from "../types";
+import { useTranslation } from "../hooks/useTranslation";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 interface AppPreviewProps {
@@ -8,6 +9,7 @@ interface AppPreviewProps {
 }
 
 const AppPreview: React.FC<AppPreviewProps> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
   const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
@@ -19,12 +21,10 @@ const AppPreview: React.FC<AppPreviewProps> = ({ lang }) => {
           className={`text-center mb-20 space-y-4 ${headerVisible ? 'visible' : ''}`}
         >
           <h2 className="reveal stagger-1 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">
-            {lang === "zh" ? "轻松记录，科学控糖" : "Easy Logging, Smarter Control"}
+            {t("preview.title")}
           </h2>
           <p className="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-            {lang === "zh"
-              ? "从血糖追踪到饮食分析，一切尽在掌握"
-              : "From glucose tracking to diet analysis, everything at your fingertips"}
+            {t("preview.subtitle")}
           </p>
         </div>
 

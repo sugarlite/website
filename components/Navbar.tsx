@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { NAV_ITEMS, APP_NAME, APP_LINKS } from "../constants";
+
+import React, { useState, useEffect, useRef } from "react";
+import { APP_NAME, APP_LINKS } from "../constants";
 import { Language } from "../types";
+import { useTranslation } from "../hooks/useTranslation";
 
 interface NavbarProps {
   darkMode: boolean;
@@ -9,6 +11,20 @@ interface NavbarProps {
   setLang: (val: Language) => void;
   onNavigate: (page: string) => void;
 }
+
+const LANG_LABELS: Record<Language, string> = {
+  zh: "中文",
+  en: "English",
+  ja: "日本語",
+  "zh-Hant": "繁體中文",
+};
+
+const LANG_SHORT_LABELS: Record<Language, string> = {
+  zh: "中",
+  en: "EN",
+  ja: "日",
+  "zh-Hant": "繁",
+};
 
 const Navbar: React.FC<NavbarProps> = ({
   darkMode,
@@ -19,12 +35,40 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  // Separate refs for desktop and mobile dropdowns: a single ref shared by two
+  // DOM nodes is silently overwritten by the second mount, so click-outside
+  // detection would only ever guard the mobile menu and break the desktop one.
+  const desktopLangRef = useRef<HTMLDivElement>(null);
+  const mobileLangRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation(lang);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close language dropdown when clicking outside either dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const insideDesktop =
+        !!desktopLangRef.current && desktopLangRef.current.contains(target);
+      const insideMobile =
+        !!mobileLangRef.current && mobileLangRef.current.contains(target);
+      if (!insideDesktop && !insideMobile) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleLangChange = (newLang: Language) => {
+    setLang(newLang);
+    setIsLangOpen(false);
+  };
 
   return (
     <nav
@@ -37,9 +81,9 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand/30 overflow-hidden p-1 ring-2 ring-white/60 dark:ring-slate-700/70">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
               <img
-                src="/logo.svg"
+                src="/icon.png"
                 alt="SugarLite Logo"
                 className="w-full h-full object-contain"
               />
@@ -50,32 +94,81 @@ const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="hidden md:flex items-center space-x-8 rounded-full px-5 py-2 bg-white/72 dark:bg-slate-900/72 backdrop-blur-md shadow-[0_14px_34px_-24px_rgba(15,23,42,0.45)]">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.label.en}
-                onClick={() => {
-                  if (item.href.startsWith("#")) {
-                    // Scroll to section
-                    const element = document.querySelector(item.href);
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  } else {
-                    // Navigate to page
-                    onNavigate(item.href);
-                  }
-                }}
-                className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
-              >
-                {item.label[lang]}
-              </button>
-            ))}
+            <button
+              onClick={() => {
+                const element = document.querySelector("#features");
+                element?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+            >
+              {t("nav.features")}
+            </button>
+            <button
+              onClick={() => {
+                const element = document.querySelector("#preview");
+                element?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+            >
+              {t("nav.preview")}
+            </button>
+            <button
+              onClick={() => {
+                const element = document.querySelector("#download");
+                element?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+            >
+              {t("nav.download")}
+            </button>
+
+            <button
+              onClick={() => onNavigate("faq")}
+              className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+            >
+              {t("nav.faq")}
+            </button>
 
             <div className="flex items-center gap-2 pl-4 ml-1">
-              <button
-                onClick={() => setLang(lang === "zh" ? "en" : "zh")}
-                className="p-2 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors uppercase"
-              >
-                {lang === "zh" ? "EN" : "中文"}
-              </button>
+              {/* Language Dropdown - Desktop */}
+              <div className="relative" ref={desktopLangRef}>
+                <button
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  className="flex items-center gap-1 p-2 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
+                  {LANG_LABELS[lang]}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {isLangOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1">
+                    {(["zh", "en", "ja", "zh-Hant"] as Language[]).map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => handleLangChange(l)}
+                        className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                          l === lang
+                            ? "bg-brand/10 text-brand font-semibold"
+                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                        }`}
+                      >
+                        {LANG_LABELS[l]}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <button
                 onClick={() => setDarkMode(!darkMode)}
@@ -119,17 +212,50 @@ const Navbar: React.FC<NavbarProps> = ({
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-brand to-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:brightness-105 transition-all transform hover:-translate-y-0.5"
             >
-              {lang === "zh" ? "立即下载" : "Download"}
+              {t("nav.download")}
             </a>
           </div>
 
           <div className="md:hidden flex items-center gap-4">
-            <button
-              onClick={() => setLang(lang === "zh" ? "en" : "zh")}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600"
-            >
-              {lang === "zh" ? "EN" : "中"}
-            </button>
+            {/* Language Dropdown - Mobile */}
+            <div className="relative" ref={mobileLangRef}>
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center gap-1"
+              >
+                {LANG_SHORT_LABELS[lang]}
+                <svg
+                  className={`w-3 h-3 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {isLangOpen && (
+                <div className="absolute top-full right-0 mt-2 w-28 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50">
+                  {(["zh", "en", "ja", "zh-Hant"] as Language[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => handleLangChange(l)}
+                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                        l === lang
+                          ? "bg-brand/10 text-brand font-semibold"
+                          : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                      }`}
+                    >
+                      {LANG_SHORT_LABELS[l]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
@@ -193,30 +319,52 @@ const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white dark:bg-slate-900 p-4 space-y-4 shadow-xl">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.label.en}
-              onClick={() => {
-                if (item.href.startsWith("#")) {
-                  const element = document.querySelector(item.href);
-                  element?.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  onNavigate(item.href);
-                }
-                setIsMenuOpen(false);
-              }}
-              className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
-            >
-              {item.label[lang]}
-            </button>
-          ))}
+          <button
+            onClick={() => {
+              const element = document.querySelector("#features");
+              element?.scrollIntoView({ behavior: "smooth" });
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+          >
+            {t("nav.features")}
+          </button>
+          <button
+            onClick={() => {
+              const element = document.querySelector("#preview");
+              element?.scrollIntoView({ behavior: "smooth" });
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+          >
+            {t("nav.preview")}
+          </button>
+          <button
+            onClick={() => {
+              const element = document.querySelector("#download");
+              element?.scrollIntoView({ behavior: "smooth" });
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+          >
+            {t("nav.download")}
+          </button>
+          <button
+            onClick={() => {
+              onNavigate("faq");
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+          >
+            {t("nav.faq")}
+          </button>
           <a
             href={APP_LINKS.appStore}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-center w-full bg-brand text-white py-3 rounded-xl font-bold"
           >
-            {lang === "zh" ? "立即下载" : "Download Now"}
+            {t("nav.download")}
           </a>
         </div>
       )}
