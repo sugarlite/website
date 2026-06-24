@@ -15,6 +15,9 @@ import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import FAQPage from "./components/FAQPage";
+import GuideBloodSugar from "./components/GuideBloodSugar";
+import GuideDiabeticDiet from "./components/GuideDiabeticDiet";
+import StoriesPage from "./components/StoriesPage";
 import { Language } from "./types";
 import { APP_LINKS } from "./constants";
 import { useTranslation } from "./hooks/useTranslation";
@@ -110,6 +113,30 @@ const LanguageWrapper: React.FC = () => {
           : lang === "zh-Hant"
           ? "常見問題 - SugarLite 輕糖"
           : "FAQ - SugarLite"
+        : location.pathname.includes("/guide/blood-sugar-management")
+        ? lang === "zh"
+          ? "血糖管理完全指南 - SugarLite 轻糖"
+          : lang === "ja"
+          ? "血糖管理完全ガイド - SugarLite"
+          : lang === "zh-Hant"
+          ? "血糖管理完全指南 - SugarLite 輕糖"
+          : "Blood Sugar Management Guide - SugarLite"
+        : location.pathname.includes("/guide/diabetic-diet")
+        ? lang === "zh"
+          ? "糖尿病饮食管理指南 - SugarLite 轻糖"
+          : lang === "ja"
+          ? "糖尿病食事管理ガイド - SugarLite"
+          : lang === "zh-Hant"
+          ? "糖尿病飲食管理指南 - SugarLite 輕糖"
+          : "Diabetic Diet Guide - SugarLite"
+        : location.pathname.includes("/stories")
+        ? lang === "zh"
+          ? "用户故事 - SugarLite 轻糖"
+          : lang === "ja"
+          ? "ユーザーの声 - SugarLite"
+          : lang === "zh-Hant"
+          ? "用戶故事 - SugarLite 輕糖"
+          : "User Stories - SugarLite"
         : lang === "zh"
         ? "服务条款 - SugarLite 轻糖"
         : lang === "ja"
@@ -142,6 +169,30 @@ const LanguageWrapper: React.FC = () => {
           : lang === "zh-Hant"
           ? "SugarLite 輕糖常見問題解答，了解血糖管理、應用使用、資料同步等問題的詳細答案。"
           : "SugarLite FAQ - answers about glucose management, app usage, data sync, and more."
+        : location.pathname.includes("/guide/blood-sugar-management")
+        ? lang === "zh"
+          ? "全面的血糖管理指南，涵盖正常血糖范围、监测方法、影响因素和个性化管理方案。"
+          : lang === "ja"
+          ? "包括的な血糖管理ガイド。正常な血糖範囲、測定方法、影響要因、パーソナライズされた管理計画を解説。"
+          : lang === "zh-Hant"
+          ? "全面的血糖管理指南，涵蓋正常血糖範圍、監測方法、影響因素和個人化管理方案。"
+          : "Comprehensive blood sugar management guide covering normal ranges, monitoring methods, influencing factors, and personalized management plans."
+        : location.pathname.includes("/guide/diabetic-diet")
+        ? lang === "zh"
+          ? "糖尿病饮食管理指南，了解升糖指数、推荐食物、餐盘法和餐前餐后血糖配对分析。"
+          : lang === "ja"
+          ? "糖尿病食事管理ガイド。血糖生成指数、推奨食品、プレート法、食前食後血糖ペアリング分析を解説。"
+          : lang === "zh-Hant"
+          ? "糖尿病飲食管理指南，了解升糖指數、推薦食物、餐盤法和餐前餐後血糖配對分析。"
+          : "Diabetic diet management guide covering glycemic index, recommended foods, plate method, and pre/post-meal glucose pairing analysis."
+        : location.pathname.includes("/stories")
+        ? lang === "zh"
+          ? "SugarLite 用户真实故事，了解糖尿病患者、妊娠糖尿病和糖尿病前期用户如何使用轻糖改善血糖管理。"
+          : lang === "ja"
+          ? "SugarLiteユーザーの実体験。糖尿病患者、妊娠糖尿病、糖尿病前期のユーザーがSugarLiteを使って血糖管理を改善した方法を紹介。"
+          : lang === "zh-Hant"
+          ? "SugarLite 用戶真實故事，了解糖尿病患者、妊娠糖尿病和糖尿病前期用戶如何使用輕糖改善血糖管理。"
+          : "Real SugarLite user stories. Learn how people with diabetes, gestational diabetes, and prediabetes use SugarLite to improve their glucose management."
         : lang === "zh"
         ? "查看 SugarLite 轻糖的服务条款和使用协议。"
         : lang === "ja"
@@ -164,6 +215,12 @@ const LanguageWrapper: React.FC = () => {
       navigate(`/${lang}/terms`);
     } else if (page === "faq") {
       navigate(`/${lang}/faq`);
+    } else if (page === "guide-blood-sugar") {
+      navigate(`/${lang}/guide/blood-sugar-management`);
+    } else if (page === "guide-diabetic-diet") {
+      navigate(`/${lang}/guide/diabetic-diet`);
+    } else if (page === "stories") {
+      navigate(`/${lang}/stories`);
     }
     window.scrollTo(0, 0);
   };
@@ -320,6 +377,18 @@ const LanguageWrapper: React.FC = () => {
           path="/faq"
           element={<FAQPage lang={lang} onNavigate={handleNavigate} />}
         />
+        <Route
+          path="/guide/blood-sugar-management"
+          element={<GuideBloodSugar lang={lang} onNavigate={handleNavigate} />}
+        />
+        <Route
+          path="/guide/diabetic-diet"
+          element={<GuideDiabeticDiet lang={lang} onNavigate={handleNavigate} />}
+        />
+        <Route
+          path="/stories"
+          element={<StoriesPage lang={lang} onNavigate={handleNavigate} />}
+        />
       </Routes>
 
       <Footer lang={lang} onNavigate={handleNavigate} />
@@ -336,6 +405,11 @@ const App: React.FC = () => {
       {/* Redirect privacy and terms without language to English */}
       <Route path="/privacy" element={<Navigate to="/en/privacy" replace />} />
       <Route path="/terms" element={<Navigate to="/en/terms" replace />} />
+
+      {/* Redirect guide and stories without language to English */}
+      <Route path="/guide/blood-sugar-management" element={<Navigate to="/en/guide/blood-sugar-management" replace />} />
+      <Route path="/guide/diabetic-diet" element={<Navigate to="/en/guide/diabetic-diet" replace />} />
+      <Route path="/stories" element={<Navigate to="/en/stories" replace />} />
 
       {/* Language-based routes */}
       <Route path="/:lang/*" element={<LanguageWrapper />} />

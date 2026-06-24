@@ -36,11 +36,14 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
   // Separate refs for desktop and mobile dropdowns: a single ref shared by two
   // DOM nodes is silently overwritten by the second mount, so click-outside
   // detection would only ever guard the mobile menu and break the desktop one.
   const desktopLangRef = useRef<HTMLDivElement>(null);
   const mobileLangRef = useRef<HTMLDivElement>(null);
+  const desktopGuideRef = useRef<HTMLDivElement>(null);
+  const mobileGuideRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation(lang);
 
   useEffect(() => {
@@ -57,8 +60,15 @@ const Navbar: React.FC<NavbarProps> = ({
         !!desktopLangRef.current && desktopLangRef.current.contains(target);
       const insideMobile =
         !!mobileLangRef.current && mobileLangRef.current.contains(target);
+      const insideGuideDesktop =
+        !!desktopGuideRef.current && desktopGuideRef.current.contains(target);
+      const insideGuideMobile =
+        !!mobileGuideRef.current && mobileGuideRef.current.contains(target);
       if (!insideDesktop && !insideMobile) {
         setIsLangOpen(false);
+      }
+      if (!insideGuideDesktop && !insideGuideMobile) {
+        setIsGuideOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -127,6 +137,47 @@ const Navbar: React.FC<NavbarProps> = ({
               className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
             >
               {t("nav.faq")}
+            </button>
+
+            {/* Guides Dropdown - Desktop */}
+            <div className="relative" ref={desktopGuideRef}>
+              <button
+                onClick={() => setIsGuideOpen(!isGuideOpen)}
+                className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+              >
+                {t("nav.guides")}
+                <svg
+                  className={`w-3 h-3 transition-transform ${isGuideOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {isGuideOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50">
+                  <button
+                    onClick={() => { onNavigate("guide-blood-sugar"); setIsGuideOpen(false); }}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                  >
+                    {t("nav.guideBloodSugar")}
+                  </button>
+                  <button
+                    onClick={() => { onNavigate("guide-diabetic-diet"); setIsGuideOpen(false); }}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                  >
+                    {t("nav.guideDiabeticDiet")}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={() => onNavigate("stories")}
+              className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
+            >
+              {t("nav.stories")}
             </button>
 
             <div className="flex items-center gap-2 pl-4 ml-1">
@@ -357,6 +408,50 @@ const Navbar: React.FC<NavbarProps> = ({
             className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
           >
             {t("nav.faq")}
+          </button>
+
+          {/* Guides - Mobile */}
+          <div className="relative" ref={mobileGuideRef}>
+            <button
+              onClick={() => setIsGuideOpen(!isGuideOpen)}
+              className="flex items-center gap-1 w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+            >
+              {t("nav.guides")}
+              <svg
+                className={`w-4 h-4 transition-transform ${isGuideOpen ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isGuideOpen && (
+              <div className="pl-4 mt-2 space-y-2">
+                <button
+                  onClick={() => { onNavigate("guide-blood-sugar"); setIsMenuOpen(false); setIsGuideOpen(false); }}
+                  className="block w-full text-left text-base text-slate-500 dark:text-slate-400"
+                >
+                  {t("nav.guideBloodSugar")}
+                </button>
+                <button
+                  onClick={() => { onNavigate("guide-diabetic-diet"); setIsMenuOpen(false); setIsGuideOpen(false); }}
+                  className="block w-full text-left text-base text-slate-500 dark:text-slate-400"
+                >
+                  {t("nav.guideDiabeticDiet")}
+                </button>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => {
+              onNavigate("stories");
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
+          >
+            {t("nav.stories")}
           </button>
           <a
             href={APP_LINKS.appStore}

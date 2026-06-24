@@ -13,6 +13,9 @@ const ROUTES = [
   { path: 'privacy', priority: 0.5, changefreq: 'monthly' as const, hasImages: false },
   { path: 'terms', priority: 0.5, changefreq: 'monthly' as const, hasImages: false },
   { path: 'faq', priority: 0.8, changefreq: 'weekly' as const, hasImages: false },
+  { path: 'guide/blood-sugar-management', priority: 0.9, changefreq: 'weekly' as const, hasImages: false },
+  { path: 'guide/diabetic-diet', priority: 0.9, changefreq: 'weekly' as const, hasImages: false },
+  { path: 'stories', priority: 0.8, changefreq: 'weekly' as const, hasImages: false },
 ];
 
 // 页面图片配置

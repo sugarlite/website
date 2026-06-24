@@ -7,7 +7,11 @@
     "faq": "FAQ",
     "about": "About Us",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "guides": "Guides",
+    "guideBloodSugar": "Blood Sugar Guide",
+    "guideDiabeticDiet": "Diabetic Diet Guide",
+    "stories": "Stories"
   },
   "hero": {
     "tag": "Apple Health Sync and AI Insights",
@@ -289,6 +293,283 @@
       {
         "q": "Is SugarLite free?",
         "a": "SugarLite offers a free basic version with core features like glucose logging, trend analysis, and food tracking. Some advanced features like AI deep insights may require a subscription."
+      }
+    ]
+  },
+  "guide": {
+    "backToHome": "Back to Home",
+    "toc": "Table of Contents",
+    "relatedGuides": "Related Guides",
+    "ctaTitle": "Start Managing Your Blood Sugar Scientifically",
+    "ctaDescription": "Download SugarLite to log every glucose reading and discover the diet that works for you.",
+    "ctaButton": "Download SugarLite for Free",
+    "bloodSugar": {
+      "title": "Complete Blood Sugar Management Guide",
+      "subtitle": "From glucose basics to personalized management plans, master the science of blood sugar control.",
+      "sections": [
+        {
+          "heading": "What is Blood Sugar? Why Manage It?",
+          "paragraphs": [
+            "Blood sugar, or blood glucose, is the primary source of energy for your body's cells. When you eat, carbohydrates in food are broken down into glucose, which enters the bloodstream and raises blood sugar levels. Insulin, a hormone produced by the pancreas, acts like a key to help glucose enter cells for use or storage.",
+            "For people with diabetes or prediabetes, insulin production is insufficient or its effectiveness is impaired, causing glucose to remain in the bloodstream at elevated concentrations. Chronically high blood sugar damages blood vessels, nerves, kidneys, eyes, and other organs, leading to serious complications. Therefore, scientific blood sugar management is the cornerstone of preventing and controlling diabetes complications.",
+            "Blood sugar management isn't just for people with diabetes. Even healthy individuals experience declining glucose regulation with age and lifestyle changes. Early monitoring and management can effectively prevent prediabetes from progressing to diabetes and reduce cardiovascular disease risk."
+          ]
+        },
+        {
+          "heading": "What Are Normal Blood Sugar Ranges?",
+          "paragraphs": [
+            "Understanding normal blood sugar ranges is the first step in glucose management. Here are the standards recommended by the International Diabetes Federation (IDF) and the American Diabetes Association (ADA):"
+          ],
+          "table": {
+            "headers": ["Indicator", "Normal Range", "Prediabetes", "Diabetes"],
+            "rows": [
+              ["Fasting Glucose", "3.9 - 6.1 mmol/L", "6.1 - 7.0 mmol/L", "≥ 7.0 mmol/L"],
+              ["2-Hour Post-Meal", "< 7.8 mmol/L", "7.8 - 11.1 mmol/L", "≥ 11.1 mmol/L"],
+              ["HbA1c", "< 5.7%", "5.7% - 6.4%", "≥ 6.5%"],
+              ["Random Glucose", "< 11.1 mmol/L", "—", "≥ 11.1 mmol/L (with symptoms)"]
+            ]
+          }
+        },
+        {
+          "heading": "Blood Sugar Monitoring Methods and Frequency",
+          "paragraphs": [
+            "Blood sugar monitoring is the foundation of glucose management. Common methods include:"
+          ],
+          "bullets": [
+            "Fingerstick Glucose Monitoring: Using a glucometer and test strips, this is the most common method. Suitable for daily pre- and post-meal monitoring, low cost, but requires finger pricking.",
+            "Continuous Glucose Monitoring (CGM): A subcutaneous sensor provides real-time glucose readings 24/7. Ideal for type 1 diabetics who need fine-tuned insulin adjustments.",
+            "HbA1c Testing: Reflects average blood sugar over the past 2-3 months, the gold standard for assessing long-term control. Recommended every 3 months.",
+            "Urine Glucose Testing: Detects glucose in urine as an indirect indicator. Less accurate than direct blood testing but simple and useful as a supplementary method."
+          ]
+        },
+        {
+          "heading": "Factors That Affect Blood Sugar",
+          "paragraphs": [
+            "Blood sugar levels are influenced by multiple factors. Understanding them helps you better control glucose:"
+          ],
+          "bullets": [
+            "Diet: Carbohydrates have the most direct impact on blood sugar. Refined carbs (white rice, white bread, sugary drinks) spike glucose quickly, while complex carbs in whole grains, vegetables, and legumes raise it more gradually. Protein and fat have minimal direct impact but can indirectly affect glucose when consumed in excess.",
+            "Exercise: Regular exercise improves insulin sensitivity, helping muscle cells better utilize glucose. Both aerobic exercise (walking, swimming) and resistance training (weight lifting) benefit glucose control. Aim for at least 150 minutes of moderate-intensity exercise per week.",
+            "Stress: Mental stress triggers cortisol and adrenaline release, which raise blood sugar. Chronic stress also worsens insulin resistance. Learning stress management techniques (meditation, deep breathing, yoga) is important for glucose control.",
+            "Sleep: Insufficient or poor-quality sleep reduces insulin sensitivity and raises fasting glucose. Aim for 7-8 hours of quality sleep nightly with a consistent schedule.",
+            "Medications: Some medications (corticosteroids, thiazide diuretics) can raise blood sugar. If taking these, monitor glucose more closely."
+          ]
+        },
+        {
+          "heading": "The Dangers of Blood Sugar Fluctuations",
+          "paragraphs": [
+            "Blood sugar fluctuations—rapid ups and downs over short periods—are harmful beyond just high glucose itself. Research shows that glucose variability causes more oxidative stress than sustained hyperglycemia, leading to vascular endothelial damage.",
+            "Major risks include: accelerating atherosclerosis and increasing cardiovascular risk; damaging the nervous system and causing peripheral neuropathy; worsening retinopathy and increasing blindness risk; affecting kidney function and accelerating diabetic nephropathy; reducing quality of life through fatigue, mood swings, and cognitive decline."
+          ]
+        },
+        {
+          "heading": "How to Build a Personal Blood Sugar Management Plan",
+          "paragraphs": [
+            "Everyone's glucose response is unique. Building a personalized management plan is essential. Here's the scientific approach:"
+          ],
+          "bullets": [
+            "Record Baseline Data: Log fasting, pre-meal, and 2-hour post-meal glucose for at least 2 weeks to understand your baseline levels.",
+            "Identify Glucose Patterns: Observe daily glucose trends to find peak times and triggers.",
+            "Food Glucose Response Testing: Pair pre- and post-meal readings for common foods to record each food's glucose impact. This is the core of PGRS (Personalized Glycemic Response Score) analysis.",
+            "Develop a Meal Plan: Based on PGRS results, prioritize glucose-friendly foods and adjust meal composition and eating order.",
+            "Set an Exercise Plan: Combine your fitness level with a regular exercise routine and observe its glucose improvement effects.",
+            "Review and Adjust Regularly: Recheck HbA1c every 3 months and adjust your management plan accordingly."
+          ]
+        },
+        {
+          "heading": "Using SugarLite to Log and Analyze Blood Sugar",
+          "paragraphs": [
+            "SugarLite is a smart app designed for blood sugar management. It helps you:",
+            "Simple Logging: Quickly log pre- and post-meal glucose with voice input and quick tags.",
+            "PGRS Pairing Analysis: Automatically pairs pre- and post-meal readings, calculates glucose change, and marks food impact levels.",
+            "Trend Visualization: Generate daily, weekly, and monthly trend charts for intuitive glucose pattern viewing.",
+            "Smart Insights: Generate personalized recommendations based on multiple records, identifying your friendly foods and foods to watch.",
+            "HealthKit Sync: Seamlessly sync with Apple Health to integrate all health data.",
+            "Diet and Exercise Correlation: Log meals and exercise to analyze their combined impact on glucose."
+          ]
+        },
+        {
+          "heading": "Frequently Asked Questions",
+          "paragraphs": [
+            "Common questions about blood sugar management:"
+          ],
+          "bullets": [
+            "Q: My fasting glucose is normal but post-meal is high. Should I worry? A: Yes, this is typical prediabetes called impaired glucose tolerance. Adjust your diet by reducing refined carbs and increasing fiber intake.",
+            "Q: How accurate are home glucometers? A: Home glucometers typically have an error margin within ±15%, which is acceptable. Calibrate regularly with control solution and take multiple readings at the same time for averaging.",
+            "Q: Is hypoglycemia more dangerous than hyperglycemia? A: Acute hypoglycemia is indeed more dangerous, potentially causing loss of consciousness. But chronic hyperglycemia's long-term damage is equally serious. Both require active management.",
+            "Q: Does fruit raise blood sugar? A: Fruit contains natural fructose and does raise glucose, but most fruits have moderate GI. Choose low-GI fruits (apples, pears, strawberries) and limit portions to 100-200g per serving."
+          ]
+        }
+      ]
+    },
+    "diabeticDiet": {
+      "title": "Diabetic Diet Management Guide",
+      "subtitle": "From glycemic index to the plate method, master the core methods of scientific diet management and make every meal support glucose control.",
+      "sections": [
+        {
+          "heading": "Basic Principles of Diabetic Diet",
+          "paragraphs": [
+            "The core goal of diabetic diet management is to control post-meal blood sugar smoothly through reasonable food combinations, avoid large glucose fluctuations, and ensure balanced nutrition. This doesn't mean giving up delicious food entirely—it's about learning to choose and combine foods scientifically.",
+            "Basic principles include: controlling total calorie intake and maintaining a healthy weight; choosing low glycemic index (GI) foods; increasing dietary fiber intake; reasonably distributing calories across three meals; paying attention to eating order; limiting added sugars and saturated fats."
+          ]
+        },
+        {
+          "heading": "Glycemic Index (GI) and Glycemic Load (GL)",
+          "paragraphs": [
+            "Glycemic Index (GI) measures how quickly carbohydrates in food raise blood sugar. GI ≤ 55 is low-GI, 56-69 is medium-GI, and ≥ 70 is high-GI.",
+            "But GI only reflects carbohydrate 'quality,' not 'quantity.' Glycemic Load (GL) considers both quality and quantity, calculated as: GL = GI × digestible carbs per serving (g) ÷ 100. GL ≤ 10 is low, 11-19 is medium, and ≥ 20 is high.",
+            "For example, watermelon has a high GI (72), but because it's mostly water, a 100g serving has GL of only 4, which is low. White rice has GI of 83, and a bowl (150g) has GL of 43, which is high."
+          ]
+        },
+        {
+          "heading": "Recommended Foods",
+          "paragraphs": [
+            "The following foods have minimal impact on blood sugar and are suitable for daily consumption by people with diabetes:"
+          ],
+          "foodLists": [
+            {
+              "title": "✅ Recommended Foods",
+              "type": "good",
+              "items": [
+                "Whole grains: oats, brown rice, whole wheat bread, quinoa",
+                "Legumes: black beans, red beans, chickpeas, lentils",
+                "Vegetables: broccoli, spinach, celery, cucumber, tomato",
+                "Low-GI fruits: apples, pears, strawberries, blueberries, grapefruit",
+                "Quality protein: fish, chicken breast, tofu, eggs",
+                "Healthy fats: olive oil, avocado, nuts (in moderation)"
+              ]
+            },
+            {
+              "title": "⚠️ Foods to Limit",
+              "type": "bad",
+              "items": [
+                "Refined carbs: white rice, white flour, white bread, pastries",
+                "Sugary drinks: soda, fruit juice, milk tea, sports drinks",
+                "High-sugar fruits: lychee, longan, banana, durian, grapes",
+                "Processed foods: chips, cookies, instant noodles, sausages",
+                "Fried foods: fried chicken, french fries, fried dough sticks",
+                "High-fat meats: fatty meat, pork belly, processed meat products"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The Plate Method: How to Build Every Meal",
+          "paragraphs": [
+            "The plate method is a simple, intuitive way to structure meals by dividing your plate into four sections:"
+          ],
+          "bullets": [
+            "1/2 Plate: Non-starchy vegetables (broccoli, spinach, cucumber, tomato, etc.). Vegetables are rich in dietary fiber, which slows gastric emptying and reduces post-meal glucose rise.",
+            "1/4 Plate: Quality protein (fish, chicken breast, tofu, eggs, etc.). Protein increases satiety, reduces total calorie intake, and has minimal direct impact on blood sugar.",
+            "1/4 Plate: Whole grains or starchy vegetables (brown rice, oats, sweet potato, corn, etc.). Choose low-GI carbohydrate sources and control portions.",
+            "Beverages: Choose water, light tea, or unsweetened coffee. Avoid sugary drinks and juice."
+          ],
+          "tip": "Eating order matters too: eat vegetables first, then protein, and finally carbohydrates. This uses vegetables and fiber to delay carbohydrate absorption and lower post-meal glucose peaks."
+        },
+        {
+          "heading": "Pre/Post-Meal Glucose Pairing Analysis (PGRS)",
+          "paragraphs": [
+            "PGRS (Personalized Glycemic Response Score) is one of SugarLite's core features. By pairing pre- and post-meal glucose readings, it helps you understand how different foods truly affect your personal blood sugar.",
+            "How it works: Measure and log pre-meal glucose (baseline) before eating, then measure again 2 hours after the meal. SugarLite automatically calculates the glucose change (Δ = post-meal - pre-meal) and marks the food's impact level based on the magnitude of change.",
+            "Δ < 2.0 mmol/L: Friendly food—prioritize these.",
+            "Δ 2.0-3.9 mmol/L: Moderate impact food—consume in moderation.",
+            "Δ ≥ 4.0 mmol/L: High-risk food—limit or avoid.",
+            "Through multiple records, SugarLite builds your personal food glucose response database and intelligently recommends dietary plans tailored to you."
+          ]
+        },
+        {
+          "heading": "Tips for Eating Out",
+          "paragraphs": [
+            "Eating out is a common challenge for people with diabetes. These tips can help you better control blood sugar:"
+          ],
+          "bullets": [
+            "Plan ahead: Check the restaurant menu and choose dishes with vegetables, quality protein, and low-GI staples.",
+            "Control portions: Restaurant portions are often large. Ask for smaller portions or share with others.",
+            "Choose cooking methods: Prioritize steamed, boiled, grilled, or stewed dishes. Avoid fried and braised options.",
+            "Watch for hidden sugars: Many dishes (sweet and sour pork, fish-flavored shredded pork) contain large amounts of added sugar—choose carefully.",
+            "Adjust eating order: Even when dining out, try to eat vegetables first, then protein, and finally staples.",
+            "Carry a glucometer: Monitor blood sugar anytime when eating out and adjust your strategy accordingly."
+          ]
+        },
+        {
+          "heading": "Using SugarLite to Log Diet and Glucose Response",
+          "paragraphs": [
+            "SugarLite's food logging feature makes blood sugar management simple and efficient:",
+            "Quick Logging: Take a photo or search the food database to log each meal with one tap.",
+            "Automatic Calculation: Built-in rich food database automatically calculates carbs, calories, and estimated GI values.",
+            "PGRS Pairing: Automatically links pre- and post-meal glucose records to generate personalized food glucose response reports.",
+            "Smart Recommendations: Based on your historical data, recommend recipes and food combinations suitable for you.",
+            "Trend Analysis: View the correlation between diet and blood sugar trends to discover hidden dietary patterns."
+          ]
+        }
+      ]
+    }
+  },
+  "stories": {
+    "backToHome": "Back to Home",
+    "title": "User Stories and Real Experiences",
+    "subtitle": "Learn how real users use SugarLite to improve their blood sugar management and find their own path to health.",
+    "communityTitle": "Join the SugarLite Community",
+    "communityDescription": "Over 500,000 users are managing their blood sugar with SugarLite. Download the app to start your glucose management journey and share your story with the community.",
+    "communityButton": "Download SugarLite for Free",
+    "stats": [
+      { "value": "500K+", "label": "Active Users" },
+      { "value": "4.9", "label": "App Store Rating" },
+      { "value": "92%", "label": "User Satisfaction" },
+      { "value": "30 Days", "label": "Average Glucose Improvement" }
+    ],
+    "items": [
+      {
+        "avatar": "👨‍💼",
+        "name": "Mr. Zhang",
+        "condition": "Type 2 Diabetes (diagnosed 5 years ago)",
+        "location": "Shanghai",
+        "paragraphs": [
+          "Mr. Zhang was diagnosed with type 2 diabetes at age 45. Initially, he followed his doctor's advice and took metformin daily, but his blood sugar control was never ideal. Post-meal glucose often spiked above 12 mmol/L, causing significant anxiety.",
+          "On a friend's recommendation, Mr. Zhang started using SugarLite to log his glucose. Through PGRS pairing analysis, he was surprised to discover that 'whole wheat bread,' which he thought was healthy, actually had a significant impact on his blood sugar, while 'brown rice' had an unexpectedly stable glucose response.",
+          "After 3 months of continuous logging and adjustment, Mr. Zhang's HbA1c dropped from 8.2% to 6.8%. More importantly, he no longer feared food but learned how to scientifically compose every meal."
+        ],
+        "results": "HbA1c dropped from 8.2% to 6.8%, post-meal glucose fluctuations reduced by 60%",
+        "quote": "SugarLite helped me rediscover the relationship between food and blood sugar. I used to know only to eat less sugar; now I know which foods truly work for me."
+      },
+      {
+        "avatar": "👩‍⚕️",
+        "name": "Ms. Li",
+        "condition": "Gestational Diabetes",
+        "location": "Beijing",
+        "paragraphs": [
+          "Ms. Li was diagnosed with gestational diabetes at 24 weeks of pregnancy. Her doctor recommended strict dietary control, but facing complex dietary management, she felt very confused.",
+          "She started using SugarLite to log her glucose response to each meal. Through pairing analysis, she discovered that her blood sugar was extremely sensitive to 'white rice porridge,' while 'oatmeal with nuts' was very stable. She also found that eating staples after the meal rather than first significantly lowered her post-meal glucose peak.",
+          "Throughout her pregnancy, Ms. Li successfully kept her fasting glucose below 5.3 mmol/L and 2-hour post-meal glucose below 6.7 mmol/L with SugarLite's guidance. After delivery, her blood sugar quickly returned to normal."
+        ],
+        "results": "Glucose targets met throughout pregnancy, baby born at 3.2kg with perfect health scores",
+        "quote": "Pregnancy glucose control was very stressful, but SugarLite made everything simple and clear. Every record showed progress, which gave me confidence."
+      },
+      {
+        "avatar": "🏃‍♂️",
+        "name": "Mr. Wang",
+        "condition": "Prediabetes",
+        "location": "Shenzhen",
+        "paragraphs": [
+          "Mr. Wang is a programmer. Long hours of sitting and irregular eating caused him to gain 15 kg in two years. During a physical exam, his fasting glucose reached 6.3 mmol/L, and he was diagnosed with prediabetes.",
+          "He didn't want medication intervention and decided to try lifestyle changes first. After using SugarLite, he discovered his blood sugar was most prone to fluctuations between 3-4 PM, which was exactly when he habitually ate afternoon snacks.",
+          "He started replacing cookies and cakes with nuts and yogurt, and walked for 20 minutes after lunch every day. SugarLite's exercise tracking helped him observe the glucose improvement effects of exercise. After 2 months, his fasting glucose dropped to 5.6 mmol/L, and he lost 4 kg."
+        ],
+        "results": "Fasting glucose dropped from 6.3 mmol/L to 5.6 mmol/L, weight loss of 4 kg",
+        "quote": "SugarLite's data showed me the effects of change. Every glucose drop was the best reward for my persistence."
+      },
+      {
+        "avatar": "👩‍👧‍👦",
+        "name": "Ms. Chen",
+        "condition": "Family glucose management (husband has type 2 diabetes)",
+        "location": "Guangzhou",
+        "paragraphs": [
+          "Ms. Chen's husband was diagnosed with type 2 diabetes at age 55. As the primary caregiver, Ms. Chen took on the responsibility of preparing healthy meals for the whole family.",
+          "She used SugarLite to log her husband's glucose and also recorded her own as a control. Through comparative analysis, she found that the same food had very different glucose impacts on her husband and herself. For example, her husband's glucose response to 'sweet potato' was very stable, but Ms. Chen's rose faster.",
+          "This made her realize that everyone's glucose response is unique. She began customizing a dietary plan for her husband while also optimizing the whole family's diet. After six months, her husband's HbA1c dropped from 7.5% to 6.2%, and the whole family's eating habits became healthier."
+        ],
+        "results": "Husband's HbA1c dropped from 7.5% to 6.2%, whole family's eating habits improved",
+        "quote": "SugarLite not only helped my husband but also gave our whole family a completely new understanding of healthy eating."
       }
     ]
   }
