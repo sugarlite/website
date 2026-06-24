@@ -10,7 +10,7 @@ export const APP_NAME = {
 };
 
 export const APP_LINKS = {
-  appStore: 'https://apps.apple.com/us/app/sugarlite/id6753901096',
+  appStore: 'https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8',
   marketingUrl: 'https://sugarlite.top/',
   supportUrl: 'https://my.feishu.cn/wiki/SwYAw2DDEiLFMSk11mOcHMgtnnh?from=from_copylink'
 };
