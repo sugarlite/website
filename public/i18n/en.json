@@ -521,55 +521,55 @@
     "items": [
       {
         "avatar": "👨‍💼",
-        "name": "Mr. Zhang",
+        "name": "James",
         "condition": "Type 2 Diabetes (diagnosed 5 years ago)",
-        "location": "Shanghai",
+        "location": "London, UK",
         "paragraphs": [
-          "Mr. Zhang was diagnosed with type 2 diabetes at age 45. Initially, he followed his doctor's advice and took metformin daily, but his blood sugar control was never ideal. Post-meal glucose often spiked above 12 mmol/L, causing significant anxiety.",
-          "On a friend's recommendation, Mr. Zhang started using SugarLite to log his glucose. Through PGRS pairing analysis, he was surprised to discover that 'whole wheat bread,' which he thought was healthy, actually had a significant impact on his blood sugar, while 'brown rice' had an unexpectedly stable glucose response.",
-          "After 3 months of continuous logging and adjustment, Mr. Zhang's HbA1c dropped from 8.2% to 6.8%. More importantly, he no longer feared food but learned how to scientifically compose every meal."
+          "James was diagnosed with type 2 diabetes at age 45 during a routine NHS checkup. His GP prescribed metformin, but his HbA1c remained stubbornly high at 8.2%. He struggled with post-meal spikes, especially after his beloved Sunday roasts and pub lunches.",
+          "A colleague recommended SugarLite. Through PGRS pairing analysis, James discovered that 'wholemeal bread' spiked his glucose far more than expected, while 'basmati rice' had a surprisingly gentle impact. He also learned that eating his roast vegetables first, then the chicken, and finally the potatoes dramatically flattened his post-meal curve.",
+          "After three months of consistent logging, James's HbA1c dropped to 6.8%. His GP was impressed and reduced his medication. James now enjoys his Sunday roasts guilt-free, knowing exactly how to balance his plate."
         ],
-        "results": "HbA1c dropped from 8.2% to 6.8%, post-meal glucose fluctuations reduced by 60%",
-        "quote": "SugarLite helped me rediscover the relationship between food and blood sugar. I used to know only to eat less sugar; now I know which foods truly work for me."
+        "results": "HbA1c dropped from 8.2% to 6.8%, medication reduced by GP, post-meal spikes reduced by 60%",
+        "quote": "SugarLite didn't tell me to stop eating the foods I love. It taught me how to eat them smarter. My Sunday roast is back on the menu!"
       },
       {
         "avatar": "👩‍⚕️",
-        "name": "Ms. Li",
+        "name": "Sarah",
         "condition": "Gestational Diabetes",
-        "location": "Beijing",
+        "location": "Melbourne, Australia",
         "paragraphs": [
-          "Ms. Li was diagnosed with gestational diabetes at 24 weeks of pregnancy. Her doctor recommended strict dietary control, but facing complex dietary management, she felt very confused.",
-          "She started using SugarLite to log her glucose response to each meal. Through pairing analysis, she discovered that her blood sugar was extremely sensitive to 'white rice porridge,' while 'oatmeal with nuts' was very stable. She also found that eating staples after the meal rather than first significantly lowered her post-meal glucose peak.",
-          "Throughout her pregnancy, Ms. Li successfully kept her fasting glucose below 5.3 mmol/L and 2-hour post-meal glucose below 6.7 mmol/L with SugarLite's guidance. After delivery, her blood sugar quickly returned to normal."
+          "Sarah was diagnosed with gestational diabetes at 26 weeks during her second pregnancy. Her endocrinologist recommended strict carb counting, but Sarah found it overwhelming while juggling work and a toddler.",
+          "She started using SugarLite to log her meals and glucose. The PGRS analysis revealed that her morning 'healthy' granola with yogurt caused a massive spike, while plain oatmeal with chia seeds kept her perfectly stable. She also discovered that walking for 15 minutes after lunch made a noticeable difference to her afternoon readings.",
+          "Sarah maintained excellent glucose control throughout her pregnancy without needing insulin. Her baby was born at a healthy 3.4kg, and her glucose returned to normal within six weeks postpartum. She continues using SugarLite to maintain her healthy habits."
         ],
-        "results": "Glucose targets met throughout pregnancy, baby born at 3.2kg with perfect health scores",
-        "quote": "Pregnancy glucose control was very stressful, but SugarLite made everything simple and clear. Every record showed progress, which gave me confidence."
+        "results": "Maintained glucose targets throughout pregnancy without insulin, baby born at healthy 3.4kg",
+        "quote": "As a working mum, I needed something simple. SugarLite took the guesswork out of gestational diabetes. I could see exactly what worked for MY body."
       },
       {
         "avatar": "🏃‍♂️",
-        "name": "Mr. Wang",
+        "name": "Michael",
         "condition": "Prediabetes",
-        "location": "Shenzhen",
+        "location": "Austin, Texas",
         "paragraphs": [
-          "Mr. Wang is a programmer. Long hours of sitting and irregular eating caused him to gain 15 kg in two years. During a physical exam, his fasting glucose reached 6.3 mmol/L, and he was diagnosed with prediabetes.",
-          "He didn't want medication intervention and decided to try lifestyle changes first. After using SugarLite, he discovered his blood sugar was most prone to fluctuations between 3-4 PM, which was exactly when he habitually ate afternoon snacks.",
-          "He started replacing cookies and cakes with nuts and yogurt, and walked for 20 minutes after lunch every day. SugarLite's exercise tracking helped him observe the glucose improvement effects of exercise. After 2 months, his fasting glucose dropped to 5.6 mmol/L, and he lost 4 kg."
+          "Michael, a 38-year-old software engineer, spent years living on takeout and energy drinks. His annual physical revealed a fasting glucose of 6.3 mmol/L (113 mg/dL) — prediabetes. His doctor warned him that without lifestyle changes, he would likely develop type 2 diabetes within five years.",
+          "Determined to avoid medication, Michael downloaded SugarLite. He was shocked to discover that his afternoon 'healthy' energy bar caused a bigger glucose spike than a chocolate chip cookie. His daily 3 PM crashes were directly linked to his snack choices, not just caffeine withdrawal.",
+          "Michael swapped energy bars for almonds and Greek yogurt, started cycling to work, and used SugarLite's exercise tracking to see how movement improved his readings. In two months, his fasting glucose dropped to 5.4 mmol/L (97 mg/dL), and he lost 10 pounds. His doctor called it a 'textbook reversal.'"
         ],
-        "results": "Fasting glucose dropped from 6.3 mmol/L to 5.6 mmol/L, weight loss of 4 kg",
-        "quote": "SugarLite's data showed me the effects of change. Every glucose drop was the best reward for my persistence."
+        "results": "Fasting glucose dropped from 6.3 mmol/L to 5.4 mmol/L, lost 10 lbs, doctor called it 'textbook reversal'",
+        "quote": "I thought I was eating healthy because the packaging said so. SugarLite showed me the truth. Data doesn't lie."
       },
       {
         "avatar": "👩‍👧‍👦",
-        "name": "Ms. Chen",
-        "condition": "Family glucose management (husband has type 2 diabetes)",
-        "location": "Guangzhou",
+        "name": "Emma",
+        "condition": "Family glucose management (father has type 2 diabetes)",
+        "location": "Toronto, Canada",
         "paragraphs": [
-          "Ms. Chen's husband was diagnosed with type 2 diabetes at age 55. As the primary caregiver, Ms. Chen took on the responsibility of preparing healthy meals for the whole family.",
-          "She used SugarLite to log her husband's glucose and also recorded her own as a control. Through comparative analysis, she found that the same food had very different glucose impacts on her husband and herself. For example, her husband's glucose response to 'sweet potato' was very stable, but Ms. Chen's rose faster.",
-          "This made her realize that everyone's glucose response is unique. She began customizing a dietary plan for her husband while also optimizing the whole family's diet. After six months, her husband's HbA1c dropped from 7.5% to 6.2%, and the whole family's eating habits became healthier."
+          "Emma's father was diagnosed with type 2 diabetes at 62 after decades of shift work and irregular meals. As the family's primary cook, Emma took on the challenge of adapting their traditional Italian-Canadian family recipes to be diabetes-friendly.",
+          "Using SugarLite, Emma logged her father's glucose alongside her own as a control. She discovered that their beloved 'pasta Sundays' weren't the problem — it was the portion size and the lack of vegetables. Adding a large side salad and reducing pasta to one cup while increasing protein kept her father's post-meal glucose well within range.",
+          "The whole family adopted the new eating habits. Six months later, Emma's father's HbA1c fell from 7.8% to 6.4%, and the entire family lost a combined 25 pounds. Emma now shares her modified recipes in the SugarLite community."
         ],
-        "results": "Husband's HbA1c dropped from 7.5% to 6.2%, whole family's eating habits improved",
-        "quote": "SugarLite not only helped my husband but also gave our whole family a completely new understanding of healthy eating."
+        "results": "Father's HbA1c dropped from 7.8% to 6.4%, family lost combined 25 lbs, recipes shared with community",
+        "quote": "We didn't have to give up our family traditions. We just had to be smarter about them. SugarLite gave us the data to make it work."
       }
     ]
   }
