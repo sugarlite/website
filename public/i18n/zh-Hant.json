@@ -520,7 +520,7 @@
     ],
     "items": [
       {
-        "avatar": "👨‍💼",
+        "avatar": "/avatar/asia-man-40+.png",
         "name": "林志明",
         "condition": "2 型糖尿病（確診 5 年）",
         "location": "台灣台北市",
@@ -533,7 +533,7 @@
         "quote": "SugarLite 讓我重新認識了食物和血糖的關係。以前我只知道少吃糖，現在我知道如何聰明地吃我最愛的牛肉麵。"
       },
       {
-        "avatar": "👩‍⚕️",
+        "avatar": "/avatar/asia-woman-40+.png",
         "name": "黃雅婷",
         "condition": "妊娠糖尿病",
         "location": "香港",
@@ -546,7 +546,7 @@
         "quote": "孕期控糖本來讓我壓力很大，但 SugarLite 讓一切變得簡單明了。每次記錄都能看到進步，這讓我很有信心。"
       },
       {
-        "avatar": "🏃‍♂️",
+        "avatar": "/avatar/en-man-20+.png",
         "name": "陳偉強",
         "condition": "糖尿病前期",
         "location": "新加坡",
@@ -559,7 +559,7 @@
         "quote": "SugarLite 的數據讓我看到了改變的效果。每次血糖下降，都是對我堅持的最好獎勵。"
       },
       {
-        "avatar": "👩‍👧‍👦",
+        "avatar": "/avatar/asia-woman-60+.png",
         "name": "林美鳳",
         "condition": "家庭血糖管理（丈夫患 2 型糖尿病）",
         "location": "台灣高雄市",

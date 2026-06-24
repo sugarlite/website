@@ -520,7 +520,7 @@
     ],
     "items": [
       {
-        "avatar": "👨‍💼",
+        "avatar": "/avatar/en-man-40+.png",
         "name": "James",
         "condition": "Type 2 Diabetes (diagnosed 5 years ago)",
         "location": "London, UK",
@@ -533,7 +533,7 @@
         "quote": "SugarLite didn't tell me to stop eating the foods I love. It taught me how to eat them smarter. My Sunday roast is back on the menu!"
       },
       {
-        "avatar": "👩‍⚕️",
+        "avatar": "/avatar/en-woman-30+.png",
         "name": "Sarah",
         "condition": "Gestational Diabetes",
         "location": "Melbourne, Australia",
@@ -546,7 +546,7 @@
         "quote": "As a working mum, I needed something simple. SugarLite took the guesswork out of gestational diabetes. I could see exactly what worked for MY body."
       },
       {
-        "avatar": "🏃‍♂️",
+        "avatar": "/avatar/en-man-30+.png",
         "name": "Michael",
         "condition": "Prediabetes",
         "location": "Austin, Texas",
@@ -559,7 +559,7 @@
         "quote": "I thought I was eating healthy because the packaging said so. SugarLite showed me the truth. Data doesn't lie."
       },
       {
-        "avatar": "👩‍👧‍👦",
+        "avatar": "/avatar/en_woman-50+.png",
         "name": "Emma",
         "condition": "Family glucose management (father has type 2 diabetes)",
         "location": "Toronto, Canada",

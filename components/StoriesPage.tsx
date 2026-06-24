@@ -56,9 +56,11 @@ const StoriesPage: React.FC<StoriesPageProps> = ({ lang, onNavigate }) => {
               className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 hover:shadow-lg transition-shadow"
             >
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center text-2xl flex-shrink-0">
-                  {story.avatar}
-                </div>
+                <img
+                  src={story.avatar}
+                  alt={story.name}
+                  className="w-14 h-14 rounded-full object-cover flex-shrink-0 bg-brand/10"
+                />
                 <div>
                   <h3 className="text-xl font-bold dark:text-white">{story.name}</h3>
                   <p className="text-sm text-brand font-medium">{story.condition}</p>

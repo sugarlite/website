@@ -520,7 +520,7 @@
     ],
     "items": [
       {
-        "avatar": "👨‍💼",
+        "avatar": "/avatar/asia-man-40+.png",
         "name": "佐藤健一",
         "condition": "2型糖尿病（発症5年）",
         "location": "東京都渋谷区",
@@ -533,7 +533,7 @@
         "quote": "SugarLiteは私に好きな食べ物を諦めろとは言いませんでした。賢く食べる方法を教えてくれたんです。お気に入りのラーメンも、また安心して食べられます。"
       },
       {
-        "avatar": "👩‍⚕️",
+        "avatar": "/avatar/asia-woman-20+.png",
         "name": "山田美咲",
         "condition": "妊娠糖尿病",
         "location": "大阪府",
@@ -546,7 +546,7 @@
         "quote": "働くママにとって、簡単で分かりやすいものが必要でした。SugarLiteは妊娠糖尿病の不安を取り除いてくれました。私の体に合った方法が見えてきたんです。"
       },
       {
-        "avatar": "🏃‍♂️",
+        "avatar": "/avatar/asia-man-60+.png",
         "name": "田中浩二",
         "condition": "糖尿病前期",
         "location": "福岡県",
@@ -559,7 +559,7 @@
         "quote": "パッケージに「健康」と書いてあれば健康だと思っていました。SugarLiteは真実を教えてくれました。データは嘘をつきません。"
       },
       {
-        "avatar": "👩‍👧‍👦",
+        "avatar": "/avatar/asia-woman-60+.png",
         "name": "鈴木恵子",
         "condition": "家族の血糖管理（夫は2型糖尿病）",
         "location": "北海道札幌市",
