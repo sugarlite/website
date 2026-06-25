@@ -39,7 +39,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             <ul className="space-y-2 text-slate-500 text-sm">
               <li>
                 <a
-                  href="/privacy"
+                  href={`/${lang}/privacy`}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("privacy");
@@ -51,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="/faq"
+                  href={`/${lang}/faq`}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("faq");
@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="/terms"
+                  href={`/${lang}/terms`}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("terms");

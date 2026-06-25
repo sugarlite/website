@@ -17,15 +17,16 @@ const FAQPage: React.FC<FAQPageProps> = ({ lang, onNavigate }) => {
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <button
-          onClick={() => onNavigate("home")}
+        <a
+          href={`/${lang}`}
+          onClick={(e) => { e.preventDefault(); onNavigate("home"); }}
           className="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           {t("faq.backToHome")}
-        </button>
+        </a>
 
         {/* Header */}
         <div className="mb-12">

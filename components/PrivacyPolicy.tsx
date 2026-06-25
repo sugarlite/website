@@ -15,8 +15,9 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <button
-          onClick={() => onNavigate("home")}
+        <a
+          href={`/${lang}`}
+          onClick={(e) => { e.preventDefault(); onNavigate("home"); }}
           className="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
         >
           <svg
@@ -33,7 +34,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ lang, onNavigate }) => {
             />
           </svg>
           {t("privacy.backToHome")}
-        </button>
+        </a>
 
         {/* Header */}
         <div className="mb-12">

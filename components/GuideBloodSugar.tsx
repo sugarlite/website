@@ -1,6 +1,7 @@
 import React from "react";
 import { Language } from "../types";
 import { useTranslation } from "../hooks/useTranslation";
+import { useArticleJsonLd } from "../hooks/useArticleJsonLd";
 import { APP_LINKS } from "../constants";
 
 interface GuideBloodSugarProps {
@@ -13,19 +14,36 @@ const GuideBloodSugar: React.FC<GuideBloodSugarProps> = ({ lang, onNavigate }) =
 
   const sections = tArray("guide.bloodSugar.sections");
 
+  // Extract article body text from sections for structured data
+  const articleBody = sections
+    .map((s: any) => [s.heading, ...(s.paragraphs || [])].join(". "))
+    .join(". ")
+    .substring(0, 2000);
+
+  // Article structured data for SEO
+  useArticleJsonLd({
+    type: "Article",
+    headline: t("guide.bloodSugar.title"),
+    description: t("guide.bloodSugar.subtitle"),
+    url: `https://sugarlite.top/${lang}/guide/blood-sugar-management`,
+    image: "https://sugarlite.top/og-image.png",
+    articleBody,
+  });
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <button
-          onClick={() => onNavigate("home")}
+        <a
+          href={`/${lang}`}
+          onClick={(e) => { e.preventDefault(); onNavigate("home"); }}
           className="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           {t("guide.backToHome")}
-        </button>
+        </a>
 
         {/* Header */}
         <div className="mb-12">
@@ -107,12 +125,13 @@ const GuideBloodSugar: React.FC<GuideBloodSugarProps> = ({ lang, onNavigate }) =
         <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
           <h3 className="text-xl font-bold mb-4 dark:text-white">{t("guide.relatedGuides")}</h3>
           <div className="flex flex-wrap gap-4">
-            <button
-              onClick={() => onNavigate("guide-diabetic-diet")}
+            <a
+              href={`/${lang}/guide/diabetic-diet`}
+              onClick={(e) => { e.preventDefault(); onNavigate("guide-diabetic-diet"); }}
               className="px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand/10 hover:text-brand transition-colors font-medium"
             >
               {t("guide.diabeticDiet.title")} →
-            </button>
+            </a>
           </div>
         </div>
 

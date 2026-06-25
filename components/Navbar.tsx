@@ -132,12 +132,13 @@ const Navbar: React.FC<NavbarProps> = ({
               {t("nav.download")}
             </button>
 
-            <button
-              onClick={() => onNavigate("faq")}
+            <a
+              href={`/${lang}/faq`}
+              onClick={(e) => { e.preventDefault(); onNavigate("faq"); }}
               className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
             >
               {t("nav.faq")}
-            </button>
+            </a>
 
             {/* Guides Dropdown - Desktop */}
             <div className="relative" ref={desktopGuideRef}>
@@ -157,28 +158,31 @@ const Navbar: React.FC<NavbarProps> = ({
               </button>
               {isGuideOpen && (
                 <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50">
-                  <button
-                    onClick={() => { onNavigate("guide-blood-sugar"); setIsGuideOpen(false); }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                  <a
+                    href={`/${lang}/guide/blood-sugar-management`}
+                    onClick={(e) => { e.preventDefault(); onNavigate("guide-blood-sugar"); setIsGuideOpen(false); }}
+                    className="block w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   >
                     {t("nav.guideBloodSugar")}
-                  </button>
-                  <button
-                    onClick={() => { onNavigate("guide-diabetic-diet"); setIsGuideOpen(false); }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                  </a>
+                  <a
+                    href={`/${lang}/guide/diabetic-diet`}
+                    onClick={(e) => { e.preventDefault(); onNavigate("guide-diabetic-diet"); setIsGuideOpen(false); }}
+                    className="block w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   >
                     {t("nav.guideDiabeticDiet")}
-                  </button>
+                  </a>
                 </div>
               )}
             </div>
 
-            <button
-              onClick={() => onNavigate("stories")}
+            <a
+              href={`/${lang}/stories`}
+              onClick={(e) => { e.preventDefault(); onNavigate("stories"); }}
               className="text-slate-600 dark:text-slate-300 hover:text-brand dark:hover:text-brand font-medium transition-colors"
             >
               {t("nav.stories")}
-            </button>
+            </a>
 
             <div className="flex items-center gap-2 pl-4 ml-1">
               {/* Language Dropdown - Desktop */}
@@ -400,15 +404,17 @@ const Navbar: React.FC<NavbarProps> = ({
           >
             {t("nav.download")}
           </button>
-          <button
-            onClick={() => {
+          <a
+            href={`/${lang}/faq`}
+            onClick={(e) => {
+              e.preventDefault();
               onNavigate("faq");
               setIsMenuOpen(false);
             }}
             className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
           >
             {t("nav.faq")}
-          </button>
+          </a>
 
           {/* Guides - Mobile */}
           <div className="relative" ref={mobileGuideRef}>
@@ -428,31 +434,35 @@ const Navbar: React.FC<NavbarProps> = ({
             </button>
             {isGuideOpen && (
               <div className="pl-4 mt-2 space-y-2">
-                <button
-                  onClick={() => { onNavigate("guide-blood-sugar"); setIsMenuOpen(false); setIsGuideOpen(false); }}
+                <a
+                  href={`/${lang}/guide/blood-sugar-management`}
+                  onClick={(e) => { e.preventDefault(); onNavigate("guide-blood-sugar"); setIsMenuOpen(false); setIsGuideOpen(false); }}
                   className="block w-full text-left text-base text-slate-500 dark:text-slate-400"
                 >
                   {t("nav.guideBloodSugar")}
-                </button>
-                <button
-                  onClick={() => { onNavigate("guide-diabetic-diet"); setIsMenuOpen(false); setIsGuideOpen(false); }}
+                </a>
+                <a
+                  href={`/${lang}/guide/diabetic-diet`}
+                  onClick={(e) => { e.preventDefault(); onNavigate("guide-diabetic-diet"); setIsMenuOpen(false); setIsGuideOpen(false); }}
                   className="block w-full text-left text-base text-slate-500 dark:text-slate-400"
                 >
                   {t("nav.guideDiabeticDiet")}
-                </button>
+                </a>
               </div>
             )}
           </div>
 
-          <button
-            onClick={() => {
+          <a
+            href={`/${lang}/stories`}
+            onClick={(e) => {
+              e.preventDefault();
               onNavigate("stories");
               setIsMenuOpen(false);
             }}
             className="block w-full text-left text-lg font-medium text-slate-600 dark:text-slate-300"
           >
             {t("nav.stories")}
-          </button>
+          </a>
           <a
             href={APP_LINKS.appStore}
             target="_blank"

@@ -1,6 +1,7 @@
 import React from "react";
 import { Language } from "../types";
 import { useTranslation } from "../hooks/useTranslation";
+import { useArticleJsonLd } from "../hooks/useArticleJsonLd";
 import { APP_LINKS } from "../constants";
 
 interface StoriesPageProps {
@@ -14,19 +15,37 @@ const StoriesPage: React.FC<StoriesPageProps> = ({ lang, onNavigate }) => {
   const stories = tArray("stories.items");
   const stats = tArray("stories.stats");
 
+  // ItemList structured data for SEO - each story as an Article
+  useArticleJsonLd({
+    type: "ItemList",
+    headline: t("stories.title"),
+    description: t("stories.subtitle"),
+    url: `https://sugarlite.top/${lang}/stories`,
+    image: "https://sugarlite.top/og-image.png",
+    itemListElement: stories.map((story: any) => ({
+      headline: story.name,
+      description: `${story.condition} - ${story.location}`,
+      url: `https://sugarlite.top/${lang}/stories#story-${story.name?.replace(/\s+/g, "-").toLowerCase()}`,
+      image: `https://sugarlite.top${story.avatar}`,
+      authorName: story.name,
+      articleBody: (story.paragraphs || []).join(" ").substring(0, 500),
+    })),
+  });
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <button
-          onClick={() => onNavigate("home")}
+        <a
+          href={`/${lang}`}
+          onClick={(e) => { e.preventDefault(); onNavigate("home"); }}
           className="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           {t("stories.backToHome")}
-        </button>
+        </a>
 
         {/* Header */}
         <div className="mb-12">
