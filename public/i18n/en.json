@@ -20,7 +20,8 @@
     "subtitle": "SugarLite is an intelligent blood sugar management app for people living with diabetes, prediabetes, or anyone concerned about glucose health. By pairing fasting, pre-meal, and post-meal readings with meals, exercise, and insulin doses, it helps you spot your personal glucose patterns and build a diet that keeps your A1C in range.",
     "downloadAppStore": "App Store",
     "downloadGooglePlay": "Google Play (coming soon)",
-    "helpCenter": "Help Center"
+    "helpCenter": "Help Center",
+    "pgrsBadge": "Excellent"
   },
   "stats": {
     "users": "Trusted Users",
