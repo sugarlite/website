@@ -20,7 +20,8 @@
     "subtitle": "「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。",
     "downloadAppStore": "App Store 下载",
     "downloadGooglePlay": "Google Play 下载(即将上线)",
-    "helpCenter": "使用帮助"
+    "helpCenter": "使用帮助",
+    "pgrsBadge": "血糖平稳"
   },
   "stats": {
     "users": "用户信赖选择",

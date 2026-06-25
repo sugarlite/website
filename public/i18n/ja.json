@@ -20,7 +20,8 @@
     "subtitle": "「軽糖」は、血糖値の健康管理を気にする方のためのスマート管理アプリです。シンプルな記録方法と科学的なデータ分析で、あなたの血糖パターンを理解し、最適な食事プランを見つけるお手伝いをします。",
     "downloadAppStore": "App Store ダウンロード",
     "downloadGooglePlay": "Google Play ダウンロード（近日公開）",
-    "helpCenter": "ヘルプ"
+    "helpCenter": "ヘルプ",
+    "pgrsBadge": "血糖安定"
   },
   "stats": {
     "users": "信頼されるユーザー",
