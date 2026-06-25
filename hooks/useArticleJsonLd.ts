@@ -27,7 +27,7 @@ export interface ArticleJsonLdProps {
 
 export const useArticleJsonLd = (props: ArticleJsonLdProps) => {
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString(); // ISO 8601 with timezone
     const pubDate = props.datePublished || today;
     const modDate = props.dateModified || today;
 

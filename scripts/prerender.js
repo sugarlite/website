@@ -158,8 +158,8 @@ function getGuideContent(i18n, guideKey) {
       name: t("appName"),
       logo: { "@type": "ImageObject", url: "https://sugarlite.top/icon.png" },
     },
-    datePublished: new Date().toISOString().split("T")[0],
-    dateModified: new Date().toISOString().split("T")[0],
+    datePublished: new Date().toISOString(),
+    dateModified: new Date().toISOString(),
     articleBody: articleBody.substring(0, 5000),
     mainEntityOfPage: { "@type": "WebPage", "@id": "https://sugarlite.top" },
   };
