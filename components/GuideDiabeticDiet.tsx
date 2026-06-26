@@ -2,7 +2,8 @@ import React from "react";
 import { Language } from "../types";
 import { useTranslation } from "../hooks/useTranslation";
 import { useArticleJsonLd } from "../hooks/useArticleJsonLd";
-import { APP_LINKS } from "../constants";
+import { APP_LINKS, MEDICAL_REFERENCES } from "../constants";
+import References from "./References";
 
 interface GuideDiabeticDietProps {
   lang: Language;
@@ -79,11 +80,33 @@ const GuideDiabeticDiet: React.FC<GuideDiabeticDietProps> = ({ lang, onNavigate 
                 </span>
                 {section.heading}
               </h2>
-              {section.paragraphs && section.paragraphs.map((paragraph: string, pIndex: number) => (
-                <p key={pIndex} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                  {paragraph}
-                </p>
-              ))}
+              {section.paragraphs && section.paragraphs.map((paragraph: string, pIndex: number) => {
+                // Add inline source link for GI mention in the GI/GL section
+                if (index === 1 && pIndex === 0) {
+                  const giPatterns = [
+                    "升糖指数（Glycemic Index, GI）",
+                    "Glycemic Index (GI)",
+                    "グリセミック・インデックス（GI）",
+                    "升糖指數（Glycemic Index, GI）",
+                  ];
+                  const giPattern = giPatterns.find(p => paragraph.includes(p));
+                  if (giPattern) {
+                    const parts = paragraph.split(giPattern);
+                    return (
+                      <p key={pIndex} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        {parts[0]}
+                        <a href={MEDICAL_REFERENCES.glycemicIndexDatabase.url} target="_blank" rel="noopener noreferrer" className="text-brand hover:text-brand-dark underline decoration-brand/30 hover:decoration-brand transition-colors">{giPattern}</a>
+                        {parts[1]}
+                      </p>
+                    );
+                  }
+                }
+                return (
+                  <p key={pIndex} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    {paragraph}
+                  </p>
+                );
+              })}
               {section.bullets && (
                 <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
                   {section.bullets.map((item: string, bIndex: number) => (
@@ -130,6 +153,18 @@ const GuideDiabeticDiet: React.FC<GuideDiabeticDietProps> = ({ lang, onNavigate 
             </a>
           </div>
         </div>
+
+        {/* References */}
+        <References
+          lang={lang}
+          references={[
+            "glycemicIndexDatabase",
+            "nutritionRecommendations",
+            "usdaFoodDataCentral",
+            "harvardHealthCalories",
+            "chinaNutritionTable",
+          ]}
+        />
 
         {/* CTA */}
         <div className="mt-16 text-center bg-gradient-to-br from-brand/5 to-emerald-500/5 rounded-3xl p-12">

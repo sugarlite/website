@@ -573,5 +573,22 @@
         "quote": "SugarLite 不僅幫助了我丈夫，也讓我們全家對健康飲食有了全新的認識。原來台式料理也可以吃得健康！"
       }
     ]
+  },
+  "references": {
+    "title": "參考來源",
+    "items": {
+      "idfDiabetesTypes": "國際糖尿病聯盟（IDF）- 糖尿病罕見類型",
+      "bloodSugarRanges": "國際糖尿病聯盟（IDF）- 血糖正常範圍標準",
+      "bloodSugarMonitoring": "國際糖尿病聯盟（IDF）- 血糖監測重要性",
+      "cdcBMICalculation": "美國疾病控制與預防中心（CDC）- BMI 計算說明",
+      "cdcBMICategories": "美國疾病控制與預防中心（CDC）- BMI 分類標準",
+      "usdaFoodDataCentral": "美國農業部（USDA）- 食物營養資料庫",
+      "glycemicIndexDatabase": "國際升糖指數表 - 雪梨大學",
+      "harvardHealthCalories": "哈佛健康 - 運動卡路里消耗參考",
+      "metCalculation": "德州農工大學 - MET 代謝當量計算說明",
+      "metReference": "體力活動彙編 - MET 參考值",
+      "nutritionRecommendations": "世界衛生組織（WHO）- 健康飲食建議",
+      "chinaNutritionTable": "中國營養學會 - 中國食物成分表"
+    }
   }
 }

@@ -573,5 +573,22 @@
         "quote": "SugarLite 不仅帮助了我丈夫，也让我们全家对健康饮食有了全新的认识。"
       }
     ]
+  },
+  "references": {
+    "title": "参考来源",
+    "items": {
+      "idfDiabetesTypes": "国际糖尿病联盟（IDF）- 糖尿病罕见类型",
+      "bloodSugarRanges": "国际糖尿病联盟（IDF）- 血糖正常范围标准",
+      "bloodSugarMonitoring": "国际糖尿病联盟（IDF）- 血糖监测重要性",
+      "cdcBMICalculation": "美国疾病控制与预防中心（CDC）- BMI 计算说明",
+      "cdcBMICategories": "美国疾病控制与预防中心（CDC）- BMI 分类标准",
+      "usdaFoodDataCentral": "美国农业部（USDA）- 食物营养数据库",
+      "glycemicIndexDatabase": "国际升糖指数表 - 悉尼大学",
+      "harvardHealthCalories": "哈佛健康 - 运动卡路里消耗参考",
+      "metCalculation": "德克萨斯农工大学 - MET 代谢当量计算说明",
+      "metReference": "体力活动汇编 - MET 参考值",
+      "nutritionRecommendations": "世界卫生组织（WHO）- 健康饮食建议",
+      "chinaNutritionTable": "中国营养学会 - 中国食物成分表"
+    }
   }
 }

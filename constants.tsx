@@ -15,6 +15,63 @@ export const APP_LINKS = {
   supportUrl: 'https://my.feishu.cn/wiki/SwYAw2DDEiLFMSk11mOcHMgtnnh?from=from_copylink'
 };
 
+// Medical & nutritional reference links for credibility
+export interface MedicalReference {
+  key: string;
+  url: string;
+}
+
+export const MEDICAL_REFERENCES: Record<string, MedicalReference> = {
+  idfDiabetesTypes: {
+    key: 'idfDiabetesTypes',
+    url: 'https://idf.org/about-diabetes/types-of-diabetes/rare-forms-of-diabetes/',
+  },
+  bloodSugarRanges: {
+    key: 'bloodSugarRanges',
+    url: 'https://idf.org/about-diabetes/what-is-diabetes/',
+  },
+  bloodSugarMonitoring: {
+    key: 'bloodSugarMonitoring',
+    url: 'https://idf.org/about-diabetes/diabetes-facts-figures/',
+  },
+  cdcBMICalculation: {
+    key: 'cdcBMICalculation',
+    url: 'https://www.cdc.gov/bmi/about/',
+  },
+  cdcBMICategories: {
+    key: 'cdcBMICategories',
+    url: 'https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html',
+  },
+  usdaFoodDataCentral: {
+    key: 'usdaFoodDataCentral',
+    url: 'https://fdc.nal.usda.gov/',
+  },
+  glycemicIndexDatabase: {
+    key: 'glycemicIndexDatabase',
+    url: 'https://glycemicindex.com/',
+  },
+  harvardHealthCalories: {
+    key: 'harvardHealthCalories',
+    url: 'https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-for-people-of-three-different-weights',
+  },
+  metCalculation: {
+    key: 'metCalculation',
+    url: 'https://howdyhealth.tamu.edu/use-metabolic-equivalents-mets-to-improve-your-fitness/',
+  },
+  metReference: {
+    key: 'metReference',
+    url: 'https://pacompendium.com/corrected-mets/',
+  },
+  nutritionRecommendations: {
+    key: 'nutritionRecommendations',
+    url: 'https://www.who.int/news-room/fact-sheets/detail/healthy-diet',
+  },
+  chinaNutritionTable: {
+    key: 'chinaNutritionTable',
+    url: 'http://www.chinanutri.cn/',
+  },
+};
+
 export const FEATURES: Feature[] = [
   {
     id: 'glucose',

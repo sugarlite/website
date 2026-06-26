@@ -573,5 +573,22 @@
         "quote": "We didn't have to give up our family traditions. We just had to be smarter about them. SugarLite gave us the data to make it work."
       }
     ]
+  },
+  "references": {
+    "title": "Sources",
+    "items": {
+      "idfDiabetesTypes": "International Diabetes Federation (IDF) - Rare Forms of Diabetes",
+      "bloodSugarRanges": "International Diabetes Federation (IDF) - Blood Sugar Range Standards",
+      "bloodSugarMonitoring": "International Diabetes Federation (IDF) - Blood Sugar Monitoring Importance",
+      "cdcBMICalculation": "Centers for Disease Control and Prevention (CDC) - BMI Calculation",
+      "cdcBMICategories": "Centers for Disease Control and Prevention (CDC) - BMI Categories",
+      "usdaFoodDataCentral": "U.S. Department of Agriculture (USDA) - FoodData Central",
+      "glycemicIndexDatabase": "International Glycemic Index Table - University of Sydney",
+      "harvardHealthCalories": "Harvard Health - Calories Burned in 30 Minutes",
+      "metCalculation": "Texas A&M University - MET Calculation Guide",
+      "metReference": "Compendium of Physical Activities - MET Reference Values",
+      "nutritionRecommendations": "World Health Organization (WHO) - Healthy Diet",
+      "chinaNutritionTable": "Chinese Nutrition Society - China Food Composition Tables"
+    }
   }
 }
