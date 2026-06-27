@@ -1,0 +1,42 @@
+# SugarLite 轻糖 - 智能血糖管理助手
+
+> 「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。
+
+## 核心功能
+
+- 血糖趋势追踪：轻松记录餐前、餐后血糖值，自动生成可视化趋势曲线
+- 饮食记录管理：快速记录每日饮食，支持丰富食物数据库与自定义食物
+- PGRS 配对分析：通过餐前餐后血糖配对分析，识别友好食物与风险食物
+- 运动记录：记录日常运动，观察不同强度活动对血糖波动的影响
+- AI 智能洞察：基于多次记录生成个性化建议
+- 云端同步：登录后自动同步数据，跨设备使用更连续
+
+## 主要页面
+
+- [首页](https://sugarlite.top/zh)
+- [血糖管理指南](https://sugarlite.top/zh/guide/blood-sugar-management)
+- [糖尿病饮食建议](https://sugarlite.top/zh/guide/diabetic-diet)
+- [用户故事](https://sugarlite.top/zh/stories)
+- [常见问题](https://sugarlite.top/zh/faq)
+- [隐私政策](https://sugarlite.top/zh/privacy)
+- [服务条款](https://sugarlite.top/zh/terms)
+
+## 下载
+
+- [App Store](https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8)
+
+## 联系方式
+
+- 邮箱: support@sugarlite.top
+- Twitter: [@SugarLite](https://twitter.com/SugarLite)
+
+## 免责声明
+
+「轻糖」不提供医疗诊断建议，所有数据仅供参考。如有健康问题，请咨询专业医生。
+
+## 语言版本
+
+- [中文简体](https://sugarlite.top/zh)
+- [English](https://sugarlite.top/en)
+- [日本語](https://sugarlite.top/ja)
+- [中文繁體](https://sugarlite.top/zh-Hant)
