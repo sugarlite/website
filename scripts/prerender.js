@@ -17,6 +17,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
 const i18nDir = join(__dirname, "..", "public", "i18n");
 
+// Fixed publication date for structured data (avoid using new Date() which changes on every build)
+const PUBLICATION_DATE = "2025-06-23T00:00:00+08:00";
+
 const LANGUAGES = ["zh", "en", "ja", "zh-Hant"];
 
 const LANG_HTML_MAP = {
@@ -158,8 +161,8 @@ function getGuideContent(i18n, guideKey) {
       name: t("appName"),
       logo: { "@type": "ImageObject", url: "https://sugarlite.top/icon.png" },
     },
-    datePublished: new Date().toISOString(),
-    dateModified: new Date().toISOString(),
+    datePublished: PUBLICATION_DATE,
+    dateModified: PUBLICATION_DATE,
     articleBody: articleBody.substring(0, 5000),
     mainEntityOfPage: { "@type": "WebPage", "@id": "https://sugarlite.top" },
   };
@@ -241,19 +244,20 @@ function buildHreflangLinks(lang, urlPath) {
   return links;
 }
 
-function buildBreadcrumbJsonLd(lang, urlPath) {
+function buildBreadcrumbJsonLd(lang, urlPath, i18n) {
   const pathParts = urlPath.replace(/\/$/, "").split("/").filter(Boolean);
+  const t = (key) => key.split(".").reduce((o, k) => o?.[k], i18n) || "";
   const items = [];
   for (let i = 0; i < pathParts.length; i++) {
     const part = pathParts[i];
     const itemUrl = "https://sugarlite.top/" + pathParts.slice(0, i + 1).join("/");
     let name = part;
     if (part === lang) name = LANG_NAMES[lang];
-    else if (part === "guide") { /* keep as is */ }
-    else if (part === "blood-sugar-management") name = "血糖管理指南";
-    else if (part === "diabetic-diet") name = "糖尿病饮食建议";
-    else if (part === "faq") name = "FAQ";
-    else if (part === "stories") name = "用户故事";
+    else if (part === "guide") name = t("nav.guides") || "Guides";
+    else if (part === "blood-sugar-management") name = t("nav.guideBloodSugar") || "Blood Sugar Management";
+    else if (part === "diabetic-diet") name = t("nav.guideDiabeticDiet") || "Diabetic Diet";
+    else if (part === "faq") name = t("nav.faq") || "FAQ";
+    else if (part === "stories") name = t("nav.stories") || "Stories";
     items.push({ "@type": "ListItem", position: i + 1, name, item: itemUrl });
   }
   return JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items }, null, 2);
@@ -263,7 +267,7 @@ function buildBreadcrumbJsonLd(lang, urlPath) {
  * Take the built dist/index.html and customize it for a specific page.
  * Preserves all script tags, import maps, etc. that Vite generated.
  */
-function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl) {
+function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl, i18n) {
   const langHtml = LANG_HTML_MAP[lang];
   const ogLocale = OG_LOCALES[lang];
   const appName = LANG_NAMES[lang];
@@ -283,6 +287,19 @@ function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl) 
   html = html.replace(
     /<meta name="description" content="[^"]*">/,
     `<meta name="description" content="${escapeHtml(pageData.description)}">`
+  );
+
+  // 4b. Update keywords with localized version
+  const KEYWORDS_MAP = {
+    zh: "血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,PGRS,饮食记录,运动记录,SugarLite,轻糖",
+    en: "blood glucose tracker,diabetes management,glucose monitoring,CGM app,blood sugar log,diabetes app,SugarLite,glucose tracking,food logging,PGRS analysis",
+    ja: "血糖値管理,糖尿病管理,血糖モニタリング,血糖測定記録,食事記録,血糖管理アプリ,SugarLite,グルコース追跡",
+    "zh-Hant": "血糖監測,血糖記錄,血糖管理,糖尿病,控糖,血糖追蹤,健康管理,PGRS,飲食記錄,運動記錄,SugarLite,輕糖"
+  };
+  const keywords = KEYWORDS_MAP[lang] || KEYWORDS_MAP.zh;
+  html = html.replace(
+    /<meta name="keywords" content="[^"]*">/,
+    `<meta name="keywords" content="${keywords}">`
   );
 
   // 5. Update robots meta
@@ -315,6 +332,16 @@ function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl) 
   html = html.replace(
     /<meta property="og:locale"[^>]*>/,
     `<meta property="og:locale" content="${ogLocale}">`
+  );
+
+  // 6b. Update og:locale:alternate - remove existing and add correct ones (excluding current locale)
+  html = html.replace(/  <meta property="og:locale:alternate"[^>]*>\n/g, "");
+  const alternateLocales = Object.entries(OG_LOCALES)
+    .filter(([key, value]) => key !== lang)
+    .map(([key, value]) => `  <meta property="og:locale:alternate" content="${value}">`);
+  html = html.replace(
+    /(<meta property="og:locale"[^>]*>\n)/,
+    `$1${alternateLocales.join("\n")}\n`
   );
 
   // 7. Update Twitter tags
@@ -350,7 +377,7 @@ function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl) 
   );
 
   // 11. Update JSON-LD breadcrumb (replace the existing BreadcrumbList block)
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd(lang, urlPath);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(lang, urlPath, i18n);
   html = html.replace(
     /<script type="application\/ld\+json">\s*\{[\s\S]*?"@type":\s*"BreadcrumbList"[\s\S]*?\n  <\/script>/,
     `<script type="application/ld+json">\n${breadcrumbJsonLd}\n  </script>`
@@ -379,6 +406,49 @@ function customizeTemplate(templateHtml, pageData, lang, urlPath, canonicalUrl) 
       /"description":\s*"[^"]*专为关注血糖健康人群设计[^"]*"/,
       `"description": "${escapeHtml(pageData.description)}"`
     );
+
+    // Replace hardcoded FAQ JSON-LD with localized version from i18n
+    const i18n = loadI18n(lang);
+    if (i18n && i18n.faq && i18n.faq.items) {
+      const faqEntities = i18n.faq.items.map(item => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a }
+      }));
+      const localizedFaqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqEntities
+      };
+      // Replace the existing FAQ JSON-LD block
+      html = html.replace(
+        /<script type="application\/ld\+json">\s*\{[\s\S]*?"@type":\s*"FAQPage"[\s\S]*?\n  <\/script>/,
+        `<script type="application/ld+json">\n${JSON.stringify(localizedFaqJsonLd, null, 2)}\n  </script>`
+      );
+    }
+
+    // Replace hardcoded HowTo JSON-LD with localized version
+    const t = (key) => key.split(".").reduce((o, k) => o?.[k], i18n) || "";
+    if (i18n && i18n.hero) {
+      const localizedHowtoJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: `${t("appName")} - ${t("hero.title")}${t("hero.titleHighlight")}`,
+        description: t("hero.subtitle"),
+        image: "https://sugarlite.top/og-image.png",
+        totalTime: "PT5M",
+        estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "0" },
+        step: [
+          { "@type": "HowToStep", name: "Download", text: `Download ${t("appName")} from the App Store.`, url: `https://sugarlite.top/${lang}#download` },
+          { "@type": "HowToStep", name: "Record", text: `Record your first blood glucose reading in ${t("appName")}.`, url: `https://sugarlite.top/${lang}#features` },
+          { "@type": "HowToStep", name: "Analyze", text: `View trends and PGRS analysis in ${t("appName")}.`, url: `https://sugarlite.top/${lang}#features` }
+        ]
+      };
+      html = html.replace(
+        /<script type="application\/ld\+json">\s*\{[\s\S]*?"@type":\s*"HowTo"[\s\S]*?\n  <\/script>/,
+        `<script type="application/ld+json">\n${JSON.stringify(localizedHowtoJsonLd, null, 2)}\n  </script>`
+      );
+    }
   }
 
   // 14. Remove verification placeholder meta tags (still placeholders, not useful)
@@ -430,26 +500,26 @@ function main() {
 
     // Homepage
     const homeData = getHomepageContent(i18n);
-    writePage(lang, "", customizeTemplate(templateHtml, homeData, lang, `/${lang}`, `https://sugarlite.top/${lang}`));
+    writePage(lang, "", customizeTemplate(templateHtml, homeData, lang, `/${lang}`, `https://sugarlite.top/${lang}`, i18n));
 
     // FAQ
     const faqData = getFAQContent(i18n);
-    writePage(lang, "faq", customizeTemplate(templateHtml, faqData, lang, `/${lang}/faq`, `https://sugarlite.top/${lang}/faq`));
+    writePage(lang, "faq", customizeTemplate(templateHtml, faqData, lang, `/${lang}/faq`, `https://sugarlite.top/${lang}/faq`, i18n));
 
     // Blood sugar guide
     const bsGuide = getGuideContent(i18n, "bloodSugar");
     writePage(lang, "guide/blood-sugar-management",
-      customizeTemplate(templateHtml, bsGuide, lang, `/${lang}/guide/blood-sugar-management`, `https://sugarlite.top/${lang}/guide/blood-sugar-management`));
+      customizeTemplate(templateHtml, bsGuide, lang, `/${lang}/guide/blood-sugar-management`, `https://sugarlite.top/${lang}/guide/blood-sugar-management`, i18n));
 
     // Diabetic diet guide
     const dietGuide = getGuideContent(i18n, "diabeticDiet");
     writePage(lang, "guide/diabetic-diet",
-      customizeTemplate(templateHtml, dietGuide, lang, `/${lang}/guide/diabetic-diet`, `https://sugarlite.top/${lang}/guide/diabetic-diet`));
+      customizeTemplate(templateHtml, dietGuide, lang, `/${lang}/guide/diabetic-diet`, `https://sugarlite.top/${lang}/guide/diabetic-diet`, i18n));
 
     // Stories
     const storiesData = getStoriesContent(i18n);
     writePage(lang, "stories",
-      customizeTemplate(templateHtml, storiesData, lang, `/${lang}/stories`, `https://sugarlite.top/${lang}/stories`));
+      customizeTemplate(templateHtml, storiesData, lang, `/${lang}/stories`, `https://sugarlite.top/${lang}/stories`, i18n));
   }
 
   // Remove the root dist/index.html since we now have dist/zh/index.html etc.
