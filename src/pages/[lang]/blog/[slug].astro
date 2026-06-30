@@ -1,0 +1,90 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import BlogPost from '@/components/sections/BlogPost.astro';
+import { getAlternateUrls, LANGUAGES } from '@/i18n/routing';
+import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+import { SITE } from '@/i18n/routing';
+import { getCollection } from 'astro:content';
+import type { Language } from '@/types';
+
+export async function getStaticPaths() {
+  const SLUGS = [
+    'what-is-blood-sugar',
+    'how-to-lower-blood-sugar-naturally',
+    'best-blood-sugar-tracker-app',
+    'cgm-vs-fingerstick',
+    'what-is-hba1c',
+    'blood-sugar-after-meals',
+    'normal-blood-sugar-chart',
+    'type-2-diabetes-diet',
+    'high-blood-sugar-symptoms',
+    'insulin-tracking-guide',
+  ];
+  const allEntries = await getCollection('blog');
+  const paths: { params: { lang: Language; slug: string } }[] = [];
+
+  for (const lang of LANGUAGES) {
+    for (const slug of SLUGS) {
+      const entryId = `${slug}-${lang.toLowerCase()}`;
+      const exists = allEntries.some((e) => e.id === entryId);
+      if (exists) {
+        paths.push({ params: { lang, slug } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const pathWithoutLang = `blog/${slug}`;
+
+const allEntries = await getCollection('blog');
+const entryId = `${slug}-${lang.toLowerCase()}`;
+const entry = allEntries.find((e) => e.id === entryId);
+
+if (!entry) {
+  return Astro.redirect(`/${lang}/blog`);
+}
+
+const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).filter(
+  (a) => a.hrefLang !== 'x-default'
+);
+
+const { title, description, updatedDate, ogImage } = entry.data;
+const ogImageUrl = ogImage ? `${SITE}${ogImage}` : undefined;
+
+const jsonLd = [
+  buildBreadcrumbSchema(lang as Language, [
+    { name: 'Blog', path: 'blog' },
+    { name: title, path: pathWithoutLang },
+  ]),
+  buildArticleSchema(lang as Language, {
+    title,
+    description,
+    path: pathWithoutLang,
+    datePublished: `${updatedDate}T00:00:00+08:00`,
+    dateModified: `${updatedDate}T00:00:00+08:00`,
+  }),
+];
+---
+
+<Layout
+  lang={lang as Language}
+  page="blog"
+  pathWithoutLang={pathWithoutLang}
+  ogImage={ogImageUrl}
+  jsonLd={jsonLd}
+>
+  <Navbar
+    lang={lang as Language}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang as Language, href: a.href }))}
+  />
+
+  <main>
+    <BlogPost lang={lang as Language} entry={entry} />
+  </main>
+
+  <Footer lang={lang as Language} />
+</Layout>

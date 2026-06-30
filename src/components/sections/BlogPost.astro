@@ -1,0 +1,129 @@
+---
+import { t, translations } from '@/i18n';
+import { APP_LINKS } from '@/constants';
+import type { Language } from '@/types';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+
+interface Props {
+  lang: Language;
+  entry: CollectionEntry<'blog'>;
+}
+
+const { lang, entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, updatedDate, cover, relatedSlugs } = entry.data;
+
+const allEntries = await getCollection('blog');
+
+function findEntry(slug: string, language: Language) {
+  return allEntries.find((e) => e.id === `${slug}-${language.toLowerCase()}`);
+}
+
+const relatedEntries = (relatedSlugs || [])
+  .map((slug) => findEntry(slug, lang))
+  .filter(Boolean) as CollectionEntry<'blog'>[];
+
+const formattedDate = new Date(updatedDate).toLocaleDateString(
+  lang === 'en' ? 'en-US' : lang === 'ja' ? 'ja-JP' : 'zh-CN',
+  {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+);
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}/blog`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'blog.backToBlog')}
+    </a>
+
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="text-sm font-medium text-brand mb-3">
+        {t(lang, 'blog.updatedOn')}: {formattedDate}
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-6 dark:text-white leading-tight">
+        {title}
+      </h1>
+      
+      {
+        cover && (
+          <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-8">
+            <img
+              src={cover}
+              alt={title}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Content -->
+    <article class="prose prose-lg dark:prose-invert max-w-none mb-16">
+      <Content />
+    </article>
+
+    <!-- Related Reading -->
+    {
+      relatedEntries.length > 0 && (
+        <section class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 dark:text-white">
+            {t(lang, 'blog.relatedReading')}
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {relatedEntries.map((related) => {
+              const relatedSlug = related.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
+              return (
+                <a
+                  href={`/${lang}/blog/${relatedSlug}`}
+                  class="block bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 hover:shadow-lg transition-all group"
+                >
+                  <div class="text-xs font-medium text-brand mb-2">
+                    {related.data.updatedDate}
+                  </div>
+                  <h3 class="text-lg font-bold mb-2 dark:text-white group-hover:text-brand transition-colors">
+                    {related.data.title}
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-2">
+                    {related.data.excerpt}
+                  </p>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- CTA -->
+    <div class="bg-gradient-to-br from-brand/10 to-emerald-500/10 rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 dark:text-white">
+        {t(lang, 'blog.ctaTitle')}
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 mb-8 max-w-xl mx-auto">
+        {t(lang, 'blog.ctaSubtitle')}
+      </p>
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-brand-dark transition-colors"
+      >
+        {t(lang, 'blog.downloadButton')}
+      </a>
+    </div>
+  </div>
+</div>
