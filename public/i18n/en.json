@@ -21,7 +21,8 @@
     "downloadAppStore": "App Store",
     "downloadGooglePlay": "Google Play (coming soon)",
     "helpCenter": "Help Center",
-    "pgrsBadge": "Excellent"
+    "pgrsBadge": "Excellent",
+    "metaDescription": "SugarLite is a smart blood sugar app for diabetes and prediabetes. Track glucose trends, log meals, analyze PGRS pairings, sync Apple Health, and get AI insights."
   },
   "stats": {
     "users": "Trusted Users",
@@ -178,7 +179,8 @@
         "intro": "If you have any questions about this privacy policy, please contact us at:",
         "emailLabel": "Email"
       }
-    ]
+    ],
+    "metaDescription": "SugarLite privacy policy explains how we collect, use, store, and protect your personal info, glucose data, and Apple Health data, plus your access and deletion rights."
   },
   "terms": {
     "title": "Terms of Service",
@@ -254,7 +256,8 @@
         "emailLabel": "Email",
         "phoneLabel": "Phone"
       }
-    ]
+    ],
+    "metaDescription": "SugarLite terms cover service scope, user responsibilities, medical disclaimer, intellectual property, HealthKit rules, account termination, liability, and disputes."
   },
   "faq": {
     "title": "FAQ",
@@ -295,7 +298,8 @@
         "q": "Is SugarLite free?",
         "a": "SugarLite offers a free basic version with core features like glucose logging, trend analysis, and food tracking. Some advanced features like AI deep insights may require a subscription."
       }
-    ]
+    ],
+    "metaDescription": "SugarLite FAQ answers questions about glucose management, app features, PGRS pairing analysis, Apple Health sync, data privacy, and subscriptions."
   },
   "guide": {
     "backToHome": "Back to Home",
@@ -322,12 +326,37 @@
             "Understanding normal blood sugar ranges is the first step in glucose management. Here are the standards recommended by the International Diabetes Federation (IDF) and the American Diabetes Association (ADA):"
           ],
           "table": {
-            "headers": ["Indicator", "Normal Range", "Prediabetes", "Diabetes"],
+            "headers": [
+              "Indicator",
+              "Normal Range",
+              "Prediabetes",
+              "Diabetes"
+            ],
             "rows": [
-              ["Fasting Glucose", "3.9 - 6.1 mmol/L", "6.1 - 7.0 mmol/L", "≥ 7.0 mmol/L"],
-              ["2-Hour Post-Meal", "< 7.8 mmol/L", "7.8 - 11.1 mmol/L", "≥ 11.1 mmol/L"],
-              ["HbA1c", "< 5.7%", "5.7% - 6.4%", "≥ 6.5%"],
-              ["Random Glucose", "< 11.1 mmol/L", "—", "≥ 11.1 mmol/L (with symptoms)"]
+              [
+                "Fasting Glucose",
+                "3.9 - 6.1 mmol/L",
+                "6.1 - 7.0 mmol/L",
+                "≥ 7.0 mmol/L"
+              ],
+              [
+                "2-Hour Post-Meal",
+                "< 7.8 mmol/L",
+                "7.8 - 11.1 mmol/L",
+                "≥ 11.1 mmol/L"
+              ],
+              [
+                "HbA1c",
+                "< 5.7%",
+                "5.7% - 6.4%",
+                "≥ 6.5%"
+              ],
+              [
+                "Random Glucose",
+                "< 11.1 mmol/L",
+                "—",
+                "≥ 11.1 mmol/L (with symptoms)"
+              ]
             ]
           }
         },
@@ -401,7 +430,8 @@
             "Q: Does fruit raise blood sugar? A: Fruit contains natural fructose and does raise glucose, but most fruits have moderate GI. Choose low-GI fruits (apples, pears, strawberries) and limit portions to 100-200g per serving."
           ]
         }
-      ]
+      ],
+      "metaDescription": "SugarLite blood sugar guide covers glucose basics, normal ranges, monitoring methods, influencing factors, and personalized management plans for better control."
     },
     "diabeticDiet": {
       "title": "Diabetic Diet Management Guide",
@@ -503,7 +533,8 @@
             "Trend Analysis: View the correlation between diet and blood sugar trends to discover hidden dietary patterns."
           ]
         }
-      ]
+      ],
+      "metaDescription": "SugarLite diabetic diet guide explains glycemic index, glycemic load, recommended foods, the plate method, and PGRS pairing analysis for glucose-friendly meals."
     }
   },
   "stories": {
@@ -514,10 +545,22 @@
     "communityDescription": "Over 500,000 users are managing their blood sugar with SugarLite. Download the app to start your glucose management journey and share your story with the community.",
     "communityButton": "Download SugarLite for Free",
     "stats": [
-      { "value": "500K+", "label": "Active Users" },
-      { "value": "4.9", "label": "App Store Rating" },
-      { "value": "92%", "label": "User Satisfaction" },
-      { "value": "30 Days", "label": "Average Glucose Improvement" }
+      {
+        "value": "500K+",
+        "label": "Active Users"
+      },
+      {
+        "value": "4.9",
+        "label": "App Store Rating"
+      },
+      {
+        "value": "92%",
+        "label": "User Satisfaction"
+      },
+      {
+        "value": "30 Days",
+        "label": "Average Glucose Improvement"
+      }
     ],
     "items": [
       {
@@ -572,7 +615,8 @@
         "results": "Father's HbA1c dropped from 7.8% to 6.4%, family lost combined 25 lbs, recipes shared with community",
         "quote": "We didn't have to give up our family traditions. We just had to be smarter about them. SugarLite gave us the data to make it work."
       }
-    ]
+    ],
+    "metaDescription": "Read real SugarLite user stories about type 2 diabetes, gestational diabetes, and prediabetes. See how logging and PGRS analysis improve glucose control."
   },
   "references": {
     "title": "Sources",

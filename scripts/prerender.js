@@ -77,7 +77,7 @@ function getHomepageContent(i18n) {
 
   return {
     title: `${t("appName")} - ${t("hero.title")}${t("hero.titleHighlight")}`,
-    description: t("hero.subtitle"),
+    description: t("hero.metaDescription") || t("hero.subtitle"),
     html,
     type: "website",
   };
@@ -104,7 +104,7 @@ function getFAQContent(i18n) {
 
   return {
     title: `${t("faq.title")} - ${t("appName")}`,
-    description: t("faq.subtitle"),
+    description: t("faq.metaDescription") || t("faq.subtitle"),
     html,
     jsonLd,
     type: "website",
@@ -169,7 +169,7 @@ function getGuideContent(i18n, guideKey) {
 
   return {
     title: `${guide.title} - ${t("appName")}`,
-    description: guide.subtitle,
+    description: guide.metaDescription || guide.subtitle,
     html,
     jsonLd,
     type: "article",
@@ -224,7 +224,74 @@ function getStoriesContent(i18n) {
 
   return {
     title: `${t("stories.title")} - ${t("appName")}`,
-    description: t("stories.subtitle"),
+    description: t("stories.metaDescription") || t("stories.subtitle"),
+    html,
+    jsonLd,
+    type: "article",
+  };
+}
+
+function getPolicyContent(i18n, policyKey) {
+  const t = (key) => key.split(".").reduce((o, k) => o?.[k], i18n) || "";
+  const policy = i18n[policyKey] || {};
+  const sections = policy.sections || [];
+  const appName = t("appName");
+
+  const replaceAppName = (text) => (text || "").replace(/\{appName\}/g, appName);
+
+  let html = `<h1>${policy.title}</h1>\n`;
+  html += `<p>${replaceAppName(policy.lastUpdated)}</p>\n`;
+
+  let articleBody = `${policy.title}. ${replaceAppName(policy.lastUpdated)} `;
+
+  for (const section of sections) {
+    html += `<h2>${section.title}</h2>\n`;
+    articleBody += section.title + ". ";
+    if (section.intro) {
+      html += `<p>${replaceAppName(section.intro)}</p>\n`;
+      articleBody += replaceAppName(section.intro) + " ";
+    }
+    if (section.content) {
+      html += `<p>${replaceAppName(section.content)}</p>\n`;
+      articleBody += replaceAppName(section.content) + " ";
+    }
+    if (section.items) {
+      html += `<ul>\n`;
+      for (const item of section.items) {
+        html += `  <li>${replaceAppName(item)}</li>\n`;
+        articleBody += replaceAppName(item) + " ";
+      }
+      html += `</ul>\n`;
+    }
+    if (section.emailLabel) {
+      html += `<p>${section.emailLabel}: <a href="mailto:support@sugarlite.top">support@sugarlite.top</a></p>\n`;
+    }
+    if (section.phoneLabel) {
+      html += `<p>${section.phoneLabel}: <a href="tel:+8610xxxxxxxx">+86 10 xxxx xxxx</a></p>\n`;
+    }
+  }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: policy.title,
+    description: replaceAppName(policy.lastUpdated),
+    image: "https://sugarlite.top/og-image.png",
+    author: { "@type": "Organization", name: appName, url: "https://sugarlite.top" },
+    publisher: {
+      "@type": "Organization",
+      name: appName,
+      logo: { "@type": "ImageObject", url: "https://sugarlite.top/icon.png" },
+    },
+    datePublished: PUBLICATION_DATE,
+    dateModified: PUBLICATION_DATE,
+    articleBody: articleBody.substring(0, 5000),
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://sugarlite.top" },
+  };
+
+  return {
+    title: `${policy.title} - ${appName}`,
+    description: policy.metaDescription || replaceAppName(policy.lastUpdated),
     html,
     jsonLd,
     type: "article",
@@ -258,6 +325,8 @@ function buildBreadcrumbJsonLd(lang, urlPath, i18n) {
     else if (part === "diabetic-diet") name = t("nav.guideDiabeticDiet") || "Diabetic Diet";
     else if (part === "faq") name = t("nav.faq") || "FAQ";
     else if (part === "stories") name = t("nav.stories") || "Stories";
+    else if (part === "privacy") name = t("nav.privacy") || "Privacy";
+    else if (part === "terms") name = t("nav.terms") || "Terms";
     items.push({ "@type": "ListItem", position: i + 1, name, item: itemUrl });
   }
   return JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items }, null, 2);
@@ -520,6 +589,16 @@ function main() {
     const storiesData = getStoriesContent(i18n);
     writePage(lang, "stories",
       customizeTemplate(templateHtml, storiesData, lang, `/${lang}/stories`, `https://sugarlite.top/${lang}/stories`, i18n));
+
+    // Privacy Policy
+    const privacyData = getPolicyContent(i18n, "privacy");
+    writePage(lang, "privacy",
+      customizeTemplate(templateHtml, privacyData, lang, `/${lang}/privacy`, `https://sugarlite.top/${lang}/privacy`, i18n));
+
+    // Terms of Service
+    const termsData = getPolicyContent(i18n, "terms");
+    writePage(lang, "terms",
+      customizeTemplate(templateHtml, termsData, lang, `/${lang}/terms`, `https://sugarlite.top/${lang}/terms`, i18n));
   }
 
   // Remove the root dist/index.html since we now have dist/zh/index.html etc.
@@ -527,7 +606,7 @@ function main() {
   // Keep it for safety but it will be superseded by per-lang pages.
 
   console.log("\n✨ Prerendering complete!");
-  console.log(`   Generated ${LANGUAGES.length * 5} static HTML pages across ${LANGUAGES.length} languages.`);
+  console.log(`   Generated ${LANGUAGES.length * 7} static HTML pages across ${LANGUAGES.length} languages.`);
 }
 
 main();
