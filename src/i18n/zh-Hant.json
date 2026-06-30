@@ -12,7 +12,8 @@
     "guides": "健康指南",
     "guideBloodSugar": "血糖管理指南",
     "guideDiabeticDiet": "糖尿病飲食建議",
-    "stories": "用戶故事"
+    "stories": "用戶故事",
+    "blog": "部落格"
   },
   "hero": {
     "tag": "支援 Apple Health 同步與 AI 洞察",
@@ -105,6 +106,19 @@
     "b2b": "企業合作",
     "email": "support@sugarlite.top",
     "rights": "© 2025 輕糖 (SugarLite) 版權所有"
+  },
+  "blog": {
+    "title": "輕糖部落格",
+    "subtitle": "血糖管理、健康飲食與生活方式的專業指南",
+    "updatedOn": "更新日期",
+    "relatedReading": "相關閱讀",
+    "readMore": "閱讀全文",
+    "comingSoon": "該語言版本正文即將推出，敬請期待。",
+    "backToBlog": "返回部落格",
+    "allArticles": "全部文章",
+    "ctaTitle": "用 SugarLite 輕鬆管理血糖",
+    "ctaSubtitle": "記錄血糖、分析趨勢、發現適合您的飲食方案。",
+    "downloadButton": "免費下載"
   },
   "privacy": {
     "title": "隱私政策",

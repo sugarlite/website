@@ -12,7 +12,8 @@
     "guides": "Guides",
     "guideBloodSugar": "Blood Sugar Guide",
     "guideDiabeticDiet": "Diabetic Diet Guide",
-    "stories": "Stories"
+    "stories": "Stories",
+    "blog": "Blog"
   },
   "hero": {
     "tag": "Apple Health Sync and AI Insights",
@@ -105,6 +106,19 @@
     "b2b": "B2B",
     "email": "support@sugarlite.top",
     "rights": "© 2025 SugarLite All rights reserved."
+  },
+  "blog": {
+    "title": "SugarLite Blog",
+    "subtitle": "Expert guides on blood sugar management, diet, and healthy living",
+    "updatedOn": "Updated",
+    "relatedReading": "Related Reading",
+    "readMore": "Read more",
+    "comingSoon": "The full article in this language is coming soon.",
+    "backToBlog": "Back to Blog",
+    "allArticles": "All Articles",
+    "ctaTitle": "Manage your blood sugar with SugarLite",
+    "ctaSubtitle": "Log glucose, analyze trends, and discover the diet that works for you.",
+    "downloadButton": "Free Download"
   },
   "privacy": {
     "title": "Privacy Policy",

@@ -12,7 +12,8 @@
     "guides": "健康ガイド",
     "guideBloodSugar": "血糖管理ガイド",
     "guideDiabeticDiet": "糖尿病食事ガイド",
-    "stories": "ユーザーの声"
+    "stories": "ユーザーの声",
+    "blog": "ブログ"
   },
   "hero": {
     "tag": "Apple Health 同期と AI インサイト対応",
@@ -105,6 +106,19 @@
     "b2b": "企業提携",
     "email": "support@sugarlite.top",
     "rights": "© 2025 SugarLite All rights reserved."
+  },
+  "blog": {
+    "title": "SugarLite ブログ",
+    "subtitle": "血糖管理、食事、健康ライフスタイルの専門ガイド",
+    "updatedOn": "更新日",
+    "relatedReading": "関連記事",
+    "readMore": "続きを読む",
+    "comingSoon": "この言語の全文は近日公開予定です。",
+    "backToBlog": "ブログに戻る",
+    "allArticles": "すべての記事",
+    "ctaTitle": "SugarLiteで血糖管理を簡単に",
+    "ctaSubtitle": "血糖を記録し、トレンドを分析し、あなたに合った食事を見つけましょう。",
+    "downloadButton": "無料ダウンロード"
   },
   "privacy": {
     "title": "プライバシーポリシー",
