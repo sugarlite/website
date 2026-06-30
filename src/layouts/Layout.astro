@@ -41,6 +41,21 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <!-- Dark mode: apply before any paint to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
+
     <SEO
       lang={lang}
       title={meta.title}
@@ -63,17 +78,15 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/icon.png" as="image" type="image/png" />
-    <link rel="preload" href="/hero-phone.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="/og-image.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/hero-phone.avif" as="image" type="image/avif" fetchpriority="high" />
+    <link rel="preload" href="/hero-phone.webp" as="image" type="image/webp" fetchpriority="high" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts: preload CSS to avoid render-blocking, then apply -->
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
@@ -113,31 +126,18 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
         background-color: #f8fafc;
         color: #0f172a;
       }
+      .dark body {
+        background-color: #020617;
+        color: #f1f5f9;
+      }
       img {
         max-width: 100%;
         height: auto;
       }
     </style>
 
-    <!-- Dark mode: apply before paint to prevent FOUC -->
-    <script is:inline>
-      (function () {
-        try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {
-          // ignore
-        }
-      })();
-    </script>
-
     <!-- Analytics placeholders (replace with actual IDs) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -151,6 +151,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       var _hmt = _hmt || [];
       (function () {
         var hm = document.createElement('script');
+        hm.defer = true;
         hm.src = 'https://hm.baidu.com/hm.js?YOUR_BAIDU_ID';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(hm, s);
@@ -165,7 +166,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             (c[a].q = c[a].q || []).push(arguments);
           };
         t = l.createElement(r);
-        t.async = 1;
+        t.defer = true;
         t.src = 'https://www.clarity.ms/tag/' + i;
         y = l.getElementsByTagName(r)[0];
         y.parentNode.insertBefore(t, y);

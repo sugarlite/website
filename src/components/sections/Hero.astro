@@ -64,11 +64,20 @@ const { lang } = Astro.props;
           <p class="text-lg font-bold text-slate-800 dark:text-slate-100">{t(lang, 'hero.pgrsBadge')}</p>
         </div>
         <div class="relative w-72 lg:w-[22rem] h-auto rounded-[3.5rem] overflow-hidden shadow-2xl shadow-slate-900/20">
-          <img
-            src="/hero-phone.png"
-            alt="SugarLite App Interface"
-            class="w-full h-auto block"
-          />
+          <picture>
+            <source srcset="/hero-phone.avif" type="image/avif" />
+            <source srcset="/hero-phone.webp" type="image/webp" />
+            <img
+              src="/hero-phone.png"
+              alt="SugarLite App Interface"
+              class="w-full h-auto block"
+              width="470"
+              height="1024"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
       </div>
     </div>
