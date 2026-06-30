@@ -4,6 +4,7 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import { getPageMeta, SITE_NAME, DEFAULT_OG_IMAGE } from '@/i18n/meta';
 import { getAlternateUrls, LANG_TO_HTML_LANG, SITE, type Language } from '@/i18n/routing';
 import type { PageKey } from '@/i18n/meta';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import '@/styles/global.css';
 
 interface Props {
@@ -291,6 +292,8 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
         )
       }
     </noscript>
+
+    <SpeedInsights client:only="react" />
   </body>
 
   <script is:inline>
