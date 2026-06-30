@@ -5,6 +5,7 @@ import { getPageMeta, SITE_NAME, DEFAULT_OG_IMAGE } from '@/i18n/meta';
 import { getAlternateUrls, LANG_TO_HTML_LANG, SITE, type Language } from '@/i18n/routing';
 import type { PageKey } from '@/i18n/meta';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import Analytics from '@vercel/analytics/astro';
 import '@/styles/global.css';
 
 interface Props {
@@ -136,17 +137,18 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       }
     </style>
 
-    <!-- Analytics placeholders (replace with actual IDs) -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3X5TG47BLP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-YOUR_GA4_ID');
+      gtag('config', 'G-3X5TG47BLP');
     </script>
 
+    <!-- Baidu Analytics placeholder -->
     <script is:inline>
       var _hmt = _hmt || [];
       (function () {
@@ -158,6 +160,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       })();
     </script>
 
+    <!-- Microsoft Clarity placeholder -->
     <script is:inline>
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -295,6 +298,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
     </noscript>
 
     <SpeedInsights client:only="react" />
+    <Analytics />
   </body>
 
   <script is:inline>
