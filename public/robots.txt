@@ -30,4 +30,4 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
-Sitemap: https://sugarlite.top/sitemap.xml
+Sitemap: https://sugarlite.top/sitemap-index.xml

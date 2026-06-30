@@ -1,0 +1,181 @@
+---
+import { APP_LINKS, MEDICAL_REFERENCES } from '@/constants';
+import { t, translations } from '@/i18n';
+import References from './References.astro';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const sections = (translations[lang].guide?.diabeticDiet?.sections as Array<{
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  foodLists?: { title: string; type: string; items: string[] }[];
+  tip?: string;
+}>) || [];
+
+const giPattern: Record<Language, string> = {
+  zh: '升糖指数（Glycemic Index, GI）',
+  en: 'Glycemic Index (GI)',
+  ja: 'グリセミック・インデックス（GI）',
+  'zh-Hant': '升糖指數（Glycemic Index, GI）',
+}[lang];
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'guide.backToHome')}
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'guide.diabeticDiet.title')}
+      </h1>
+      <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+        {t(lang, 'guide.diabeticDiet.subtitle')}
+      </p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-12">
+      <h2 class="text-xl font-bold mb-4 dark:text-white">{t(lang, 'guide.toc')}</h2>
+      <ol class="list-decimal list-inside space-y-2 text-slate-600 dark:text-slate-300">
+        {
+          sections.map((section, index) => (
+            <li>
+              <a href={`#section-${index}`} class="hover:text-brand transition-colors">
+                {section.heading}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="prose prose-lg dark:prose-invert max-w-none space-y-12">
+      {
+        sections.map((section, index) => (
+          <section id={`section-${index}`} class="scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-4 dark:text-white flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center text-sm font-bold">
+                {index + 1}
+              </span>
+              {section.heading}
+            </h2>
+            {
+              section.paragraphs?.map((paragraph, pIndex) => {
+                const shouldLink = index === 1 && pIndex === 0 && giPattern && paragraph.includes(giPattern);
+                if (shouldLink) {
+                  const parts = paragraph.split(giPattern);
+                  return (
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                      {parts[0]}
+                      <a
+                        href={MEDICAL_REFERENCES.glycemicIndexDatabase.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-brand hover:text-brand-dark underline decoration-brand/30 hover:decoration-brand transition-colors"
+                      >
+                        {giPattern}
+                      </a>
+                      {parts[1]}
+                    </p>
+                  );
+                }
+                return <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">{paragraph}</p>;
+              })
+            }
+            {
+              section.bullets && (
+                <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
+                  {section.bullets.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )
+            }
+            {
+              section.foodLists && (
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                  {section.foodLists.map((list) => (
+                    <div class="bg-slate-50 dark:bg-slate-900 rounded-xl p-6">
+                      <h3 class="font-bold text-lg mb-3 dark:text-white">{list.title}</h3>
+                      <ul class="space-y-2">
+                        {list.items.map((item) => (
+                          <li class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+                            <span class={`w-2 h-2 rounded-full ${list.type === 'good' ? 'bg-emerald-500' : 'bg-red-400'}`}></span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )
+            }
+            {
+              section.tip && (
+                <div class="mt-6 p-6 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 rounded-r-xl">
+                  <p class="text-amber-800 dark:text-amber-200 font-medium">💡 {section.tip}</p>
+                </div>
+              )
+            }
+          </section>
+        ))
+      }
+    </div>
+
+    <!-- Related Guides -->
+    <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+      <h3 class="text-xl font-bold mb-4 dark:text-white">{t(lang, 'guide.relatedGuides')}</h3>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={`/${lang}/guide/blood-sugar-management`}
+          class="px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand/10 hover:text-brand transition-colors font-medium"
+        >
+          {t(lang, 'guide.bloodSugar.title')} →
+        </a>
+      </div>
+    </div>
+
+    <!-- References -->
+    <References
+      lang={lang}
+      references={[
+        'glycemicIndexDatabase',
+        'nutritionRecommendations',
+        'usdaFoodDataCentral',
+        'harvardHealthCalories',
+        'chinaNutritionTable',
+      ]}
+    />
+
+    <!-- CTA -->
+    <div class="mt-16 text-center bg-gradient-to-br from-brand/5 to-emerald-500/5 rounded-3xl p-12">
+      <h3 class="text-2xl font-bold mb-4 dark:text-white">{t(lang, 'guide.ctaTitle')}</h3>
+      <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-xl mx-auto">{t(lang, 'guide.ctaDescription')}</p>
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-brand text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors"
+      >
+        {t(lang, 'guide.ctaButton')}
+      </a>
+    </div>
+  </div>
+</div>

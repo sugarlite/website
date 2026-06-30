@@ -1,0 +1,73 @@
+---
+import { t, tArray, translations } from '@/i18n';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const sections = (translations[lang].privacy?.sections as Array<{
+  title: string;
+  content?: string;
+  intro?: string;
+  items?: string[];
+  emailLabel?: string;
+}>) || [];
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'privacy.backToHome')}
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'privacy.title')}
+      </h1>
+      <p class="text-slate-500 dark:text-slate-400">
+        {t(lang, 'privacy.lastUpdated')}
+      </p>
+    </div>
+
+    <!-- Content -->
+    <div class="prose prose-lg dark:prose-invert max-w-none space-y-8">
+      {
+        sections.map((section, index) => (
+          <section key={index}>
+            <h2 class="text-2xl font-bold mb-4 dark:text-white">{section.title}</h2>
+            {section.content && (
+              <p class="text-slate-600 dark:text-slate-300 leading-relaxed">{section.content}</p>
+            )}
+            {section.intro && (
+              <p class="text-slate-600 dark:text-slate-300 leading-relaxed">{section.intro}</p>
+            )}
+            {section.items && (
+              <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
+                {section.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+            {section.emailLabel && (
+              <div class="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <p class="text-slate-700 dark:text-slate-300">
+                  {section.emailLabel}: support@sugarlite.top
+                </p>
+              </div>
+            )}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</div>

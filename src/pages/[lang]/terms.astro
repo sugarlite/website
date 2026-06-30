@@ -1,0 +1,47 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import TermsOfService from '@/components/sections/TermsOfService.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { getAlternateUrls, getStaticLangPaths } from '@/i18n/routing';
+import { getPageMeta } from '@/i18n/meta';
+import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+import type { Language } from '@/types';
+
+export function getStaticPaths() {
+  return getStaticLangPaths();
+}
+
+const { lang } = Astro.params;
+const pathWithoutLang = 'terms';
+const alternates = getAlternateUrls(pathWithoutLang, "zh", Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
+const meta = getPageMeta('terms', lang as Language);
+
+const jsonLd = [
+  buildBreadcrumbSchema(lang as Language, [{ name: meta.title, path: pathWithoutLang }]),
+  buildArticleSchema(lang as Language, {
+    title: meta.title,
+    description: meta.description,
+    path: pathWithoutLang,
+  }),
+];
+---
+
+<Layout
+  lang={lang as Language}
+  page="terms"
+  pathWithoutLang={pathWithoutLang}
+  jsonLd={jsonLd}
+>
+  <Navbar
+    lang={lang as Language}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang as Language, href: a.href }))}
+    
+  />
+
+  <main>
+    <TermsOfService lang={lang as Language} />
+  </main>
+
+  <Footer lang={lang as Language} />
+</Layout>

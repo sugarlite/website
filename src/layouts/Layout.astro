@@ -1,0 +1,318 @@
+---
+import SEO, { type AlternateUrl } from '@/components/seo/SEO.astro';
+import JsonLd from '@/components/seo/JsonLd.astro';
+import { getPageMeta, SITE_NAME, DEFAULT_OG_IMAGE } from '@/i18n/meta';
+import { getAlternateUrls, LANG_TO_HTML_LANG, SITE, type Language } from '@/i18n/routing';
+import type { PageKey } from '@/i18n/meta';
+import '@/styles/global.css';
+
+interface Props {
+  lang: Language;
+  page: PageKey;
+  pathWithoutLang?: string;
+  ogImage?: string;
+  jsonLd?: unknown[];
+  noIndex?: boolean;
+}
+
+const {
+  lang,
+  page,
+  pathWithoutLang = '',
+  ogImage = DEFAULT_OG_IMAGE,
+  jsonLd = [],
+  noIndex = false,
+} = Astro.props;
+
+const meta = getPageMeta(page, lang);
+const canonical = `${SITE}${pathWithoutLang ? `/${lang}/${pathWithoutLang}` : `/${lang}`}`;
+const alternates: AlternateUrl[] = getAlternateUrls(pathWithoutLang);
+const htmlLang = LANG_TO_HTML_LANG[lang];
+---
+
+<!DOCTYPE html>
+<html lang={htmlLang} class="scroll-smooth" data-theme-handler>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <SEO
+      lang={lang}
+      title={meta.title}
+      description={meta.description}
+      siteName={SITE_NAME[lang]}
+      canonical={canonical}
+      ogImage={ogImage}
+      ogType={meta.ogType}
+      keywords={meta.keywords}
+      alternateUrls={alternates}
+      robots={noIndex ? 'noindex, nofollow' : undefined}
+    />
+
+    <JsonLd schema={jsonLd} />
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://sugarlite.top" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/icon.png" as="image" type="image/png" />
+    <link rel="preload" href="/hero-phone.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/og-image.png" as="image" fetchpriority="high" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/icon.svg" color="#00C09A" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#00C09A" />
+    <meta name="msapplication-TileColor" content="#00C09A" />
+    <meta name="msapplication-config" content="none" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- PWA / Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content={SITE_NAME[lang]} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content={SITE_NAME[lang]} />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Critical CSS to prevent FOUC -->
+    <style is:inline>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: 'Noto Sans SC', 'Outfit', system-ui, -apple-system, sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+
+    <!-- Dark mode: apply before paint to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
+
+    <!-- Analytics placeholders (replace with actual IDs) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA4_ID"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-YOUR_GA4_ID');
+    </script>
+
+    <script is:inline>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?YOUR_BAIDU_ID';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+    <script is:inline>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'YOUR_CLARITY_ID');
+    </script>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen"
+  >
+    <slot />
+
+    {
+      /* Localized noscript SEO content */
+    }
+    <noscript>
+      {
+        lang === 'zh' && (
+          <div
+            style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
+            lang="zh-CN"
+          >
+            <h1>轻糖 SugarLite - 智能血糖监测与健康管理</h1>
+            <p>
+              「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。
+            </p>
+            <h2>📱 核心功能</h2>
+            <ul>
+              <li><strong>血糖趋势追踪</strong> - 轻松记录餐前、餐后血糖值，自动生成可视化趋势曲线</li>
+              <li><strong>饮食记录管理</strong> - 快速记录每日饮食，支持丰富食物数据库与自定义食物</li>
+              <li><strong>PGRS 配对分析</strong> - 通过餐前餐后血糖配对分析，识别友好食物与风险食物</li>
+              <li><strong>运动记录</strong> - 记录日常运动，观察不同强度活动对血糖波动的影响</li>
+              <li><strong>AI 智能洞察</strong> - 基于多次记录生成个性化建议</li>
+              <li><strong>云端同步</strong> - 登录后自动同步数据，跨设备使用更连续</li>
+            </ul>
+            <h2>📖 健康指南</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/zh/guide/blood-sugar-management">血糖管理完全指南</a></li>
+              <li><a href="https://sugarlite.top/zh/guide/diabetic-diet">糖尿病饮食建议</a></li>
+              <li><a href="https://sugarlite.top/zh/stories">用户故事</a></li>
+              <li><a href="https://sugarlite.top/zh/faq">常见问题</a></li>
+            </ul>
+            <h2>🔗 重要链接</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/zh/privacy">隐私政策</a></li>
+              <li><a href="https://sugarlite.top/zh/terms">服务条款</a></li>
+            </ul>
+          </div>
+        )
+      }
+      {
+        lang === 'en' && (
+          <div
+            style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
+            lang="en-US"
+          >
+            <h1>SugarLite - Smart Blood Sugar Management</h1>
+            <p>
+              SugarLite is a professional blood sugar monitoring, trend analysis and health management application. Record, analyze, and discover what foods work best for your body.
+            </p>
+            <h2>📖 Guides</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/en/guide/blood-sugar-management">Blood Sugar Management Guide</a></li>
+              <li><a href="https://sugarlite.top/en/guide/diabetic-diet">Diabetic Diet Recommendations</a></li>
+              <li><a href="https://sugarlite.top/en/stories">User Stories</a></li>
+              <li><a href="https://sugarlite.top/en/faq">FAQ</a></li>
+            </ul>
+            <h2>🔗 Links</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/en/privacy">Privacy Policy</a></li>
+              <li><a href="https://sugarlite.top/en/terms">Terms of Service</a></li>
+            </ul>
+          </div>
+        )
+      }
+      {
+        lang === 'ja' && (
+          <div
+            style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
+            lang="ja-JP"
+          >
+            <h1>SugarLite - スマートな血糖管理アプリ</h1>
+            <p>
+              SugarLiteは、専門的な血糖モニタリング、トレンド分析、健康管理アプリです。科学的なデータダッシュボードで健康的な生活をサポートします。
+            </p>
+            <h2>📖 ガイド</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/ja/guide/blood-sugar-management">血糖管理の完全ガイド</a></li>
+              <li><a href="https://sugarlite.top/ja/guide/diabetic-diet">糖尿病の食事管理ガイド</a></li>
+              <li><a href="https://sugarlite.top/ja/stories">ユーザーの声</a></li>
+              <li><a href="https://sugarlite.top/ja/faq">よくある質問</a></li>
+            </ul>
+            <h2>🔗 リンク</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/ja/privacy">プライバシーポリシー</a></li>
+              <li><a href="https://sugarlite.top/ja/terms">利用規約</a></li>
+            </ul>
+          </div>
+        )
+      }
+      {
+        lang === 'zh-Hant' && (
+          <div
+            style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
+            lang="zh-TW"
+          >
+            <h1>輕糖 SugarLite - 智能血糖監測與健康管理</h1>
+            <p>
+              「輕糖」是一款專為關注血糖健康人群設計的智能管理工具。透過簡潔直觀的記錄方式和科學的數據分析，幫助你了解自己的血糖規律，找到最適合的飲食方案。
+            </p>
+            <h2>📖 指南</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/zh-Hant/guide/blood-sugar-management">血糖管理完全指南</a></li>
+              <li><a href="https://sugarlite.top/zh-Hant/guide/diabetic-diet">糖尿病飲食管理指南</a></li>
+              <li><a href="https://sugarlite.top/zh-Hant/stories">用戶故事</a></li>
+              <li><a href="https://sugarlite.top/zh-Hant/faq">常見問題</a></li>
+            </ul>
+            <h2>🔗 連結</h2>
+            <ul>
+              <li><a href="https://sugarlite.top/zh-Hant/privacy">隱私政策</a></li>
+              <li><a href="https://sugarlite.top/zh-Hant/terms">服務條款</a></li>
+            </ul>
+          </div>
+        )
+      }
+    </noscript>
+  </body>
+
+  <script is:inline>
+    (function () {
+      if (typeof window.IntersectionObserver === 'undefined') {
+        document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => el.classList.add('visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => observer.observe(el));
+    })();
+  </script>
+</html>
