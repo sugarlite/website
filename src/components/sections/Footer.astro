@@ -1,0 +1,87 @@
+---
+import { APP_NAME, APP_LINKS } from '@/constants';
+import { t } from '@/i18n';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<footer class="bg-[#f5f5f7] dark:bg-[#0d0d0f] pt-20 pb-10 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+      <div class="col-span-2 md:col-span-1 space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+            <img src="/icon.png" alt="SugarLite Logo" class="w-full h-full object-contain" />
+          </div>
+          <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-dark">
+            {APP_NAME[lang]}
+          </span>
+        </div>
+        <p class="text-slate-500 text-sm">{t(lang, 'footer.tagline')}</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 dark:text-white">{t(lang, 'footer.about')}</h4>
+        <ul class="space-y-2 text-slate-500 text-sm">
+          <li>
+            <a href={`/${lang}/privacy`} class="hover:text-brand transition-colors">{t(lang, 'nav.privacy')}</a>
+          </li>
+          <li>
+            <a href={`/${lang}/faq`} class="hover:text-brand transition-colors">{t(lang, 'nav.faq')}</a>
+          </li>
+          <li>
+            <a href={`/${lang}/terms`} class="hover:text-brand transition-colors">{t(lang, 'nav.terms')}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 dark:text-white">{t(lang, 'footer.product')}</h4>
+        <ul class="space-y-2 text-slate-500 text-sm">
+          <li>
+            <a
+              href={APP_LINKS.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-brand transition-colors"
+            >
+              {t(lang, 'footer.iosVersion')}
+            </a>
+          </li>
+          <li>
+            <span class="text-slate-400">{t(lang, 'footer.androidVersion')}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 dark:text-white">{t(lang, 'footer.contact')}</h4>
+        <ul class="space-y-2 text-slate-500 text-sm">
+          <li>
+            <a href="mailto:support@sugarlite.top" class="hover:text-brand transition-colors">
+              support@sugarlite.top
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8">
+      <div class="flex justify-center mb-6">
+        <div class="bg-slate-100 rounded-xl px-4 py-2">
+          <img
+            src="/apple-health-badge.svg"
+            alt="Works with Apple Health"
+            class="h-8 w-auto"
+          />
+        </div>
+      </div>
+      <div class="text-center text-slate-400 text-xs">{t(lang, 'footer.rights')}</div>
+    </div>
+  </div>
+</footer>

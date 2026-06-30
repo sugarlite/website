@@ -1,0 +1,39 @@
+---
+import { t } from '@/i18n';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="preview" class="py-32 bg-white dark:bg-black overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-20 space-y-4">
+      <h2 class="reveal stagger-1 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">
+        {t(lang, 'preview.title')}
+      </h2>
+      <p class="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+        {t(lang, 'preview.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+      {
+        [1, 2, 3, 4, 5].map((n, idx) => (
+          <div class={`reveal-scale stagger-${Math.min(idx + 1, 6)}`}>
+            <div class="rounded-[2rem] overflow-hidden shadow-xl shadow-slate-900/10">
+              <img
+                src={`/preview/Screenshot ${String(n).padStart(2, '0')}.png`}
+                alt={`SugarLite Preview ${n}`}
+                class="w-full h-auto block"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

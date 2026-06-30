@@ -1,0 +1,186 @@
+---
+import { APP_LINKS, MEDICAL_REFERENCES } from '@/constants';
+import { t, translations } from '@/i18n';
+import References from './References.astro';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const sections = (translations[lang].guide?.bloodSugar?.sections as Array<{
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  table?: { headers: string[]; rows: string[][] };
+}>) || [];
+
+const idfPattern = {
+  zh: {
+    search: '国际糖尿病联盟（IDF）和美国糖尿病协会（ADA）',
+    linkText: '国际糖尿病联盟（IDF）',
+  },
+  en: {
+    search: 'International Diabetes Federation (IDF) and the American Diabetes Association (ADA)',
+    linkText: 'International Diabetes Federation (IDF)',
+  },
+  ja: {
+    search: '国際糖尿病連合（IDF）と米国糖尿病協会（ADA）',
+    linkText: '国際糖尿病連合（IDF）',
+  },
+  'zh-Hant': {
+    search: '國際糖尿病聯盟（IDF）和美國糖尿病協會（ADA）',
+    linkText: '國際糖尿病聯盟（IDF）',
+  },
+}[lang];
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'guide.backToHome')}
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'guide.bloodSugar.title')}
+      </h1>
+      <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+        {t(lang, 'guide.bloodSugar.subtitle')}
+      </p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-12">
+      <h2 class="text-xl font-bold mb-4 dark:text-white">{t(lang, 'guide.toc')}</h2>
+      <ol class="list-decimal list-inside space-y-2 text-slate-600 dark:text-slate-300">
+        {
+          sections.map((section, index) => (
+            <li>
+              <a href={`#section-${index}`} class="hover:text-brand transition-colors">
+                {section.heading}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="prose prose-lg dark:prose-invert max-w-none space-y-12">
+      {
+        sections.map((section, index) => (
+          <section id={`section-${index}`} class="scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-4 dark:text-white flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center text-sm font-bold">
+                {index + 1}
+              </span>
+              {section.heading}
+            </h2>
+            {
+              section.paragraphs?.map((paragraph, pIndex) => {
+                const shouldLink = index === 1 && pIndex === 0 && idfPattern && paragraph.includes(idfPattern.search);
+                if (shouldLink) {
+                  const parts = paragraph.split(idfPattern.search);
+                  const remaining = idfPattern.search.slice(idfPattern.linkText.length);
+                  return (
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                      {parts[0]}
+                      <a
+                        href={MEDICAL_REFERENCES.bloodSugarRanges.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-brand hover:text-brand-dark underline decoration-brand/30 hover:decoration-brand transition-colors"
+                      >
+                        {idfPattern.linkText}
+                      </a>
+                      {remaining}
+                      {parts[1]}
+                    </p>
+                  );
+                }
+                return <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">{paragraph}</p>;
+              })
+            }
+            {
+              section.bullets && (
+                <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
+                  {section.bullets.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )
+            }
+            {
+              section.table && (
+                <div class="overflow-x-auto mt-6">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr class="border-b-2 border-slate-200 dark:border-slate-700">
+                        {section.table.headers.map((header) => (
+                          <th class="py-3 px-4 font-bold text-slate-900 dark:text-white">{header}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row) => (
+                        <tr class="border-b border-slate-100 dark:border-slate-800">
+                          {row.map((cell) => (
+                            <td class="py-3 px-4 text-slate-600 dark:text-slate-300">{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )
+            }
+          </section>
+        ))
+      }
+    </div>
+
+    <!-- Related Guides -->
+    <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+      <h3 class="text-xl font-bold mb-4 dark:text-white">{t(lang, 'guide.relatedGuides')}</h3>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={`/${lang}/guide/diabetic-diet`}
+          class="px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand/10 hover:text-brand transition-colors font-medium"
+        >
+          {t(lang, 'guide.diabeticDiet.title')} →
+        </a>
+      </div>
+    </div>
+
+    <!-- References -->
+    <References
+      lang={lang}
+      references={['bloodSugarRanges', 'bloodSugarMonitoring', 'idfDiabetesTypes']}
+    />
+
+    <!-- CTA -->
+    <div class="mt-16 text-center bg-gradient-to-br from-brand/5 to-emerald-500/5 rounded-3xl p-12">
+      <h3 class="text-2xl font-bold mb-4 dark:text-white">{t(lang, 'guide.ctaTitle')}</h3>
+      <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-xl mx-auto">{t(lang, 'guide.ctaDescription')}</p>
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-brand text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors"
+      >
+        {t(lang, 'guide.ctaButton')}
+      </a>
+    </div>
+  </div>
+</div>

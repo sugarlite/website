@@ -1,0 +1,114 @@
+---
+import { APP_LINKS } from '@/constants';
+import { t, translations } from '@/i18n';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const stories = (translations[lang].stories?.items as Array<{
+  name: string;
+  condition: string;
+  location: string;
+  avatar: string;
+  paragraphs: string[];
+  results?: string;
+  quote?: string;
+}>) || [];
+
+const stats = (translations[lang].stories?.stats as Array<{ value: string; label: string }>) || [];
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'stories.backToHome')}
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'stories.title')}
+      </h1>
+      <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+        {t(lang, 'stories.subtitle')}
+      </p>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+      {
+        stats.map((stat) => (
+          <div class="text-center p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl">
+            <div class="text-3xl font-extrabold text-brand mb-1">{stat.value}</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">{stat.label}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Stories -->
+    <div class="space-y-12">
+      {
+        stories.map((story) => (
+          <article class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+            <div class="flex items-start gap-4 mb-6">
+              <img
+                src={story.avatar}
+                alt={story.name}
+                class="w-14 h-14 rounded-full object-cover flex-shrink-0 bg-brand/10"
+              />
+              <div>
+                <h3 class="text-xl font-bold dark:text-white">{story.name}</h3>
+                <p class="text-sm text-brand font-medium">{story.condition}</p>
+                <p class="text-sm text-slate-400">{story.location}</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              {story.paragraphs.map((paragraph) => (
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">{paragraph}</p>
+              ))}
+            </div>
+
+            {story.results && (
+              <div class="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border-l-4 border-emerald-400">
+                <p class="text-emerald-800 dark:text-emerald-200 font-medium">{story.results}</p>
+              </div>
+            )}
+
+            {story.quote && (
+              <blockquote class="mt-6 pl-6 border-l-4 border-brand/30 italic text-slate-500 dark:text-slate-400">
+                "{story.quote}"
+              </blockquote>
+            )}
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Community CTA -->
+    <div class="mt-16 text-center bg-gradient-to-br from-brand/5 to-emerald-500/5 rounded-3xl p-12">
+      <h3 class="text-2xl font-bold mb-4 dark:text-white">{t(lang, 'stories.communityTitle')}</h3>
+      <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-xl mx-auto">{t(lang, 'stories.communityDescription')}</p>
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-brand text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors"
+      >
+        {t(lang, 'stories.communityButton')}
+      </a>
+    </div>
+  </div>
+</div>

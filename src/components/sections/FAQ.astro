@@ -1,0 +1,64 @@
+---
+import { t, tArray, translations } from '@/i18n';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const faqs = (translations[lang].faq?.items as Array<{ q: string; a: string }>) || [];
+---
+
+<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Back Button -->
+    <a
+      href={`/${lang}`}
+      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {t(lang, 'faq.backToHome')}
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'faq.title')}
+      </h1>
+      <p class="text-slate-500 dark:text-slate-400">
+        {t(lang, 'faq.subtitle')}
+      </p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-6">
+      {
+        faqs.map((faq, index) => (
+          <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white flex items-start gap-3">
+              <span class="text-brand text-lg">Q{index + 1}</span>
+              {faq.q}
+            </h3>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed pl-8">{faq.a}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <p class="text-slate-500 dark:text-slate-400 mb-4">
+        {t(lang, 'faq.stillHaveQuestions')}
+      </p>
+      <a
+        href="mailto:support@sugarlite.top"
+        class="inline-block bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-brand-dark transition-colors"
+      >
+        {t(lang, 'faq.contactUs')}
+      </a>
+    </div>
+  </div>
+</div>
