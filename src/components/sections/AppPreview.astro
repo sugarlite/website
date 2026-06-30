@@ -25,11 +25,22 @@ const { lang } = Astro.props;
         [1, 2, 3, 4, 5].map((n, idx) => (
           <div class={`reveal-scale stagger-${Math.min(idx + 1, 6)}`}>
             <div class="rounded-[2rem] overflow-hidden shadow-xl shadow-slate-900/10">
-              <img
-                src={`/preview/Screenshot ${String(n).padStart(2, '0')}.png`}
-                alt={`SugarLite Preview ${n}`}
-                class="w-full h-auto block"
-              />
+              <picture>
+                <source
+                  srcset={`/preview/Screenshot ${String(n).padStart(2, '0')}.avif`}
+                  type="image/avif"
+                />
+                <source
+                  srcset={`/preview/Screenshot ${String(n).padStart(2, '0')}.webp`}
+                  type="image/webp"
+                />
+                <img
+                  src={`/preview/Screenshot ${String(n).padStart(2, '0')}.png`}
+                  alt={`SugarLite Preview ${n}`}
+                  class="w-full h-auto block"
+                  loading="lazy"
+                />
+              </picture>
             </div>
           </div>
         ))
