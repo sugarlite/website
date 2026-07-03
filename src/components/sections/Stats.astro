@@ -9,24 +9,24 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<section class="py-20 bg-[#f5f5f7] dark:bg-[#0d0d0f]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
-      <div class="reveal stagger-1">
-        <div class="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">5,000,000+</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400">{t(lang, 'stats.users')}</div>
+<section class="border-t border-slate-200 dark:border-slate-800">
+  <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)] text-center py-12">
+    <div class="reveal stagger-1 grid grid-cols-2 md:grid-cols-4 gap-12">
+      <div>
+        <p class="font-display text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.1] tracking-[-0.025em] text-slate-900 dark:text-white mb-[0.3rem]">5,000,000+</p>
+        <p class="text-[0.82rem] text-slate-500 dark:text-slate-400 tracking-[0.02em]">{t(lang, 'stats.users')}</p>
       </div>
-      <div class="reveal stagger-2">
-        <div class="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">10,000+</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400">{t(lang, 'stats.food')}</div>
+      <div>
+        <p class="font-display text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.1] tracking-[-0.025em] text-slate-900 dark:text-white mb-[0.3rem]">10,000+</p>
+        <p class="text-[0.82rem] text-slate-500 dark:text-slate-400 tracking-[0.02em]">{t(lang, 'stats.food')}</p>
       </div>
-      <div class="reveal stagger-3">
-        <div class="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">4.9/5</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400">{t(lang, 'stats.ratings')}</div>
+      <div>
+        <p class="font-display text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.1] tracking-[-0.025em] text-slate-900 dark:text-white mb-[0.3rem]">4.9/5</p>
+        <p class="text-[0.82rem] text-slate-500 dark:text-slate-400 tracking-[0.02em]">{t(lang, 'stats.ratings')}</p>
       </div>
-      <div class="reveal stagger-4">
-        <div class="text-4xl lg:text-5xl font-extrabold mb-2 text-slate-900 dark:text-white">24/7</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400">{t(lang, 'stats.availability')}</div>
+      <div>
+        <p class="font-display text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.1] tracking-[-0.025em] text-slate-900 dark:text-white mb-[0.3rem]">24/7</p>
+        <p class="text-[0.82rem] text-slate-500 dark:text-slate-400 tracking-[0.02em]">{t(lang, 'stats.availability')}</p>
       </div>
     </div>
   </div>

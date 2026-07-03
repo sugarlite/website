@@ -7,44 +7,211 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const screens = [
+  { num: '01', alt: 'SugarLite Preview 1' },
+  { num: '02', alt: 'SugarLite Preview 2' },
+  { num: '03', alt: 'SugarLite Preview 3' },
+  { num: '04', alt: 'SugarLite Preview 4' },
+  { num: '05', alt: 'SugarLite Preview 5' },
+];
+
+const total = screens.length;
 ---
 
-<section id="preview" class="py-32 bg-white dark:bg-black overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-20 space-y-4">
-      <h2 class="reveal stagger-1 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">
+<section id="preview" class="border-t border-slate-200 dark:border-slate-800 py-32 bg-white dark:bg-black">
+  <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)]">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <p class="reveal text-[0.72rem] font-medium tracking-[0.08em] uppercase text-brand mb-2">{t(lang, 'preview.tag')}</p>
+      <h2 class="reveal stagger-1 font-display text-[clamp(1.8rem,4vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em] text-slate-900 dark:text-white text-balance max-w-[28ch] mx-auto">
         {t(lang, 'preview.title')}
       </h2>
-      <p class="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+      <p class="reveal stagger-2 text-[clamp(0.95rem,1.4vw,1.1rem)] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[52ch] mx-auto mt-3">
         {t(lang, 'preview.subtitle')}
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-      {
-        [1, 2, 3, 4, 5].map((n, idx) => (
-          <div class={`reveal-scale stagger-${Math.min(idx + 1, 6)}`}>
-            <div class="rounded-[2rem] overflow-hidden shadow-xl shadow-slate-900/10">
-              <picture>
-                <source
-                  srcset={`/preview/Screenshot ${String(n).padStart(2, '0')}.avif`}
-                  type="image/avif"
-                />
-                <source
-                  srcset={`/preview/Screenshot ${String(n).padStart(2, '0')}.webp`}
-                  type="image/webp"
-                />
-                <img
-                  src={`/preview/Screenshot ${String(n).padStart(2, '0')}.png`}
-                  alt={`SugarLite Preview ${n}`}
-                  class="w-full h-auto block"
-                  loading="lazy"
-                />
-              </picture>
+    <!-- Carousel -->
+    <div
+      class="app-preview-carousel relative"
+      data-total={total}
+    >
+      <!-- Track viewport -->
+      <div class="overflow-hidden mx-auto" style="max-width: 1000px;">
+        <div class="app-preview-track flex items-center gap-8">
+          {screens.map((screen) => (
+            <div class="app-preview-slide shrink-0 w-[280px] max-sm:w-[min(280px,80vw)]">
+              <div class="rounded-[3rem] border-[3px] border-[#1a1a1e] bg-[#111] overflow-hidden">
+                <picture>
+                  <source srcset={`/preview/Screenshot-${screen.num}.avif`} type="image/avif" />
+                  <source srcset={`/preview/Screenshot-${screen.num}.webp`} type="image/webp" />
+                  <img
+                    src={`/preview/Screenshot-${screen.num}.png`}
+                    alt={screen.alt}
+                    class="w-full h-auto block"
+                    loading="lazy"
+                    decoding="async"
+                    width="470"
+                    height="1024"
+                  />
+                </picture>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))}
+        </div>
+      </div>
+
+      <!-- Controls: arrows -->
+      <button
+        class="app-preview-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors z-10 cursor-pointer"
+        aria-label="Previous"
+      >
+        <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button
+        class="app-preview-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors z-10 cursor-pointer"
+        aria-label="Next"
+      >
+        <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+
+      <!-- Indicators -->
+      <div class="flex justify-center gap-2 mt-8">
+        {screens.map((_, i) => (
+          <button
+            class={`app-preview-dot w-2 h-2 transition-colors duration-300 cursor-pointer ${i === 0 ? 'bg-brand' : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'}`}
+            data-index={i}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // @ts-nocheck
+  (function () {
+    const carousels = document.querySelectorAll('.app-preview-carousel');
+    carousels.forEach(initCarousel);
+
+    function initCarousel(carousel) {
+      const total = parseInt(carousel.dataset.total, 10);
+      const track = carousel.querySelector('.app-preview-track');
+      const prevBtn = carousel.querySelector('.app-preview-prev');
+      const nextBtn = carousel.querySelector('.app-preview-next');
+      const dots = carousel.querySelectorAll('.app-preview-dot');
+      const slides = carousel.querySelectorAll('.app-preview-slide');
+      const gap = 32;
+
+      let current = 0;
+      let autoplayId = null;
+      let isTransitioning = false;
+
+      function slideWidth() {
+        return slides[0].offsetWidth + gap;
+      }
+
+      function viewportWidth() {
+        return track.parentElement.getBoundingClientRect().width;
+      }
+
+      function centerOffset() {
+        return (viewportWidth() - slideWidth()) / 2;
+      }
+
+      function translateX() {
+        return -(current * slideWidth()) + centerOffset();
+      }
+
+      function render(animate = true) {
+        if (animate) {
+          track.style.transition = 'transform 0.5s ease-out';
+        } else {
+          track.style.transition = 'none';
+        }
+        track.style.transform = `translateX(${translateX()}px)`;
+        dots.forEach((dot, i) => {
+          if (i === current) {
+            dot.classList.remove('bg-slate-300', 'dark:bg-slate-600');
+            dot.classList.add('bg-brand');
+          } else {
+            dot.classList.remove('bg-brand');
+            dot.classList.add('bg-slate-300', 'dark:bg-slate-600');
+          }
+        });
+      }
+
+      function prev() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        current--;
+        render(true);
+        setTimeout(() => {
+          isTransitioning = false;
+          if (current < 0) {
+            current = total - 1;
+            render(false);
+          }
+        }, 500);
+      }
+
+      function next() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        current++;
+        render(true);
+        setTimeout(() => {
+          isTransitioning = false;
+          if (current >= total) {
+            current = 0;
+            render(false);
+          }
+        }, 500);
+      }
+
+      function go(i) {
+        if (isTransitioning) return;
+        current = i;
+        render(true);
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayId = setInterval(next, 4000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayId) clearInterval(autoplayId);
+        autoplayId = null;
+      }
+
+      prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+      nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { go(i); startAutoplay(); });
+      });
+
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+
+      let startX = 0;
+      carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+      carousel.addEventListener('touchend', (e) => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? next() : prev();
+          startAutoplay();
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => render(false));
+
+      render(false);
+      startAutoplay();
+    }
+  })();
+</script>

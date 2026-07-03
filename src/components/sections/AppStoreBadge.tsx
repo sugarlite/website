@@ -60,7 +60,7 @@ export default function AppStoreBadge({ lang }: Props) {
         href={APPLE_APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3.5 rounded-full font-bold text-lg hover:bg-brand-dark transition-all duration-300 animate-pulse"
+        class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3.5 font-bold text-lg hover:bg-brand-dark transition-all duration-300 animate-pulse"
       >
         <div class="flex flex-col items-start gap-0.5">
           <div class="h-4 w-24 bg-white/20 rounded" />
@@ -76,7 +76,7 @@ export default function AppStoreBadge({ lang }: Props) {
         href={APPLE_APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-brand text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-dark transition-colors flex items-center justify-center gap-2"
+        class="bg-brand text-white px-8 py-4 font-bold text-lg hover:bg-brand-dark transition-colors flex items-center justify-center gap-2"
       >
         <img src="/apple-store.svg" alt="App Store" class="w-6 h-6" />
         App Store
@@ -89,7 +89,7 @@ export default function AppStoreBadge({ lang }: Props) {
       href={APPLE_APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-5 bg-brand text-white pl-6 pr-7 py-2.5 rounded-full font-bold text-lg hover:bg-brand-dark hover:shadow-lg hover:shadow-brand/25 transition-all duration-300 group"
+      class="inline-flex items-center gap-5 bg-brand text-white pl-6 pr-7 py-2.5 font-bold text-lg hover:bg-brand-dark transition-all duration-300 group"
     >
       <div class="flex flex-col items-start leading-tight">
         <span class="text-base font-bold leading-tight">{trackName}</span>

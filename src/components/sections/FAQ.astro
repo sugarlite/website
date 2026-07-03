@@ -1,5 +1,5 @@
 ---
-import { t, tArray, translations } from '@/i18n';
+import { t, translations } from '@/i18n';
 import type { Language } from '@/types';
 
 interface Props {
@@ -10,55 +10,138 @@ const { lang } = Astro.props;
 const faqs = (translations[lang].faq?.items as Array<{ q: string; a: string }>) || [];
 ---
 
-<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Back Button -->
-    <a
-      href={`/${lang}`}
-      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-      {t(lang, 'faq.backToHome')}
-    </a>
+<style>
+  .page-header {
+    padding-top: calc(64px + 3rem);
+    padding-bottom: 3rem;
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500);
+    margin-bottom: 2rem; transition: color 0.15s;
+  }
+  :global(.dark) .back-link { color: var(--color-slate-400); }
+  .back-link:hover { color: #00C09A; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--color-slate-900); margin-bottom: 0.75rem;
+  }
+  :global(.dark) .page-title { color: var(--color-white); }
+  .page-subtitle {
+    font-size: 1rem; color: var(--color-slate-500);
+  }
+  :global(.dark) .page-subtitle { color: var(--color-slate-400); }
 
-    <!-- Header -->
-    <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
-        {t(lang, 'faq.title')}
-      </h1>
-      <p class="text-slate-500 dark:text-slate-400">
-        {t(lang, 'faq.subtitle')}
-      </p>
-    </div>
+  .page-content {
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto; padding-bottom: 5rem;
+  }
 
-    <!-- FAQ Items -->
-    <div class="space-y-6">
-      {
-        faqs.map((faq, index) => (
-          <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white flex items-start gap-3">
-              <span class="text-brand text-lg">Q{index + 1}</span>
-              {faq.q}
-            </h3>
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed pl-8">{faq.a}</p>
-          </div>
-        ))
-      }
-    </div>
+  /* FAQ Accordion */
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-top: 1px solid var(--color-slate-200); }
+  :global(.dark) .faq-item { border-color: var(--color-slate-700); }
+  .faq-item:last-child { border-bottom: 1px solid var(--color-slate-200); }
+  :global(.dark) .faq-item:last-child { border-color: var(--color-slate-700); }
+  .faq-btn {
+    width: 100%; display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.35rem 0; background: none; border: none; cursor: pointer;
+    text-align: left; font-family: inherit; color: inherit;
+  }
+  .faq-btn:hover .faq-q { color: #00C09A; }
+  .faq-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--color-slate-500); min-width: 1.8rem; padding-top: 0.2em;
+  }
+  :global(.dark) .faq-num { color: var(--color-slate-400); }
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: 1.15rem; font-weight: 400; line-height: 1.35;
+    letter-spacing: -0.01em; color: var(--color-slate-900);
+    flex: 1; transition: color 0.2s;
+  }
+  :global(.dark) .faq-q { color: var(--color-white); }
+  .faq-chevron {
+    flex-shrink: 0; width: 20px; height: 20px; margin-top: 0.3em;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    color: var(--color-slate-500);
+  }
+  :global(.dark) .faq-chevron { color: var(--color-slate-400); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
 
-    <!-- CTA -->
-    <div class="mt-16 text-center">
-      <p class="text-slate-500 dark:text-slate-400 mb-4">
-        {t(lang, 'faq.stillHaveQuestions')}
-      </p>
-      <a
-        href="mailto:support@sugarlite.top"
-        class="inline-block bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-brand-dark transition-colors"
-      >
-        {t(lang, 'faq.contactUs')}
-      </a>
-    </div>
-  </div>
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .faq-item.open .faq-answer { max-height: 600px; }
+  .faq-answer-inner {
+    padding: 0 0 1.5rem 2.8rem;
+    font-size: 0.92rem; color: var(--color-slate-500); line-height: 1.7;
+  }
+  :global(.dark) .faq-answer-inner { color: var(--color-slate-400); }
+
+  /* CTA */
+  .cta-section {
+    margin-top: 5rem; padding-top: 3rem;
+    border-top: 1px solid var(--color-slate-200); text-align: center;
+  }
+  :global(.dark) .cta-section { border-color: var(--color-slate-700); }
+  .cta-section p {
+    font-size: 0.9rem; color: var(--color-slate-500); margin-bottom: 1.25rem;
+  }
+  :global(.dark) .cta-section p { color: var(--color-slate-400); }
+  .cta-section a {
+    display: inline-block; font-size: 0.85rem; font-weight: 500;
+    color: #00C09A; transition: opacity 0.2s;
+  }
+  .cta-section a:hover { opacity: 0.8; }
+</style>
+
+<div class="page-header">
+  <a href={`/${lang}`} class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    {t(lang, 'faq.backToHome')}
+  </a>
+  <h1 class="page-title">{t(lang, 'faq.title')}</h1>
+  <p class="page-subtitle">{t(lang, 'faq.subtitle')}</p>
 </div>
+
+<main class="page-content">
+  <div class="faq-list">
+    {faqs.map((faq, i) => (
+      <div class={`faq-item${i === 0 ? ' open' : ''}`}>
+        <button class="faq-btn" aria-expanded={i === 0 ? 'true' : 'false'}>
+          <span class="faq-num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="faq-q">{faq.q}</span>
+          <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">{faq.a}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="cta-section">
+    <p>{t(lang, 'faq.stillHaveQuestions')}</p>
+    <a href="mailto:support@sugarlite.top">support@sugarlite.top</a>
+  </div>
+</main>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('.faq-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        var isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  })();
+</script>

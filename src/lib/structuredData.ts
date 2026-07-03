@@ -29,7 +29,7 @@ const HOW_TO_COPY: Record<Language, { name: string; description: string; steps: 
       },
       {
         name: '查看趋势分析',
-        text: '在「趋势」页面查看您的血糖变化曲线，使用 PGRS 配对分析了解不同食物对血糖的影响。',
+        text: '在「趋势」页面查看您的血糖变化曲线，使用血糖指数配对分析了解不同食物对血糖的影响。',
       },
     ],
   },
@@ -47,7 +47,7 @@ const HOW_TO_COPY: Record<Language, { name: string; description: string; steps: 
       },
       {
         name: 'Review your trends',
-        text: 'Visit the Trends screen to see your glucose curves and use PGRS pairing analysis to understand how foods affect you.',
+        text: 'Visit the Trends screen to see your glucose curves and use glucose index pairing analysis to understand how foods affect you.',
       },
     ],
   },
@@ -65,7 +65,7 @@ const HOW_TO_COPY: Record<Language, { name: string; description: string; steps: 
       },
       {
         name: 'トレンドを確認',
-        text: '「トレンド」画面で血糖変化曲線を確認し、PGRSペアリング分析を使って食事が血糖に与える影響を理解します。',
+        text: '「トレンド」画面で血糖変化曲線を確認し、血糖指数ペアリング分析を使って食事が血糖に与える影響を理解します。',
       },
     ],
   },
@@ -83,7 +83,7 @@ const HOW_TO_COPY: Record<Language, { name: string; description: string; steps: 
       },
       {
         name: '查看趨勢分析',
-        text: '在「趨勢」頁面查看您的血糖變化曲線，使用 PGRS 配對分析了解不同食物對血糖的影響。',
+        text: '在「趨勢」頁面查看您的血糖變化曲線，使用血糖指數配對分析了解不同食物對血糖的影響。',
       },
     ],
   },
@@ -162,9 +162,9 @@ export function buildMobileApplicationSchema(lang: Language) {
     },
     featureList,
     screenshot: [
-      `${SITE}/preview/Screenshot%2001.png`,
-      `${SITE}/preview/Screenshot%2002.png`,
-      `${SITE}/preview/Screenshot%2003.png`,
+      `${SITE}/preview/Screenshot-01.png`,
+      `${SITE}/preview/Screenshot-02.png`,
+      `${SITE}/preview/Screenshot-03.png`,
     ],
     downloadUrl:
       'https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8',
@@ -280,7 +280,7 @@ export function buildHowToSchema(lang: Language) {
         index === 0
           ? `${SITE}/${lang}#download`
           : `${SITE}/${lang}#features`,
-      ...(index === 0 ? { image: `${SITE}/preview/Screenshot%2001.png` } : {}),
+      ...(index === 0 ? { image: `${SITE}/preview/Screenshot-01.png` } : {}),
     })),
   };
 }

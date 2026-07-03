@@ -2,7 +2,7 @@
 import { t } from '@/i18n';
 import type { Language } from '@/types';
 import { getCollection } from 'astro:content';
-import AppStoreBadge from './AppStoreBadge';
+import { APP_LINKS } from '@/constants';
 
 interface Props {
   lang: Language;
@@ -22,298 +22,252 @@ const posts = allEntries
     };
   })
   .sort((a, b) => b.updatedDate.localeCompare(a.updatedDate));
+
+// Featured: first post
+const featured = posts[0];
+const remaining = posts.slice(1);
+
+function getCategory(slug: string): string {
+  const categoryMap: Record<string, { zh: string; en: string; ja: string; 'zh-Hant': string }> = {
+    'what-is-blood-sugar': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'how-to-lower-blood-sugar-naturally': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'type-2-diabetes-diet': { zh: '饮食营养', en: 'Diet & Nutrition', ja: '食事と栄養', 'zh-Hant': '飲食營養' },
+    'blood-sugar-after-meals': { zh: '血糖管理', en: 'Blood Sugar Mgmt', ja: '血糖管理', 'zh-Hant': '血糖管理' },
+    'high-blood-sugar-symptoms': { zh: '生活方式', en: 'Lifestyle', ja: 'ライフスタイル', 'zh-Hant': '生活方式' },
+    'normal-blood-sugar-chart': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'best-blood-sugar-tracker-app': { zh: '监测工具', en: 'Monitoring Tools', ja: 'モニタリングツール', 'zh-Hant': '監測工具' },
+    'what-is-hba1c': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'insulin-tracking-guide': { zh: '生活方式', en: 'Lifestyle', ja: 'ライフスタイル', 'zh-Hant': '生活方式' },
+    'cgm-vs-fingerstick': { zh: '监测工具', en: 'Monitoring Tools', ja: 'モニタリングツール', 'zh-Hant': '監測工具' },
+  };
+  return categoryMap[slug]?.[lang] ?? '';
+}
+
+const filterCategories: Record<Language, string[]> = {
+  zh: ['全部文章', '血糖基础', '饮食营养', '监测工具', '生活方式', '研究分析'],
+  en: ['All', 'Blood Sugar Basics', 'Diet & Nutrition', 'Monitoring Tools', 'Lifestyle', 'Research'],
+  ja: ['すべて', '血糖の基礎', '食事と栄養', 'モニタリングツール', 'ライフスタイル', '研究分析'],
+  'zh-Hant': ['全部文章', '血糖基礎', '飲食營養', '監測工具', '生活方式', '研究分析'],
+};
+const categories = filterCategories[lang];
 ---
 
-<div class="blog-index">
-  <div class="index-wrap">
-    <!-- ===== Header ===== -->
-    <header class="index-header">
-      <div class="index-header-inner">
-        <p class="index-badge">Blog</p>
-        <h1 class="index-title">{t(lang, 'blog.title')}</h1>
-        <p class="index-description">{t(lang, 'blog.subtitle')}</p>
-      </div>
-    </header>
-
-    <!-- ===== Posts Grid ===== -->
-    {
-      posts.length > 0 && (
-        <section class="post-list">
-          <div class="post-grid">
-            {
-              posts.map((post) => (
-                <article class="post-card">
-                  <a href={`/${lang}/blog/${post.slug}`} class="post-card-link">
-                    <div class="post-card-thumb">
-                      {
-                        post.cover ? (
-                          <img src={post.cover} alt={post.title} class="post-card-img" loading="lazy" />
-                        ) : (
-                          <div class="post-card-placeholder"></div>
-                        )
-                      }
-                    </div>
-                    <div class="post-card-body">
-                      <p class="post-card-meta">{t(lang, 'blog.updatedOn')}: {post.updatedDate}</p>
-                      <h2 class="post-card-title">{post.title}</h2>
-                      {
-                        post.excerpt && (
-                          <p class="post-card-excerpt">{post.excerpt}</p>
-                        )
-                      }
-                      <span class="post-card-link-text">
-                        {t(lang, 'blog.readMore')}
-                        <svg class="post-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </div>
-                  </a>
-                </article>
-              ))
-            }
-          </div>
-        </section>
-      )
-    }
-
-    <!-- ===== CTA Section ===== -->
-    <section class="cta-section">
-      <h2 class="cta-title">{t(lang, 'blog.ctaTitle')}</h2>
-      <p class="cta-text">{t(lang, 'blog.ctaSubtitle')}</p>
-      <div class="cta-action">
-        <AppStoreBadge client:load lang={lang} />
-      </div>
-    </section>
-  </div>
-</div>
-
 <style>
-  /* ===== Tokens ===== */
-  .blog-index {
-    --bg:      oklch(98% 0.004 95);
-    --surface: oklch(100% 0.002 95);
-    --fg:      oklch(20% 0.018 70);
-    --muted:   oklch(48% 0.012 70);
-    --border:  oklch(90% 0.006 95);
-    --accent:  oklch(70% 0.15 170);
-
-    --font-display: 'Iowan Old Style', 'Charter', Georgia, 'Noto Serif SC', serif;
-    --font-body:    'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-
-    --gap-sm: 1.5rem;
-    --gap-md: 3rem;
-    --gap-lg: 5rem;
+  .blog-hero {
+    padding-top: calc(64px + clamp(3rem, 8vw, 7rem));
+    padding-bottom: 5rem;
   }
-
-  /* ===== Wrapper ===== */
-  .index-wrap {
-    max-width: min(1600px, calc(100% - 2rem));
+  .blog-hero-inner {
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
   }
-
-  /* ===== Index Header ===== */
-  .index-header {
-    padding-top: clamp(4rem, 8vw, 7rem);
-    padding-bottom: var(--gap-lg);
-  }
-
-  .index-header-inner {
-    max-width: 85ch;
-  }
-
-  .index-badge {
+  .blog-hero-kicker {
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
+    color: #00C09A;
+    margin-bottom: 1rem;
   }
-
-  .index-title {
+  .blog-hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-size: clamp(2.2rem, 5vw, 3.75rem);
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    color: var(--fg);
+    color: var(--color-slate-900);
     text-wrap: balance;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  :global(.dark) .blog-hero-title { color: var(--color-white); }
+  .blog-hero-deck {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    color: var(--color-slate-500);
+    line-height: 1.6;
+    max-width: 44ch;
+  }
+  :global(.dark) .blog-hero-deck { color: var(--color-slate-400); }
+  .blog-hero-visual { border-radius: 2px; overflow: hidden; }
+  .blog-hero-visual-img { width: 100%; height: auto; display: block; }
+
+  @media (max-width: 768px) {
+    .blog-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   }
 
-  .index-description {
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    line-height: 1.55;
-    color: var(--muted);
+  /* Content shell */
+  .content-shell { max-width: 1600px; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
+
+  /* Filter */
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; padding-bottom: 3rem; border-bottom: 1px solid var(--color-slate-200); margin-bottom: 5rem; }
+  :global(.dark) .filter-bar { border-color: var(--color-slate-700); }
+  .filter-pill { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em; padding: 0.45rem 1.1rem; border: 1px solid var(--color-slate-200); background: transparent; color: var(--color-slate-500); cursor: pointer; transition: all 0.2s; }
+  :global(.dark) .filter-pill { border-color: var(--color-slate-700); color: var(--color-slate-400); }
+  .filter-pill:hover { color: #00C09A; border-color: #00C09A; }
+  .filter-pill.active { background: var(--color-slate-900); color: var(--color-white); border-color: var(--color-slate-900); }
+  :global(.dark) .filter-pill.active { background: var(--color-white); color: var(--color-slate-900); border-color: var(--color-white); }
+
+  /* Featured article */
+  .featured-article { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-bottom: 8rem; border-bottom: 1px solid var(--color-slate-200); padding-bottom: 5rem; }
+  :global(.dark) .featured-article { border-color: var(--color-slate-700); }
+  .featured-thumb { overflow: hidden; }
+  .featured-thumb-img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+  .featured-article:hover .featured-thumb-img { opacity: 0.9; }
+  .featured-content { display: flex; flex-direction: column; justify-content: center; max-width: 52ch; }
+  .featured-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #00C09A; margin-bottom: 0.75rem; }
+  .featured-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.8vw, 2.25rem); font-weight: 400; line-height: 1.12; letter-spacing: -0.02em; color: var(--color-slate-900); margin-bottom: 0.75rem; }
+  :global(.dark) .featured-title { color: var(--color-white); }
+  .featured-excerpt { font-size: 0.95rem; color: var(--color-slate-500); line-height: 1.6; margin-bottom: 1.25rem; }
+  :global(.dark) .featured-excerpt { color: var(--color-slate-400); }
+  .featured-meta { font-size: 0.78rem; color: var(--color-slate-500); letter-spacing: 0.02em; margin-bottom: 1.25rem; }
+  :global(.dark) .featured-meta { color: var(--color-slate-400); }
+  .read-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.88rem; font-weight: 500; color: #00C09A; transition: gap 0.2s; }
+  .read-link:hover { gap: 0.6rem; }
+  .read-link svg { transition: transform 0.2s; }
+  .read-link:hover svg { transform: translateX(3px); }
+
+  @media (max-width: 768px) {
+    .featured-article { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 
-  /* ===== Posts Grid ===== */
-  .post-list {
-    padding-bottom: var(--gap-lg);
-  }
+  /* Article grid */
+  .article-grid-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; letter-spacing: 0.02em; color: var(--color-slate-500); margin-bottom: 3rem; }
+  :global(.dark) .article-grid-title { color: var(--color-slate-400); }
+  .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; padding-bottom: 8rem; }
+  .article-card { border-bottom: 1px solid var(--color-slate-200); }
+  :global(.dark) .article-card { border-color: var(--color-slate-700); }
+  .article-card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+  .article-card-thumb { margin-bottom: 1rem; overflow: hidden; }
+  .article-card-thumb-img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+  .article-card-link:hover .article-card-thumb-img { opacity: 0.85; }
+  .article-card-body { flex: 1; display: flex; flex-direction: column; }
+  .article-card-category { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #00C09A; margin-bottom: 0.5rem; }
+  .article-card-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; line-height: 1.3; letter-spacing: -0.01em; color: var(--color-slate-900); margin-bottom: 0.5rem; transition: color 0.2s; }
+  :global(.dark) .article-card-title { color: var(--color-white); }
+  .article-card-link:hover .article-card-title { color: #00C09A; }
+  .article-card-excerpt { font-size: 0.85rem; color: var(--color-slate-500); line-height: 1.55; flex: 1; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  :global(.dark) .article-card-excerpt { color: var(--color-slate-400); }
+  .article-card-meta { font-size: 0.72rem; color: var(--color-slate-500); letter-spacing: 0.03em; }
+  :global(.dark) .article-card-meta { color: var(--color-slate-400); }
 
-  .post-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
+  @media (max-width: 960px) { .article-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; } }
+  @media (max-width: 640px) { .article-grid { grid-template-columns: 1fr; } }
 
-  /* ===== Post Card ===== */
-  .post-card {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .post-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .post-card-thumb {
-    aspect-ratio: 16 / 9;
-    background: oklch(94% 0.008 170);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-
-  .post-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.3s ease;
-  }
-
-  .post-card-link:hover .post-card-img {
-    opacity: 0.85;
-  }
-
-  .post-card-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, oklch(85% 0.06 170), oklch(92% 0.04 180));
-  }
-
-  .post-card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .post-card-meta {
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    margin-bottom: 0.35rem;
-  }
-
-  .post-card-title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    margin-bottom: 0.5rem;
-    transition: color 0.2s;
-  }
-
-  .post-card-link:hover .post-card-title {
-    color: var(--accent);
-  }
-
-  .post-card-excerpt {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.55;
-    flex: 1;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .post-card-link-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--accent);
-    transition: gap 0.2s;
-  }
-
-  .post-card-link:hover .post-card-link-text {
-    gap: 0.6rem;
-  }
-
-  .post-card-arrow {
-    transition: transform 0.2s;
-  }
-
-  .post-card-link:hover .post-card-arrow {
-    transform: translateX(3px);
-  }
-
-  /* ===== CTA Section ===== */
-  .cta-section {
-    padding-top: var(--gap-lg);
-    padding-bottom: var(--gap-lg);
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    margin-bottom: 0.75rem;
-  }
-
-  .cta-text {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.55;
-    max-width: 40ch;
-    margin: 0 auto 1.5rem;
-  }
-
-  .cta-action {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 900px) {
-    .post-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .blog-index {
-      --gap-sm: 1.25rem;
-      --gap-md: 2rem;
-      --gap-lg: 3rem;
-    }
-    .index-wrap {
-      padding: 0 1.25rem;
-    }
-    .post-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    .index-title {
-      font-size: 2rem;
-    }
-  }
+  /* CTA */
+  .cta-section { border-top: 1px solid var(--color-slate-200); padding: 5rem 0; text-align: center; }
+  :global(.dark) .cta-section { border-color: var(--color-slate-700); }
+  .cta-inner { max-width: 48ch; margin: 0 auto; }
+  .cta-title { font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw, 1.65rem); font-weight: 400; letter-spacing: -0.01em; color: var(--color-slate-900); margin-bottom: 0.75rem; }
+  :global(.dark) .cta-title { color: var(--color-white); }
+  .cta-text { font-size: 0.9rem; color: var(--color-slate-500); line-height: 1.55; margin-bottom: 1.75rem; }
+  :global(.dark) .cta-text { color: var(--color-slate-400); }
+  .cta-btn { display: inline-block; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.01em; padding: 0.7rem 2rem; background: var(--color-slate-900); color: var(--color-white); transition: opacity 0.2s; }
+  :global(.dark) .cta-btn { background: var(--color-white); color: var(--color-slate-900); }
+  .cta-btn:hover { opacity: 0.85; }
 </style>
+
+<!-- Blog Hero -->
+<header class="blog-hero">
+  <div class="blog-hero-inner">
+    <div class="blog-hero-text reveal">
+      <p class="blog-hero-kicker">{t(lang, 'blog.heroKicker')}</p>
+      <h1 class="blog-hero-title">{t(lang, 'blog.title')}</h1>
+      <p class="blog-hero-deck">{t(lang, 'blog.subtitle')}</p>
+    </div>
+    <div class="blog-hero-visual reveal stagger-2">
+      {featured?.cover ? (
+        <img src={featured.cover} alt="" class="blog-hero-visual-img" loading="eager" />
+      ) : (
+        <div class="blog-hero-visual-img" style="background: linear-gradient(135deg, rgba(0, 192, 154, 0.3), rgba(0, 192, 154, 0.1));"></div>
+      )}
+    </div>
+  </div>
+</header>
+
+<div class="content-shell">
+
+  <!-- Category Filter -->
+  <nav class="filter-bar reveal stagger-1">
+    {categories.map((cat, i) => (
+      <button class={`filter-pill${i === 0 ? ' active' : ''}`}>{cat}</button>
+    ))}
+  </nav>
+
+  <!-- Featured Article -->
+  {featured && (
+    <article class="featured-article reveal stagger-1">
+      <a href={`/${lang}/blog/${featured.slug}`} class="featured-thumb" style="display:block;">
+        {featured.cover ? (
+          <img src={featured.cover} alt={featured.title} class="featured-thumb-img" loading="eager" />
+        ) : (
+          <div class="featured-thumb-img" style="background: linear-gradient(135deg, rgba(0, 192, 154, 0.3), rgba(0, 192, 154, 0.1));"></div>
+        )}
+      </a>
+      <div class="featured-content">
+        <p class="featured-label">{t(lang, 'blog.featuredLabel')}</p>
+        <h2 class="featured-title">{featured.title}</h2>
+        <p class="featured-excerpt">{featured.excerpt}</p>
+        <p class="featured-meta">{featured.updatedDate} · SugarLite</p>
+        <a href={`/${lang}/blog/${featured.slug}`} class="read-link">
+          {t(lang, 'blog.readMore')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+  )}
+
+  <!-- Article Grid -->
+  {remaining.length > 0 && (
+    <>
+      <p class="article-grid-title reveal stagger-1">{t(lang, 'blog.allArticles')}</p>
+      <section class="article-grid">
+        {remaining.map((post, idx) => (
+          <article class={`article-card reveal stagger-${Math.min(idx + 2, 6)}`}>
+            <a href={`/${lang}/blog/${post.slug}`} class="article-card-link">
+              <div class="article-card-thumb">
+                {post.cover ? (
+                  <img src={post.cover} alt={post.title} class="article-card-thumb-img" loading="lazy" decoding="async" />
+                ) : (
+                  <div class="article-card-thumb-img" style="background: linear-gradient(135deg, rgba(0, 192, 154, 0.2), rgba(0, 192, 154, 0.05));"></div>
+                )}
+              </div>
+              <div class="article-card-body">
+                <p class="article-card-category">{getCategory(post.slug)}</p>
+                <h3 class="article-card-title">{post.title}</h3>
+                <p class="article-card-excerpt">{post.excerpt}</p>
+                <p class="article-card-meta">{post.updatedDate}</p>
+              </div>
+            </a>
+          </article>
+        ))}
+      </section>
+    </>
+  )}
+
+  <!-- CTA -->
+  <section class="cta-section reveal stagger-1">
+    <div class="cta-inner">
+      <h2 class="cta-title">{t(lang, 'blog.ctaTitle')}</h2>
+      <p class="cta-text">{t(lang, 'blog.ctaSubtitle')}</p>
+      <a href={APP_LINKS.appStore} class="cta-btn">{t(lang, 'blog.downloadButton')}</a>
+    </div>
+  </section>
+
+</div>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('.filter-pill').forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        document.querySelectorAll('.filter-pill').forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+      });
+    });
+  })();
+</script>

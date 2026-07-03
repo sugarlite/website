@@ -14,27 +14,33 @@ const featureKeys: Record<string, string> = {
 };
 ---
 
-<section id="features" class="py-32 bg-[#f5f5f7] dark:bg-[#0d0d0f] transition-colors">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-20 space-y-4">
-      <p class="reveal stagger-1 text-brand font-semibold tracking-wide uppercase text-sm">{t(lang, 'features.tag')}</p>
-      <h2 class="reveal stagger-2 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">{t(lang, 'features.title')}</h2>
-      <p class="reveal stagger-3 text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+<section id="features" class="py-32 bg-white dark:bg-black">
+  <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)]">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <p class="reveal text-[0.72rem] font-medium tracking-[0.08em] uppercase text-brand mb-2">{t(lang, 'features.tag')}</p>
+      <h2 class="reveal stagger-1 font-display text-[clamp(1.8rem,4vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em] text-slate-900 dark:text-white text-balance max-w-[28ch] mx-auto">
+        {t(lang, 'features.title')}
+      </h2>
+      <p class="reveal stagger-2 text-[clamp(0.95rem,1.4vw,1.1rem)] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[52ch] mx-auto mt-3">
         {t(lang, 'features.subtitle')}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-20">
       {
         FEATURES.map((feature, index) => {
           const translationKey = featureKeys[feature.id] || feature.id;
           return (
-            <div class={`reveal text-left stagger-${Math.min(index + 1, 6)}`}>
-              <div class="w-14 h-14 bg-gradient-to-br from-brand to-emerald-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-brand/20">
-                <div set:html={feature.icon} />
+            <div class={`reveal stagger-${Math.min(index + 1, 6)} pt-6 border-t border-slate-200 dark:border-slate-700`}>
+              <div class="w-11 h-11 mb-5 flex items-center justify-center text-brand">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" set:html={feature.icon}/>
               </div>
-              <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">{t(lang, `features.${translationKey}.title`)}</h3>
-              <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 class="font-display text-[1.2rem] font-normal leading-[1.25] tracking-[-0.01em] text-slate-900 dark:text-white mb-2">
+                {t(lang, `features.${translationKey}.title`)}
+              </h3>
+              <p class="text-[0.88rem] text-slate-500 dark:text-slate-400 leading-relaxed">
                 {t(lang, `features.${translationKey}.description`)}
               </p>
             </div>

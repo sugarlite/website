@@ -32,244 +32,85 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
 
 <nav
   id="site-navbar"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-  style="background: rgba(255,255,255,0.8); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);"
+  class="fixed top-0 left-0 right-0 z-50 h-16 transition-shadow duration-300"
+  style="background: rgba(255,255,255,0.82); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);"
   data-lang={lang}
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16 sm:h-20">
-      <div class="flex items-center gap-2">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
-          <img src="/icon.png" alt="SugarLite Logo" class="w-full h-full object-contain" />
-        </div>
-        <a
-          href={`/${lang}`}
-          class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-brand to-teal-600 dark:to-teal-300"
-        >
-          {APP_NAME[lang]}
-        </a>
-      </div>
+  <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)] h-full flex items-center justify-between">
+    <!-- Brand -->
+    <a href={`/${lang}`} class="flex items-center gap-2.5 font-bold text-[1.1rem] tracking-[-0.01em] text-slate-900 dark:text-white">
+      <img src="/icon.png" alt="SugarLite" class="w-8 h-8 rounded-lg shrink-0 object-contain" width="32" height="32" />
+      {lang === 'en' ? 'SugarLite' : `SugarLite ${APP_NAME[lang]}`}
+    </a>
 
-      <div class="hidden md:flex items-center space-x-8 rounded-full px-5 py-2 dark:bg-slate-900/72">
-        <a href={`/${lang}/`} class="navbar-link">{t(lang, 'nav.home')}</a>
-        <a href={`/${lang}/faq`} class="navbar-link">{t(lang, 'nav.faq')}</a>
-
-        <div class="relative navbar-dropdown">
-          <button class="navbar-link flex items-center gap-1">
-            {t(lang, 'nav.guides')}
-            <svg class="w-3 h-3 transition-transform dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="navbar-dropdown-menu hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50"
-          >
-            <a
-              href={`/${lang}/guide/blood-sugar-management`}
-              class="block w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
-            >
-              {t(lang, 'nav.guideBloodSugar')}
-            </a>
-            <a
-              href={`/${lang}/guide/diabetic-diet`}
-              class="block w-full text-left px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
-            >
-              {t(lang, 'nav.guideDiabeticDiet')}
-            </a>
-          </div>
-        </div>
-
-        <a href={`/${lang}/stories`} class="navbar-link">{t(lang, 'nav.stories')}</a>
-
-        <div class="flex items-center gap-2 pl-4 ml-1">
-          <div class="relative navbar-dropdown">
-            <button class="flex items-center gap-1 p-2 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-            >
-              {LANG_LABELS[lang]}
-              <svg class="w-3 h-3 transition-transform dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="navbar-dropdown-menu hidden absolute top-full right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1"
-            >
-              {
-                alternateUrls.map((alt) => (
-                  <a
-                    href={alt.href}
-                    class={`block w-full text-left px-4 py-2 text-sm transition-colors ${
-                      alt.lang === lang
-                        ? 'bg-brand/10 text-brand font-semibold'
-                        : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                    }`}
-                  >
-                    {LANG_LABELS[alt.lang]}
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-
-          <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors"
-          >
-            <svg class="sun-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.071 16.071l.707.707M7.929 7.929l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
-              />
-            </svg>
-            <svg class="moon-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <a
-          href={APP_LINKS.appStore}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="bg-gradient-to-r from-brand to-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:brightness-105 transition-all transform hover:-translate-y-0.5"
-        >
-          {t(lang, 'nav.download')}
-        </a>
-      </div>
-
-      <div class="md:hidden flex items-center gap-4">
-        <div class="relative navbar-dropdown">
-          <button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center gap-1"
-          >
-            {LANG_SHORT_LABELS[lang]}
-            <svg class="w-3 h-3 transition-transform dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="navbar-dropdown-menu hidden absolute top-full right-0 mt-2 w-28 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50"
-          >
-            {
-              alternateUrls.map((alt) => (
-                <a
-                  href={alt.href}
-                  class={`block w-full text-left px-4 py-2 text-sm transition-colors ${
-                    alt.lang === lang
-                      ? 'bg-brand/10 text-brand font-semibold'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                  }`}
-                >
-                  {LANG_SHORT_LABELS[alt.lang]}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
-        >
-          <svg class="sun-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.071 16.071l.707.707M7.929 7.929l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
-            />
-          </svg>
-          <svg class="moon-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            />
-          </svg>
-        </button>
-        <button class="mobile-menu-toggle text-slate-600 dark:text-slate-300">
-          <svg class="menu-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg class="close-icon w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+    <!-- Desktop nav links -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+      <a href={`/${lang}/#features`} class="hover:text-brand transition-colors">{t(lang, 'nav.features')}</a>
+      <a href={`/${lang}/#preview`} class="hover:text-brand transition-colors">{t(lang, 'nav.preview')}</a>
+      <a href={`/${lang}/stories`} class="hover:text-brand transition-colors">{t(lang, 'nav.stories')}</a>
+      <a href={`/${lang}/blog`} class="hover:text-brand transition-colors">{t(lang, 'nav.blog')}</a>
     </div>
-  </div>
 
-  <div class="mobile-menu hidden md:hidden bg-white dark:bg-slate-900 p-4 space-y-4 shadow-xl"
-  >
-    <a href={`/${lang}/#features`} class="mobile-link">{t(lang, 'nav.features')}</a>
-    <a href={`/${lang}/#preview`} class="mobile-link">{t(lang, 'nav.preview')}</a>
-    <a href={`/${lang}/#download`} class="mobile-link">{t(lang, 'nav.download')}</a>
-    <a href={`/${lang}/faq`} class="mobile-link">{t(lang, 'nav.faq')}</a>
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <!-- Language selector -->
+      <div class="relative navbar-dropdown">
+        <button class="flex items-center gap-1.5 h-9 px-2.5 border border-slate-300 dark:border-slate-600 bg-transparent cursor-pointer text-xs font-medium text-slate-500 dark:text-slate-400 tracking-[0.02em] hover:text-brand hover:border-brand transition-colors">
+          {LANG_LABELS[lang]}
+          <svg class="w-3 h-3 transition-transform dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="navbar-dropdown-menu hidden absolute top-[calc(100%+4px)] right-0 min-w-[120px] border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 z-50">
+          {
+            alternateUrls.map((alt) => (
+              <a
+                href={alt.href}
+                class={`block w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
+                  alt.lang === lang
+                    ? 'text-brand bg-brand/10'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10'
+                }`}
+              >
+                {LANG_LABELS[alt.lang]}
+              </a>
+            ))
+          }
+        </div>
+      </div>
 
-    <div class="mobile-guides">
-      <button class="mobile-link flex items-center gap-1 w-full text-left">
-        {t(lang, 'nav.guides')}
-        <svg class="w-4 h-4 transition-transform mobile-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Download CTA (desktop) -->
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:inline-block text-[0.82rem] font-semibold tracking-[0.01em] px-[1.2rem] py-[0.45rem] bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-85 transition-opacity"
+      >
+        {t(lang, 'nav.download')}
+      </a>
+
+      <!-- Theme toggle -->
+      <button class="theme-toggle w-9 h-9 rounded-lg border border-slate-300 dark:border-slate-600 bg-transparent cursor-pointer flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand hover:border-brand transition-colors">
+        <svg class="sun-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.071 16.071l.707.707M7.929 7.929l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <svg class="moon-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
       </button>
-      <div class="mobile-submenu hidden pl-4 mt-2 space-y-2">
-        <a href={`/${lang}/guide/blood-sugar-management`} class="mobile-sublink">
-          {t(lang, 'nav.guideBloodSugar')}
-        </a>
-        <a href={`/${lang}/guide/diabetic-diet`} class="mobile-sublink">
-          {t(lang, 'nav.guideDiabeticDiet')}
-        </a>
-      </div>
-    </div>
 
-    <a href={`/${lang}/stories`} class="mobile-link">{t(lang, 'nav.stories')}</a>
-    <a
-      href={APP_LINKS.appStore}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="block text-center w-full bg-brand text-white py-3 rounded-xl font-bold"
-    >
-      {t(lang, 'nav.download')}
-    </a>
+      <!-- Download CTA (mobile) -->
+      <a
+        href={APP_LINKS.appStore}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="md:hidden text-[0.82rem] font-semibold tracking-[0.01em] px-[1.2rem] py-[0.45rem] bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-85 transition-opacity"
+      >
+        {t(lang, 'nav.download')}
+      </a>
+    </div>
   </div>
 </nav>
-
-<style is:inline>
-  .navbar-link {
-    color: #475569;
-    font-weight: 500;
-    transition: color 0.15s ease;
-  }
-  .dark .navbar-link {
-    color: #cbd5e1;
-  }
-  .navbar-link:hover {
-    color: #00C09A;
-  }
-  .dark .navbar-link:hover {
-    color: #00C09A;
-  }
-  .mobile-link {
-    display: block;
-    width: 100%;
-    text-align: left;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #475569;
-  }
-  .dark .mobile-link {
-    color: #cbd5e1;
-  }
-  .mobile-sublink {
-    display: block;
-    width: 100%;
-    text-align: left;
-    font-size: 1rem;
-    color: #64748b;
-  }
-  .dark .mobile-sublink {
-    color: #94a3b8;
-  }
-</style>
 
 <script is:inline>
   (function () {
@@ -277,14 +118,11 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
     if (!nav) return;
 
     const dropdowns = nav.querySelectorAll('.navbar-dropdown');
-    const mobileMenuToggle = nav.querySelector('.mobile-menu-toggle');
-    const mobileMenu = nav.querySelector('.mobile-menu');
-    const mobileGuides = nav.querySelector('.mobile-guides');
     const themeToggles = nav.querySelectorAll('.theme-toggle');
 
     const isDark = document.documentElement.classList.contains('dark');
     if (isDark) {
-      nav.style.background = 'rgba(15, 23, 42, 0.8)';
+      nav.style.background = 'rgba(22,22,26,0.82)';
     }
 
     function updateThemeIcons() {
@@ -295,16 +133,16 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
 
     updateThemeIcons();
 
-      themeToggles.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.toggle('dark');
-          try {
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-          } catch {}
-          nav.style.background = isDark ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.8)';
-          updateThemeIcons();
-        });
+    themeToggles.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        try {
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch {}
+        nav.style.background = isDark ? 'rgba(22,22,26,0.82)' : 'rgba(255,255,255,0.82)';
+        updateThemeIcons();
       });
+    });
 
     dropdowns.forEach((dropdown) => {
       const btn = dropdown.querySelector('button');
@@ -316,7 +154,6 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
         e.stopPropagation();
         const isOpen = !menu.classList.contains('hidden');
 
-        // Close all other dropdowns
         dropdowns.forEach((d) => {
           const m = d.querySelector('.navbar-dropdown-menu');
           const c = d.querySelector('.dropdown-chevron');
@@ -342,34 +179,17 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
       });
     });
 
-    if (mobileMenuToggle && mobileMenu) {
-      const menuIcon = mobileMenuToggle.querySelector('.menu-icon');
-      const closeIcon = mobileMenuToggle.querySelector('.close-icon');
-      mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon?.classList.toggle('hidden', !mobileMenu.classList.contains('hidden'));
-        closeIcon?.classList.toggle('hidden', mobileMenu.classList.contains('hidden'));
-      });
-    }
-
-    if (mobileGuides) {
-      const btn = mobileGuides.querySelector('button');
-      const submenu = mobileGuides.querySelector('.mobile-submenu');
-      const chevron = mobileGuides.querySelector('.mobile-chevron');
-      btn?.addEventListener('click', () => {
-        submenu?.classList.toggle('hidden');
-        chevron?.classList.toggle('rotate-180', !submenu?.classList.contains('hidden'));
-      });
-    }
-
     function onScroll() {
-      if (window.scrollY > 20) {
-        nav.classList.add('shadow-[0_12px_40px_-24px_rgba(15,23,42,0.45)]');
+      if (window.scrollY > 10) {
+        nav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.08)';
+        if (document.documentElement.classList.contains('dark')) {
+          nav.style.boxShadow = '0 1px 0 rgba(255,255,255,0.06)';
+        }
       } else {
-        nav.classList.remove('shadow-[0_12px_40px_-24px_rgba(15,23,42,0.45)]');
+        nav.style.boxShadow = 'none';
       }
     }
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   })();
 </script>

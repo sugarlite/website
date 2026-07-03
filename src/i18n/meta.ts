@@ -37,17 +37,17 @@ export const APP_NAME: Record<Language, string> = {
 export const SITE_NAME: Record<Language, string> = {
   zh: '轻糖',
   en: 'SugarLite',
-  ja: 'SugarLite',
+  ja: '軽糖',
   'zh-Hant': '輕糖',
 };
 
 export const DEFAULT_OG_IMAGE = 'https://sugarlite.top/og-image.png';
 
 const BASE_KEYWORDS = {
-  zh: '血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,PGRS,饮食记录,运动记录,SugarLite,轻糖',
+  zh: '血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,血糖指数,饮食记录,运动记录,SugarLite,轻糖',
   en: 'blood glucose tracker,diabetes management,glucose monitoring,CGM app,SugarLite,blood sugar log,health app',
   ja: '血糖管理,血糖記録,糖尿病,糖質コントロール,血糖モニタリング,ヘルスケアアプリ,SugarLite',
-  'zh-Hant': '血糖監測,血糖記錄,血糖管理,糖尿病,控糖,血糖追蹤,健康管理,PGRS,飲食記錄,運動記錄,SugarLite,輕糖',
+  'zh-Hant': '血糖監測,血糖記錄,血糖管理,糖尿病,控糖,血糖追蹤,健康管理,血糖指數,飲食記錄,運動記錄,SugarLite,輕糖',
 };
 
 export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
@@ -323,29 +323,29 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
     zh: {
       title: '最佳血糖记录 App 推荐：SugarLite 轻糖如何帮您管理血糖 - SugarLite',
       description:
-        '选择一款好用的血糖记录 App 至关重要。本文介绍优秀血糖 App 的核心功能，以及 SugarLite 轻糖如何通过 PGRS 分析、饮食记录帮您控糖。',
-      keywords: '血糖记录App,血糖管理App,血糖追踪软件,糖尿病App,SugarLite,血糖仪同步,PGRS分析',
+        '选择一款好用的血糖记录 App 至关重要。本文介绍优秀血糖 App 的核心功能，以及 SugarLite 轻糖如何通过 血糖指数分析、饮食记录帮您控糖。',
+      keywords: '血糖记录App,血糖管理App,血糖追踪软件,糖尿病App,SugarLite,血糖仪同步,血糖指数分析',
       ogType: 'article',
     },
     en: {
       title: 'Best Blood Sugar Tracker App: How SugarLite Helps Manage Glucose - SugarLite',
       description:
-        'Find out what makes a great blood sugar tracker app and how SugarLite uses PGRS pairing analysis, food logging, and trends to support your glucose management.',
-      keywords: 'best blood sugar tracker app,glucose tracker,diabetes app,blood sugar log app,CGM app,SugarLite,PGRS',
+        'Find out what makes a great blood sugar tracker app and how SugarLite uses glucose index pairing analysis, food logging, and trends to support your glucose management.',
+      keywords: 'best blood sugar tracker app,glucose tracker,diabetes app,blood sugar log app,CGM app,SugarLite,glucose index',
       ogType: 'article',
     },
     ja: {
       title: 'おすすめ血糖管理アプリ - SugarLite',
       description:
-        '優れた血糖管理アプリの選び方と、SugarLiteのPGRS分析や食事記録機能を紹介します。',
-      keywords: '血糖管理アプリ,血糖記録アプリ,糖尿病アプリ,SugarLite,PGRS分析',
+        '優れた血糖管理アプリの選び方と、SugarLiteの血糖指数分析や食事記録機能を紹介します。',
+      keywords: '血糖管理アプリ,血糖記録アプリ,糖尿病アプリ,SugarLite,血糖指数分析',
       ogType: 'article',
     },
     'zh-Hant': {
       title: '最佳血糖記錄 App 推薦：SugarLite 輕糖如何幫您管理血糖 - SugarLite',
       description:
-        '選擇一款好用的血糖記錄 App 至關重要。本文介紹優秀血糖 App 的核心功能，以及 SugarLite 輕糖如何透過 PGRS 分析、飲食記錄幫您控糖。',
-      keywords: '血糖記錄App,血糖管理App,血糖追蹤軟體,糖尿病App,SugarLite,血糖儀同步,PGRS分析',
+        '選擇一款好用的血糖記錄 App 至關重要。本文介紹優秀血糖 App 的核心功能，以及 SugarLite 輕糖如何透過 血糖指数分析、飲食記錄幫您控糖。',
+      keywords: '血糖記錄App,血糖管理App,血糖追蹤軟體,糖尿病App,SugarLite,血糖儀同步,血糖指数分析',
       ogType: 'article',
     },
   },

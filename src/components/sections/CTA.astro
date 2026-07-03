@@ -1,47 +1,89 @@
 ---
-import AppStoreCard from './AppStoreCard';
-import { APP_LINKS } from '@/constants';
 import { t } from '@/i18n';
 import type { Language } from '@/types';
+import { APP_LINKS } from '@/constants';
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
+
+const FEATURES: Record<Language, string[]> = {
+  zh: ['血糖趋势追踪', '饮食记录管理', '血糖指数', 'AI 智能洞察', '运动记录', '云端同步'],
+  'zh-Hant': ['血糖趨勢追蹤', '飲食記錄管理', '血糖指數', 'AI 智能洞察', '運動記錄', '雲端同步'],
+  en: ['Glucose Tracking', 'Food Logging', 'Glucose Index', 'AI Insights', 'Exercise Tracking', 'Cloud Sync'],
+  ja: ['血糖トレンド追跡', '食事記録管理', '血糖指数', 'AIインサイト', '運動記録', 'クラウド同期'],
+};
+
+const TAGLINE: Record<Language, string> = {
+  zh: '智能血糖监测与健康管理',
+  'zh-Hant': '智能血糖監測與健康管理',
+  en: 'Smart Blood Sugar Monitoring & Health Management',
+  ja: 'スマート血糖モニタリングと健康管理',
+};
+
+const features = FEATURES[lang];
 ---
 
-<section id="download" class="py-32 bg-[#f5f5f7] dark:bg-[#0d0d0f]">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14 space-y-4">
-      <h2 class="reveal stagger-1 text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white">
-        {t(lang, 'cta.title')}
-      </h2>
-      <p class="reveal stagger-2 text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
-        {t(lang, 'cta.subtitle')}
-      </p>
-    </div>
+<style is:global>
+  .cta-wrap {
+    border-top: 1px solid var(--color-slate-200);
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto; padding: 2rem 0;
+  }
+  .dark .cta-wrap { border-color: var(--color-slate-700); }
+  .cta-card { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .cta-brand { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+  .cta-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    box-shadow: 0 2px 12px -4px rgba(0, 192, 154, 0.3);
+  }
+  .cta-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 400; letter-spacing: -0.015em;
+    color: var(--color-slate-900); margin-bottom: 0.15rem;
+  }
+  .dark .cta-name { color: var(--color-white); }
+  .cta-tagline { font-size: 0.78rem; color: var(--color-slate-500); letter-spacing: 0.02em; }
+  .dark .cta-tagline { color: var(--color-slate-400); }
+  .cta-pills { flex: 1; min-width: 220px; display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem; }
+  .cta-pill {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--color-slate-500); white-space: nowrap; padding: 0.3rem 0;
+  }
+  .dark .cta-pill { color: var(--color-slate-400); }
+  .cta-pill::before { content: '\2014'; margin-right: 0.35rem; color: #00C09A; }
+  .cta-dl {
+    flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.01em;
+    padding: 0.65rem 1.5rem; background: var(--color-slate-900); color: var(--color-white);
+    transition: opacity 0.2s; text-decoration: none;
+  }
+  .dark .cta-dl { background: var(--color-white); color: var(--color-slate-900); }
+  .cta-dl:hover { opacity: 0.85; }
 
-    <div class="reveal stagger-3 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
-      <!-- App Store Card - dynamically fetches icon, description, ratings from iOS -->
-      <div class="w-full max-w-md">
-        <AppStoreCard client:load lang={lang} />
-      </div>
+  @media (max-width: 600px) {
+    .cta-card { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .cta-pills { flex-direction: column; gap: 0.2rem; }
+  }
+</style>
 
-      <!-- Help link -->
-      <div class="flex flex-col items-center gap-5">
-        <a
-          href={APP_LINKS.supportUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-brand dark:hover:text-brand transition-colors"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          {t(lang, 'hero.helpCenter')}
-        </a>
+<section id="download" class="cta-wrap reveal stagger-1">
+  <div class="cta-card">
+    <div class="cta-brand">
+      <img src="/icon.png" alt="SugarLite" class="cta-icon" width="52" height="52" />
+      <div>
+        <p class="cta-name">SugarLite</p>
+        <p class="cta-tagline">{TAGLINE[lang]}</p>
       </div>
     </div>
+    <div class="cta-pills">
+      {features.map((f) => <span class="cta-pill">{f}</span>)}
+    </div>
+    <a href={APP_LINKS.appStore} class="cta-dl">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      {t(lang, 'cta.primary')}
+    </a>
   </div>
 </section>

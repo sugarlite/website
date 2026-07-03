@@ -1,0 +1,110 @@
+---
+import { t } from '@/i18n';
+import type { Language } from '@/types';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const allEntries = await getCollection('blog');
+
+const posts = allEntries
+  .filter((entry) => entry.id.endsWith(`-${lang.toLowerCase()}`))
+  .map((entry) => {
+    const slug = entry.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
+    return {
+      slug,
+      ...entry.data,
+    };
+  })
+  .sort((a, b) => b.updatedDate.localeCompare(a.updatedDate))
+  .slice(0, 3);
+
+function getCategory(slug: string): string {
+  const categoryMap: Record<string, { zh: string; en: string; ja: string; 'zh-Hant': string }> = {
+    'what-is-blood-sugar': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'how-to-lower-blood-sugar-naturally': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'type-2-diabetes-diet': { zh: '饮食营养', en: 'Diet & Nutrition', ja: '食事と栄養', 'zh-Hant': '飲食營養' },
+    'blood-sugar-after-meals': { zh: '血糖管理', en: 'Blood Sugar Mgmt', ja: '血糖管理', 'zh-Hant': '血糖管理' },
+    'high-blood-sugar-symptoms': { zh: '血糖管理', en: 'Blood Sugar Mgmt', ja: '血糖管理', 'zh-Hant': '血糖管理' },
+    'normal-blood-sugar-chart': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'best-blood-sugar-tracker-app': { zh: '工具推荐', en: 'Tools & Apps', ja: 'ツール', 'zh-Hant': '工具推薦' },
+    'what-is-hba1c': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'insulin-tracking-guide': { zh: '血糖管理', en: 'Blood Sugar Mgmt', ja: '血糖管理', 'zh-Hant': '血糖管理' },
+    'cgm-vs-fingerstick': { zh: '工具推荐', en: 'Tools & Apps', ja: 'ツール', 'zh-Hant': '工具推薦' },
+  };
+  return categoryMap[slug]?.[lang] ?? '';
+}
+---
+
+<section class="border-t border-slate-200 dark:border-slate-800 py-32">
+  <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)]">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <p class="reveal text-[0.72rem] font-medium tracking-[0.08em] uppercase text-brand mb-2">
+        {t(lang, 'blogTeaser.sectionLabel')}
+      </p>
+      <h2 class="reveal stagger-1 font-display text-[clamp(1.8rem,4vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em] text-slate-900 dark:text-white text-balance max-w-[28ch] mx-auto">
+        {t(lang, 'blogTeaser.title')}
+      </h2>
+      <p class="reveal stagger-2 text-[clamp(0.95rem,1.4vw,1.1rem)] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[52ch] mx-auto mt-3">
+        {t(lang, 'blogTeaser.subtitle')}
+      </p>
+    </div>
+
+    {
+      posts.length > 0 && (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12">
+          {posts.map((post, idx) => (
+            <div class={`reveal stagger-${Math.min(idx + 2, 6)}`}>
+              <div class="border-b border-slate-200 dark:border-slate-700 hover:border-brand transition-colors">
+                <a href={`/${lang}/blog/${post.slug}`} class="flex flex-col h-full text-inherit no-underline">
+                  <div class="aspect-video bg-brand/5 dark:bg-brand/10 overflow-hidden mb-4">
+                    {post.cover ? (
+                      <img
+                        src={post.cover}
+                        alt={post.title}
+                        class="w-full h-full object-cover block transition-opacity duration-300 hover:opacity-85"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div class="w-full h-full bg-gradient-to-br from-brand/20 to-brand/10"></div>
+                    )}
+                  </div>
+                  <div class="flex flex-col flex-1">
+                    {getCategory(post.slug) && (
+                      <p class="text-[0.68rem] font-medium tracking-[0.06em] uppercase text-brand mb-1.5">{getCategory(post.slug)}</p>
+                    )}
+                    <h3 class="font-display text-[1.1rem] font-normal leading-[1.3] tracking-[-0.01em] text-slate-900 dark:text-white mb-1.5 transition-colors group-hover:text-brand">
+                      {post.title}
+                    </h3>
+                    <p class="text-[0.82rem] text-slate-500 dark:text-slate-400 leading-relaxed flex-1 mb-3 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    <p class="text-[0.7rem] text-slate-400 dark:text-slate-500 tracking-[0.03em]">{post.updatedDate}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="text-center mt-6">
+      <a
+        href={`/${lang}/blog`}
+        class="reveal stagger-5 inline-flex items-center gap-[0.35rem] text-[0.88rem] font-medium text-brand hover:gap-[0.6rem] transition-all"
+      >
+        {t(lang, 'blogTeaser.viewAll')}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

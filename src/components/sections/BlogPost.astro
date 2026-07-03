@@ -3,7 +3,7 @@ import { t } from '@/i18n';
 import type { Language } from '@/types';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
-import AppStoreBadge from './AppStoreBadge';
+import { APP_LINKS } from '@/constants';
 
 interface Props {
   lang: Language;
@@ -26,499 +26,297 @@ const relatedEntries = (relatedSlugs || [])
 
 const formattedDate = new Date(updatedDate).toLocaleDateString(
   lang === 'en' ? 'en-US' : lang === 'ja' ? 'ja-JP' : 'zh-CN',
-  {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }
+  { year: 'numeric', month: 'long', day: 'numeric' }
 );
 
-// Category labels for each language
-const CATEGORY: Record<Language, string> = {
-  zh: '血糖管理',
-  'zh-Hant': '血糖管理',
-  en: 'Blood Sugar',
-  ja: '血糖管理',
-};
+function getCategory(slug: string): string {
+  const m: Record<string, { zh: string; en: string; ja: string; 'zh-Hant': string }> = {
+    'what-is-blood-sugar': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'how-to-lower-blood-sugar-naturally': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'type-2-diabetes-diet': { zh: '饮食营养', en: 'Diet & Nutrition', ja: '食事と栄養', 'zh-Hant': '飲食營養' },
+    'blood-sugar-after-meals': { zh: '血糖管理', en: 'Blood Sugar Mgmt', ja: '血糖管理', 'zh-Hant': '血糖管理' },
+    'high-blood-sugar-symptoms': { zh: '生活方式', en: 'Lifestyle', ja: 'ライフスタイル', 'zh-Hant': '生活方式' },
+    'normal-blood-sugar-chart': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'best-blood-sugar-tracker-app': { zh: '监测工具', en: 'Monitoring Tools', ja: 'モニタリングツール', 'zh-Hant': '監測工具' },
+    'what-is-hba1c': { zh: '血糖基础', en: 'Blood Sugar Basics', ja: '血糖の基礎', 'zh-Hant': '血糖基礎' },
+    'insulin-tracking-guide': { zh: '生活方式', en: 'Lifestyle', ja: 'ライフスタイル', 'zh-Hant': '生活方式' },
+    'cgm-vs-fingerstick': { zh: '监测工具', en: 'Monitoring Tools', ja: 'モニタリングツール', 'zh-Hant': '監測工具' },
+  };
+  const entrySlug = entry.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
+  return m[entrySlug]?.[lang] ?? '';
+}
 
-// Byline / author labels
 const AUTHOR_NAME: Record<Language, string> = {
-  zh: 'SugarLite 团队',
-  'zh-Hant': 'SugarLite 團隊',
-  en: 'SugarLite Team',
-  ja: 'SugarLite チーム',
+  zh: 'SugarLite 团队', 'zh-Hant': 'SugarLite 團隊', en: 'SugarLite Team', ja: 'SugarLite チーム',
 };
-
 const AUTHOR_BIO: Record<Language, string> = {
-  zh: '致力于用科技让血糖管理更简单、更智能。',
-  'zh-Hant': '致力於用科技讓血糖管理更簡單、更智能。',
+  zh: '致力于用科技让血糖管理更简单、更智能。SugarLite 是一款专为关注血糖健康人群设计的智能管理工具。',
+  'zh-Hant': '致力於用科技讓血糖管理更簡單、更智能。SugarLite 是一款專為關注血糖健康人群設計的智能管理工具。',
   en: 'Making blood sugar management simpler and smarter with technology.',
   ja: 'テクノロジーで血糖管理をもっとシンプルに、もっとスマートに。',
 };
+
+const CTA_FEATURES: Record<Language, string[]> = {
+  zh: ['血糖趋势追踪', '饮食记录管理', '血糖指数', 'AI 智能洞察', '运动记录', '云端同步'],
+  'zh-Hant': ['血糖趨勢追蹤', '飲食記錄管理', '血糖指數', 'AI 智能洞察', '運動記錄', '雲端同步'],
+  en: ['Glucose Tracking', 'Food Logging', 'Glucose Index', 'AI Insights', 'Exercise Tracking', 'Cloud Sync'],
+  ja: ['血糖トレンド追跡', '食事記録管理', '血糖指数', 'AIインサイト', '運動記録', 'クラウド同期'],
+};
+const features = CTA_FEATURES[lang];
 ---
 
-<div class="blog-post">
-  <div class="article-wrap">
-    <!-- ===== Article Header ===== -->
-    <header class="article-header">
-      <p class="eyebrow">{CATEGORY[lang]}</p>
-      <h1 class="headline">{title}</h1>
-      {
-        description && (
-          <p class="deck">{description}</p>
-        )
-      }
-      <p class="byline">
-        <strong>{AUTHOR_NAME[lang]}</strong> · {formattedDate}
-      </p>
-    </header>
-
-    <!-- ===== Hero Image ===== -->
-    <figure class="hero">
-      {
-        cover ? (
-          <>
-            <img src={cover} alt={title} class="hero-img" loading="eager" />
-            <figcaption class="caption">{title}</figcaption>
-          </>
-        ) : (
-          <>
-            <div class="hero-placeholder"></div>
-            <figcaption class="caption">{title}</figcaption>
-          </>
-        )
-      }
-    </figure>
-
-    <!-- ===== Body ===== -->
-    <div class="post-content">
-      <Content />
-    </div>
-
-    <!-- ===== Author Footer ===== -->
-    <footer class="author-footer">
-      <div class="author-avatar" aria-hidden="true">
-        {lang === 'ja' ? 'S' : 'S'}
-      </div>
-      <div>
-        <p class="author-name">{AUTHOR_NAME[lang]}</p>
-        <p class="author-bio">{AUTHOR_BIO[lang]}</p>
-      </div>
-    </footer>
-
-    <!-- ===== Related Reading ===== -->
-    {
-      relatedEntries.length > 0 && (
-        <section class="related">
-          <h3>{t(lang, 'blog.relatedReading')}</h3>
-          <div class="related-grid">
-            {
-              relatedEntries.map((related) => {
-                const relatedSlug = related.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
-                return (
-                  <a href={`/${lang}/blog/${relatedSlug}`} class="related-card">
-                    <div class="related-thumb">
-                      {related.data.cover && (
-                        <img src={related.data.cover} alt={related.data.title} class="related-thumb-img" loading="lazy" />
-                      )}
-                    </div>
-                    <p class="related-meta">{related.data.updatedDate}</p>
-                    <p class="related-title">{related.data.title}</p>
-                    {
-                      related.data.excerpt && (
-                        <p class="related-excerpt">{related.data.excerpt}</p>
-                      )
-                    }
-                  </a>
-                );
-              })
-            }
-          </div>
-        </section>
-      )
-    }
-
-    <!-- ===== CTA Section ===== -->
-    <section class="cta-section">
-      <h2 class="cta-title">{t(lang, 'blog.ctaTitle')}</h2>
-      <p class="cta-text">{t(lang, 'blog.ctaSubtitle')}</p>
-      <div class="cta-action">
-        <AppStoreBadge client:load lang={lang} />
-      </div>
-    </section>
-  </div>
-</div>
-
-<style>
-  /* ===== Blog-specific tokens ===== */
-  .blog-post {
-    --bg:      oklch(98% 0.004 95);
-    --surface: oklch(100% 0.002 95);
-    --fg:      oklch(20% 0.018 70);
-    --muted:   oklch(48% 0.012 70);
-    --border:  oklch(90% 0.006 95);
-    --accent:  oklch(70% 0.15 170);
-
-    --font-display: 'Iowan Old Style', 'Charter', Georgia, 'Noto Serif SC', serif;
-    --font-body:    'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-
-    --measure: min(75rem, calc(100% - 2rem));
-    --gap-sm: 2rem;
-    --gap-md: 4rem;
-    --gap-lg: 6rem;
+<style is:global>
+  .bp-header {
+    padding-top: calc(64px + clamp(2.5rem, 6vw, 5rem));
+    padding-bottom: 1.5rem; text-align: center;
   }
-
-  /* ===== Article Wrapper ===== */
-  .article-wrap {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* ===== Article Header ===== */
-  .article-header {
-    padding-top: clamp(4rem, 8vw, 7rem);
-    padding-bottom: var(--gap-md);
-  }
-
-  .eyebrow {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .headline {
+  .bp-header-inner { max-width: min(72ch, calc(100% - 2rem)); margin: 0 auto; padding: 0 1rem; }
+  .bp-headline {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4.25rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--fg);
-    text-wrap: balance;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.2rem, 5.5vw, 3.75rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--color-slate-900); text-wrap: balance; margin-bottom: 1.25rem;
   }
-
-  .deck {
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    line-height: 1.55;
-    color: var(--muted);
+  .dark .bp-headline { color: var(--color-white); }
+  .bp-deck {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: var(--color-slate-500); line-height: 1.6;
+    max-width: 52ch; margin: 0 auto 1.75rem;
   }
+  .dark .bp-deck { color: var(--color-slate-400); }
+  .bp-byline { font-size: 0.82rem; color: var(--color-slate-500); letter-spacing: 0.02em; }
+  .dark .bp-byline { color: var(--color-slate-400); }
+  .bp-byline-cat { color: #00C09A; font-weight: 500; }
+  .bp-byline strong { color: var(--color-slate-900); font-weight: 600; }
+  .dark .bp-byline strong { color: var(--color-white); }
 
-  .byline {
-    margin-top: 2rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    letter-spacing: 0.02em;
+  .bp-back-wrap { max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 1.25rem auto 0; }
+  .bp-back-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500); transition: color 0.15s;
   }
+  .dark .bp-back-link { color: var(--color-slate-400); }
+  .bp-back-link:hover { color: #00C09A; }
 
-  .byline strong {
-    color: var(--fg);
-    font-weight: 600;
+  .bp-hero-img-wrap { max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto 2rem; }
+  .bp-hero-img { width: 100%; height: auto; display: block; border-radius: 2px; }
+  .bp-figcaption { font-size: 0.75rem; color: var(--color-slate-500); letter-spacing: 0.02em; margin-top: 0.5rem; text-align: center; }
+  .dark .bp-figcaption { color: var(--color-slate-400); }
+
+  .bp-body {
+    max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto; padding-bottom: 3rem;
+    font-size: 1.05rem; line-height: 1.7; color: var(--color-slate-700);
   }
-
-  /* ===== Hero ===== */
-  .hero {
-    margin-bottom: var(--gap-lg);
+  .dark .bp-body { color: var(--color-slate-300); }
+  .bp-body p:first-of-type::first-letter {
+    float: left; font-family: var(--font-display);
+    font-size: 4.2em; line-height: 0.75;
+    padding-right: 0.12em; padding-top: 0.04em;
+    color: var(--color-slate-900);
   }
-
-  .hero-img {
-    width: 100%;
-    border-radius: 2px;
-    display: block;
-  }
-
-  .hero-placeholder {
-    aspect-ratio: 16 / 9;
-    border-radius: 2px;
-    background: linear-gradient(135deg, oklch(85% 0.06 170), oklch(90% 0.04 180), oklch(95% 0.02 160));
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-placeholder::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 50% at 30% 50%, oklch(75% 0.12 170 / 0.3), transparent);
-  }
-
-  .caption {
-    font-size: 0.8rem;
-    color: var(--muted);
-    letter-spacing: 0.01em;
-    margin-top: 0.6rem;
-  }
-
-  /* ===== Post Content (avoid conflict with Tailwind `.prose`) ===== */
-  .post-content {
-    padding-bottom: var(--gap-lg);
-  }
-
-  .post-content :global(h2) {
+  .dark .bp-body p:first-of-type::first-letter { color: var(--color-white); }
+  .bp-body p { margin-bottom: 1.4em; text-wrap: pretty; }
+  .bp-body h2 {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    color: var(--fg);
-    margin-top: var(--gap-lg);
-    margin-bottom: 0.5rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.65rem);
+    font-weight: 400; line-height: 1.25; letter-spacing: -0.015em;
+    color: var(--color-slate-900); margin-top: 3rem; margin-bottom: 0.65em;
   }
-
-  .post-content :global(h2:first-of-type) {
-    margin-top: 0;
+  .dark .bp-body h2 { color: var(--color-white); }
+  .bp-body h2:first-of-type { margin-top: 0; }
+  .bp-body strong { font-weight: 600; }
+  .bp-body ul { margin: 1.5em 0 2em; padding-inline-start: 1.5em; list-style: none; }
+  .bp-body ul li {
+    position: relative; margin-bottom: 0.65em; padding-inline-start: 1.25em; line-height: 1.6;
   }
+  .bp-body ul li::before { content: '\2014'; position: absolute; inset-inline-start: 0; color: var(--color-slate-500); }
+  .dark .bp-body ul li::before { color: var(--color-slate-400); }
 
-  .post-content :global(p) {
-    margin-bottom: 1.35rem;
-    text-align: start;
-    text-wrap: pretty;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--fg);
+  .bp-body blockquote {
+    margin: 2rem 0; padding: 1.25rem 0;
+    border-top: 1px solid var(--color-slate-200); border-bottom: 1px solid var(--color-slate-200);
+    border-left: none;
   }
-
-  .post-content :global(p:last-child) {
-    margin-bottom: 0;
-  }
-
-  .post-content :global(strong) {
-    font-weight: 600;
-  }
-
-  .post-content :global(ul) {
-    margin: 1.5rem 0 2rem;
-    padding-inline-start: 1.5rem;
-    list-style: none;
-  }
-
-  .post-content :global(ul li) {
-    position: relative;
-    margin-bottom: 0.65rem;
-    padding-inline-start: 1.25rem;
-    line-height: 1.6;
-  }
-
-  .post-content :global(ul li::before) {
-    content: '—';
-    position: absolute;
-    inset-inline-start: 0;
-    color: var(--muted);
-  }
-
-  .post-content :global(blockquote) {
-    margin: var(--gap-lg) 0;
-    padding-inline-start: 1.25rem;
-    border-inline-start: 3px solid var(--accent);
+  .dark .bp-body blockquote { border-color: var(--color-slate-700); }
+  .bp-body blockquote p {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2.15rem);
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    max-width: 42ch;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 400; line-height: 1.25; letter-spacing: -0.01em;
+    color: var(--color-slate-900); margin-bottom: 0;
   }
-
-  .post-content :global(blockquote p) {
-    margin-bottom: 0;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-    color: inherit;
+  .dark .bp-body blockquote p { color: var(--color-white); }
+  .bp-body blockquote em, .bp-body blockquote small {
+    display: block; font-style: italic;
+    font-size: 0.8rem; color: var(--color-slate-500);
+    letter-spacing: 0.03em; margin-top: 1rem; font-weight: 400;
   }
+  .dark .bp-body blockquote em, .dark .bp-body blockquote small { color: var(--color-slate-400); }
 
-  .post-content :global(img) {
-    max-width: 100%;
-    border-radius: 2px;
-    margin: var(--gap-md) 0;
-    display: block;
+  .bp-body a { color: #00C09A; text-decoration: underline; text-underline-offset: 2px; }
+  .bp-body a:hover { opacity: 0.8; }
+  .bp-body img { max-width: 100%; border-radius: 2px; margin: 2rem 0; display: block; }
+
+  .bp-author {
+    max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto;
+    padding: 2rem 0; border-top: 1px solid var(--color-slate-200);
+    display: flex; gap: 1.25rem; align-items: flex-start;
   }
-
-  .post-content :global(em) {
-    font-style: italic;
+  .dark .bp-author { border-color: var(--color-slate-700); }
+  .bp-author-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(0, 192, 154, 0.15); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 600; color: #00C09A; letter-spacing: 0.04em;
   }
+  .bp-author-name { font-weight: 600; font-size: 0.95rem; color: var(--color-slate-900); margin-bottom: 0.2rem; }
+  .dark .bp-author-name { color: var(--color-white); }
+  .bp-author-bio { font-size: 0.88rem; color: var(--color-slate-500); line-height: 1.55; }
+  .dark .bp-author-bio { color: var(--color-slate-400); }
 
-  .post-content :global(a) {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+  .bp-related {
+    max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto;
+    padding: 2rem 0; border-top: 1px solid var(--color-slate-200);
   }
-
-  .post-content :global(a:hover) {
-    opacity: 0.8;
+  .dark .bp-related { border-color: var(--color-slate-700); }
+  .bp-related h3 {
+    font-family: var(--font-display); font-size: 1.15rem; font-weight: 400;
+    letter-spacing: -0.005em; color: var(--color-slate-900); margin-bottom: 1.25rem;
   }
-
-  /* ===== Author Footer ===== */
-  .author-footer {
-    margin-top: var(--gap-lg);
-    padding-top: var(--gap-md);
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
+  .dark .bp-related h3 { color: var(--color-white); }
+  .bp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .bp-related-card { text-decoration: none; color: inherit; display: block; }
+  .bp-related-card:hover .bp-related-title { color: #00C09A; }
+  .bp-related-thumb { aspect-ratio: 3 / 2; background: rgba(0, 192, 154, 0.1); margin-bottom: 0.75rem; overflow: hidden; }
+  .bp-related-thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.2s; }
+  .bp-related-card:hover .bp-related-thumb-img { opacity: 0.85; }
+  .bp-related-meta { font-size: 0.72rem; color: var(--color-slate-500); letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+  .dark .bp-related-meta { color: var(--color-slate-400); }
+  .bp-related-title {
+    font-family: var(--font-display); font-size: 0.95rem; font-weight: 400;
+    line-height: 1.3; letter-spacing: -0.005em; color: var(--color-slate-900); transition: color 0.2s;
   }
+  .dark .bp-related-title { color: var(--color-white); }
+  @media (max-width: 640px) { .bp-related-grid { grid-template-columns: 1fr; } }
 
-  .author-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: oklch(85% 0.06 170);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--surface);
-    letter-spacing: 0.04em;
+  .bp-cta {
+    max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto;
+    padding: 2rem 0; border-top: 1px solid var(--color-slate-200);
   }
-
-  .author-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--fg);
-    margin-bottom: 0.2rem;
+  .dark .bp-cta { border-color: var(--color-slate-700); }
+  .bp-cta-card { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .bp-cta-brand { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+  .bp-cta-icon { width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0; box-shadow: 0 2px 12px -4px rgba(0,192,154,0.3); }
+  .bp-cta-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; letter-spacing: -0.015em; color: var(--color-slate-900); margin-bottom: 0.15rem; }
+  .dark .bp-cta-name { color: var(--color-white); }
+  .bp-cta-tagline { font-size: 0.78rem; color: var(--color-slate-500); letter-spacing: 0.02em; }
+  .dark .bp-cta-tagline { color: var(--color-slate-400); }
+  .bp-cta-features { flex: 1; min-width: 220px; display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem; }
+  .bp-cta-pill { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em; color: var(--color-slate-500); white-space: nowrap; padding: 0.3rem 0; }
+  .dark .bp-cta-pill { color: var(--color-slate-400); }
+  .bp-cta-pill::before { content: '\2014'; margin-right: 0.35rem; color: #00C09A; }
+  .bp-cta-dl {
+    flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.01em;
+    padding: 0.65rem 1.5rem; background: var(--color-slate-900); color: var(--color-white);
+    transition: opacity 0.2s; text-decoration: none;
   }
-
-  .author-bio {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  /* ===== Related Reading ===== */
-  .related {
-    margin-top: var(--gap-lg);
-    padding-top: var(--gap-md);
-    border-top: 1px solid var(--border);
-  }
-
-  .related h3 {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    margin-bottom: 1.5rem;
-  }
-
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .related-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .related-card:hover .related-title {
-    color: var(--accent);
-  }
-
-  .related-thumb {
-    aspect-ratio: 3 / 2;
-    background: oklch(94% 0.008 170);
-    margin-bottom: 0.75rem;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .related-thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .related-meta {
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    margin-bottom: 0.25rem;
-  }
-
-  .related-title {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    color: var(--fg);
-    transition: color 0.2s;
-    margin-bottom: 0.3rem;
-  }
-
-  .related-excerpt {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* ===== CTA Section ===== */
-  .cta-section {
-    margin-top: var(--gap-lg);
-    padding-top: var(--gap-md);
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    margin-bottom: 0.75rem;
-  }
-
-  .cta-text {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.55;
-    max-width: 40ch;
-    margin: 0 auto 1.5rem;
-  }
-
-  .cta-action {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 900px) {
-    .related-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
+  .dark .bp-cta-dl { background: var(--color-white); color: var(--color-slate-900); }
+  .bp-cta-dl:hover { opacity: 0.85; }
   @media (max-width: 600px) {
-    .blog-post {
-      --gap-sm: 1.25rem;
-      --gap-md: 2rem;
-      --gap-lg: 3rem;
-    }
-    .article-wrap {
-      padding: 0 1.25rem;
-    }
-    .related-grid {
-      grid-template-columns: 1fr;
-    }
-    .headline {
-      font-size: 2rem;
+    .bp-cta-card { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .bp-cta-features { flex-direction: column; gap: 0.2rem; }
+  }
+  @media (min-width: 1024px) {
+    .bp-body { position: relative; }
+    .bp-body::before {
+      content: ''; position: absolute; left: -2.5rem; top: 0.6em;
+      width: 1px; height: 3em; background: #00C09A; opacity: 0.5;
     }
   }
 </style>
+
+<div class="blog-post-page">
+  <!-- Article Header -->
+  <header class="bp-header">
+    <div class="bp-header-inner">
+      <h1 class="bp-headline reveal stagger-1">{title}</h1>
+      {description && <p class="bp-deck reveal stagger-2">{description}</p>}
+      <p class="bp-byline reveal stagger-2">
+        <span class="bp-byline-cat">{getCategory('')}</span> · <strong>{AUTHOR_NAME[lang]}</strong> · {formattedDate}
+      </p>
+    </div>
+  </header>
+
+  <!-- Back Link -->
+  <div class="bp-back-wrap reveal stagger-1">
+    <a href={`/${lang}/blog`} class="bp-back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      {t(lang, 'blog.backToBlog')}
+    </a>
+  </div>
+
+  <!-- Hero Image -->
+  <figure class="bp-hero-img-wrap reveal stagger-1">
+    {cover ? (
+      <img src={cover} alt={title} class="bp-hero-img" loading="eager" />
+    ) : (
+      <div class="bp-hero-img" style="aspect-ratio: 2/1; background: linear-gradient(135deg, rgba(0,192,154,0.2), rgba(0,192,154,0.05));"></div>
+    )}
+    <figcaption class="bp-figcaption">{getCategory('')}</figcaption>
+  </figure>
+
+  <!-- Article Body -->
+  <article class="bp-body reveal stagger-2">
+    <Content />
+  </article>
+
+  <!-- Author -->
+  <footer class="bp-author reveal stagger-1">
+    <div class="bp-author-avatar" aria-hidden="true">S</div>
+    <div>
+      <p class="bp-author-name">{AUTHOR_NAME[lang]}</p>
+      <p class="bp-author-bio">{AUTHOR_BIO[lang]}</p>
+    </div>
+  </footer>
+
+  <!-- Related Reading -->
+  {relatedEntries.length > 0 && (
+    <section class="bp-related reveal stagger-1">
+      <h3>{t(lang, 'blog.relatedReading')}</h3>
+      <div class="bp-related-grid">
+        {relatedEntries.map((related) => {
+          const relatedSlug = related.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
+          return (
+            <a href={`/${lang}/blog/${relatedSlug}`} class="bp-related-card">
+              <div class="bp-related-thumb">
+                {related.data.cover && <img src={related.data.cover} alt={related.data.title} class="bp-related-thumb-img" loading="lazy" />}
+              </div>
+              <p class="bp-related-meta">{related.data.updatedDate}</p>
+              <p class="bp-related-title">{related.data.title}</p>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="bp-cta reveal stagger-1">
+    <div class="bp-cta-card">
+      <div class="bp-cta-brand">
+        <img src="/icon.png" alt="SugarLite" class="bp-cta-icon" width="52" height="52" />
+        <div>
+          <p class="bp-cta-name">SugarLite</p>
+          <p class="bp-cta-tagline">{lang === 'zh' ? '智能血糖监测与健康管理' : lang === 'zh-Hant' ? '智能血糖監測與健康管理' : lang === 'ja' ? 'スマート血糖モニタリングと健康管理' : 'Smart Blood Sugar Monitoring & Health Management'}</p>
+        </div>
+      </div>
+      <div class="bp-cta-features">
+        {features.map((f) => <span class="bp-cta-pill">{f}</span>)}
+      </div>
+      <a href={APP_LINKS.appStore} class="bp-cta-dl">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        {t(lang, 'blog.downloadButton')}
+      </a>
+    </div>
+  </section>
+</div>

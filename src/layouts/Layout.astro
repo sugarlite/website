@@ -85,13 +85,13 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
     <!-- Fonts: preload CSS to avoid render-blocking, then apply -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -123,7 +123,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       }
       body {
         margin: 0;
-        font-family: 'Noto Sans SC', 'Outfit', system-ui, -apple-system, sans-serif;
+        font-family: 'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         background-color: #f8fafc;
         color: #0f172a;
       }
@@ -192,7 +192,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
             lang="zh-CN"
           >
-            <h1>轻糖 SugarLite - 智能血糖监测与健康管理</h1>
+            <h1>SugarLite 轻糖 - 智能血糖监测与健康管理</h1>
             <p>
               「轻糖」是一款专为关注血糖健康人群设计的智能管理工具。通过简洁直观的记录方式和科学的数据分析，帮助你了解自己的血糖规律，找到最适合的饮食方案。
             </p>
@@ -200,7 +200,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             <ul>
               <li><strong>血糖趋势追踪</strong> - 轻松记录餐前、餐后血糖值，自动生成可视化趋势曲线</li>
               <li><strong>饮食记录管理</strong> - 快速记录每日饮食，支持丰富食物数据库与自定义食物</li>
-              <li><strong>PGRS 配对分析</strong> - 通过餐前餐后血糖配对分析，识别友好食物与风险食物</li>
+              <li><strong>血糖指数</strong> - 通过餐前餐后血糖配对分析，识别友好食物与风险食物</li>
               <li><strong>运动记录</strong> - 记录日常运动，观察不同强度活动对血糖波动的影响</li>
               <li><strong>AI 智能洞察</strong> - 基于多次记录生成个性化建议</li>
               <li><strong>云端同步</strong> - 登录后自动同步数据，跨设备使用更连续</li>
@@ -251,7 +251,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
             lang="ja-JP"
           >
-            <h1>SugarLite - スマートな血糖管理アプリ</h1>
+            <h1>SugarLite 軽糖 - スマートな血糖管理アプリ</h1>
             <p>
               SugarLiteは、専門的な血糖モニタリング、トレンド分析、健康管理アプリです。科学的なデータダッシュボードで健康的な生活をサポートします。
             </p>
@@ -276,7 +276,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6;"
             lang="zh-TW"
           >
-            <h1>輕糖 SugarLite - 智能血糖監測與健康管理</h1>
+            <h1>SugarLite 輕糖 - 智能血糖監測與健康管理</h1>
             <p>
               「輕糖」是一款專為關注血糖健康人群設計的智能管理工具。透過簡潔直觀的記錄方式和科學的數據分析，幫助你了解自己的血糖規律，找到最適合的飲食方案。
             </p>
@@ -303,24 +303,27 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
 
   <script is:inline>
     (function () {
-      if (typeof window.IntersectionObserver === 'undefined') {
-        document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => el.classList.add('visible'));
-        return;
-      }
+      if (typeof window.IntersectionObserver === 'undefined') return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
               observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
       );
 
-      document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top > window.innerHeight + 40) {
+          el.classList.add('reveal-hidden');
+          observer.observe(el);
+        }
+      });
     })();
   </script>
 </html>

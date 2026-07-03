@@ -24,7 +24,10 @@
     "downloadGooglePlay": "Google Play (coming soon)",
     "helpCenter": "Help Center",
     "pgrsBadge": "Excellent",
-    "metaDescription": "SugarLite is a smart blood sugar app for diabetes and prediabetes. Track glucose trends, log meals, analyze PGRS pairings, sync Apple Health, and get AI insights."
+    "badgeGlucoseIndex": "Glucose Index",
+    "badgeAppleHealth": "Apple Health",
+    "badgeAiInsights": "AI Insights",
+    "metaDescription": "SugarLite is a smart blood sugar app for diabetes and prediabetes. Track glucose trends, log meals, analyze glucose index pairings, sync Apple Health, and get AI insights."
   },
   "stats": {
     "users": "Trusted Users",
@@ -45,7 +48,7 @@
       "description": "Quickly log daily meals with a rich food database and custom food support, with automatic carbohydrate calculation."
     },
     "pgrs": {
-      "title": "Personalized Glycemic Response (PGRS)",
+      "title": "Glucose Index",
       "description": "Pair pre/post-meal readings to discover which foods are glucose-friendly for you and which need caution."
     },
     "exercise": {
@@ -62,10 +65,11 @@
     }
   },
   "preview": {
+    "tag": "App Preview",
     "title": "A Practical Daily Glucose Experience",
     "subtitle": "Understand trends faster from your logs and combine food, exercise, and personalized analysis to improve outcomes.",
     "point1": {
-      "title": "PGRS Pairing Analysis",
+      "title": "Glucose Index Pairing Analysis",
       "desc": "Pair pre- and post-meal values to see real food impact on your glucose."
     },
     "point2": {
@@ -105,17 +109,25 @@
     "androidVersion": "Android Version (coming soon)",
     "b2b": "B2B",
     "email": "support@sugarlite.top",
-    "rights": "© 2025 SugarLite All rights reserved."
+    "rights": "© 2026 SugarLite All rights reserved."
+  },
+  "blogTeaser": {
+    "sectionLabel": "SugarLite Blog",
+    "title": "Blood Sugar Knowledge & Health Guides",
+    "subtitle": "From basic concepts to in-depth analysis, explore all aspects of glucose management with us.",
+    "viewAll": "View All Articles"
   },
   "blog": {
+    "heroKicker": "Blog",
     "title": "SugarLite Blog",
-    "subtitle": "Expert guides on blood sugar management, diet, and healthy living",
+    "subtitle": "Expert guides on blood sugar management, healthy eating, and lifestyle. From basics to in-depth analysis, explore every aspect of glucose control.",
+    "featuredLabel": "Featured Article",
+    "allArticles": "All Articles",
     "updatedOn": "Updated",
     "relatedReading": "Related Reading",
     "readMore": "Read more",
     "comingSoon": "The full article in this language is coming soon.",
     "backToBlog": "Back to Blog",
-    "allArticles": "All Articles",
     "ctaTitle": "Manage your blood sugar with SugarLite",
     "ctaSubtitle": "Log glucose, analyze trends, and discover the diet that works for you.",
     "downloadButton": "Free Download"
@@ -219,7 +231,8 @@
       },
       {
         "title": "3. Medical Disclaimer",
-        "content": "Important Notice: This app is not a medical device and cannot replace professional medical advice. The data and analysis provided by this app are for reference only and do not constitute medical diagnosis, treatment recommendations, or prescriptions. Do not rely on this app for medical decisions. Please consult qualified medical professionals for any health concerns."
+        "warning": "Important: ",
+        "content": "This application is NOT a medical device and cannot replace professional medical advice. The data and analysis provided are for reference only and do not constitute medical diagnosis, treatment advice, or prescriptions. Do not rely on this application for medical decisions. For any health concerns, please consult a qualified healthcare professional."
       },
       {
         "title": "4. Intellectual Property",
@@ -287,7 +300,7 @@
       },
       {
         "q": "What features does SugarLite support?",
-        "a": "SugarLite provides glucose trend tracking, food logging, PGRS personalized glucose response analysis, exercise tracking, AI insights, HealthKit sync, cloud sync, and timed glucose reminders."
+        "a": "SugarLite provides glucose trend tracking, food logging, glucose index personalized glucose response analysis, exercise tracking, AI insights, HealthKit sync, cloud sync, and timed glucose reminders."
       },
       {
         "q": "Who is SugarLite suitable for?",
@@ -298,7 +311,7 @@
         "a": "SugarLite prioritizes user data privacy. After login, data is automatically synced to the cloud with encrypted transmission and storage. HealthKit data is only accessed with user authorization."
       },
       {
-        "q": "How do I use PGRS pairing analysis?",
+        "q": "How do I use glucose index pairing analysis?",
         "a": "After logging pre-meal glucose, log again 2 hours post-meal. SugarLite automatically pairs these readings, calculates the change, and marks the food's impact on your glucose."
       },
       {
@@ -314,7 +327,7 @@
         "a": "SugarLite offers a free basic version with core features like glucose logging, trend analysis, and food tracking. Some advanced features like AI deep insights may require a subscription."
       }
     ],
-    "metaDescription": "SugarLite FAQ answers questions about glucose management, app features, PGRS pairing analysis, Apple Health sync, data privacy, and subscriptions."
+    "metaDescription": "SugarLite FAQ answers questions about glucose management, app features, glucose index pairing analysis, Apple Health sync, data privacy, and subscriptions."
   },
   "guide": {
     "backToHome": "Back to Home",
@@ -415,8 +428,8 @@
           "bullets": [
             "Record Baseline Data: Log fasting, pre-meal, and 2-hour post-meal glucose for at least 2 weeks to understand your baseline levels.",
             "Identify Glucose Patterns: Observe daily glucose trends to find peak times and triggers.",
-            "Food Glucose Response Testing: Pair pre- and post-meal readings for common foods to record each food's glucose impact. This is the core of PGRS (Personalized Glycemic Response Score) analysis.",
-            "Develop a Meal Plan: Based on PGRS results, prioritize glucose-friendly foods and adjust meal composition and eating order.",
+            "Food Glucose Response Testing: Pair pre- and post-meal readings for common foods to record each food's glucose impact. This is the core of glucose index analysis.",
+            "Develop a Meal Plan: Based on glucose index results, prioritize glucose-friendly foods and adjust meal composition and eating order.",
             "Set an Exercise Plan: Combine your fitness level with a regular exercise routine and observe its glucose improvement effects.",
             "Review and Adjust Regularly: Recheck HbA1c every 3 months and adjust your management plan accordingly."
           ]
@@ -426,7 +439,7 @@
           "paragraphs": [
             "SugarLite is a smart app designed for blood sugar management. It helps you:",
             "Simple Logging: Quickly log pre- and post-meal glucose with voice input and quick tags.",
-            "PGRS Pairing Analysis: Automatically pairs pre- and post-meal readings, calculates glucose change, and marks food impact levels.",
+            "Glucose Index Pairing Analysis: Automatically pairs pre- and post-meal readings, calculates glucose change, and marks food impact levels.",
             "Trend Visualization: Generate daily, weekly, and monthly trend charts for intuitive glucose pattern viewing.",
             "Smart Insights: Generate personalized recommendations based on multiple records, identifying your friendly foods and foods to watch.",
             "HealthKit Sync: Seamlessly sync with Apple Health to integrate all health data.",
@@ -513,9 +526,9 @@
           "tip": "Eating order matters too: eat vegetables first, then protein, and finally carbohydrates. This uses vegetables and fiber to delay carbohydrate absorption and lower post-meal glucose peaks."
         },
         {
-          "heading": "Pre/Post-Meal Glucose Pairing Analysis (PGRS)",
+          "heading": "Pre/Post-Meal Glucose Pairing Analysis",
           "paragraphs": [
-            "PGRS (Personalized Glycemic Response Score) is one of SugarLite's core features. By pairing pre- and post-meal glucose readings, it helps you understand how different foods truly affect your personal blood sugar.",
+            "glucose index is one of SugarLite's core features. By pairing pre- and post-meal glucose readings, it helps you understand how different foods truly affect your personal blood sugar.",
             "How it works: Measure and log pre-meal glucose (baseline) before eating, then measure again 2 hours after the meal. SugarLite automatically calculates the glucose change (Δ = post-meal - pre-meal) and marks the food's impact level based on the magnitude of change.",
             "Δ < 2.0 mmol/L: Friendly food—prioritize these.",
             "Δ 2.0-3.9 mmol/L: Moderate impact food—consume in moderation.",
@@ -543,13 +556,13 @@
             "SugarLite's food logging feature makes blood sugar management simple and efficient:",
             "Quick Logging: Take a photo or search the food database to log each meal with one tap.",
             "Automatic Calculation: Built-in rich food database automatically calculates carbs, calories, and estimated GI values.",
-            "PGRS Pairing: Automatically links pre- and post-meal glucose records to generate personalized food glucose response reports.",
+            "Glucose Index Pairing: Automatically links pre- and post-meal glucose records to generate personalized food glucose response reports.",
             "Smart Recommendations: Based on your historical data, recommend recipes and food combinations suitable for you.",
             "Trend Analysis: View the correlation between diet and blood sugar trends to discover hidden dietary patterns."
           ]
         }
       ],
-      "metaDescription": "SugarLite diabetic diet guide explains glycemic index, glycemic load, recommended foods, the plate method, and PGRS pairing analysis for glucose-friendly meals."
+      "metaDescription": "SugarLite diabetic diet guide explains glycemic index, glycemic load, recommended foods, the plate method, and glucose index pairing analysis for glucose-friendly meals."
     }
   },
   "stories": {
@@ -585,7 +598,7 @@
         "location": "London, UK",
         "paragraphs": [
           "James was diagnosed with type 2 diabetes at age 45 during a routine NHS checkup. His GP prescribed metformin, but his HbA1c remained stubbornly high at 8.2%. He struggled with post-meal spikes, especially after his beloved Sunday roasts and pub lunches.",
-          "A colleague recommended SugarLite. Through PGRS pairing analysis, James discovered that 'wholemeal bread' spiked his glucose far more than expected, while 'basmati rice' had a surprisingly gentle impact. He also learned that eating his roast vegetables first, then the chicken, and finally the potatoes dramatically flattened his post-meal curve.",
+          "A colleague recommended SugarLite. Through glucose index pairing analysis, James discovered that 'wholemeal bread' spiked his glucose far more than expected, while 'basmati rice' had a surprisingly gentle impact. He also learned that eating his roast vegetables first, then the chicken, and finally the potatoes dramatically flattened his post-meal curve.",
           "After three months of consistent logging, James's HbA1c dropped to 6.8%. His GP was impressed and reduced his medication. James now enjoys his Sunday roasts guilt-free, knowing exactly how to balance his plate."
         ],
         "results": "HbA1c dropped from 8.2% to 6.8%, medication reduced by GP, post-meal spikes reduced by 60%",
@@ -598,7 +611,7 @@
         "location": "Melbourne, Australia",
         "paragraphs": [
           "Sarah was diagnosed with gestational diabetes at 26 weeks during her second pregnancy. Her endocrinologist recommended strict carb counting, but Sarah found it overwhelming while juggling work and a toddler.",
-          "She started using SugarLite to log her meals and glucose. The PGRS analysis revealed that her morning 'healthy' granola with yogurt caused a massive spike, while plain oatmeal with chia seeds kept her perfectly stable. She also discovered that walking for 15 minutes after lunch made a noticeable difference to her afternoon readings.",
+          "She started using SugarLite to log her meals and glucose. The glucose index analysis revealed that her morning 'healthy' granola with yogurt caused a massive spike, while plain oatmeal with chia seeds kept her perfectly stable. She also discovered that walking for 15 minutes after lunch made a noticeable difference to her afternoon readings.",
           "Sarah maintained excellent glucose control throughout her pregnancy without needing insulin. Her baby was born at a healthy 3.4kg, and her glucose returned to normal within six weeks postpartum. She continues using SugarLite to maintain her healthy habits."
         ],
         "results": "Maintained glucose targets throughout pregnancy without insulin, baby born at healthy 3.4kg",
@@ -631,7 +644,7 @@
         "quote": "We didn't have to give up our family traditions. We just had to be smarter about them. SugarLite gave us the data to make it work."
       }
     ],
-    "metaDescription": "Read real SugarLite user stories about type 2 diabetes, gestational diabetes, and prediabetes. See how logging and PGRS analysis improve glucose control."
+    "metaDescription": "Read real SugarLite user stories about type 2 diabetes, gestational diabetes, and prediabetes. See how logging and glucose index analysis improve glucose control."
   },
   "references": {
     "title": "Sources",

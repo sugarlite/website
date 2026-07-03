@@ -1,5 +1,5 @@
 ---
-import { t, tArray, translations } from '@/i18n';
+import { t, translations } from '@/i18n';
 import type { Language } from '@/types';
 
 interface Props {
@@ -16,58 +16,112 @@ const sections = (translations[lang].privacy?.sections as Array<{
 }>) || [];
 ---
 
-<div class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Back Button -->
-    <a
-      href={`/${lang}`}
-      class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-      {t(lang, 'privacy.backToHome')}
-    </a>
+<style>
+  .page-header {
+    padding-top: calc(64px + 3rem);
+    padding-bottom: 3rem;
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500);
+    margin-bottom: 2rem; transition: color 0.15s;
+  }
+  :global(.dark) .back-link { color: var(--color-slate-400); }
+  .back-link:hover { color: #00C09A; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--color-slate-900); margin-bottom: 0.75rem;
+  }
+  :global(.dark) .page-title { color: var(--color-white); }
+  .page-updated {
+    font-size: 0.82rem; color: var(--color-slate-500); letter-spacing: 0.02em;
+  }
+  :global(.dark) .page-updated { color: var(--color-slate-400); }
 
-    <!-- Header -->
-    <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
-        {t(lang, 'privacy.title')}
-      </h1>
-      <p class="text-slate-500 dark:text-slate-400">
-        {t(lang, 'privacy.lastUpdated')}
-      </p>
-    </div>
+  .page-content {
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto; padding-bottom: 5rem;
+  }
+  .page-content section {
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-slate-200);
+  }
+  :global(.dark) .page-content section { border-color: var(--color-slate-700); }
+  .page-content section:last-child { border-bottom: none; margin-bottom: 0; }
+  .page-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem; font-weight: 400; letter-spacing: -0.01em;
+    color: var(--color-slate-900); margin-bottom: 0.75rem;
+  }
+  :global(.dark) .page-content h2 { color: var(--color-white); }
+  .page-content p {
+    font-size: 0.95rem; color: var(--color-slate-700); line-height: 1.7;
+    margin-bottom: 0.85em; text-wrap: pretty;
+  }
+  :global(.dark) .page-content p { color: var(--color-slate-300); }
+  .page-content p.intro { color: var(--color-slate-500); }
+  :global(.dark) .page-content p.intro { color: var(--color-slate-400); }
+  .page-content ul {
+    margin: 0.5em 0 1.25em; padding-inline-start: 1.25em; list-style: none;
+  }
+  .page-content ul li {
+    position: relative; margin-bottom: 0.5em; padding-inline-start: 1.15em;
+    font-size: 0.92rem; color: var(--color-slate-700); line-height: 1.6;
+  }
+  :global(.dark) .page-content ul li { color: var(--color-slate-300); }
+  .page-content ul li::before {
+    content: '\2014'; position: absolute; inset-inline-start: 0; color: var(--color-slate-500);
+  }
+  :global(.dark) .page-content ul li::before { color: var(--color-slate-400); }
 
-    <!-- Content -->
-    <div class="prose prose-lg dark:prose-invert max-w-none space-y-8">
-      {
-        sections.map((section, index) => (
-          <section key={index}>
-            <h2 class="text-2xl font-bold mb-4 dark:text-white">{section.title}</h2>
-            {section.content && (
-              <p class="text-slate-600 dark:text-slate-300 leading-relaxed">{section.content}</p>
-            )}
-            {section.intro && (
-              <p class="text-slate-600 dark:text-slate-300 leading-relaxed">{section.intro}</p>
-            )}
-            {section.items && (
-              <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300 mt-4">
-                {section.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            )}
-            {section.emailLabel && (
-              <div class="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                <p class="text-slate-700 dark:text-slate-300">
-                  {section.emailLabel}: support@sugarlite.top
-                </p>
-              </div>
-            )}
-          </section>
-        ))
-      }
-    </div>
-  </div>
+  .contact-block {
+    margin-top: 1rem; padding: 1.25rem 1.5rem;
+    border: 1px solid var(--color-slate-200);
+    font-size: 0.9rem; color: var(--color-slate-500);
+  }
+  :global(.dark) .contact-block { border-color: var(--color-slate-700); color: var(--color-slate-400); }
+  .contact-block strong { color: var(--color-slate-900); }
+  :global(.dark) .contact-block strong { color: var(--color-white); }
+</style>
+
+<div class="page-header">
+  <a href={`/${lang}`} class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    {t(lang, 'privacy.backToHome')}
+  </a>
+  <h1 class="page-title">{t(lang, 'privacy.title')}</h1>
+  <p class="page-updated">{t(lang, 'privacy.lastUpdated')}</p>
 </div>
+
+<main class="page-content">
+  {
+    sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        {section.content && (
+          <p>{section.content}</p>
+        )}
+        {section.intro && (
+          <p class="intro">{section.intro}</p>
+        )}
+        {section.items && (
+          <ul>
+            {section.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )}
+        {section.emailLabel && (
+          <div class="contact-block">
+            {section.emailLabel}：<strong>support@sugarlite.top</strong>
+          </div>
+        )}
+      </section>
+    ))
+  }
+</main>
