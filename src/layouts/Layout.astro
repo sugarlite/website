@@ -41,6 +41,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="baidu-site-verification" content="codeva-xNeqgc212q" />
 
     <!-- Dark mode: apply before any paint to prevent FOUC -->
     <script is:inline>
@@ -148,7 +149,8 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       gtag('config', 'G-3X5TG47BLP');
     </script>
 
-    <!-- Baidu Analytics placeholder -->
+    <!-- Third-party analytics: add real IDs here when needed -->
+    <!-- Example: Baidu Analytics
     <script is:inline>
       var _hmt = _hmt || [];
       (function () {
@@ -159,22 +161,16 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-
-    <!-- Microsoft Clarity placeholder -->
+    -->
+    <!-- Example: Microsoft Clarity
     <script is:inline>
       (function (c, l, a, r, i, t, y) {
-        c[a] =
-          c[a] ||
-          function () {
-            (c[a].q = c[a].q || []).push(arguments);
-          };
-        t = l.createElement(r);
-        t.defer = true;
-        t.src = 'https://www.clarity.ms/tag/' + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.defer = true; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
       })(window, document, 'clarity', 'script', 'YOUR_CLARITY_ID');
     </script>
+    -->
   </head>
 
   <body
@@ -305,24 +301,48 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
     (function () {
       if (typeof window.IntersectionObserver === 'undefined') return;
 
+      var els = document.querySelectorAll('.reveal, .reveal-scale');
+      if (!els.length) return;
+
       var observer = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
+              entry.target.classList.remove('reveal-hidden');
               entry.target.classList.add('visible');
               observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0, rootMargin: '50px 0px' }
       );
 
-      document.querySelectorAll('.reveal, .reveal-scale').forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        if (rect.top > window.innerHeight + 40) {
-          el.classList.add('reveal-hidden');
-          observer.observe(el);
-        }
+      function revealInView() {
+        els.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          var inView = rect.top < window.innerHeight && rect.bottom > 0;
+          if (inView) {
+            el.classList.remove('reveal-hidden');
+            el.classList.add('visible');
+          } else {
+            el.classList.add('reveal-hidden');
+            observer.observe(el);
+          }
+        });
+      }
+
+      // Initial pass
+      revealInView();
+
+      // Safety net: reveal all after load + short delay
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          els.forEach(function (el) {
+            el.classList.remove('reveal-hidden');
+            el.classList.add('visible');
+          });
+          observer.disconnect();
+        }, 300);
       });
     })();
   </script>
