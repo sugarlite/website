@@ -1,8 +1,9 @@
 ---
-import { APP_LINKS, MEDICAL_REFERENCES } from '@/constants';
+import { MEDICAL_REFERENCES } from '@/constants';
 import { t, translations } from '@/i18n';
 import References from './References.astro';
 import type { Language } from '@/types';
+import AppStoreBadge from './AppStoreBadge';
 
 interface Props {
   lang: Language;
@@ -173,14 +174,9 @@ const idfPattern = {
     <div class="mt-16 text-center bg-gradient-to-br from-brand/5 to-emerald-500/5 rounded-3xl p-12">
       <h3 class="text-2xl font-bold mb-4 dark:text-white">{t(lang, 'guide.ctaTitle')}</h3>
       <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-xl mx-auto">{t(lang, 'guide.ctaDescription')}</p>
-      <a
-        href={APP_LINKS.appStore}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-brand text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors"
-      >
-        {t(lang, 'guide.ctaButton')}
-      </a>
+      <div class="flex justify-center">
+        <AppStoreBadge client:load lang={lang} />
+      </div>
     </div>
   </div>
 </div>
