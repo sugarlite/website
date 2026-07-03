@@ -44,7 +44,7 @@ const {
   ogImageWidth = 1200,
   ogImageHeight = 630,
   ogImageAlt = title,
-  ogImageType = 'image/png',
+  ogImageType = 'image/webp',
   twitterCard = 'summary_large_image',
   twitterSite = '@SugarLite',
   twitterCreator = '@SugarLite',
@@ -72,12 +72,6 @@ const ogAlternateLocales = LANGUAGES.filter((l) => l !== lang).map((l) => LANG_T
 <meta name="googlebot" content={googlebot} />
 <meta name="bingbot" content={bingbot} />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-
-<!-- Verification placeholders (replace with actual codes) -->
-<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
-<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-<meta name="baidu-site-verification" content="YOUR_BAIDU_VERIFICATION_CODE" />
-<meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
 
 <!-- AI Content Declaration -->
 <meta name="ai-content-declaration" content="human-created" />

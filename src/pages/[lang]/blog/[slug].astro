@@ -52,7 +52,7 @@ const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).fil
   (a) => a.hrefLang !== 'x-default'
 );
 
-const { title, description, updatedDate, ogImage, cover } = entry.data;
+const { title, description, pubDate, updatedDate, ogImage, cover } = entry.data;
 const ogImageUrl = ogImage ? `${SITE}${ogImage}` : cover ? `${SITE}${cover}` : undefined;
 
 const jsonLd = [
@@ -64,7 +64,7 @@ const jsonLd = [
     title,
     description,
     path: pathWithoutLang,
-    datePublished: `${updatedDate}T00:00:00+08:00`,
+    datePublished: `${pubDate}T00:00:00+08:00`,
     dateModified: `${updatedDate}T00:00:00+08:00`,
   }),
 ];

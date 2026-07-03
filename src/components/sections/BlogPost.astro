@@ -12,7 +12,7 @@ interface Props {
 
 const { lang, entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, description, updatedDate, cover, relatedSlugs } = entry.data;
+const { title, description, pubDate, updatedDate, cover, relatedSlugs } = entry.data;
 
 const allEntries = await getCollection('blog');
 
@@ -25,6 +25,11 @@ const relatedEntries = (relatedSlugs || [])
   .filter(Boolean) as CollectionEntry<'blog'>[];
 
 const formattedDate = new Date(updatedDate).toLocaleDateString(
+  lang === 'en' ? 'en-US' : lang === 'ja' ? 'ja-JP' : 'zh-CN',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+
+const formattedPubDate = new Date(pubDate).toLocaleDateString(
   lang === 'en' ? 'en-US' : lang === 'ja' ? 'ja-JP' : 'zh-CN',
   { year: 'numeric', month: 'long', day: 'numeric' }
 );
@@ -90,13 +95,16 @@ const features = CTA_FEATURES[lang];
   .bp-byline strong { color: var(--color-slate-900); font-weight: 600; }
   .dark .bp-byline strong { color: var(--color-white); }
 
-  .bp-back-wrap { max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 1.25rem auto 0; }
-  .bp-back-link {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500); transition: color 0.15s;
-  }
-  .dark .bp-back-link { color: var(--color-slate-400); }
-  .bp-back-link:hover { color: #00C09A; }
+  .bp-breadcrumb { max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 5rem auto 1rem; }
+  .bp-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; padding: 0; margin: 0; font-size: 0.82rem; color: var(--color-slate-500); }
+  .dark .bp-breadcrumb ol { color: var(--color-slate-400); }
+  .bp-breadcrumb li + li::before { content: '/'; margin-right: 0.35rem; color: var(--color-slate-300); }
+  .dark .bp-breadcrumb li + li::before { color: var(--color-slate-600); }
+  .bp-breadcrumb a { color: var(--color-slate-500); text-decoration: none; transition: color 0.15s; }
+  .dark .bp-breadcrumb a { color: var(--color-slate-400); }
+  .bp-breadcrumb a:hover { color: #00C09A; }
+  .bp-breadcrumb [aria-current="page"] { color: var(--color-slate-700); font-weight: 500; }
+  .dark .bp-breadcrumb [aria-current="page"] { color: var(--color-slate-200); }
 
   .bp-hero-img-wrap { max-width: min(72ch, calc(100% - 2rem)); width: 90%; margin: 0 auto 2rem; }
   .bp-hero-img { width: 100%; height: auto; display: block; border-radius: 2px; }
@@ -236,24 +244,25 @@ const features = CTA_FEATURES[lang];
 </style>
 
 <div class="blog-post-page">
+  <!-- Breadcrumb navigation -->
+  <nav class="bp-breadcrumb reveal stagger-1" aria-label="Breadcrumb">
+    <ol>
+      <li><a href={`/${lang}`}>{t(lang, 'nav.home')}</a></li>
+      <li><a href={`/${lang}/blog`}>{t(lang, 'nav.blog')}</a></li>
+      <li aria-current="page">{title}</li>
+    </ol>
+  </nav>
+
   <!-- Article Header -->
   <header class="bp-header">
     <div class="bp-header-inner">
       <h1 class="bp-headline reveal stagger-1">{title}</h1>
       {description && <p class="bp-deck reveal stagger-2">{description}</p>}
       <p class="bp-byline reveal stagger-2">
-        <span class="bp-byline-cat">{getCategory('')}</span> · <strong>{AUTHOR_NAME[lang]}</strong> · {formattedDate}
+        <span class="bp-byline-cat">{getCategory('')}</span> · <strong>{AUTHOR_NAME[lang]}</strong> · <time datetime={pubDate} itemprop="datePublished">{formattedPubDate}</time> (updated <time datetime={updatedDate} itemprop="dateModified">{formattedDate}</time>)
       </p>
     </div>
   </header>
-
-  <!-- Back Link -->
-  <div class="bp-back-wrap reveal stagger-1">
-    <a href={`/${lang}/blog`} class="bp-back-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      {t(lang, 'blog.backToBlog')}
-    </a>
-  </div>
 
   <!-- Hero Image -->
   <figure class="bp-hero-img-wrap reveal stagger-1">
@@ -266,7 +275,12 @@ const features = CTA_FEATURES[lang];
   </figure>
 
   <!-- Article Body -->
-  <article class="bp-body reveal stagger-2">
+  <article class="bp-body reveal stagger-2" itemscope itemtype="https://schema.org/Article">
+    <meta itemProp="headline" content={title} />
+    <meta itemProp="description" content={description} />
+    <meta itemProp="datePublished" content={`${pubDate}T00:00:00+08:00`} />
+    <meta itemProp="dateModified" content={`${updatedDate}T00:00:00+08:00`} />
+    <meta itemProp="author" content={AUTHOR_NAME[lang]} />
     <Content />
   </article>
 

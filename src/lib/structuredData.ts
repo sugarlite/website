@@ -101,14 +101,6 @@ export function buildWebSiteSchema(lang: Language) {
     publisher: {
       '@id': `${SITE}/#organization`,
     },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE}/?search={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -265,7 +257,7 @@ export function buildHowToSchema(lang: Language) {
     '@type': 'HowTo',
     name: copy.name,
     description: copy.description,
-    image: `${SITE}/og-image.png`,
+    image: `${SITE}/og-image.webp`,
     totalTime: 'PT5M',
     estimatedCost: {
       '@type': 'MonetaryAmount',

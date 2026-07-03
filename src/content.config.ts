@@ -7,6 +7,7 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     keywords: z.string(),
+    pubDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     updatedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     excerpt: z.string(),
     cover: z.string().optional(),
