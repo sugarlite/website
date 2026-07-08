@@ -1,33 +1,53 @@
 # Standard crawlers
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 # AI Crawlers - Explicitly allowed for GEO
 User-agent: GPTBot
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: CCBot
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 User-agent: YouBot
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
 
 Sitemap: https://sugarlite.top/sitemap-index.xml
