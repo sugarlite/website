@@ -21,9 +21,8 @@ const { lang } = Astro.props;
         <p class="reveal text-[0.72rem] font-medium tracking-[0.08em] uppercase text-brand mb-3">
           {t(lang, 'hero.tag')}
         </p>
-        <h1 class="reveal stagger-1 font-display text-[clamp(2.6rem,7vw,5.25rem)] font-normal leading-[1.03] tracking-[-0.035em] text-slate-900 dark:text-white text-balance mb-5 whitespace-nowrap">
-          {t(lang, 'hero.title')}<br />
-          <em class="italic text-brand">{t(lang, 'hero.titleHighlight')}</em>
+        <h1 class="reveal stagger-1 font-display text-[clamp(2rem,5vw,5.25rem)] font-normal leading-[1.03] tracking-[-0.035em] text-slate-900 dark:text-white text-balance mb-5 whitespace-normal sm:whitespace-nowrap">
+          {t(lang, 'hero.title')}<br class="hidden sm:inline" /> <em class="italic text-brand">{t(lang, 'hero.titleHighlight')}</em>
         </h1>
         <p class="reveal stagger-2 text-[clamp(1rem,1.8vw,1.15rem)] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[46ch] mb-8">
           {t(lang, 'hero.subtitle')}
