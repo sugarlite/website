@@ -22,6 +22,7 @@ export default defineConfig({
           'zh-Hant': 'zh-TW',
         },
       },
+      lastmod: new Date(),
       filter: (page) => {
         const url = new URL(page);
         const path = url.pathname;
