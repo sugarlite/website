@@ -14,19 +14,48 @@ const { lang } = Astro.props;
 <footer class="border-t border-slate-200 dark:border-slate-800 py-12">
   <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)]">
     <div class="flex flex-col items-center gap-8">
-      <a
-        href="https://www.producthunt.com/products/sugarlite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-sugarlite"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          alt="SugarLite - Understand how your food affects your blood sugar | Product Hunt"
-          width="250"
-          height="54"
-          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1203179&theme=light&t=1784702149165"
-          loading="lazy"
-        />
-      </a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
+        <a
+          href="https://www.producthunt.com/products/sugarlite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-sugarlite"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            alt="SugarLite - Understand how your food affects your blood sugar | Product Hunt"
+            width="250"
+            height="54"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1203179&theme=light&t=1784702149165"
+            class="block dark:hidden"
+            loading="lazy"
+          />
+          <img
+            alt="SugarLite - Understand how your food affects your blood sugar | Product Hunt"
+            width="250"
+            height="54"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1203179&theme=dark&t=1784723096361"
+            class="hidden dark:block"
+            loading="lazy"
+          />
+        </a>
+        <a
+          href="https://viberank.dev/apps/SugarLite"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://viberank.dev/badge?app=SugarLite&theme=light"
+            alt="SugarLite on VibeRank"
+            class="block dark:hidden h-14 w-auto"
+            loading="lazy"
+          />
+          <img
+            src="https://viberank.dev/badge?app=SugarLite&theme=dark"
+            alt="SugarLite on VibeRank"
+            class="hidden dark:block h-14 w-auto"
+            loading="lazy"
+          />
+        </a>
+      </div>
       <div class="flex flex-col sm:flex-row justify-between items-center flex-wrap gap-6 text-[0.8rem] text-slate-500 dark:text-slate-400 tracking-[0.02em] w-full">
         <span>© 2026 SugarLite {APP_NAME[lang]} — {t(lang, 'footer.tagline')}</span>
         <span class="flex flex-wrap justify-center gap-x-1 gap-y-2 text-[0.8rem] text-slate-500 dark:text-slate-400 tracking-[0.02em]">
