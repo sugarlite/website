@@ -1,0 +1,39 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import GuideBloodSugar from '@/components/sections/GuideBloodSugar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { getAlternateUrls } from '@/i18n/routing';
+import { getPageMeta } from '@/i18n/meta';
+import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+
+const lang = 'zh';
+const pathWithoutLang = 'guide/blood-sugar-management';
+const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
+const meta = getPageMeta('guideBloodSugar', lang);
+
+const jsonLd = [
+  buildBreadcrumbSchema(lang, [
+    { name: '健康指南', path: 'guide' },
+    { name: meta.title, path: pathWithoutLang },
+  ]),
+  buildArticleSchema(lang, {
+    title: meta.title,
+    description: meta.description,
+    path: pathWithoutLang,
+  }),
+];
+---
+
+<Layout lang={lang} page="guideBloodSugar" pathWithoutLang={pathWithoutLang} jsonLd={jsonLd}>
+  <Navbar
+    lang={lang}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
+  />
+
+  <main>
+    <GuideBloodSugar lang={lang} />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

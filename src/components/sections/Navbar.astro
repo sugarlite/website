@@ -1,6 +1,7 @@
 ---
 import { APP_NAME, APP_LINKS } from '@/constants';
 import { t } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
 
 interface AlternateUrl {
@@ -38,17 +39,17 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
 >
   <div class="max-w-[1600px] mx-auto px-[clamp(1rem,3vw,2rem)] h-full flex items-center justify-between">
     <!-- Brand -->
-    <a href={`/${lang}`} class="flex items-center gap-2.5 font-bold text-[1.1rem] tracking-[-0.01em] text-slate-900 dark:text-white">
+    <a href={getLocalizedPath(lang, '')} class="flex items-center gap-2.5 font-bold text-[1.1rem] tracking-[-0.01em] text-slate-900 dark:text-white">
       <img src="/icon.png" alt="SugarLite" class="w-8 h-8 rounded-lg shrink-0 object-contain" width="32" height="32" />
       {lang === 'en' ? 'SugarLite' : `${APP_NAME[lang]}`}
     </a>
 
     <!-- Desktop nav links -->
     <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
-      <a href={`/${lang}/#features`} class="hover:text-brand transition-colors">{t(lang, 'nav.features')}</a>
-      <a href={`/${lang}/#preview`} class="hover:text-brand transition-colors">{t(lang, 'nav.preview')}</a>
-      <a href={`/${lang}/stories`} class="hover:text-brand transition-colors">{t(lang, 'nav.stories')}</a>
-      <a href={`/${lang}/blog`} class="hover:text-brand transition-colors">{t(lang, 'nav.blog')}</a>
+      <a href={`${getLocalizedPath(lang, '')}#features`} class="hover:text-brand transition-colors">{t(lang, 'nav.features')}</a>
+      <a href={`${getLocalizedPath(lang, '')}#preview`} class="hover:text-brand transition-colors">{t(lang, 'nav.preview')}</a>
+      <a href={getLocalizedPath(lang, 'stories')} class="hover:text-brand transition-colors">{t(lang, 'nav.stories')}</a>
+      <a href={getLocalizedPath(lang, 'blog')} class="hover:text-brand transition-colors">{t(lang, 'nav.blog')}</a>
     </div>
 
     <!-- Right side -->

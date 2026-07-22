@@ -1,12 +1,7 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/zh", "permanent": true },
-    { "source": "/faq", "destination": "/en/faq", "permanent": true },
-    { "source": "/privacy", "destination": "/en/privacy", "permanent": true },
-    { "source": "/terms", "destination": "/en/terms", "permanent": true },
-    { "source": "/guide/blood-sugar-management", "destination": "/en/guide/blood-sugar-management", "permanent": true },
-    { "source": "/guide/diabetic-diet", "destination": "/en/guide/diabetic-diet", "permanent": true },
-    { "source": "/stories", "destination": "/en/stories", "permanent": true },
+    { "source": "/zh", "destination": "/", "permanent": true },
+    { "source": "/zh/(.*)", "destination": "/$1", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
   ]
 }

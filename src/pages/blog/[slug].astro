@@ -3,10 +3,9 @@ import Layout from '@/layouts/Layout.astro';
 import Navbar from '@/components/sections/Navbar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import BlogPost from '@/components/sections/BlogPost.astro';
-import { getAlternateUrls, LOCALIZED_LANGUAGES, SITE } from '@/i18n/routing';
+import { getAlternateUrls, SITE } from '@/i18n/routing';
 import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
 import { getCollection } from 'astro:content';
-import type { Language } from '@/types';
 
 export async function getStaticPaths() {
   const SLUGS = [
@@ -22,29 +21,28 @@ export async function getStaticPaths() {
     'insulin-tracking-guide',
   ];
   const allEntries = await getCollection('blog');
-  const paths: { params: { lang: Language; slug: string } }[] = [];
+  const paths: { params: { slug: string } }[] = [];
 
-  for (const lang of LOCALIZED_LANGUAGES) {
-    for (const slug of SLUGS) {
-      const entryId = `${slug}-${lang.toLowerCase()}`;
-      const exists = allEntries.some((e) => e.id === entryId);
-      if (exists) {
-        paths.push({ params: { lang, slug } });
-      }
+  for (const slug of SLUGS) {
+    const entryId = `${slug}-zh`;
+    const exists = allEntries.some((e) => e.id === entryId);
+    if (exists) {
+      paths.push({ params: { slug } });
     }
   }
   return paths;
 }
 
-const { lang, slug } = Astro.params;
+const lang = 'zh';
+const { slug } = Astro.params;
 const pathWithoutLang = `blog/${slug}`;
 
 const allEntries = await getCollection('blog');
-const entryId = `${slug}-${lang.toLowerCase()}`;
+const entryId = `${slug}-zh`;
 const entry = allEntries.find((e) => e.id === entryId);
 
 if (!entry) {
-  return Astro.redirect(`/${lang}/blog`);
+  return Astro.redirect('/blog');
 }
 
 const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).filter(
@@ -55,11 +53,11 @@ const { title, description, pubDate, updatedDate, ogImage, cover } = entry.data;
 const ogImageUrl = ogImage ? `${SITE}${ogImage}` : cover ? `${SITE}${cover}` : undefined;
 
 const jsonLd = [
-  buildBreadcrumbSchema(lang as Language, [
+  buildBreadcrumbSchema(lang, [
     { name: 'Blog', path: 'blog' },
     { name: title, path: pathWithoutLang },
   ]),
-  buildArticleSchema(lang as Language, {
+  buildArticleSchema(lang, {
     title,
     description,
     path: pathWithoutLang,
@@ -70,20 +68,20 @@ const jsonLd = [
 ---
 
 <Layout
-  lang={lang as Language}
+  lang={lang}
   page="blog"
   pathWithoutLang={pathWithoutLang}
   ogImage={ogImageUrl}
   jsonLd={jsonLd}
 >
   <Navbar
-    lang={lang as Language}
-    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang as Language, href: a.href }))}
+    lang={lang}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
   />
 
   <main>
-    <BlogPost lang={lang as Language} entry={entry} />
+    <BlogPost lang={lang} entry={entry} />
   </main>
 
-  <Footer lang={lang as Language} />
+  <Footer lang={lang} />
 </Layout>

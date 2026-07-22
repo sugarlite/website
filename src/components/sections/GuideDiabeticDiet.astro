@@ -1,6 +1,7 @@
 ---
 import { MEDICAL_REFERENCES } from '@/constants';
 import { t, translations } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
 import References from './References.astro';
 import type { Language } from '@/types';
 import AppStoreBadge from './AppStoreBadge';
@@ -31,7 +32,7 @@ const giPattern: Record<Language, string> = {
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Back Button -->
     <a
-      href={`/${lang}`}
+      href={getLocalizedPath(lang, '')}
       class="text-brand hover:text-brand-dark transition-colors mb-8 flex items-center gap-2"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +146,7 @@ const giPattern: Record<Language, string> = {
       <h3 class="text-xl font-bold mb-4 dark:text-white">{t(lang, 'guide.relatedGuides')}</h3>
       <div class="flex flex-wrap gap-4">
         <a
-          href={`/${lang}/guide/blood-sugar-management`}
+          href={getLocalizedPath(lang, 'guide/blood-sugar-management')}
           class="px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand/10 hover:text-brand transition-colors font-medium"
         >
           {t(lang, 'guide.bloodSugar.title')} →

@@ -2,7 +2,7 @@
 import SEO, { type AlternateUrl } from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import { getPageMeta, SITE_NAME, DEFAULT_OG_IMAGE } from '@/i18n/meta';
-import { getAlternateUrls, LANG_TO_HTML_LANG, SITE, type Language } from '@/i18n/routing';
+import { getAlternateUrls, getLocalizedPath, LANG_TO_HTML_LANG, SITE, type Language } from '@/i18n/routing';
 import type { PageKey } from '@/i18n/meta';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Analytics from '@vercel/analytics/astro';
@@ -27,7 +27,7 @@ const {
 } = Astro.props;
 
 const meta = getPageMeta(page, lang);
-const canonical = `${SITE}${pathWithoutLang ? `/${lang}/${pathWithoutLang}` : `/${lang}`}`;
+const canonical = `${SITE}${getLocalizedPath(lang, pathWithoutLang)}`;
 const alternates: AlternateUrl[] = getAlternateUrls(pathWithoutLang);
 const htmlLang = LANG_TO_HTML_LANG[lang];
 ---
@@ -203,15 +203,15 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
             </ul>
             <h2>📖 健康指南</h2>
             <ul>
-              <li><a href="https://sugarlite.top/zh/guide/blood-sugar-management">血糖管理完全指南</a></li>
-              <li><a href="https://sugarlite.top/zh/guide/diabetic-diet">糖尿病饮食建议</a></li>
-              <li><a href="https://sugarlite.top/zh/stories">用户故事</a></li>
-              <li><a href="https://sugarlite.top/zh/faq">常见问题</a></li>
+              <li><a href="https://sugarlite.top/guide/blood-sugar-management">血糖管理完全指南</a></li>
+              <li><a href="https://sugarlite.top/guide/diabetic-diet">糖尿病饮食建议</a></li>
+              <li><a href="https://sugarlite.top/stories">用户故事</a></li>
+              <li><a href="https://sugarlite.top/faq">常见问题</a></li>
             </ul>
             <h2>🔗 重要链接</h2>
             <ul>
-              <li><a href="https://sugarlite.top/zh/privacy">隐私政策</a></li>
-              <li><a href="https://sugarlite.top/zh/terms">服务条款</a></li>
+              <li><a href="https://sugarlite.top/privacy">隐私政策</a></li>
+              <li><a href="https://sugarlite.top/terms">服务条款</a></li>
             </ul>
           </div>
         )

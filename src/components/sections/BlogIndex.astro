@@ -1,5 +1,6 @@
 ---
 import { t } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
 import { getCollection } from 'astro:content';
 import { APP_LINKS } from '@/constants';
@@ -200,7 +201,7 @@ const categories = filterCategories[lang];
   <!-- Featured Article -->
   {featured && (
     <article class="featured-article reveal stagger-1">
-      <a href={`/${lang}/blog/${featured.slug}`} class="featured-thumb" style="display:block;">
+      <a href={getLocalizedPath(lang, `blog/${featured.slug}`)} class="featured-thumb" style="display:block;">
         {featured.cover ? (
           <img src={featured.cover} alt={featured.title} class="featured-thumb-img" loading="eager" />
         ) : (
@@ -212,7 +213,7 @@ const categories = filterCategories[lang];
         <h2 class="featured-title">{featured.title}</h2>
         <p class="featured-excerpt">{featured.excerpt}</p>
         <p class="featured-meta">{featured.updatedDate} · SugarLite</p>
-        <a href={`/${lang}/blog/${featured.slug}`} class="read-link">
+        <a href={getLocalizedPath(lang, `blog/${featured.slug}`)} class="read-link">
           {t(lang, 'blog.readMore')}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -229,7 +230,7 @@ const categories = filterCategories[lang];
       <section class="article-grid">
         {remaining.map((post, idx) => (
           <article class={`article-card reveal stagger-${Math.min(idx + 2, 6)}`}>
-            <a href={`/${lang}/blog/${post.slug}`} class="article-card-link">
+            <a href={getLocalizedPath(lang, `blog/${post.slug}`)} class="article-card-link">
               <div class="article-card-thumb">
                 {post.cover ? (
                   <img src={post.cover} alt={post.title} class="article-card-thumb-img" loading="lazy" decoding="async" />

@@ -1,0 +1,36 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import PrivacyPolicy from '@/components/sections/PrivacyPolicy.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { getAlternateUrls } from '@/i18n/routing';
+import { getPageMeta } from '@/i18n/meta';
+import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+
+const lang = 'zh';
+const pathWithoutLang = 'privacy';
+const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
+const meta = getPageMeta('privacy', lang);
+
+const jsonLd = [
+  buildBreadcrumbSchema(lang, [{ name: meta.title, path: pathWithoutLang }]),
+  buildArticleSchema(lang, {
+    title: meta.title,
+    description: meta.description,
+    path: pathWithoutLang,
+  }),
+];
+---
+
+<Layout lang={lang} page="privacy" pathWithoutLang={pathWithoutLang} jsonLd={jsonLd}>
+  <Navbar
+    lang={lang}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
+  />
+
+  <main>
+    <PrivacyPolicy lang={lang} />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

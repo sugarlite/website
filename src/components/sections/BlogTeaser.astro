@@ -1,5 +1,6 @@
 ---
 import { t } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
 import { getCollection } from 'astro:content';
 
@@ -61,7 +62,7 @@ function getCategory(slug: string): string {
           {posts.map((post, idx) => (
             <div class={`reveal stagger-${Math.min(idx + 2, 6)}`}>
               <div class="border-b border-slate-200 dark:border-slate-700 hover:border-brand transition-colors">
-                <a href={`/${lang}/blog/${post.slug}`} class="flex flex-col h-full text-inherit no-underline">
+                <a href={getLocalizedPath(lang, `blog/${post.slug}`)} class="flex flex-col h-full text-inherit no-underline">
                   <div class="aspect-video bg-brand/5 dark:bg-brand/10 overflow-hidden mb-4">
                     {post.cover ? (
                       <img
@@ -97,7 +98,7 @@ function getCategory(slug: string): string {
 
     <div class="text-center mt-6">
       <a
-        href={`/${lang}/blog`}
+        href={getLocalizedPath(lang, 'blog')}
         class="reveal stagger-5 inline-flex items-center gap-[0.35rem] text-[0.88rem] font-medium text-brand hover:gap-[0.6rem] transition-all"
       >
         {t(lang, 'blogTeaser.viewAll')}

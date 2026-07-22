@@ -1,5 +1,6 @@
 ---
 import { t } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
@@ -247,8 +248,8 @@ const features = CTA_FEATURES[lang];
   <!-- Breadcrumb navigation -->
   <nav class="bp-breadcrumb reveal stagger-1" aria-label="Breadcrumb">
     <ol>
-      <li><a href={`/${lang}`}>{t(lang, 'nav.home')}</a></li>
-      <li><a href={`/${lang}/blog`}>{t(lang, 'nav.blog')}</a></li>
+      <li><a href={getLocalizedPath(lang, '')}>{t(lang, 'nav.home')}</a></li>
+      <li><a href={getLocalizedPath(lang, 'blog')}>{t(lang, 'nav.blog')}</a></li>
       <li aria-current="page">{title}</li>
     </ol>
   </nav>
@@ -301,7 +302,7 @@ const features = CTA_FEATURES[lang];
         {relatedEntries.map((related) => {
           const relatedSlug = related.id.replace(new RegExp(`-${lang.toLowerCase()}$`), '');
           return (
-            <a href={`/${lang}/blog/${relatedSlug}`} class="bp-related-card">
+            <a href={getLocalizedPath(lang, `blog/${relatedSlug}`)} class="bp-related-card">
               <div class="bp-related-thumb">
                 {related.data.cover && <img src={related.data.cover} alt={related.data.title} class="bp-related-thumb-img" loading="lazy" />}
               </div>
