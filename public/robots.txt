@@ -4,7 +4,11 @@ Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
-# AI Crawlers - Explicitly allowed for GEO
+# ── AI Crawlers: explicitly allowed for GEO ────────────────────────────────
+# Generative-engine agents are welcome: we serve them a distilled, structured
+# version of the site (see src/middleware.ts) plus /llms.txt.
+
+# OpenAI (ChatGPT, GPTBot, AI search)
 User-agent: GPTBot
 Allow: /
 Disallow: /cdn-cgi/
@@ -15,11 +19,12 @@ Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
-User-agent: CCBot
+User-agent: OAI-SearchBot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
+# Anthropic (Claude)
 User-agent: anthropic-ai
 Allow: /
 Disallow: /cdn-cgi/
@@ -30,22 +35,104 @@ Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
-User-agent: Applebot-Extended
+User-agent: Claude-Web
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
-User-agent: Google-Extended
+# Common Crawl (CCBot - used by many LLM pipelines)
+User-agent: CCBot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
+# Apple / Siri AI
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Google AI training / Gemini
+User-agent: Google-Extended
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# ByteDance (Doubao / 豆包)
+User-agent: Bytespider
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Amazon (Alexa / Rufus)
+User-agent: Amazonbot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# You.com
 User-agent: YouBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# DuckDuckGo AI
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Exa
+User-agent: ExaBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Other AI / SEO research crawlers
+User-agent: omgili
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: Diffbot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: ImagesiftBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: AI2Bot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: DataForSeoBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: Timpibot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$

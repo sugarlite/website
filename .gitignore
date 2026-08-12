@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .astro/
+.vercel/
 
 # Image backups
 public/_originals/

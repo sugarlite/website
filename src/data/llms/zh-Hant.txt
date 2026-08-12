@@ -1,0 +1,51 @@
+# SugarLite 輕糖 - 智能血糖管理助手
+
+> 「輕糖」是一款專為關注血糖健康人群設計的智能管理工具。透過簡潔直觀的記錄方式和科學的數據分析，幫助你了解自己的血糖規律，找到最適合的飲食方案。
+
+## 核心功能
+
+- 血糖趨勢追蹤：輕鬆記錄餐前、餐後血糖值，自動生成可視化趨勢曲線
+- 飲食記錄管理：快速記錄每日飲食，支援豐富食物資料庫與自訂食物
+- 血糖指數：透過餐前餐後血糖配對分析，識別友好食物與風險食物
+- 運動記錄：記錄日常運動，觀察不同強度活動對血糖波動的影響
+- AI 智能洞察：基於多次記錄產生個人化建議
+- 雲端同步：登入後自動同步資料，跨裝置使用更連續
+
+## 主要頁面
+
+- [首頁](https://sugarlite.top/zh-Hant)
+- [血糖管理指南](https://sugarlite.top/zh-Hant/guide/blood-sugar-management)
+- [糖尿病飲食建議](https://sugarlite.top/zh-Hant/guide/diabetic-diet)
+- [用戶故事](https://sugarlite.top/zh-Hant/stories)
+- [常見問題](https://sugarlite.top/zh-Hant/faq)
+- [部落格](https://sugarlite.top/zh-Hant/blog)
+- [隱私政策](https://sugarlite.top/zh-Hant/privacy)
+- [服務條款](https://sugarlite.top/zh-Hant/terms)
+
+## 部落格文章
+
+- [部落格文章索引](https://sugarlite.top/zh-Hant/blog/llms.txt)：全部血糖健康科普文章
+
+## 完整內容
+
+- [llms-full.txt](https://sugarlite.top/zh-Hant/llms-full.txt)：完整網站資訊，適合 AI 深入閱讀
+
+## 下載
+
+- [App Store](https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8)
+
+## 聯絡方式
+
+- 信箱: support@sugarlite.top
+- Twitter: [@SugarLite](https://twitter.com/SugarLite)
+
+## 免責聲明
+
+「輕糖」不提供醫療診斷建議，所有數據僅供參考。如有健康問題，請諮詢專業醫生。
+
+## 語言版本
+
+- [简体中文](https://sugarlite.top/llms.txt)
+- [English](https://sugarlite.top/en/llms.txt)
+- [日本語](https://sugarlite.top/ja/llms.txt)
+- [繁體中文](https://sugarlite.top/zh-Hant/llms.txt)

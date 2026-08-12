@@ -78,6 +78,14 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://sugarlite.top" />
 
+    <!-- AI / LLM discovery: point assistants at the machine-readable site index -->
+    <link
+      rel="alternate"
+      type="text/plain"
+      href={lang === 'zh' ? '/llms.txt' : `/${lang}/llms.txt`}
+      title="llms.txt"
+    />
+
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/icon.png" as="image" type="image/png" />
     <link rel="preload" href="/hero-phone.avif" as="image" type="image/avif" fetchpriority="high" />

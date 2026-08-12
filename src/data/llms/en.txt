@@ -1,0 +1,51 @@
+# SugarLite - Smart Blood Sugar Management App
+
+> SugarLite is a professional blood sugar monitoring, trend analysis and health management application. Record, analyze, and discover what foods work best for your body.
+
+## Core Features
+
+- Blood sugar trend tracking: log pre- and post-meal glucose values and view automatic trend curves
+- Food logging: quickly record daily meals with a rich food database and custom entries
+- Glucose index: pre/post-meal pairing analysis identifies foods that are friendly or risky for your glucose
+- Exercise logging: record activity and see how different intensities affect glucose fluctuations
+- AI insights: personalized recommendations generated from your records
+- Cloud sync: data syncs automatically after login for a seamless cross-device experience
+
+## Main Pages
+
+- [Home](https://sugarlite.top/en)
+- [Blood Sugar Management Guide](https://sugarlite.top/en/guide/blood-sugar-management)
+- [Diabetic Diet Guide](https://sugarlite.top/en/guide/diabetic-diet)
+- [User Stories](https://sugarlite.top/en/stories)
+- [FAQ](https://sugarlite.top/en/faq)
+- [Blog](https://sugarlite.top/en/blog)
+- [Privacy Policy](https://sugarlite.top/en/privacy)
+- [Terms of Service](https://sugarlite.top/en/terms)
+
+## Blog Articles
+
+- [Blog index](https://sugarlite.top/en/blog/llms.txt): all blood sugar health articles
+
+## Full Content
+
+- [llms-full.txt](https://sugarlite.top/en/llms-full.txt): complete site information for deep reading
+
+## Download
+
+- [App Store](https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8)
+
+## Contact
+
+- Email: support@sugarlite.top
+- Twitter: [@SugarLite](https://twitter.com/SugarLite)
+
+## Disclaimer
+
+SugarLite does not provide medical diagnosis. All data is for reference only. Consult a doctor for health concerns.
+
+## Language Versions
+
+- [简体中文](https://sugarlite.top/llms.txt)
+- [English](https://sugarlite.top/en/llms.txt)
+- [日本語](https://sugarlite.top/ja/llms.txt)
+- [繁體中文](https://sugarlite.top/zh-Hant/llms.txt)

@@ -13,13 +13,22 @@
 
 ## 主要页面
 
-- [首页](https://sugarlite.top/zh)
-- [血糖管理指南](https://sugarlite.top/zh/guide/blood-sugar-management)
-- [糖尿病饮食建议](https://sugarlite.top/zh/guide/diabetic-diet)
-- [用户故事](https://sugarlite.top/zh/stories)
-- [常见问题](https://sugarlite.top/zh/faq)
-- [隐私政策](https://sugarlite.top/zh/privacy)
-- [服务条款](https://sugarlite.top/zh/terms)
+- [首页](https://sugarlite.top/)
+- [血糖管理指南](https://sugarlite.top/guide/blood-sugar-management)
+- [糖尿病饮食建议](https://sugarlite.top/guide/diabetic-diet)
+- [用户故事](https://sugarlite.top/stories)
+- [常见问题](https://sugarlite.top/faq)
+- [博客](https://sugarlite.top/blog)
+- [隐私政策](https://sugarlite.top/privacy)
+- [服务条款](https://sugarlite.top/terms)
+
+## 博客文章
+
+- [博客文章索引](https://sugarlite.top/blog/llms.txt)：全部血糖健康科普文章
+
+## 完整内容
+
+- [llms-full.txt](https://sugarlite.top/llms-full.txt)：完整站点信息，适合 AI 深入阅读
 
 ## 下载
 
@@ -36,7 +45,7 @@
 
 ## 语言版本
 
-- [中文简体](https://sugarlite.top/zh)
-- [English](https://sugarlite.top/en)
-- [日本語](https://sugarlite.top/ja)
-- [中文繁體](https://sugarlite.top/zh-Hant)
+- [中文简体](https://sugarlite.top/llms.txt)
+- [English](https://sugarlite.top/en/llms.txt)
+- [日本語](https://sugarlite.top/ja/llms.txt)
+- [中文繁體](https://sugarlite.top/zh-Hant/llms.txt)

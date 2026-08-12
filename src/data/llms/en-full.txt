@@ -1,0 +1,157 @@
+# SugarLite - Complete Site Information
+
+## About SugarLite
+
+SugarLite is a professional blood sugar monitoring, trend analysis and health management application. Through simple logging and scientific analysis, it helps you understand your glucose patterns and find the diet that works best for your body.
+
+### Who Is It For
+
+- People with prediabetes and diabetes
+- Anyone who cares about their blood sugar health
+- People following a low-sugar or glucose-conscious diet
+- People who need to monitor post-meal glucose responses
+
+## Core Features in Detail
+
+### 1. Blood Sugar Trend Tracking
+Easily log pre- and post-meal glucose values and view automatic trend curves. Target ranges follow the International Diabetes Federation (IDF) guidelines. View your data by day, week, or month to understand your glucose patterns.
+
+### 2. Food Logging
+Quickly record daily meals with a rich food database and custom entries. Carbohydrate intake is calculated automatically. Log food names, portions, and times for later analysis.
+
+### 3. Glucose Index
+The glucose index is SugarLite's core analysis feature. By pairing pre- and post-meal glucose readings, it reveals which foods are friendly to your blood sugar and which need caution.
+
+**How the glucose index works:**
+- Measure and record your pre-meal glucose (baseline value) before eating
+- Measure again 2 hours after the meal
+- SugarLite automatically calculates the change (Δ = post-meal glucose - pre-meal glucose)
+- The change marks the food's impact level:
+  - Δ < 2.0 mmol/L: friendly food, prefer it
+  - Δ 2.0-3.9 mmol/L: moderate impact, eat in moderation
+  - Δ ≥ 4.0 mmol/L: high-risk food, limit or avoid
+
+### 4. Exercise Logging
+Record your workouts and see how exercise affects your glucose. Regular exercise improves insulin sensitivity and helps muscle cells use glucose more efficiently.
+
+### 5. AI Insights
+Personalized recommendations based on your records. AI analyzes your glucose, diet, and exercise data to identify "friendly foods" and "risky foods" for your specific body.
+
+### 6. Cloud Sync
+Your data syncs automatically after login, so switching devices never loses progress. Supports Bluetooth sync with Roche blood glucose meters. Data is encrypted in transit and at rest.
+
+## FAQ
+
+### What is SugarLite?
+SugarLite is a professional blood sugar monitoring, trend analysis and health management app. It helps you understand glucose changes and optimize your daily diet. Supports Apple Health sync, AI insights, and the glucose index.
+
+### What features does SugarLite offer?
+SugarLite provides blood sugar trend tracking, food logging, glucose index, exercise logging, AI insights, HealthKit sync, cloud sync, and scheduled glucose reminders.
+
+### Who should use SugarLite?
+People with prediabetes or diabetes, anyone concerned about blood sugar health, users on low-sugar diets, and people who need to monitor post-meal glucose responses.
+
+### Is my data safe with SugarLite?
+Yes. Data syncs to the cloud with encrypted transport and storage. Apple Health data is only accessed with your authorization. See the privacy policy for details.
+
+### How do I use the glucose index?
+Log your pre-meal glucose, then log again 2 hours after the meal. SugarLite pairs the two readings, calculates the change, and marks the food's impact on your glucose. Over time, it identifies your friendly and risky foods.
+
+### Does SugarLite support Android?
+Currently SugarLite is iOS only (iPhone). An Android version is in development. Subscribe on the website to be notified when it launches.
+
+### How does Apple Health sync work?
+Open Settings in SugarLite, enable "Apple Health Sync", and authorize access. Your glucose records sync to Apple Health, and Apple Health glucose data imports into SugarLite.
+
+### Is SugarLite free?
+SugarLite offers a free basic version with glucose logging, trend analysis, and food logging. Some advanced features, such as deep AI insights and unlimited cloud storage, may require a subscription. See the App Store for pricing.
+
+## Health Guides
+
+### Complete Blood Sugar Management Guide
+Covers normal glucose ranges, monitoring methods, influencing factors, and personalized management plans.
+
+**Normal blood sugar ranges (IDF and ADA standards):**
+- Fasting glucose: 3.9 - 6.1 mmol/L (normal)
+- 2-hour post-meal glucose: < 7.8 mmol/L (normal)
+- HbA1c: < 5.7% (normal)
+
+**Main factors affecting blood sugar:**
+- Diet: carbohydrates have the most direct effect on blood sugar
+- Exercise: regular activity improves insulin sensitivity
+- Stress: mental stress triggers hormones that raise blood sugar
+- Sleep: poor sleep reduces insulin sensitivity
+- Medication: some medications can raise blood sugar
+
+### Diabetic Diet Guide
+Practical dietary advice covering the glycemic index, recommended foods, and the plate method.
+
+**Recommended foods:**
+- Whole grains: oats, brown rice, whole wheat bread, quinoa
+- Legumes: black beans, red beans, chickpeas, lentils
+- Vegetables: broccoli, spinach, celery, cucumber, tomato
+- Low-GI fruits: apples, pears, strawberries, blueberries, grapefruit
+- Lean protein: fish, chicken breast, tofu, eggs
+- Healthy fats: olive oil, avocado, nuts (in moderation)
+
+**Foods to limit:**
+- Refined carbohydrates: white rice, white flour, white bread, pastries
+- Sugary drinks: soda, juice, milk tea, sports drinks
+- High-sugar fruits: lychee, longan, banana, durian, grapes
+- Processed foods: chips, cookies, instant noodles, processed meats
+- Fried foods: fried chicken, french fries, dough sticks
+
+**The plate method:**
+- 1/2 plate: non-starchy vegetables
+- 1/4 plate: lean protein
+- 1/4 plate: whole grains or starchy vegetables
+- Drink: water, plain tea, or unsweetened coffee
+
+## User Stories
+
+SugarLite has helped many users improve their glucose management. Here are some real experiences:
+
+### Mr. Zhang (Type 2 Diabetes, Shanghai)
+Using the glucose index, he discovered that whole wheat bread spiked his glucose significantly while brown rice was surprisingly stable. After 3 months of consistent tracking and adjustment, his HbA1c dropped from 8.2% to 6.8%.
+
+### Ms. Li (Gestational Diabetes, Beijing)
+With SugarLite's guidance during pregnancy, she kept fasting glucose below 5.3 mmol/L and 2-hour post-meal glucose below 6.7 mmol/L. Her glucose returned to normal quickly after giving birth.
+
+### Mr. Wang (Prediabetes, Shenzhen)
+He noticed his glucose fluctuated most between 3-4 PM. He swapped cookies and cake for nuts and yogurt, and walked 20 minutes after lunch. Within 2 months, his fasting glucose dropped to 5.6 mmol/L and he lost 4 kg.
+
+### Ms. Chen (Family Glucose Management, Guangzhou)
+She tracked her husband's glucose while logging her own as a control. The comparison revealed that the same food affected them very differently. After six months, her husband's HbA1c dropped from 7.5% to 6.2%.
+
+## Technical Specifications
+
+- Platform: iOS (iPhone)
+- Latest version: 1.5.1
+- File size: 25MB
+- Rating: 4.9/5 (1200+ ratings)
+- Price: Free (some advanced features may require subscription)
+- Languages: 简体中文, English, 日本語, 繁體中文
+
+## Download
+
+- [App Store](https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8)
+
+## Contact
+
+- Email: support@sugarlite.top
+- Twitter: [@SugarLite](https://twitter.com/SugarLite)
+- Facebook: [SugarLiteApp](https://www.facebook.com/SugarLiteApp)
+- Instagram: [sugarlite.app](https://www.instagram.com/sugarlite.app)
+
+## References
+
+- International Diabetes Federation (IDF) - normal blood glucose range standards
+- American Diabetes Association (ADA) - glucose monitoring guidelines
+- U.S. Centers for Disease Control and Prevention (CDC) - BMI guidance
+- U.S. Department of Agriculture (USDA) - food nutrition database
+- University of Sydney - international glycemic index tables
+- World Health Organization (WHO) - healthy diet recommendations
+
+## Disclaimer
+
+SugarLite does not provide medical diagnosis. All data is for reference only. Consult a doctor for health concerns.

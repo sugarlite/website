@@ -1,0 +1,51 @@
+# SugarLite 軽糖 - スマートな血糖管理アプリ
+
+> SugarLiteは、専門的な血糖モニタリング、トレンド分析、健康管理アプリです。科学的なデータダッシュボードで健康的な生活をサポートします。
+
+## 主な機能
+
+- 血糖トレンド追跡：食前・食後の血糖値を簡単に記録し、可視化されたトレンド曲線を自動生成
+- 食事記録管理：毎日の食事をすばやく記録。豊富な食品データベースとカスタム食品に対応
+- 血糖指数：食前・食後の血糖ペアリング分析で、血糖に優しい食品と注意が必要な食品を判定
+- 運動記録：日常の運動を記録し、強度の違いが血糖変動に与える影響を観察
+- AIインサイト：複数回の記録に基づくパーソナライズ提案
+- クラウド同期：ログイン後に自動同期。複数デバイス間で継続利用可能
+
+## 主要ページ
+
+- [ホーム](https://sugarlite.top/ja)
+- [血糖管理の完全ガイド](https://sugarlite.top/ja/guide/blood-sugar-management)
+- [糖尿病の食事管理ガイド](https://sugarlite.top/ja/guide/diabetic-diet)
+- [ユーザーの声](https://sugarlite.top/ja/stories)
+- [よくある質問](https://sugarlite.top/ja/faq)
+- [ブログ](https://sugarlite.top/ja/blog)
+- [プライバシーポリシー](https://sugarlite.top/ja/privacy)
+- [利用規約](https://sugarlite.top/ja/terms)
+
+## ブログ記事
+
+- [ブログ記事一覧](https://sugarlite.top/ja/blog/llms.txt)：血糖と健康に関する全記事
+
+## 完全版
+
+- [llms-full.txt](https://sugarlite.top/ja/llms-full.txt)：サイトの完全な情報（AI向け詳細版）
+
+## ダウンロード
+
+- [App Store](https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8)
+
+## お問い合わせ
+
+- メール: support@sugarlite.top
+- Twitter: [@SugarLite](https://twitter.com/SugarLite)
+
+## 免責事項
+
+SugarLiteは医療診断を提供するものではありません。すべてのデータは参考用です。健康上の問題がある場合は医師にご相談ください。
+
+## 言語バージョン
+
+- [简体中文](https://sugarlite.top/llms.txt)
+- [English](https://sugarlite.top/en/llms.txt)
+- [日本語](https://sugarlite.top/ja/llms.txt)
+- [繁體中文](https://sugarlite.top/zh-Hant/llms.txt)

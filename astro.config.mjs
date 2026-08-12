@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
+import vercel from '@astrojs/vercel';
 
 const SITE = 'https://sugarlite.top';
 
@@ -34,7 +35,12 @@ function getLocalizedUrl(locale, pathWithoutLang) {
 
 export default defineConfig({
   site: SITE,
-  output: 'static',
+  // Every page opts into prerendering (`export const prerender = true`), so
+  // the site is fully static. `output: 'server'` is required so the Vercel
+  // adapter compiles src/middleware.ts into an edge middleware that serves a
+  // distilled AI-friendly version to generative-engine crawlers (GEO).
+  output: 'server',
+  adapter: vercel({ middlewareMode: 'edge' }),
   integrations: [
     react(),
     mdx(),
