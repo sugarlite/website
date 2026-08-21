@@ -269,7 +269,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
         'X-Robots-Tag': 'index, follow, max-image-preview:large, max-snippet:-1',
-        'Cache-Control': 'public, max-age=300',
+        // Never cache the AI page: the CDN cache key does not include the
+        // User-Agent, so a cached AI response would be served to humans.
+        'Cache-Control': 'private, no-store',
       },
     });
   }
