@@ -20,6 +20,7 @@ export async function getStaticPaths() {
     'type-2-diabetes-diet',
     'high-blood-sugar-symptoms',
     'insulin-tracking-guide',
+    'what-is-pgi',
   ];
   const allEntries = await getCollection('blog');
   const paths: { params: { slug: string } }[] = [];

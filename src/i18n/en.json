@@ -692,7 +692,7 @@
         "version": "1.5.2",
         "date": "June 25, 2026",
         "items": [
-          "PGRS is now called \"Glucose Index\" — see at a glance which foods work for you.",
+          "PGI is now called \"Glucose Index\" — see at a glance which foods work for you.",
           "Smoother first-launch experience for new users.",
           "Better food search and custom food creation.",
           "Faster and more stable throughout the app."
@@ -746,7 +746,7 @@
         "date": "April 30, 2026",
         "items": [
           "Full food glucose map ranking: browse foods ranked by their glucose impact (Pro members).",
-          "PGRS glucose response analysis: pair pre- and post-meal readings to discover foods that truly suit you.",
+          "PGI glucose response analysis: pair pre- and post-meal readings to discover foods that truly suit you.",
           "HealthKit integration: sync with Apple Health and import glucose data automatically.",
           "Fully redesigned glucose response analysis page for a clearer experience.",
           "Simplified sign-in with Apple only; swipeable charts for switching time ranges; paginated food and exercise lists.",

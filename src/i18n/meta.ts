@@ -19,7 +19,8 @@ export type PageKey =
   | 'blogNormalBloodSugarChart'
   | 'blogType2DiabetesDiet'
   | 'blogHighBloodSugarSymptoms'
-  | 'blogInsulinTrackingGuide';
+  | 'blogInsulinTrackingGuide'
+  | 'blogWhatIsPgi';
 
 interface PageMeta {
   title: string;
@@ -346,7 +347,7 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
     zh: {
       title: '最佳血糖记录 App 推荐：SugarLite 轻糖如何帮您管理血糖 - SugarLite',
       description:
-        '选择一款好用的血糖记录 App 至关重要。本文介绍优秀血糖 App 的核心功能，以及 SugarLite 轻糖如何通过 血糖指数分析、饮食记录帮您控糖。',
+        '还在为杂乱的血糖数据发愁？SugarLite 轻糖集血糖记录、PGI 个性化分析、AI 智能洞察于一体，让控糖更简单、更科学。立即下载，掌控每一次血糖变化！',
       keywords: '血糖记录App,血糖管理App,血糖追踪软件,糖尿病App,SugarLite,血糖仪同步,血糖指数分析',
       ogType: 'article',
     },
@@ -579,6 +580,36 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       description:
         '胰島素治療是糖尿病管理的重要手段。本文介紹常見胰島素類型、劑量記錄方法、注射時間，以及如何用 App 科學追蹤胰島素使用情況。',
       keywords: '胰島素記錄,胰島素類型,胰島素劑量,糖尿病胰島素,胰島素注射,胰島素追蹤,SugarLite',
+      ogType: 'article',
+    },
+  },
+  blogWhatIsPgi: {
+    zh: {
+      title: '什么是 PGI 个性化 GI？了解食物的 PGI 有多重要 - SugarLite 轻糖',
+      description:
+        'GI 表说燕麦好，您吃了却飙升？PGI（个性化 GI）揭示食物对您身体的真实影响。了解为什么每个人的升糖反应都不同，以及如何测出自己的 PGI。',
+      keywords: 'PGI,个性化GI,个人化升糖指数,血糖反应,食物升糖指数,餐后血糖,控糖饮食,SugarLite',
+      ogType: 'article',
+    },
+    en: {
+      title: 'What Is PGI (Personalized Glycemic Index)? Why Your Food\'s PGI Matters - SugarLite',
+      description:
+        'The GI chart says oatmeal is safe—yet your glucose spikes? PGI reveals how foods actually affect YOUR body. Learn why glycemic responses differ and how to measure your own PGI.',
+      keywords: 'PGI,personalized glycemic index,personalized nutrition,glucose response,postprandial glucose,CGM,SugarLite',
+      ogType: 'article',
+    },
+    ja: {
+      title: 'PGI（個人化GI）とは？食品のPGIを知ることが大切な理由 - SugarLite',
+      description:
+        'GI表では「安全」なのに食べると血糖値が上昇？PGI（個人化GI）は食品があなたの体に与える本当の影響を明らかにします。個人差の理由と自分のPGIの測り方を解説。',
+      keywords: 'PGI,個人化GI,パーソナライズGI,血糖反応,食後血糖,血糖コントロール,SugarLite',
+      ogType: 'article',
+    },
+    'zh-Hant': {
+      title: '什麼是 PGI 個人化 GI？了解食物的 PGI 有多重要 - SugarLite 輕糖',
+      description:
+        'GI 表說燕麥好，您吃了卻飆升？PGI（個人化 GI）揭示食物對您身體的真實影響。了解為什麼每個人的升糖反應都不同，以及如何測出自己的 PGI。',
+      keywords: 'PGI,個人化GI,個人化升糖指數,血糖反應,食物升糖指數,餐後血糖,控糖飲食,SugarLite',
       ogType: 'article',
     },
   },
