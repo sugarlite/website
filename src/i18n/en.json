@@ -13,7 +13,8 @@
     "guideBloodSugar": "Blood Sugar Guide",
     "guideDiabeticDiet": "Diabetic Diet Guide",
     "stories": "Stories",
-    "blog": "Blog"
+    "blog": "Blog",
+    "changelog": "Changelog"
   },
   "hero": {
     "tag": "Apple Health Sync and AI Insights",
@@ -662,5 +663,114 @@
       "nutritionRecommendations": "World Health Organization (WHO) - Healthy Diet",
       "chinaNutritionTable": "Chinese Nutrition Society - China Food Composition Tables"
     }
+  },
+  "changelog": {
+    "title": "Changelog",
+    "backToHome": "Back to Home",
+    "subtitle": "Every improvement of SugarLite, documented. Thank you for your support.",
+    "versions": [
+      {
+        "version": "1.6.1",
+        "date": "July 21, 2026",
+        "items": [
+          "New: Added a \"Contact Us\" entry in the app, so you can reach out for feedback or help anytime.",
+          "Improved: Performance optimizations across the whole app — faster launch and tab switching, and quicker response when logging glucose, meals and exercise."
+        ]
+      },
+      {
+        "version": "1.6.0",
+        "date": "July 15, 2026",
+        "items": [
+          "New: Log insulin doses alongside meals and exercise — pick the type, enter the units, and review everything on the timeline.",
+          "Improved: Redesigned onboarding and profile setup for a clearer, friendlier first-run experience.",
+          "Improved: Settings and profile now sync more reliably across multiple devices.",
+          "Fixed: Rare cases where membership status or synced data could become inconsistent.",
+          "Fixed: An occasional automatic sign-out at launch."
+        ]
+      },
+      {
+        "version": "1.5.2",
+        "date": "June 25, 2026",
+        "items": [
+          "PGRS is now called \"Glucose Index\" — see at a glance which foods work for you.",
+          "Smoother first-launch experience for new users.",
+          "Better food search and custom food creation.",
+          "Faster and more stable throughout the app."
+        ]
+      },
+      {
+        "version": "1.5.1",
+        "date": "June 19, 2026",
+        "items": [
+          "New: Lifetime membership — one purchase unlocks all features forever, no renewals.",
+          "New: All-new floating quick panel — tap the floating button to log glucose, meals or exercise from any tab.",
+          "New: Sheets now support medium and full heights for more flexible interactions.",
+          "New: Bluetooth sync for Roche glucose meters — automatically import readings from compatible devices.",
+          "Improved: Zoom transition when opening the logging page, better tap targets app-wide, and fine-tuned performance."
+        ]
+      },
+      {
+        "version": "1.5.0",
+        "date": "June 9, 2026",
+        "items": [
+          "New: All-new floating quick panel — tap the floating button to log glucose, meals or exercise from any tab.",
+          "New: Sheets now support medium and full heights for more flexible interactions.",
+          "New: Bluetooth sync for Roche glucose meters — automatically import readings from compatible devices.",
+          "Improved: Zoom transition when opening the logging page, better tap targets app-wide, and fine-tuned performance."
+        ]
+      },
+      {
+        "version": "1.4.2",
+        "date": "May 20, 2026",
+        "items": [
+          "All-new 7-day date rings: swipe between weeks and see each day's glucose at a glance with colorful rings you can tap.",
+          "Completely upgraded glucose curve: silky lines, glowing data points, adaptive y-axis and gentle gradient fills.",
+          "Glucose response cards go beyond numbers: see your most friendly foods — and the ones working against you.",
+          "Buttery-smooth food list scrolling with lower image memory usage.",
+          "Expanded translation coverage to 26 languages."
+        ]
+      },
+      {
+        "version": "1.4.1",
+        "date": "May 15, 2026",
+        "items": [
+          "New home screen widgets: today's glucose overview, trend sparkline, meal summary and glucose response insights.",
+          "Lock screen widgets too, in circular, rectangular and inline styles.",
+          "Tap a widget to jump straight to the relevant page.",
+          "Added support for 26 languages so everyone can track glucose in their own language.",
+          "Refreshed widget visuals for a cleaner look."
+        ]
+      },
+      {
+        "version": "1.3.0",
+        "date": "April 30, 2026",
+        "items": [
+          "Full food glucose map ranking: browse foods ranked by their glucose impact (Pro members).",
+          "PGRS glucose response analysis: pair pre- and post-meal readings to discover foods that truly suit you.",
+          "HealthKit integration: sync with Apple Health and import glucose data automatically.",
+          "Fully redesigned glucose response analysis page for a clearer experience.",
+          "Simplified sign-in with Apple only; swipeable charts for switching time ranges; paginated food and exercise lists.",
+          "Fixed an issue where syncing could lose records, and a WebView display glitch."
+        ]
+      },
+      {
+        "version": "1.1.3",
+        "date": "April 26, 2026",
+        "items": [
+          "Scheduled glucose reminders: notifications help you measure and log on time, with multi-language support.",
+          "HealthKit integration: sync with Apple Health and import glucose data automatically to reduce manual entry.",
+          "AI features: new AI analysis to help you understand your glucose and health data, plus a refined AI interface and credits system."
+        ]
+      },
+      {
+        "version": "1.1.2",
+        "date": "April 21, 2026",
+        "items": [
+          "Scheduled glucose reminders: notifications help you measure and log on time, with multi-language support.",
+          "HealthKit integration: sync with Apple Health and import glucose data automatically to reduce manual entry.",
+          "AI features: new AI analysis to help you understand your glucose and health data, plus a refined AI interface and credits system."
+        ]
+      }
+    ]
   }
 }

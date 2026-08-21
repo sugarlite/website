@@ -4,6 +4,7 @@ export type PageKey =
   | 'home'
   | 'privacy'
   | 'terms'
+  | 'changelog'
   | 'faq'
   | 'guideBloodSugar'
   | 'guideDiabeticDiet'
@@ -122,6 +123,28 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
     'zh-Hant': {
       title: '服務條款 - SugarLite 輕糖',
       description: '查看 SugarLite 輕糖的服務條款和使用協議。',
+      ogType: 'article',
+    },
+  },
+  changelog: {
+    zh: {
+      title: '更新日志 - SugarLite 轻糖',
+      description: '查看 SugarLite 轻糖 App 的最新更新内容与新功能，了解每一次版本改进。',
+      ogType: 'article',
+    },
+    en: {
+      title: 'Changelog - SugarLite',
+      description: 'See the latest updates and new features of the SugarLite app, with every version improvement documented.',
+      ogType: 'article',
+    },
+    ja: {
+      title: '更新履歴 - SugarLite',
+      description: 'SugarLiteアプリの最新アップデート情報と新機能をご確認いただけます。',
+      ogType: 'article',
+    },
+    'zh-Hant': {
+      title: '更新日誌 - SugarLite 輕糖',
+      description: '查看 SugarLite 輕糖 App 的最新更新內容與新功能，了解每一次版本改進。',
       ogType: 'article',
     },
   },

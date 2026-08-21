@@ -1,0 +1,109 @@
+---
+import { t, translations } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const versions = (translations[lang].changelog?.versions as Array<{
+  version: string;
+  date: string;
+  items: string[];
+}>) || [];
+const subtitle = translations[lang].changelog?.subtitle || '';
+---
+
+<style>
+  .page-header {
+    padding-top: calc(64px + 3rem);
+    padding-bottom: 3rem;
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500);
+    margin-bottom: 2rem; transition: color 0.15s;
+  }
+  :global(.dark) .back-link { color: var(--color-slate-400); }
+  .back-link:hover { color: #00C09A; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--color-slate-900); margin-bottom: 0.75rem;
+  }
+  :global(.dark) .page-title { color: var(--color-white); }
+  .page-subtitle {
+    font-size: 0.95rem; color: var(--color-slate-500); line-height: 1.7;
+    text-wrap: pretty;
+  }
+  :global(.dark) .page-subtitle { color: var(--color-slate-400); }
+
+  .page-content {
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto; padding-bottom: 5rem;
+  }
+  .version {
+    position: relative; margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-slate-200);
+  }
+  :global(.dark) .version { border-color: var(--color-slate-700); }
+  .version:last-child { border-bottom: none; margin-bottom: 0; }
+  .version-head {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.6rem 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .version-badge {
+    display: inline-block;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.01em;
+    color: #fff; background: linear-gradient(135deg, #00C09A, #00A6C0);
+    border-radius: 999px; padding: 0.22rem 0.8rem;
+  }
+  .version-date {
+    font-size: 0.85rem; color: var(--color-slate-500); letter-spacing: 0.02em;
+  }
+  :global(.dark) .version-date { color: var(--color-slate-400); }
+  .version ul { margin: 0; padding-inline-start: 0; list-style: none; }
+  .version ul li {
+    position: relative; margin-bottom: 0.5em; padding-inline-start: 1.15em;
+    font-size: 0.92rem; color: var(--color-slate-700); line-height: 1.6;
+  }
+  :global(.dark) .version ul li { color: var(--color-slate-300); }
+  .version ul li::before {
+    content: '\2014'; position: absolute; inset-inline-start: 0; color: var(--color-slate-500);
+  }
+  :global(.dark) .version ul li::before { color: var(--color-slate-400); }
+</style>
+
+<div class="page-header">
+  <a href={getLocalizedPath(lang, '')} class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    {t(lang, 'changelog.backToHome')}
+  </a>
+  <h1 class="page-title">{t(lang, 'changelog.title')}</h1>
+  {subtitle && <p class="page-subtitle">{subtitle}</p>}
+</div>
+
+<main class="page-content">
+  {
+    versions.map((version) => (
+      <section class="version">
+        <div class="version-head">
+          <span class="version-badge">v{version.version}</span>
+          <span class="version-date">{version.date}</span>
+        </div>
+        <ul>
+          {version.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</main>
