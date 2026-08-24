@@ -49,8 +49,10 @@ export function getAlternateUrls(
 ): AlternateUrl[] {
   const origin = baseUrl || SITE;
 
+  // Full hreflang codes (zh-CN / en-US / ja-JP / zh-TW) — keep in sync with
+  // the sitemap serialize() output in astro.config.mjs.
   const alternates: AlternateUrl[] = LANGUAGES.map((lang) => ({
-    hrefLang: lang,
+    hrefLang: LANG_TO_HTML_LANG[lang],
     href: `${origin}${getLocalizedPath(lang, pathWithoutLang)}`,
   }));
 

@@ -1,6 +1,6 @@
-import { t, tArray, translations } from '@/i18n';
+import { t, translations } from '@/i18n';
 import { APP_NAME, SITE_NAME } from '@/i18n/meta';
-import { SITE, getLocalizedPath } from '@/i18n/routing';
+import { SITE, getLocalizedPath, LANG_TO_HTML_LANG } from '@/i18n/routing';
 import type { Language } from '@/types';
 
 /**
@@ -14,14 +14,10 @@ function localizedUrl(lang: Language, pathWithoutLang: string): string {
 
 const ORG_SAME_AS = [
   'https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8',
-  'https://twitter.com/SugarLite',
-  'https://www.facebook.com/SugarLiteApp',
-  'https://www.instagram.com/sugarlite.app',
-  'https://www.youtube.com/@SugarLiteApp',
-  'https://www.tiktok.com/@sugarlite.app',
-  'https://www.xiaohongshu.com/user/profile/SugarLite',
-  'https://weibo.com/SugarLite',
 ];
+// NOTE: add social profile URLs here ONLY once they actually exist
+// (Twitter/YouTube/Xiaohongshu/Weibo...). sameAs entries pointing at
+// non-existent profiles dilute entity confidence rather than help it.
 
 const HOW_TO_COPY: Record<Language, { name: string; description: string; steps: { name: string; text: string }[] }> = {
   zh: {
@@ -154,13 +150,8 @@ export function buildMobileApplicationSchema(lang: Language) {
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '1200',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // NOTE: no aggregateRating — only add real App Store ratings here once
+    // there are enough of them (fabricated ratings risk a manual action).
     featureList,
     screenshot: [
       `${SITE}/preview/Screenshot-01.png`,
@@ -244,10 +235,15 @@ export function buildArticleSchema(
     '@type': 'Article',
     headline: title,
     description,
-    image: image ? [image] : [`${SITE}/og-image.webp`],
+    image: image ? [image] : [`${SITE}/og-image.png`],
     url: localizedUrl(lang, path),
     datePublished,
     dateModified,
+    inLanguage: LANG_TO_HTML_LANG[lang],
+    about: {
+      '@type': 'MedicalCondition',
+      name: 'Diabetes',
+    },
     author: {
       '@type': 'Organization',
       '@id': `${SITE}/#organization`,
@@ -264,6 +260,84 @@ export function buildArticleSchema(
   };
 }
 
+/**
+ * Blog index page: a `Blog` collection listing the current posts. Gives
+ * search engines and LLMs a machine-readable inventory of the blog.
+ */
+export function buildBlogSchema(
+  lang: Language,
+  posts: { title: string; description: string; path: string; datePublished: string }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${localizedUrl(lang, 'blog')}#blog`,
+    url: localizedUrl(lang, 'blog'),
+    name: t(lang, 'blog.title'),
+    description: t(lang, 'blog.subtitle'),
+    inLanguage: LANG_TO_HTML_LANG[lang],
+    publisher: {
+      '@id': `${SITE}/#organization`,
+    },
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.description,
+      url: localizedUrl(lang, post.path),
+      datePublished: post.datePublished,
+      author: {
+        '@type': 'Organization',
+        '@id': `${SITE}/#organization`,
+      },
+    })),
+  };
+}
+
+/**
+ * Medical guide pages (YMYL): MedicalWebPage with an explicit medical topic.
+ * Reinforces E-E-A-T signals for health content.
+ */
+export function buildMedicalWebPageSchema(
+  lang: Language,
+  {
+    title,
+    description,
+    path,
+    conditionName,
+  }: {
+    title: string;
+    description: string;
+    path: string;
+    conditionName: string;
+  }
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    '@id': `${localizedUrl(lang, path)}#webpage`,
+    url: localizedUrl(lang, path),
+    name: title,
+    description,
+    inLanguage: LANG_TO_HTML_LANG[lang],
+    about: {
+      '@type': 'MedicalCondition',
+      name: conditionName,
+    },
+    audience: {
+      '@type': 'PeopleAudience',
+      audienceType: 'Patient',
+    },
+    author: {
+      '@type': 'Organization',
+      '@id': `${SITE}/#organization`,
+      name: SITE_NAME[lang],
+    },
+    publisher: {
+      '@id': `${SITE}/#organization`,
+    },
+  };
+}
+
 export function buildHowToSchema(lang: Language) {
   const copy = HOW_TO_COPY[lang];
 
@@ -272,7 +346,7 @@ export function buildHowToSchema(lang: Language) {
     '@type': 'HowTo',
     name: copy.name,
     description: copy.description,
-    image: `${SITE}/og-image.webp`,
+    image: `${SITE}/og-image.png`,
     totalTime: 'PT5M',
     estimatedCost: {
       '@type': 'MonetaryAmount',

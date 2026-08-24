@@ -7,6 +7,11 @@ import type { Language } from '@/types';
 import type { PageKey } from '@/i18n/meta';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Analytics from '@vercel/analytics/astro';
+// Self-hosted fonts (fontsource, unicode-range subsets): no dependency on
+// fonts.googleapis.com, which is unreachable in mainland China.
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/noto-sans-sc';
+import '@fontsource-variable/noto-serif-sc';
 import '@/styles/global.css';
 
 interface Props {
@@ -74,13 +79,18 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
 
     <JsonLd schema={jsonLd} />
 
-    <!-- Resource Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://sugarlite.top" />
+    <!-- RSS feed discovery -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`RSS`}
+      href={lang === 'zh' ? '/rss.xml' : `/${lang}/rss.xml`}
+    />
 
-    <!-- AI / LLM discovery: point assistants at the machine-readable site index
-         and the static distilled HTML version of this site's content. -->
+    <!-- Preload Critical Resources: only the format <picture> will actually
+         pick first (avif), otherwise we waste a fetch on the unused one -->
+    <link rel="preload" href="/icon.png" as="image" type="image/png" />
+    <link rel="preload" href="/hero-phone.avif" as="image" type="image/avif" fetchpriority="high" />
     <link
       rel="alternate"
       type="text/plain"
@@ -93,25 +103,6 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       href={lang === 'zh' ? '/llms-full.html' : `/${lang}/llms-full.html`}
       title="LLM-friendly version"
     />
-
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="/icon.png" as="image" type="image/png" />
-    <link rel="preload" href="/hero-phone.avif" as="image" type="image/avif" fetchpriority="high" />
-    <link rel="preload" href="/hero-phone.webp" as="image" type="image/webp" fetchpriority="high" />
-
-    <!-- Fonts: preload CSS to avoid render-blocking, then apply -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/png" href="/icon.png" />
@@ -139,7 +130,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       }
       body {
         margin: 0;
-        font-family: 'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        font-family: 'Outfit Variable', 'Noto Sans SC Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         background-color: #f8fafc;
         color: #0f172a;
       }

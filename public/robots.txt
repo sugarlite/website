@@ -94,8 +94,31 @@ Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
 
+# Perplexity (user-triggered actions)
+User-agent: Perplexity-User
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Mistral AI (Le Chat)
+User-agent: MistralAI-User
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
 # Meta AI
 User-agent: meta-externalagent
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+User-agent: meta-webindexbot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /*/view$
+
+# Huawei (Pangu / 小艺)
+User-agent: PanguBot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$

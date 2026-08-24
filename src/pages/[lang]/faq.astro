@@ -25,7 +25,7 @@ const jsonLd = [
 <Layout lang={lang as Language} page="faq" pathWithoutLang={pathWithoutLang} jsonLd={jsonLd}>
   <Navbar
     lang={lang as Language}
-    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang as Language, href: a.href }))}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
     
   />
 

@@ -2,6 +2,10 @@
 
 > SugarLite is a professional blood sugar monitoring, trend analysis and health management application. Record, analyze, and discover what foods work best for your body.
 
+## Blog Feed (RSS)
+
+- [SugarLite Blog RSS Feed](https://sugarlite.top/en/rss.xml): subscribe to the latest blood sugar & health articles
+
 ## AI-Friendly Pages
 
 - [Complete site information (distilled)](https://sugarlite.top/llms-full.html): structured HTML version of this site, ideal for LLM consumption

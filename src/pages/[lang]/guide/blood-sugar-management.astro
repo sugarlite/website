@@ -6,7 +6,7 @@ import GuideBloodSugar from '@/components/sections/GuideBloodSugar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import { getAlternateUrls, getStaticLangPaths } from '@/i18n/routing';
 import { getPageMeta } from '@/i18n/meta';
-import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+import { buildBreadcrumbSchema, buildArticleSchema, buildMedicalWebPageSchema } from '@/lib/structuredData';
 import type { Language } from '@/types';
 
 export function getStaticPaths() {
@@ -23,10 +23,13 @@ const jsonLd = [
     { name: '健康指南', path: 'guide' },
     { name: meta.title, path: pathWithoutLang },
   ]),
-  buildArticleSchema(lang as Language, {
+  // YMYL health content: MedicalWebPage carries stronger E-E-A-T signals
+  // than a plain Article.
+  buildMedicalWebPageSchema(lang as Language, {
     title: meta.title,
     description: meta.description,
     path: pathWithoutLang,
+    conditionName: 'Blood sugar',
   }),
 ];
 ---
@@ -39,7 +42,7 @@ const jsonLd = [
 >
   <Navbar
     lang={lang as Language}
-    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang as Language, href: a.href }))}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
     
   />
 

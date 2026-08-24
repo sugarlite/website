@@ -2,6 +2,10 @@
 
 > SugarLiteは、専門的な血糖モニタリング、トレンド分析、健康管理アプリです。科学的なデータダッシュボードで健康的な生活をサポートします。
 
+## ブログ購読（RSS）
+
+- [SugarLiteブログRSSフィード](https://sugarlite.top/ja/rss.xml)：最新の血糖管理・健康記事を購読
+
 ## AI向けページ
 
 - [サイト全体情報（AI用要約版）](https://sugarlite.top/llms-full.html)：サイト内容の構造化HTML版。LLMの読み取りに最適

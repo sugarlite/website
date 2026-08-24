@@ -6,7 +6,7 @@ import GuideDiabeticDiet from '@/components/sections/GuideDiabeticDiet.astro';
 import Footer from '@/components/sections/Footer.astro';
 import { getAlternateUrls } from '@/i18n/routing';
 import { getPageMeta } from '@/i18n/meta';
-import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
+import { buildBreadcrumbSchema, buildMedicalWebPageSchema } from '@/lib/structuredData';
 
 const lang = 'zh';
 const pathWithoutLang = 'guide/diabetic-diet';
@@ -18,10 +18,13 @@ const jsonLd = [
     { name: '健康指南', path: 'guide' },
     { name: meta.title, path: pathWithoutLang },
   ]),
-  buildArticleSchema(lang, {
+  // YMYL health content: MedicalWebPage carries stronger E-E-A-T signals
+  // than a plain Article.
+  buildMedicalWebPageSchema(lang, {
     title: meta.title,
     description: meta.description,
     path: pathWithoutLang,
+    conditionName: 'Diabetes mellitus',
   }),
 ];
 ---
