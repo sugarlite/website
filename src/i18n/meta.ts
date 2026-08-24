@@ -43,7 +43,9 @@ export const SITE_NAME: Record<Language, string> = {
   'zh-Hant': '輕糖',
 };
 
-export const DEFAULT_OG_IMAGE = 'https://sugarlite.top/og-image.webp';
+export const DEFAULT_OG_IMAGE = 'https://sugarlite.top/og-image.png';
+// WebP fallback for platforms with modern crawlers (Telegram, Slack, iMessage).
+export const DEFAULT_OG_IMAGE_MODERN = 'https://sugarlite.top/og-image.webp';
 
 const BASE_KEYWORDS = {
   zh: '血糖监测,血糖记录,血糖管理,糖尿病,控糖,血糖追踪,健康管理,血糖指数,饮食记录,运动记录,SugarLite,轻糖',

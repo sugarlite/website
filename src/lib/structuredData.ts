@@ -1,7 +1,16 @@
 import { t, tArray, translations } from '@/i18n';
 import { APP_NAME, SITE_NAME } from '@/i18n/meta';
-import { SITE } from '@/i18n/routing';
+import { SITE, getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
+
+/**
+ * Absolute URL for the given locale. The default locale (zh) is served at
+ * root paths — never emit `/zh/...` URLs: those are 308-redirects and would
+ * conflict with the canonical URL in JSON-LD.
+ */
+function localizedUrl(lang: Language, pathWithoutLang: string): string {
+  return `${SITE}${getLocalizedPath(lang, pathWithoutLang)}`;
+}
 
 const ORG_SAME_AS = [
   'https://apps.apple.com/app/apple-store/id6753901096?pt=127680531&ct=sugarlitetop&mt=8',
@@ -175,13 +184,13 @@ export function buildBreadcrumbSchema(lang: Language, segments: { name: string; 
       '@type': 'ListItem',
       position: 1,
       name: t(lang, 'nav.home'),
-      item: `${SITE}/${lang}`,
+      item: localizedUrl(lang, ''),
     },
     ...segments.map((seg, index) => ({
       '@type': 'ListItem',
       position: index + 2,
       name: seg.name,
-      item: `${SITE}/${lang}/${seg.path}`,
+      item: localizedUrl(lang, seg.path),
     })),
   ];
 
@@ -220,12 +229,14 @@ export function buildArticleSchema(
     path,
     datePublished = '2025-06-23T00:00:00+08:00',
     dateModified = '2025-06-23T00:00:00+08:00',
+    image,
   }: {
     title: string;
     description: string;
     path: string;
     datePublished?: string;
     dateModified?: string;
+    image?: string;
   }
 ) {
   return {
@@ -233,18 +244,22 @@ export function buildArticleSchema(
     '@type': 'Article',
     headline: title,
     description,
-    url: `${SITE}/${lang}/${path}`,
+    image: image ? [image] : [`${SITE}/og-image.webp`],
+    url: localizedUrl(lang, path),
     datePublished,
     dateModified,
     author: {
+      '@type': 'Organization',
       '@id': `${SITE}/#organization`,
+      name: SITE_NAME[lang],
+      url: SITE,
     },
     publisher: {
       '@id': `${SITE}/#organization`,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE}/${lang}/${path}`,
+      '@id': localizedUrl(lang, path),
     },
   };
 }
@@ -270,8 +285,8 @@ export function buildHowToSchema(lang: Language) {
       text: step.text,
       url:
         index === 0
-          ? `${SITE}/${lang}#download`
-          : `${SITE}/${lang}#features`,
+          ? `${localizedUrl(lang, '')}#download`
+          : `${localizedUrl(lang, '')}#features`,
       ...(index === 0 ? { image: `${SITE}/preview/Screenshot-01.png` } : {}),
     })),
   };

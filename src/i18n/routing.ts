@@ -49,7 +49,7 @@ export function getAlternateUrls(
 ): AlternateUrl[] {
   const origin = baseUrl || SITE;
 
-  const alternates = LANGUAGES.map((lang) => ({
+  const alternates: AlternateUrl[] = LANGUAGES.map((lang) => ({
     hrefLang: lang,
     href: `${origin}${getLocalizedPath(lang, pathWithoutLang)}`,
   }));

@@ -3,7 +3,6 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
 
 const SITE = 'https://sugarlite.top';
 
@@ -35,23 +34,24 @@ function getLocalizedUrl(locale, pathWithoutLang) {
 
 export default defineConfig({
   site: SITE,
-  // Every page opts into prerendering (`export const prerender = true`), so
-  // the site is fully static. `output: 'server'` is required so the Vercel
-  // adapter compiles src/middleware.ts into an edge middleware that serves a
-  // distilled AI-friendly version to generative-engine crawlers (GEO).
-  output: 'server',
-  adapter: vercel({ middlewareMode: 'edge' }),
+  // Fully static output. The former `output: 'server'` + Vercel edge
+  // middleware (AI-crawler GEO rewriting) never actually ran in production —
+  // the adapter only routed /_server-islands & /_image through the middleware
+  // function. The GEO distilled pages are now generated at build time by
+  // scripts/generate-llms-html.mjs (see postbuild in package.json).
   integrations: [
     react(),
     mdx(),
     sitemap({
-      lastmod: new Date(),
+      // Only bump lastmod when content actually changes: a blanket
+      // `lastmod: new Date()` makes search engines distrust the field.
+      lastmod: new Date('2026-08-24'),
       filter: (page) => {
         const path = new URL(page).pathname;
         const isLocalized = /^\/(en|ja|zh-Hant)\//.test(path) || /^\/(en|ja|zh-Hant)$/.test(path);
         const isDefaultLocaleRoot =
           path === '/' ||
-          /^\/(blog|faq|guide|privacy|stories|terms)(\/|$)/.test(path);
+          /^\/(blog|faq|guide|privacy|stories|terms|changelog)(\/|$)/.test(path);
         return isLocalized || isDefaultLocaleRoot;
       },
       serialize: (item) => {

@@ -5,7 +5,8 @@ import { getLocalizedPath } from '@/i18n/routing';
 import type { Language } from '@/types';
 
 interface AlternateUrl {
-  lang: Language;
+  /** hreflang code, e.g. `zh-CN`, `en-US`, `x-default` (kept loose for flexibility) */
+  lang: string;
   href: string;
 }
 
@@ -74,7 +75,7 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
                     : 'text-slate-500 dark:text-slate-400 hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10'
                 }`}
               >
-                {LANG_LABELS[alt.lang]}
+                {LANG_LABELS[alt.lang as Language] ?? alt.lang}
               </a>
             ))
           }

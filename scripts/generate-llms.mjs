@@ -2,7 +2,8 @@
  * Post-build: generate llms.txt / llms-full.txt / blog/llms.txt into dist/.
  *
  * Single source of truth: src/data/llms/{zh,en,ja,zh-Hant}[-full].txt
- * (also imported by src/middleware.ts via ?raw).
+ * (the -full variants are also rendered to static /llms-full.html pages by
+ * scripts/generate-llms-html.mjs).
  *
  * Blog indexes are generated from src/content/blog/*.mdx frontmatter so the
  * article list always matches the deployed site.

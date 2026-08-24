@@ -5,8 +5,8 @@ Disallow: /cdn-cgi/
 Disallow: /*/view$
 
 # ── AI Crawlers: explicitly allowed for GEO ────────────────────────────────
-# Generative-engine agents are welcome: we serve them a distilled, structured
-# version of the site (see src/middleware.ts) plus /llms.txt.
+# Generative-engine agents are welcome: each page links to a static distilled
+# HTML version of the site (/{lang}/llms-full.html) plus /llms.txt.
 
 # OpenAI (ChatGPT, GPTBot, AI search)
 User-agent: GPTBot
