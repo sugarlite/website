@@ -144,9 +144,10 @@ function buildAiPage(lang) {
   const body = mdToHtml(readFileSync(join(SRC_DIR, `${lang}-full.txt`), 'utf8'));
 
   // hreflang alternates between the four localized AI pages.
+  const HREFLANG = { zh: 'zh-CN', en: 'en-US', ja: 'ja-JP', 'zh-Hant': 'zh-TW' };
   const alternates = LOCALES.map(
     (l) =>
-      `<link rel="alternate" type="text/html" hreflang="${l}" href="${SITE}${langPrefix(l)}/llms-full.html">`
+      `<link rel="alternate" type="text/html" hreflang="${HREFLANG[l]}" href="${SITE}${langPrefix(l)}/llms-full.html">`
   ).join('\n');
 
   // Canonical points at the human page this distilled version belongs to
@@ -161,7 +162,7 @@ function buildAiPage(lang) {
 <title>${info.title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="${info.description}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="${homeUrl}">
 <link rel="alternate" type="text/plain" href="${llmsFullUrl}" title="llms.txt">
 ${alternates}

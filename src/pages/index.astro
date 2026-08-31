@@ -31,7 +31,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout lang={lang} page="home" jsonLd={jsonLd}>
+<Layout lang={lang} page="home" jsonLd={jsonLd} preloadHero>
   <Navbar
     lang={lang}
     alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}

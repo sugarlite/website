@@ -5,6 +5,7 @@ import Navbar from '@/components/sections/Navbar.astro';
 import FAQ from '@/components/sections/FAQ.astro';
 import Footer from '@/components/sections/Footer.astro';
 import { getAlternateUrls, getStaticLangPaths } from '@/i18n/routing';
+import { t } from '@/i18n';
 import { buildBreadcrumbSchema, buildFAQPageSchema } from '@/lib/structuredData';
 import type { Language } from '@/types';
 
@@ -17,7 +18,7 @@ const pathWithoutLang = 'faq';
 const alternates = getAlternateUrls(pathWithoutLang, "zh", Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
 
 const jsonLd = [
-  buildBreadcrumbSchema(lang as Language, [{ name: 'FAQ', path: pathWithoutLang }]),
+  buildBreadcrumbSchema(lang as Language, [{ name: t(lang as Language, 'nav.faq'), path: pathWithoutLang }]),
   buildFAQPageSchema(lang as Language),
 ];
 ---

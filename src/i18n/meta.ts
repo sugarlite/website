@@ -9,6 +9,7 @@ export type PageKey =
   | 'guideBloodSugar'
   | 'guideDiabeticDiet'
   | 'stories'
+  | 'guide'
   | 'blog'
   | 'blogWhatIsBloodSugar'
   | 'blogHowToLowerBloodSugarNaturally'
@@ -255,6 +256,36 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
   },
+  guide: {
+    zh: {
+      title: '健康指南 - SugarLite 轻糖',
+      description:
+        '血糖管理与糖尿病饮食指南：正常血糖范围、监测方法、升糖指数、餐盘法与个性化控糖方案。',
+      keywords: '血糖管理指南,糖尿病饮食,正常血糖范围,升糖指数,控糖,SugarLite,轻糖',
+      ogType: 'website',
+    },
+    en: {
+      title: 'Health Guides - SugarLite',
+      description:
+        'Blood sugar and diabetic diet guides covering normal ranges, monitoring, glycemic index, the plate method, and personalized glucose control.',
+      keywords: 'blood sugar guide,diabetic diet,glucose ranges,glycemic index,SugarLite',
+      ogType: 'website',
+    },
+    ja: {
+      title: '健康ガイド - SugarLite',
+      description:
+        '血糖管理と糖尿病の食事ガイド。正常範囲、測定方法、GI、プレート法、個別化された血糖コントロールを解説します。',
+      keywords: '血糖管理ガイド,糖尿病食事,正常血糖値,GI,SugarLite',
+      ogType: 'website',
+    },
+    'zh-Hant': {
+      title: '健康指南 - SugarLite 輕糖',
+      description:
+        '血糖管理與糖尿病飲食指南：正常血糖範圍、監測方法、升糖指數、餐盤法與個人化控糖方案。',
+      keywords: '血糖管理指南,糖尿病飲食,正常血糖範圍,升糖指數,控糖,SugarLite,輕糖',
+      ogType: 'website',
+    },
+  },
   blog: {
     zh: {
       title: 'SugarLite 轻糖博客 - 血糖管理与健康生活指南',
@@ -301,10 +332,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '血糖とは？基礎知識と正常値を解説 - SugarLite',
+      title: '血糖とは？由来・働き・正常範囲をわかりやすく解説 - SugarLite',
       description:
-        '血糖とは何か、血糖の来源と働き、正常範囲について解説します。SugarLiteが血糖の基礎知識をわかりやすく説明します。',
-      keywords: '血糖とは,血糖の働き,正常血糖値,血糖変動,グルコース,インスリン,SugarLite',
+        '血糖とは何か、どこから来て体でどう使われるか、正常範囲はどのくらいか。SugarLiteが単位換算つきで解説します。',
+      keywords: '血糖とは,血糖の働き,正常血糖値,血糖変動,グルコース,インスリン,空腹時血糖,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -331,10 +362,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '自然に血糖を下げる方法 - SugarLite',
+      title: '自然に血糖を下げる方法：科学的根拠のある10の対策 - SugarLite',
       description:
-        '食事、運動、睡眠、ストレス管理など、科学的に効果的な血糖を下げる方法を解説します。',
-      keywords: '血糖を下げる,自然に血糖コントロール,食事,運動,糖尿病予防,SugarLite',
+        '極端な食事制限は不要です。低GI、食物繊維、食事の順番、運動、睡眠など、研究に裏打ちされた10の方法を解説します。',
+      keywords: '血糖を下げる,自然に血糖コントロール,低GI,食物繊維,糖尿病予防,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -361,10 +392,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: 'おすすめ血糖管理アプリ - SugarLite',
+      title: '血糖記録アプリの選び方：SugarLiteで血糖を管理する - SugarLite',
       description:
-        '優れた血糖管理アプリの選び方と、SugarLiteの血糖指数分析や食事記録機能を紹介します。',
-      keywords: '血糖管理アプリ,血糖記録アプリ,糖尿病アプリ,SugarLite,血糖指数分析',
+        '良い血糖アプリに必要な6つの機能、PGIペア分析、機器との連携を解説します。',
+      keywords: '血糖管理アプリ,血糖記録アプリ,糖尿病アプリ,SugarLite,PGI分析',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -391,10 +422,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: 'CGMと穿刺式血糖測定の比較 - SugarLite',
+      title: 'CGMと指先測定、どちらが自分に合う？正確性・費用・対象者 - SugarLite',
       description:
-        '連続血糖測定器（CGM）と従来の穿刺式血糖測定の違い、メリット・デメリットを比較します。',
-      keywords: 'CGM,連続血糖測定,穿刺,血糖測定,血糖値,SugarLite',
+        '持続血糖測定（CGM）と従来の指先穿刺を、正確性、遅れ、快適さ、コスト、向き不向きで比較します。',
+      keywords: 'CGM,持続血糖測定,指先穿刺,血糖測定器,MARD,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -421,10 +452,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: 'HbA1cとは？ - SugarLite',
+      title: 'HbA1cとは？糖化ヘモグロビン検査の意味と目標値 - SugarLite',
       description:
-        'HbA1c（糖化ヘモグロビン）の意味、検査の意義、目標値、生活習慣による改善方法を解説します。',
-      keywords: 'HbA1c,糖化ヘモグロビン,A1c目標値,血糖コントロール,糖尿病検査,SugarLite',
+        'HbA1cは過去2〜3ヶ月の平均血糖を表す指標です。正常値・予備軍・糖尿病の目安と日常測定との違いを解説します。',
+      keywords: 'HbA1c,糖化ヘモグロビン,A1c目標値,A1c正常値,血糖コントロール,糖尿病検査,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -451,10 +482,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '食後血糖とは？ - SugarLite',
+      title: '食後血糖が大切な理由：正常値・測り方・スパイクの抑え方 - SugarLite',
       description:
-        '食後血糖の重要性、正常値、影響要因、測定タイミング、食事と運動による管理方法を解説します。',
-      keywords: '食後血糖,食後血糖正常値,血糖スパイク,糖尿病食事,血糖管理,SugarLite',
+        '食後血糖は食事への体の反応を映します。健康な人の目安、ピークの測り方、食事の順番と散歩でスパイクを抑える方法を解説します。',
+      keywords: '食後血糖,食後血糖正常値,血糖スパイク,食後2時間,糖尿病食事,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -481,10 +512,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '正常血糖値一覧表 - SugarLite',
+      title: '正常血糖値一覧：空腹時・食後・随時・HbA1cの目安 - SugarLite',
       description:
-        '空腹時血糖、食後血糖、随時血糖、HbA1cの正常範囲と糖尿病診断基準を解説します。',
-      keywords: '正常血糖値,空腹時血糖,食後血糖,HbA1c,糖尿病診断,SugarLite',
+        '空腹時、食後2時間、随時血糖、HbA1cの正常範囲と糖尿病の診断目安を表にまとめ、mg/dL と mmol/L を併記します。',
+      keywords: '正常血糖値,空腹時血糖,食後血糖,随時血糖,HbA1c,糖尿病診断,mg/dL,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -511,10 +542,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '2型糖尿病の食事療法 - SugarLite',
+      title: '2型糖尿病の食事ガイド：何を、どう、どれだけ食べるか - SugarLite',
       description:
-        '2型糖尿病の食事管理、低GI食品、炭水化物計算、プレート法など、血糖コントロールのための実践的な食事ガイドです。',
-      keywords: '2型糖尿病,食事療法,低GI食品,炭水化物,血糖コントロール,SugarLite',
+        '2型糖尿病の食事は禁止リストではありません。低GI、カーボカウント、プレート法、食事の順番で続けられる管理を組み立てます。',
+      keywords: '2型糖尿病,食事療法,低GI食品,カーボカウント,プレート法,血糖コントロール,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -541,10 +572,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: '高血糖の症状 - SugarLite',
+      title: '高血糖の症状：体が出す10の警告サイン - SugarLite',
       description:
-        '高血糖の初期症状、10の警告サイン、長期的なリスク、血糖値が高い場合の対処法を解説します。',
-      keywords: '高血糖,症状,糖尿病,血糖コントロール,SugarLite',
+        '高血糖は初期に自覚がないことがあります。口渇・頻尿・疲労など10のサインと、250 mg/dL 超で急ぐべき理由を解説します。',
+      keywords: '高血糖の症状,高血糖,糖尿病の初期症状,口渇,頻尿,DKA,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {
@@ -571,10 +602,10 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       ogType: 'article',
     },
     ja: {
-      title: 'インスリン記録ガイド - SugarLite',
+      title: 'インスリン記録の完全ガイド：種類・用量・打ち方のコツ - SugarLite',
       description:
-        'インスリン治療の基礎、種類、用量記録、注射タイミング、アプリでの管理方法を解説します。',
-      keywords: 'インスリン,インスリン記録,糖尿病,インスリン用量,SugarLite',
+        'インスリンの種類、記録すべき項目、食前タイミング、部位ローテーション、低血糖への備え、アプリでの追跡を解説します。',
+      keywords: 'インスリン記録,インスリンの種類,超速効型,持効型,注射部位,低血糖,SugarLite',
       ogType: 'article',
     },
     'zh-Hant': {

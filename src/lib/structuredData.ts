@@ -1,3 +1,4 @@
+import { MEDICAL_REFERENCES } from '@/constants';
 import { t, translations } from '@/i18n';
 import { APP_NAME, SITE_NAME } from '@/i18n/meta';
 import { SITE, getLocalizedPath, LANG_TO_HTML_LANG } from '@/i18n/routing';
@@ -100,7 +101,8 @@ export function buildWebSiteSchema(lang: Language) {
     '@type': 'WebSite',
     '@id': `${SITE}/#website`,
     url: SITE,
-    name: SITE_NAME[lang],
+    name: 'SugarLite',
+    alternateName: SITE_NAME[lang],
     description: t(lang, 'hero.metaDescription'),
     inLanguage: ['zh-CN', 'en-US', 'ja-JP', 'zh-TW'],
     publisher: {
@@ -109,12 +111,13 @@ export function buildWebSiteSchema(lang: Language) {
   };
 }
 
-export function buildOrganizationSchema(lang: Language) {
+export function buildOrganizationSchema(_lang: Language) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${SITE}/#organization`,
-    name: SITE_NAME[lang],
+    name: 'SugarLite',
+    alternateName: ['轻糖', '輕糖', '軽糖', 'SugarLite 轻糖'],
     url: SITE,
     logo: {
       '@type': 'ImageObject',
@@ -138,9 +141,10 @@ export function buildMobileApplicationSchema(lang: Language) {
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'MobileApplication',
+    '@type': ['MobileApplication', 'SoftwareApplication'],
     '@id': `${SITE}/#app`,
-    name: APP_NAME[lang],
+    name: 'SugarLite',
+    alternateName: APP_NAME[lang],
     description: t(lang, 'hero.metaDescription'),
     operatingSystem: ['iOS'],
     applicationCategory: 'HealthApplication',
@@ -218,9 +222,10 @@ export function buildArticleSchema(
     title,
     description,
     path,
-    datePublished = '2025-06-23T00:00:00+08:00',
-    dateModified = '2025-06-23T00:00:00+08:00',
+    datePublished,
+    dateModified,
     image,
+    type = 'BlogPosting',
   }: {
     title: string;
     description: string;
@@ -228,17 +233,19 @@ export function buildArticleSchema(
     datePublished?: string;
     dateModified?: string;
     image?: string;
+    type?: 'BlogPosting' | 'Article';
   }
 ) {
+  const url = localizedUrl(lang, path);
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': type,
     headline: title,
     description,
     image: image ? [image] : [`${SITE}/og-image.png`],
-    url: localizedUrl(lang, path),
-    datePublished,
-    dateModified,
+    url,
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
     inLanguage: LANG_TO_HTML_LANG[lang],
     about: {
       '@type': 'MedicalCondition',
@@ -247,7 +254,7 @@ export function buildArticleSchema(
     author: {
       '@type': 'Organization',
       '@id': `${SITE}/#organization`,
-      name: SITE_NAME[lang],
+      name: 'SugarLite',
       url: SITE,
     },
     publisher: {
@@ -255,7 +262,39 @@ export function buildArticleSchema(
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': localizedUrl(lang, path),
+      '@id': url,
+    },
+    isPartOf: {
+      '@id': `${localizedUrl(lang, 'blog')}#blog`,
+    },
+  };
+}
+
+export function buildWebPageSchema(
+  lang: Language,
+  {
+    title,
+    description,
+    path,
+  }: {
+    title: string;
+    description: string;
+    path: string;
+  }
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${localizedUrl(lang, path)}#webpage`,
+    url: localizedUrl(lang, path),
+    name: title,
+    description,
+    inLanguage: LANG_TO_HTML_LANG[lang],
+    isPartOf: {
+      '@id': `${SITE}/#website`,
+    },
+    publisher: {
+      '@id': `${SITE}/#organization`,
     },
   };
 }
@@ -304,13 +343,19 @@ export function buildMedicalWebPageSchema(
     description,
     path,
     conditionName,
+    citationKeys,
   }: {
     title: string;
     description: string;
     path: string;
     conditionName: string;
+    citationKeys?: string[];
   }
 ) {
+  const citations = (citationKeys ?? [])
+    .map((key) => MEDICAL_REFERENCES[key]?.url)
+    .filter((url): url is string => Boolean(url));
+
   return {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
@@ -330,11 +375,47 @@ export function buildMedicalWebPageSchema(
     author: {
       '@type': 'Organization',
       '@id': `${SITE}/#organization`,
-      name: SITE_NAME[lang],
+      name: 'SugarLite',
     },
     publisher: {
       '@id': `${SITE}/#organization`,
     },
+    ...(citations.length
+      ? {
+          citation: citations.map((url) => ({
+            '@type': 'CreativeWork',
+            url,
+          })),
+        }
+      : {}),
+  };
+}
+
+export function buildGuideIndexSchema(
+  lang: Language,
+  guides: { title: string; description: string; path: string }[]
+) {
+  const url = localizedUrl(lang, 'guide');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: t(lang, 'guide.indexTitle'),
+    description: t(lang, 'guide.indexSubtitle'),
+    inLanguage: LANG_TO_HTML_LANG[lang],
+    isPartOf: {
+      '@id': `${SITE}/#website`,
+    },
+    publisher: {
+      '@id': `${SITE}/#organization`,
+    },
+    hasPart: guides.map((guide) => ({
+      '@type': 'MedicalWebPage',
+      name: guide.title,
+      description: guide.description,
+      url: localizedUrl(lang, guide.path),
+    })),
   };
 }
 

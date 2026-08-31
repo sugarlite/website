@@ -5,6 +5,7 @@ import Navbar from '@/components/sections/Navbar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import BlogPost from '@/components/sections/BlogPost.astro';
 import { getAlternateUrls, LOCALIZED_LANGUAGES, SITE } from '@/i18n/routing';
+import { t } from '@/i18n';
 import { buildBreadcrumbSchema, buildArticleSchema } from '@/lib/structuredData';
 import { getCollection } from 'astro:content';
 import type { Language } from '@/types';
@@ -64,7 +65,7 @@ const ogImageType = ogImageUrl?.endsWith('.webp')
 
 const jsonLd = [
   buildBreadcrumbSchema(lang as Language, [
-    { name: 'Blog', path: 'blog' },
+    { name: t(lang as Language, 'nav.blog'), path: 'blog' },
     { name: title, path: pathWithoutLang },
   ]),
   buildArticleSchema(lang as Language, {
@@ -89,6 +90,8 @@ const jsonLd = [
   ogImage={ogImageUrl}
   ogImageType={ogImageType}
   jsonLd={jsonLd}
+  publishedTime={`${pubDate}T00:00:00+08:00`}
+  modifiedTime={`${updatedDate}T00:00:00+08:00`}
 >
   <Navbar
     lang={lang as Language}

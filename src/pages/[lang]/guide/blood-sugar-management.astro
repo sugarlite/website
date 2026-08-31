@@ -6,7 +6,8 @@ import GuideBloodSugar from '@/components/sections/GuideBloodSugar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import { getAlternateUrls, getStaticLangPaths } from '@/i18n/routing';
 import { getPageMeta } from '@/i18n/meta';
-import { buildBreadcrumbSchema, buildArticleSchema, buildMedicalWebPageSchema } from '@/lib/structuredData';
+import { t } from '@/i18n';
+import { buildBreadcrumbSchema, buildMedicalWebPageSchema } from '@/lib/structuredData';
 import type { Language } from '@/types';
 
 export function getStaticPaths() {
@@ -20,16 +21,15 @@ const meta = getPageMeta('guideBloodSugar', lang as Language);
 
 const jsonLd = [
   buildBreadcrumbSchema(lang as Language, [
-    { name: '健康指南', path: 'guide' },
+    { name: t(lang as Language, 'nav.guides'), path: 'guide' },
     { name: meta.title, path: pathWithoutLang },
   ]),
-  // YMYL health content: MedicalWebPage carries stronger E-E-A-T signals
-  // than a plain Article.
   buildMedicalWebPageSchema(lang as Language, {
     title: meta.title,
     description: meta.description,
     path: pathWithoutLang,
     conditionName: 'Blood sugar',
+    citationKeys: ['bloodSugarRanges', 'bloodSugarMonitoring', 'idfDiabetesTypes'],
   }),
 ];
 ---

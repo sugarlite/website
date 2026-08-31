@@ -332,6 +332,9 @@
   },
   "guide": {
     "backToHome": "Back to Home",
+    "backToGuides": "Back to Guides",
+    "indexTitle": "Health Guides",
+    "indexSubtitle": "From blood sugar basics to diabetic eating, practical guides that turn glucose control into a daily habit.",
     "toc": "Table of Contents",
     "relatedGuides": "Related Guides",
     "ctaTitle": "Start Managing Your Blood Sugar Scientifically",

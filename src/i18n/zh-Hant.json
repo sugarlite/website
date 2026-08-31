@@ -332,6 +332,9 @@
   },
   "guide": {
     "backToHome": "返回首頁",
+    "backToGuides": "返回健康指南",
+    "indexTitle": "健康指南",
+    "indexSubtitle": "從血糖基礎知識到糖尿病飲食，用可執行的方法幫你把控糖變成日常習慣。",
     "toc": "目錄",
     "relatedGuides": "相關指南",
     "ctaTitle": "開始科學管理你的血糖",

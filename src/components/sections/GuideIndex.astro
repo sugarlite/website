@@ -1,0 +1,53 @@
+---
+import { t } from '@/i18n';
+import { getLocalizedPath } from '@/i18n/routing';
+import type { Language } from '@/types';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const guides = [
+  {
+    href: getLocalizedPath(lang, 'guide/blood-sugar-management'),
+    title: t(lang, 'guide.bloodSugar.title'),
+    subtitle: t(lang, 'guide.bloodSugar.subtitle'),
+  },
+  {
+    href: getLocalizedPath(lang, 'guide/diabetic-diet'),
+    title: t(lang, 'guide.diabeticDiet.title'),
+    subtitle: t(lang, 'guide.diabeticDiet.subtitle'),
+  },
+];
+---
+
+<section class="min-h-screen bg-white dark:bg-slate-950 pt-32 pb-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 dark:text-white">
+        {t(lang, 'guide.indexTitle')}
+      </h1>
+      <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-[52ch]">
+        {t(lang, 'guide.indexSubtitle')}
+      </p>
+    </header>
+
+    <ul class="grid gap-6 sm:grid-cols-2">
+      {
+        guides.map((guide) => (
+          <li>
+            <a
+              href={guide.href}
+              class="block h-full border border-slate-200 dark:border-slate-800 p-6 hover:border-brand transition-colors"
+            >
+              <h2 class="text-xl font-semibold mb-2 text-slate-900 dark:text-white">{guide.title}</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{guide.subtitle}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

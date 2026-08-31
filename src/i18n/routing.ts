@@ -15,6 +15,21 @@ export const LANG_TO_HTML_LANG: Record<Language, string> = {
   'zh-Hant': 'zh-TW',
 };
 
+export const HTML_LANG_TO_LANG: Record<string, Language> = {
+  'zh-CN': 'zh',
+  'en-US': 'en',
+  'ja-JP': 'ja',
+  'zh-TW': 'zh-Hant',
+};
+
+/** Extra hreflang codes that map to the same URL as the regional tag. */
+export const HREFLANG_ALIASES: Record<string, string[]> = {
+  'zh-CN': ['zh', 'zh-Hans'],
+  'en-US': ['en'],
+  'ja-JP': ['ja'],
+  'zh-TW': ['zh-Hant'],
+};
+
 export const LANG_TO_OG_LOCALE: Record<Language, string> = {
   zh: 'zh_CN',
   en: 'en_US',
@@ -62,6 +77,23 @@ export function getAlternateUrls(
   });
 
   return alternates;
+}
+
+/**
+ * Expand regional hreflang tags with language-only aliases (en, zh, ja, …)
+ * so unspecified-region queries still match. Navbar should keep using
+ * `getAlternateUrls` so the language switcher is not duplicated.
+ */
+export function expandHreflangUrls(alternates: AlternateUrl[]): AlternateUrl[] {
+  const extra: AlternateUrl[] = [];
+  for (const alt of alternates) {
+    const aliases = HREFLANG_ALIASES[alt.hrefLang];
+    if (!aliases) continue;
+    for (const hrefLang of aliases) {
+      extra.push({ hrefLang, href: alt.href });
+    }
+  }
+  return [...alternates, ...extra];
 }
 
 export function getStaticLangPaths() {

@@ -332,6 +332,9 @@
   },
   "guide": {
     "backToHome": "ホームに戻る",
+    "backToGuides": "ガイド一覧に戻る",
+    "indexTitle": "健康ガイド",
+    "indexSubtitle": "血糖の基礎から糖尿病の食事まで、血糖コントロールを日常の習慣にするための実践ガイドです。",
     "toc": "目次",
     "relatedGuides": "関連ガイド",
     "ctaTitle": "科学的な血糖管理を始めよう",

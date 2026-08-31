@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/generate-llms.mjs && node scripts/generate-llms-html.mjs",
+    "postbuild": "node scripts/generate-llms.mjs && node scripts/generate-llms-html.mjs && node scripts/indexnow.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

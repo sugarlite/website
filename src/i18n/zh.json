@@ -332,6 +332,9 @@
   },
   "guide": {
     "backToHome": "返回首页",
+    "backToGuides": "返回健康指南",
+    "indexTitle": "健康指南",
+    "indexSubtitle": "从血糖基础知识到糖尿病饮食，用可执行的方法帮你把控糖变成日常习惯。",
     "toc": "目录",
     "relatedGuides": "相关指南",
     "ctaTitle": "开始科学管理你的血糖",
