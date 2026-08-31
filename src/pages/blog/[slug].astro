@@ -21,6 +21,7 @@ export async function getStaticPaths() {
     'high-blood-sugar-symptoms',
     'insulin-tracking-guide',
     'what-is-pgi',
+    'sugarlite-vs-mysugr',
   ];
   const allEntries = await getCollection('blog');
   const paths: { params: { slug: string } }[] = [];
@@ -53,6 +54,11 @@ const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).fil
 
 const { title, description, pubDate, updatedDate, ogImage, cover } = entry.data;
 const ogImageUrl = ogImage ? `${SITE}${ogImage}` : cover ? `${SITE}${cover}` : undefined;
+const ogImageType = ogImageUrl?.endsWith('.webp')
+  ? 'image/webp'
+  : ogImageUrl?.endsWith('.jpg') || ogImageUrl?.endsWith('.jpeg')
+    ? 'image/jpeg'
+    : 'image/png';
 
 const jsonLd = [
   buildBreadcrumbSchema(lang, [
@@ -65,6 +71,7 @@ const jsonLd = [
     path: pathWithoutLang,
     datePublished: `${pubDate}T00:00:00+08:00`,
     dateModified: `${updatedDate}T00:00:00+08:00`,
+    image: ogImageUrl,
   }),
 ];
 ---
@@ -73,7 +80,12 @@ const jsonLd = [
   lang={lang}
   page="blog"
   pathWithoutLang={pathWithoutLang}
+  title={title}
+  description={description}
+  keywords={entry.data.keywords}
+  ogType="article"
   ogImage={ogImageUrl}
+  ogImageType={ogImageType}
   jsonLd={jsonLd}
 >
   <Navbar

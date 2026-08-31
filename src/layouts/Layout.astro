@@ -18,7 +18,12 @@ interface Props {
   lang: Language;
   page: PageKey;
   pathWithoutLang?: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogType?: 'website' | 'article';
   ogImage?: string;
+  ogImageType?: string;
   jsonLd?: unknown[];
   noIndex?: boolean;
 }
@@ -27,12 +32,23 @@ const {
   lang,
   page,
   pathWithoutLang = '',
+  title: overrideTitle,
+  description: overrideDescription,
+  keywords: overrideKeywords,
+  ogType: overrideOgType,
   ogImage = DEFAULT_OG_IMAGE,
+  ogImageType,
   jsonLd = [],
   noIndex = false,
 } = Astro.props;
 
-const meta = getPageMeta(page, lang);
+const pageMeta = getPageMeta(page, lang);
+const meta = {
+  title: overrideTitle ?? pageMeta.title,
+  description: overrideDescription ?? pageMeta.description,
+  keywords: overrideKeywords ?? pageMeta.keywords,
+  ogType: overrideOgType ?? pageMeta.ogType,
+};
 const canonical = `${SITE}${getLocalizedPath(lang, pathWithoutLang)}`;
 const alternates: AlternateUrl[] = getAlternateUrls(pathWithoutLang);
 const htmlLang = LANG_TO_HTML_LANG[lang];
@@ -72,6 +88,7 @@ const htmlLang = LANG_TO_HTML_LANG[lang];
       canonical={canonical}
       ogImage={ogImage}
       ogType={meta.ogType}
+      ogImageType={ogImageType}
       keywords={meta.keywords}
       alternateUrls={alternates}
       robots={noIndex ? 'noindex, nofollow' : undefined}
