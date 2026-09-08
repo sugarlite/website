@@ -3,6 +3,9 @@ User-agent: *
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /*/view$
+# Content Signals (https://contentsignals.org/): AI 生成引擎引用本站内容（GEO），
+# 但不用于模型训练；搜索索引照常。
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 # ── AI Crawlers: explicitly allowed for GEO ────────────────────────────────
 # Generative-engine agents are welcome: each page links to a static distilled
