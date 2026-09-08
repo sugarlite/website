@@ -6,6 +6,7 @@ export type PageKey =
   | 'terms'
   | 'changelog'
   | 'faq'
+  | 'prediabetesCheck'
   | 'guideBloodSugar'
   | 'guideDiabeticDiet'
   | 'stories'
@@ -175,6 +176,40 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
       title: '常見問題 - SugarLite 輕糖',
       description:
         'SugarLite 輕糖常見問題解答，了解血糖管理、應用使用、資料同步等問題的詳細答案。',
+      ogType: 'website',
+    },
+  },
+  prediabetesCheck: {
+    zh: {
+      title: '糖前期自测：3 分钟评估糖尿病前期风险 - SugarLite 轻糖',
+      description:
+        '免费糖尿病前期（糖前期）自测问卷：结合近期空腹血糖、餐后血糖、HbA1c、典型症状与风险因素，按 ADA/WHO 标准评估您的糖前期风险，结果仅供健康管理参考。',
+      keywords:
+        '糖前期自测,糖尿病前期自测,糖尿病前期症状,糖前期判断标准,空腹血糖正常值,HbA1c,血糖自测,糖尿病风险评估,SugarLite',
+      ogType: 'website',
+    },
+    en: {
+      title: 'Prediabetes Self-Check: Assess Your Risk in 3 Minutes - SugarLite',
+      description:
+        'Free prediabetes self-check questionnaire. Combine your recent fasting and post-meal glucose, HbA1c, symptoms, and risk factors — scored against ADA/WHO cutoffs to gauge your prediabetes risk.',
+      keywords:
+        'prediabetes test,prediabetes self-check,prediabetes symptoms,am I prediabetic,fasting glucose range,HbA1c range,diabetes risk assessment,SugarLite',
+      ogType: 'website',
+    },
+    ja: {
+      title: '糖尿病前期セルフチェック：3分でリスク評価 - SugarLite',
+      description:
+        '無料の糖尿病前期チェック。直近の空腹時血糖・食後血糖・HbA1c・症状・リスク要因をADA/WHO基準で評価し、糖尿病前期のリスクを把握できます。',
+      keywords:
+        '糖尿病前期チェック,糖尿病予備軍,糖尿病前期 症状,空腹時血糖 基準,HbA1c 基準,糖尿病リスク判定,SugarLite',
+      ogType: 'website',
+    },
+    'zh-Hant': {
+      title: '糖前期自我檢測：3 分鐘評估糖尿病前期風險 - SugarLite 輕糖',
+      description:
+        '免費糖尿病前期（糖前期）自我檢測問卷：結合近期空腹血糖、餐後血糖、HbA1c、典型症狀與風險因素，按 ADA/WHO 標準評估您的糖前期風險，結果僅供健康管理參考。',
+      keywords:
+        '糖前期自我檢測,糖尿病前期症狀,糖前期判斷標準,空腹血糖正常值,HbA1c,血糖自我檢測,糖尿病風險評估,SugarLite',
       ogType: 'website',
     },
   },

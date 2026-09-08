@@ -25,6 +25,7 @@
 - [血糖管理の完全ガイド](https://sugarlite.top/ja/guide/blood-sugar-management)
 - [糖尿病の食事管理ガイド](https://sugarlite.top/ja/guide/diabetic-diet)
 - [ユーザーの声](https://sugarlite.top/ja/stories)
+- [糖尿病前期セルフチェック](https://sugarlite.top/ja/prediabetes-check)：血糖・症状・リスク要因から3分で糖尿病前期リスクを評価
 - [よくある質問](https://sugarlite.top/ja/faq)
 - [ブログ](https://sugarlite.top/ja/blog)
 - [プライバシーポリシー](https://sugarlite.top/ja/privacy)

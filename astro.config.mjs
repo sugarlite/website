@@ -88,7 +88,7 @@ export default defineConfig({
         const isLocalized = /^\/(en|ja|zh-Hant)(\/|$)/.test(path);
         const isDefaultLocaleRoot =
           path === '/' ||
-          /^\/(blog|faq|guide|privacy|stories|terms|changelog)(\/|$)/.test(path);
+          /^\/(blog|faq|prediabetes-check|guide|privacy|stories|terms|changelog)(\/|$)/.test(path);
         return isLocalized || isDefaultLocaleRoot;
       },
       serialize: (item) => {

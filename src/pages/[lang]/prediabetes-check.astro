@@ -1,0 +1,61 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import PrediabetesCheckPage from '@/components/sections/PrediabetesCheckPage.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { getAlternateUrls, getStaticLangPaths } from '@/i18n/routing';
+import { t } from '@/i18n';
+import { getPrediabetesContent } from '@/data/prediabetes-check';
+import {
+  buildBreadcrumbSchema,
+  buildMedicalWebPageSchema,
+} from '@/lib/structuredData';
+import type { Language } from '@/types';
+
+export function getStaticPaths() {
+  return getStaticLangPaths();
+}
+
+const { lang } = Astro.params;
+const langKey = lang as Language;
+const pathWithoutLang = 'prediabetes-check';
+const alternates = getAlternateUrls(pathWithoutLang, "zh", Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
+
+const content = getPrediabetesContent(langKey);
+const jsonLd = [
+  buildBreadcrumbSchema(langKey, [{ name: t(langKey, 'nav.prediabetesCheck'), path: pathWithoutLang }]),
+  buildMedicalWebPageSchema(langKey, {
+    title: t(langKey, 'nav.prediabetesCheck'),
+    description: content.intro.paragraphs[0] ?? '',
+    path: pathWithoutLang,
+    conditionName: 'Prediabetes',
+    citationKeys: ['bloodSugarRanges', 'cdcBMICategories'],
+  }),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: content.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  },
+];
+---
+
+<Layout lang={langKey} page="prediabetesCheck" pathWithoutLang={pathWithoutLang} jsonLd={jsonLd}>
+  <Navbar
+    lang={langKey}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
+  />
+
+  <main>
+    <PrediabetesCheckPage lang={langKey} />
+  </main>
+
+  <Footer lang={langKey} />
+</Layout>
