@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/generate-llms.mjs && node scripts/generate-llms-html.mjs && node scripts/indexnow.mjs",
+    "postbuild": "node scripts/generate-llms.mjs && node scripts/generate-llms-html.mjs && node scripts/generate-markdown.mjs && node scripts/indexnow.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -33,6 +33,8 @@
     "@types/node": "^22.14.0",
     "sharp": "^0.35.2",
     "tailwindcss": "^4.1.18",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "~5.8.2"
   }
 }

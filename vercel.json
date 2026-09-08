@@ -5,6 +5,18 @@
     { "source": "/zh/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
   ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
+      "destination": "/md/index.md"
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
+      "destination": "/md/:path.md"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -15,6 +27,10 @@
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "headers": [{ "key": "Vary", "value": "Accept" }]
     },
     {
       "source": "/_astro/(.*)",
