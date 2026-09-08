@@ -3,18 +3,18 @@
   "redirects": [
     { "source": "/zh", "destination": "/", "permanent": true },
     { "source": "/zh/:path*", "destination": "/:path*", "permanent": true },
-    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
-  ],
-  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
     {
       "source": "/",
       "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/md/index.md"
+      "destination": "/md/index.md",
+      "permanent": false
     },
     {
       "source": "/:path((?!.*\\.).*)",
       "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/md/:path.md"
+      "destination": "/md/:path.md",
+      "permanent": false
     }
   ],
   "headers": [
@@ -31,6 +31,10 @@
     {
       "source": "/:path((?!.*\\.).*)",
       "headers": [{ "key": "Vary", "value": "Accept" }]
+    },
+    {
+      "source": "/md/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
       "source": "/_astro/(.*)",
