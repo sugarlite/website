@@ -34,10 +34,14 @@
     "metaDescription": "軽糖 SugarLite は、糖尿病や糖尿病予備群の方をはじめ、血糖健康管理を気にする方のためのスマートな血糖管理アプリです。血糖トレンド追跡、食事記録、血糖指数食前食後ペアリング分析、Apple Health 同期、AI インサイト、クラウド同期に対応し、科学的な血糖コントロールと健康的な生活習慣の形成をサポートします。"
   },
   "stats": {
-    "users": "信頼されるユーザー",
-    "food": "専門的なデータ支援",
-    "ratings": "App Store 評価",
-    "availability": "24時間365日サポート"
+    "gi": "血糖指数",
+    "giDesc": "食前食後のペア分析",
+    "ai": "AIインサイト",
+    "aiDesc": "パーソナライズされた食事提案",
+    "health": "Apple 健康",
+    "healthDesc": "血糖データを自動同期",
+    "availability": "24/7",
+    "availabilityDesc": "いつでもサポート"
   },
   "features": {
     "tag": "核心機能",
@@ -577,24 +581,24 @@
     "title": "ユーザーの声と実体験",
     "subtitle": "実際のユーザーがSugarLiteを使用して血糖管理を改善し、自分自身の健康への道を見つけた方法を学びましょう。",
     "communityTitle": "SugarLiteコミュニティに参加",
-    "communityDescription": "50万人以上のユーザーがSugarLiteで血糖を管理しています。アプリをダウンロードして、あなたの血糖管理の旅を始め、コミュニティであなたのストーリーを共有しましょう。",
+    "communityDescription": "アプリをダウンロードして、あなたの血糖管理の旅を始め、コミュニティであなたのストーリーを共有しましょう。",
     "communityButton": "SugarLiteを無料でダウンロード",
     "stats": [
       {
-        "value": "50万+",
-        "label": "アクティブユーザー"
+        "value": "血糖指数",
+        "label": "食前食後のペア分析"
       },
       {
-        "value": "4.9",
-        "label": "App Store 評価"
+        "value": "AIインサイト",
+        "label": "パーソナライズされた食事提案"
       },
       {
-        "value": "92%",
-        "label": "ユーザー満足度"
+        "value": "Apple 健康",
+        "label": "血糖データを自動同期"
       },
       {
-        "value": "30日",
-        "label": "平均血糖改善期間"
+        "value": "24/7",
+        "label": "いつでもサポート"
       }
     ],
     "items": [

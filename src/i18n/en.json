@@ -34,10 +34,14 @@
     "metaDescription": "SugarLite is a smart blood sugar app for diabetes and prediabetes. Track glucose trends, log meals, analyze glucose index pairings, sync Apple Health, and get AI insights."
   },
   "stats": {
-    "users": "Trusted Users",
-    "food": "Scientific Data",
-    "ratings": "App Store Rating",
-    "availability": "24/7 Support"
+    "gi": "Glucose Index",
+    "giDesc": "Pre & post-meal pairing analysis",
+    "ai": "AI Insights",
+    "aiDesc": "Personalized food suggestions",
+    "health": "Apple Health",
+    "healthDesc": "Automatic glucose sync",
+    "availability": "24/7",
+    "availabilityDesc": "Always by your side"
   },
   "features": {
     "tag": "Core Features",
@@ -577,24 +581,24 @@
     "title": "User Stories and Real Experiences",
     "subtitle": "Learn how real users use SugarLite to improve their blood sugar management and find their own path to health.",
     "communityTitle": "Join the SugarLite Community",
-    "communityDescription": "Over 500,000 users are managing their blood sugar with SugarLite. Download the app to start your glucose management journey and share your story with the community.",
+    "communityDescription": "Download the app to start your glucose management journey and share your story with the community.",
     "communityButton": "Download SugarLite for Free",
     "stats": [
       {
-        "value": "500K+",
-        "label": "Active Users"
+        "value": "Glucose Index",
+        "label": "Pre & post-meal pairing analysis"
       },
       {
-        "value": "4.9",
-        "label": "App Store Rating"
+        "value": "AI Insights",
+        "label": "Personalized food suggestions"
       },
       {
-        "value": "92%",
-        "label": "User Satisfaction"
+        "value": "Apple Health",
+        "label": "Automatic glucose sync"
       },
       {
-        "value": "30 Days",
-        "label": "Average Glucose Improvement"
+        "value": "24/7",
+        "label": "Always by your side"
       }
     ],
     "items": [

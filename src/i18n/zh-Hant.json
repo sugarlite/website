@@ -34,10 +34,14 @@
     "metaDescription": "輕糖 SugarLite 是一款專業的血糖監測與健康管理應用，專為糖尿病前期、糖尿病患者及關注血糖健康的人群設計。支援血糖趨勢追蹤、飲食記錄、血糖指數餐前餐後配對分析、Apple Health 同步、AI 智能洞察與雲端同步，幫助你科學控糖、找到最適合自己的飲食方案，建立長期健康習慣。"
   },
   "stats": {
-    "users": "用戶信賴選擇",
-    "food": "專業數據支撐",
-    "ratings": "App Store 評分",
-    "availability": "全天候陪伴"
+    "gi": "血糖指數",
+    "giDesc": "餐前餐後配對分析",
+    "ai": "AI 智能洞察",
+    "aiDesc": "個人化飲食建議",
+    "health": "Apple 健康",
+    "healthDesc": "血糖數據自動同步",
+    "availability": "24/7",
+    "availabilityDesc": "全天候陪伴"
   },
   "features": {
     "tag": "核心功能",
@@ -577,24 +581,24 @@
     "title": "用戶故事與真實體驗",
     "subtitle": "了解真實用戶如何使用 SugarLite 改善血糖管理，找到屬於自己的健康之路。",
     "communityTitle": "加入 SugarLite 社區",
-    "communityDescription": "超過 50 萬用戶正在使用 SugarLite 管理血糖。下載應用，開始你的血糖管理之旅，與社區分享你的故事。",
+    "communityDescription": "下載應用，開始你的血糖管理之旅，與社區分享你的故事。",
     "communityButton": "免費下載 SugarLite",
     "stats": [
       {
-        "value": "50萬+",
-        "label": "活躍用戶"
+        "value": "血糖指數",
+        "label": "餐前餐後配對分析"
       },
       {
-        "value": "4.9",
-        "label": "App Store 評分"
+        "value": "AI 智能洞察",
+        "label": "個人化飲食建議"
       },
       {
-        "value": "92%",
-        "label": "用戶滿意度"
+        "value": "Apple 健康",
+        "label": "血糖數據自動同步"
       },
       {
-        "value": "30天",
-        "label": "平均血糖改善週期"
+        "value": "24/7",
+        "label": "全天候陪伴"
       }
     ],
     "items": [
