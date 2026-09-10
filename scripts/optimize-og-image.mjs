@@ -5,7 +5,7 @@ import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, '..', 'public');
-const inputPath = join(publicDir, 'og-image.png');
+const inputPath = join(publicDir, 'og-image-v2.png');
 
 const targetWidth = 1200;
 const targetHeight = 630;
@@ -18,16 +18,16 @@ async function run() {
   await sharp(inputPath)
     .resize(targetWidth, targetHeight, { fit: 'cover' })
     .webp({ quality: 85, effort: 6 })
-    .toFile(join(publicDir, 'og-image.webp'));
-  const webpStat = statSync(join(publicDir, 'og-image.webp'));
+    .toFile(join(publicDir, 'og-image-v2.webp'));
+  const webpStat = statSync(join(publicDir, 'og-image-v2.webp'));
   console.log(`WebP: ${(webpStat.size / 1024).toFixed(1)}KB`);
 
   // AVIF version
   await sharp(inputPath)
     .resize(targetWidth, targetHeight, { fit: 'cover' })
     .avif({ quality: 75, effort: 6 })
-    .toFile(join(publicDir, 'og-image.avif'));
-  const avifStat = statSync(join(publicDir, 'og-image.avif'));
+    .toFile(join(publicDir, 'og-image-v2.avif'));
+  const avifStat = statSync(join(publicDir, 'og-image-v2.avif'));
   console.log(`AVIF: ${(avifStat.size / 1024).toFixed(1)}KB`);
 }
 

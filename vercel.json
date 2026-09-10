@@ -55,7 +55,7 @@
       ]
     },
     {
-      "source": "/og-image\\.(png|webp|avif)",
+      "source": "/og-image-v2\\.(png|webp|avif)",
       "headers": [
         {
           "key": "Cache-Control",

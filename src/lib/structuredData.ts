@@ -242,7 +242,7 @@ export function buildArticleSchema(
     '@type': type,
     headline: title,
     description,
-    image: image ? [image] : [`${SITE}/og-image.png`],
+    image: image ? [image] : [`${SITE}/og-image-v2.png`],
     url,
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
@@ -427,7 +427,7 @@ export function buildHowToSchema(lang: Language) {
     '@type': 'HowTo',
     name: copy.name,
     description: copy.description,
-    image: `${SITE}/og-image.png`,
+    image: `${SITE}/og-image-v2.png`,
     totalTime: 'PT5M',
     estimatedCost: {
       '@type': 'MonetaryAmount',

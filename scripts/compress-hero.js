@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 const TARGETS = [
-  { file: 'hero-phone.png', maxWidth: 700 },
+  { file: 'hero-phone-v2.png', maxWidth: 700 },
 ];
 
 async function compressImage(filename, maxWidth) {
