@@ -680,6 +680,41 @@
     "subtitle": "Every improvement of SugarLite, documented. Thank you for your support.",
     "versions": [
       {
+        "version": "1.7.1",
+        "date": "September 4, 2026",
+        "items": [
+          "New: Two-way sync with Apple Health — monitoring readings are imported automatically, and every record is written to the Health app in real time.",
+          "New: Tap any record on the timeline to view or edit it (editing past records is a Pro feature).",
+          "Improved: Insight reports open instantly from local storage and stay synced across devices via the cloud.",
+          "Improved: Personal GI redesigned — a new onboarding flow helps you understand your unique glucose responses, with a clearer, more focused data page.",
+          "Improved: Pending glucose entries can now be confirmed directly from the top banner.",
+          "Improved: The home screen quick-action button hides automatically as you scroll down and returns when you scroll up.",
+          "Improved: The home screen refreshes instantly after switching glucose units or themes, and the timeline and week calendar scroll more smoothly.",
+          "Fixed: AI meal records showing 0 carbs on the timeline.",
+          "Fixed: Incorrect names displayed when editing exercise records.",
+          "Fixed: A crash caused by network errors during sign-in.",
+          "Fixed: Some areas of food entries in the food guide not responding to taps."
+        ]
+      },
+      {
+        "version": "1.7.0",
+        "date": "August 28, 2026",
+        "items": [
+          "New: Insights page — 7-day and 14-day glucose summaries with key metrics at a glance.",
+          "New: Personal GI (PGI), a personalized glucose response score, renamed and easier to understand.",
+          "New: Theme selection (follow system, light, or dark), plus a global glucose unit toggle (mmol/L or mg/dL) in Settings.",
+          "New: AI meal recognition integrated into the glucose and meal logging flow — recognizes asynchronously and appears on your timeline when done.",
+          "Improved: Bottom navigation simplified to Home, Guide, Personal GI and Insights; the Guide tab gains multi-language food and exercise reference data.",
+          "Improved: Food and exercise lists now load from local cache and refresh automatically for faster performance.",
+          "Improved: Timeline events stay expanded and align neatly with cards; an AI credits details entry was added under Profile membership.",
+          "Fixed: Failed AI recognition now reuses the uploaded photo instead of asking you to upload again.",
+          "Fixed: Incorrect timeline ordering for multiple records within the same minute.",
+          "Fixed: Theme changes apply instantly in Settings, and the duplicate unit entry was removed.",
+          "Fixed: Placeholder text in Insight card titles and translation issues with home timeline event names.",
+          "Fixed: The sign-in/membership overlay text on the Insights page now fits without scrolling."
+        ]
+      },
+      {
         "version": "1.6.1",
         "date": "July 21, 2026",
         "items": [
