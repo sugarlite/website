@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>Hero 3 · Apple 健康（深色）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #cbd5e1; min-height: 100vh; display: grid; place-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  }
+  .slide {
+    width: 660px; height: 1440px; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #0f1a18 0%, #0f1724 46%, #020617 100%);
+  }
+  .glow { position: absolute; border-radius: 50%; pointer-events: none; }
+  .glow-1 { width: 620px; height: 460px; left: -180px; top: 60px; background: radial-gradient(closest-side, rgba(0,192,154,0.22), transparent); }
+  .glow-2 { width: 520px; height: 420px; right: -160px; bottom: 240px; background: radial-gradient(closest-side, rgba(0,192,154,0.12), transparent); }
+
+  .copy { position: absolute; top: 168px; left: 0; right: 0; text-align: center; padding: 0 36px; z-index: 2; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 26px; font-weight: 700; color: #5eead4;
+    background: rgba(0,192,154,0.14); border: 1.5px solid rgba(94,234,212,0.35);
+    padding: 12px 30px; border-radius: 999px; margin-bottom: 38px;
+  }
+  h1 { font-size: 78px; line-height: 1.2; font-weight: 800; color: #f8fafc; }
+  h1 em { font-style: normal; color: #2dd4bf; white-space: nowrap; }
+  .sub { margin-top: 30px; font-size: 30px; line-height: 1.55; color: #94a3b8; font-weight: 500; }
+
+  .phone {
+    position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%) rotate(2.5deg);
+    width: 452px; filter: drop-shadow(0 44px 60px rgba(0,0,0,0.6));
+    z-index: 1;
+  }
+  .phone > img { display: block; width: 100%; height: auto; }
+  .screen {
+    position: absolute; overflow: hidden; background: #111;
+    left: 5.09%; top: 2.21%; width: 89.82%; height: 95.58%;
+    border-radius: 13.73% / 6.33%;
+  }
+  .screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="copy">
+    <span class="tag">数据不断档</span>
+    <h1>Apple 健康，<br /><em>自动同步</em></h1>
+    <p class="sub">数据自动上云，换设备不丢失；<br />支持罗氏血糖仪蓝牙同步</p>
+  </div>
+
+  <div class="phone">
+    <img src="assets/phone-frame.png" alt="" />
+    <div class="screen"><img src="assets/shot-02.png" alt="" /></div>
+  </div>
+</div>
+</body>
+</html>
