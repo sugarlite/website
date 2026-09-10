@@ -2,8 +2,13 @@ import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
 
-const PREVIEW_DIR = new URL('../public/preview', import.meta.url).pathname;
+// Usage: node scripts/compress-images.js [dir] [prefix]
+// Defaults: dir = public/preview, prefix = "Screenshot"
+const argDir = process.argv[2];
+const argPrefix = process.argv[3];
+const PREVIEW_DIR = argDir ? path.resolve(argDir) : new URL('../public/preview', import.meta.url).pathname;
 const ORIGINALS_DIR = path.join(PREVIEW_DIR, '_originals');
+const PREFIX = argPrefix || 'Screenshot';
 
 async function compressImage(filename) {
   const inputPath = path.join(PREVIEW_DIR, filename);
@@ -46,7 +51,8 @@ async function main() {
   await fs.mkdir(ORIGINALS_DIR, { recursive: true });
 
   const files = (await fs.readdir(PREVIEW_DIR))
-    .filter((f) => f.endsWith('.png') && f.startsWith('Screenshot'))
+    .filter((f) => f.endsWith('.png'))
+    .filter((f) => f.startsWith(PREFIX))
     .filter((f) => !f.includes('_originals'));
 
   for (const file of files) {
