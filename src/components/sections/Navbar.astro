@@ -48,10 +48,28 @@ const LANG_SHORT_LABELS: Record<Language, string> = {
     <!-- Desktop nav links -->
     <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
       <a href={`${getLocalizedPath(lang, '')}#features`} class="hover:text-brand transition-colors">{t(lang, 'nav.features')}</a>
-      <a href={`${getLocalizedPath(lang, '')}#preview`} class="hover:text-brand transition-colors">{t(lang, 'nav.preview')}</a>
-      <a href={getLocalizedPath(lang, 'stories')} class="hover:text-brand transition-colors">{t(lang, 'nav.stories')}</a>
-      <a href={getLocalizedPath(lang, 'guide')} class="hover:text-brand transition-colors">{t(lang, 'nav.guides')}</a>
-      <a href={getLocalizedPath(lang, 'prediabetes-check')} class="hover:text-brand transition-colors">{t(lang, 'nav.prediabetesCheck')}</a>
+      <div class="relative navbar-dropdown">
+        <button class="flex items-center gap-1 cursor-pointer text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-brand transition-colors">
+          {t(lang, 'nav.tools')}
+          <svg class="w-3 h-3 transition-transform dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="navbar-dropdown-menu hidden absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 min-w-[140px] border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 z-50">
+          <a
+            href={getLocalizedPath(lang, 'prediabetes-check')}
+            class="block whitespace-nowrap px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10 transition-colors"
+          >
+            {t(lang, 'nav.prediabetesCheck')}
+          </a>
+          <a
+            href={getLocalizedPath(lang, 'blood-sugar-conversion')}
+            class="block whitespace-nowrap px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10 transition-colors"
+          >
+            {t(lang, 'nav.bloodSugarConversion')}
+          </a>
+        </div>
+      </div>
       <a href={getLocalizedPath(lang, 'blog')} class="hover:text-brand transition-colors">{t(lang, 'nav.blog')}</a>
       <a href={getLocalizedPath(lang, 'changelog')} class="hover:text-brand transition-colors">{t(lang, 'nav.changelog')}</a>
     </div>
