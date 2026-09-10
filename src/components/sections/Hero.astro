@@ -47,21 +47,31 @@ const { lang } = Astro.props;
 
         <!-- Phone visual -->
       <div class="relative flex items-center justify-center pt-8 lg:pt-0" aria-hidden="true">
-        <div class="reveal stagger-2 relative w-[min(280px,72vw)] rounded-[3rem] bg-[#111] border-[3px] border-[#1a1a1e] overflow-hidden z-[2]" style="box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35);">
-          <picture>
-            <source srcset="/hero-phone.avif" type="image/avif" />
-            <source srcset="/hero-phone.webp" type="image/webp" />
-            <img
-              src="/hero-phone.png"
-              alt="SugarLite App Interface"
-              class="w-full h-auto block"
-              width="470"
-              height="1024"
-              fetchpriority="high"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
+        <div class="reveal stagger-2 relative w-[min(280px,72vw)] z-[2]" style="filter: drop-shadow(0 30px 40px rgba(0,0,0,0.3));">
+          <img
+            src="/phone-frame.png"
+            alt=""
+            class="w-full h-auto block"
+            width="1022"
+            height="2082"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="absolute overflow-hidden" style="left: 5.09%; top: 2.21%; width: 89.82%; height: 95.58%; border-radius: 13.73% / 6.33%; background: #111;">
+            <picture>
+              <source srcset="/hero-phone.avif" type="image/avif" />
+              <source srcset="/hero-phone.webp" type="image/webp" />
+              <img
+                src="/hero-phone.png"
+                alt="SugarLite App Interface"
+                class="w-full h-full object-cover object-top block"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+          </div>
         </div>
       </div>
     </div>

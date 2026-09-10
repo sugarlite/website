@@ -42,20 +42,29 @@ const total = screens.length;
         <div class="app-preview-track flex items-center gap-8">
           {screens.map((screen) => (
             <div class="app-preview-slide shrink-0 w-[280px] max-sm:w-[min(280px,80vw)]">
-              <div class="rounded-[3rem] border-[3px] border-[#1a1a1e] bg-[#111] overflow-hidden">
-                <picture>
-                  <source srcset={`/preview/Screenshot-${screen.num}.avif`} type="image/avif" />
-                  <source srcset={`/preview/Screenshot-${screen.num}.webp`} type="image/webp" />
-                  <img
-                    src={`/preview/Screenshot-${screen.num}.png`}
-                    alt={screen.alt}
-                    class="w-full h-auto block"
-                    loading="lazy"
-                    decoding="async"
-                    width="470"
-                    height="1024"
-                  />
-                </picture>
+              <div class="relative">
+                <img
+                  src="/phone-frame.png"
+                  alt=""
+                  class="w-full h-auto block"
+                  width="1022"
+                  height="2082"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute overflow-hidden" style="left: 5.09%; top: 2.21%; width: 89.82%; height: 95.58%; border-radius: 13.73% / 6.33%; background: #111;">
+                  <picture>
+                    <source srcset={`/preview/Screenshot-${screen.num}.avif`} type="image/avif" />
+                    <source srcset={`/preview/Screenshot-${screen.num}.webp`} type="image/webp" />
+                    <img
+                      src={`/preview/Screenshot-${screen.num}.png`}
+                      alt={screen.alt}
+                      class="w-full h-full object-cover object-top block"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
               </div>
             </div>
           ))}
