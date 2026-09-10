@@ -26,6 +26,7 @@
 - [糖尿病の食事管理ガイド](https://sugarlite.top/ja/guide/diabetic-diet)
 - [ユーザーの声](https://sugarlite.top/ja/stories)
 - [糖尿病前期セルフチェック](https://sugarlite.top/ja/prediabetes-check)：血糖・症状・リスク要因から3分で糖尿病前期リスクを評価
+- [血糖値換算](https://sugarlite.top/ja/blood-sugar-conversion)：mmol/L と mg/dL の双方向換算ツール、HbA1c から推定平均血糖値への対照表付き
 - [よくある質問](https://sugarlite.top/ja/faq)
 - [ブログ](https://sugarlite.top/ja/blog)
 - [プライバシーポリシー](https://sugarlite.top/ja/privacy)

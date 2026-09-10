@@ -1,0 +1,55 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/sections/Navbar.astro';
+import BloodSugarConversionPage from '@/components/sections/BloodSugarConversionPage.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { getAlternateUrls } from '@/i18n/routing';
+import { t } from '@/i18n';
+import { getConversionContent } from '@/data/blood-sugar-conversion';
+import {
+  buildBreadcrumbSchema,
+  buildMedicalWebPageSchema,
+} from '@/lib/structuredData';
+
+const lang = 'zh';
+const pathWithoutLang = 'blood-sugar-conversion';
+const alternates = getAlternateUrls(pathWithoutLang, 'zh', Astro.url.origin).filter((a) => a.hrefLang !== 'x-default');
+
+const content = getConversionContent(lang);
+const jsonLd = [
+  buildBreadcrumbSchema(lang, [{ name: t(lang, 'nav.bloodSugarConversion'), path: pathWithoutLang }]),
+  buildMedicalWebPageSchema(lang, {
+    title: t(lang, 'nav.bloodSugarConversion'),
+    description: content.intro.paragraphs[0] ?? '',
+    path: pathWithoutLang,
+    conditionName: 'Diabetes',
+    citationKeys: ['bloodSugarRanges'],
+  }),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: content.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  },
+];
+---
+
+<Layout lang={lang} page="bloodSugarConversion" pathWithoutLang={pathWithoutLang} jsonLd={jsonLd}>
+  <Navbar
+    lang={lang}
+    alternateUrls={alternates.map((a) => ({ lang: a.hrefLang, href: a.href }))}
+  />
+
+  <main>
+    <BloodSugarConversionPage lang={lang} />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

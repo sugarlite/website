@@ -7,6 +7,7 @@ export type PageKey =
   | 'changelog'
   | 'faq'
   | 'prediabetesCheck'
+  | 'bloodSugarConversion'
   | 'guideBloodSugar'
   | 'guideDiabeticDiet'
   | 'stories'
@@ -210,6 +211,40 @@ export const PAGE_META: Record<PageKey, Record<Language, PageMeta>> = {
         '免費糖尿病前期（糖前期）自我檢測問卷：結合近期空腹血糖、餐後血糖、HbA1c、典型症狀與風險因素，按 ADA/WHO 標準評估您的糖前期風險，結果僅供健康管理參考。',
       keywords:
         '糖前期自我檢測,糖尿病前期症狀,糖前期判斷標準,空腹血糖正常值,HbA1c,血糖自我檢測,糖尿病風險評估,SugarLite',
+      ogType: 'website',
+    },
+  },
+  bloodSugarConversion: {
+    zh: {
+      title: '血糖单位换算计算器：mmol/L 与 mg/dL 互转 - SugarLite 轻糖',
+      description:
+        '免费在线血糖单位换算工具：mmol/L 与 mg/dL 双向实时换算，附常用血糖值对照表与 HbA1c 估算平均血糖（eAG）换算表，结果仅供参考。',
+      keywords:
+        '血糖单位换算,mmol/L换算mg/dL,mg/dL换算mmol/L,血糖换算器,血糖对照表,HbA1c换算,估算平均血糖,SugarLite',
+      ogType: 'website',
+    },
+    en: {
+      title: 'Blood Sugar Conversion Calculator: mmol/L to mg/dL - SugarLite',
+      description:
+        'Free online blood sugar conversion calculator. Convert mmol/L to mg/dL and back in real time, with a common-values chart and an HbA1c to estimated average glucose (eAG) table.',
+      keywords:
+        'blood sugar conversion,mmol/L to mg/dL,mg/dL to mmol/L,glucose unit converter,blood sugar chart,HbA1c to average glucose,eAG calculator,SugarLite',
+      ogType: 'website',
+    },
+    ja: {
+      title: '血糖値換算ツール：mmol/L と mg/dL の変換 - SugarLite',
+      description:
+        '無料のオンライン血糖値換算ツール。mmol/L と mg/dL をリアルタイムで双方向変換、よく使う血糖値の対照表と HbA1c から推定平均血糖値（eAG）への換算表付き。',
+      keywords:
+        '血糖値 換算,mg/dL mmol/L 変換,血糖値 単位,血糖値対照表,HbA1c 平均血糖,eAG,SugarLite',
+      ogType: 'website',
+    },
+    'zh-Hant': {
+      title: '血糖單位換算計算器：mmol/L 與 mg/dL 互轉 - SugarLite 輕糖',
+      description:
+        '免費線上血糖單位換算工具：mmol/L 與 mg/dL 雙向即時換算，附常用血糖值對照表與 HbA1c 估算平均血糖（eAG）換算表，結果僅供參考。',
+      keywords:
+        '血糖單位換算,mmol/L換算mg/dL,mg/dL換算mmol/L,血糖換算器,血糖對照表,HbA1c換算,估算平均血糖,SugarLite',
       ogType: 'website',
     },
   },

@@ -26,6 +26,7 @@
 - [糖尿病饮食建议](https://sugarlite.top/guide/diabetic-diet)
 - [用户故事](https://sugarlite.top/stories)
 - [糖前期自测](https://sugarlite.top/prediabetes-check)：3 分钟问卷，结合血糖、症状与风险因素评估糖尿病前期风险
+- [血糖单位换算](https://sugarlite.top/blood-sugar-conversion)：mmol/L 与 mg/dL 双向换算计算器，附 HbA1c 估算平均血糖对照表
 - [常见问题](https://sugarlite.top/faq)
 - [博客](https://sugarlite.top/blog)
 - [隐私政策](https://sugarlite.top/privacy)

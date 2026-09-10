@@ -26,6 +26,7 @@
 - [Diabetic Diet Guide](https://sugarlite.top/en/guide/diabetic-diet)
 - [User Stories](https://sugarlite.top/en/stories)
 - [Prediabetes Self-Check](https://sugarlite.top/en/prediabetes-check): a 3-minute questionnaire assessing prediabetes risk from glucose, symptoms, and risk factors
+- [Blood Sugar Conversion](https://sugarlite.top/en/blood-sugar-conversion): bidirectional mmol/L ↔ mg/dL calculator with an HbA1c to estimated average glucose chart
 - [FAQ](https://sugarlite.top/en/faq)
 - [Blog](https://sugarlite.top/en/blog)
 - [Privacy Policy](https://sugarlite.top/en/privacy)

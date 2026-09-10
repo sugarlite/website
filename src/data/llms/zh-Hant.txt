@@ -26,6 +26,7 @@
 - [糖尿病飲食建議](https://sugarlite.top/zh-Hant/guide/diabetic-diet)
 - [用戶故事](https://sugarlite.top/zh-Hant/stories)
 - [糖前期自我檢測](https://sugarlite.top/zh-Hant/prediabetes-check)：3 分鐘問卷，結合血糖、症狀與風險因素評估糖尿病前期風險
+- [血糖單位換算](https://sugarlite.top/zh-Hant/blood-sugar-conversion)：mmol/L 與 mg/dL 雙向換算計算器，附 HbA1c 估算平均血糖對照表
 - [常見問題](https://sugarlite.top/zh-Hant/faq)
 - [部落格](https://sugarlite.top/zh-Hant/blog)
 - [隱私政策](https://sugarlite.top/zh-Hant/privacy)

@@ -1,0 +1,231 @@
+---
+import { t } from '@/i18n';
+import { getConversionContent } from '@/data/blood-sugar-conversion';
+import { getLocalizedPath } from '@/i18n/routing';
+import type { Language } from '@/types';
+import BloodSugarConversion from '@/components/sections/BloodSugarConversion';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const c = getConversionContent(lang);
+---
+
+<div class="page-header">
+  <a href={getLocalizedPath(lang, '')} class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    {t(lang, 'faq.backToHome')}
+  </a>
+  <h1 class="page-title">{t(lang, 'nav.bloodSugarConversion')}</h1>
+  <p class="page-subtitle">{c.intro.heading}</p>
+</div>
+
+<main class="page-content">
+  <!-- Interactive calculator (React island) -->
+  <section id="calculator" class="calc-section">
+    <BloodSugarConversion client:load lang={lang} />
+  </section>
+
+  <!-- Static SEO intro (prerendered, crawler-visible) -->
+  <section class="intro-section">
+    <h2>{c.intro.heading}</h2>
+    {c.intro.paragraphs.map((p) => <p>{p}</p>)}
+  </section>
+
+  <!-- Static conversion chart -->
+  <section class="table-section">
+    <h2>{c.conversionTable.heading}</h2>
+    <p class="table-desc">{c.conversionTable.description}</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{c.conversionTable.mmol}</th>
+            <th>{c.conversionTable.mgdl}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {c.conversionTable.rows.map((row) => (
+            <tr>
+              <td>{row.mmol}</td>
+              <td>{row.mgdl}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Static HbA1c / eAG chart -->
+  <section class="table-section">
+    <h2>{c.hba1cTable.heading}</h2>
+    <p class="table-desc">{c.hba1cTable.description}</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{c.hba1cTable.a1c}</th>
+            <th>{c.hba1cTable.eagMgdl}</th>
+            <th>{c.hba1cTable.eagMmol}</th>
+            <th>{c.hba1cTable.category}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {c.hba1cTable.rows.map((row) => (
+            <tr>
+              <td>{row.a1c}</td>
+              <td>{row.eagMgdl}</td>
+              <td>{row.eagMmol}</td>
+              <td>{row.category}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Formula explainer -->
+  <section class="formula-section">
+    <h2>{c.formula.heading}</h2>
+    <div class="formula-list">
+      {c.formula.items.map((item) => (
+        <div class="formula-item">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Static FAQ (also emitted as FAQPage JSON-LD in the page head) -->
+  <section class="faq-section">
+    <h2>{c.faq.heading}</h2>
+    <div class="faq-list">
+      {c.faq.items.map((item, i) => (
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-num">{String(i + 1).padStart(2, '0')}</span>
+            {item.q}
+          </div>
+          <p class="faq-a">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclaimer">{c.disclaimer}</p>
+</main>
+
+<style>
+  .page-header {
+    padding-top: calc(64px + 3rem);
+    padding-bottom: 3rem;
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--color-slate-500);
+    margin-bottom: 2rem; transition: color 0.15s;
+  }
+  :global(.dark) .back-link { color: var(--color-slate-400); }
+  .back-link:hover { color: #00C09A; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--color-slate-900); margin-bottom: 0.75rem;
+  }
+  :global(.dark) .page-title { color: var(--color-white); }
+  .page-subtitle {
+    font-size: 1rem; color: var(--color-slate-500);
+  }
+  :global(.dark) .page-subtitle { color: var(--color-slate-400); }
+
+  .page-content {
+    max-width: min(72ch, calc(100% - 2rem));
+    width: 90%; margin: 0 auto; padding-bottom: 5rem;
+  }
+
+  section { margin-bottom: 4rem; }
+  section h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 400; letter-spacing: -0.02em;
+    color: var(--color-slate-900); margin-bottom: 1rem;
+  }
+  :global(.dark) section h2 { color: var(--color-white); }
+
+  .intro-section p {
+    font-size: 0.95rem; line-height: 1.8; color: var(--color-slate-500);
+    margin-bottom: 0.9rem;
+  }
+  :global(.dark) .intro-section p { color: var(--color-slate-400); }
+
+  .table-desc {
+    font-size: 0.9rem; line-height: 1.7; color: var(--color-slate-500);
+    margin-bottom: 1.25rem;
+  }
+  :global(.dark) .table-desc { color: var(--color-slate-400); }
+
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem;
+  }
+  th, td {
+    padding: 0.7rem 0.9rem; text-align: left;
+    border: 1px solid var(--color-slate-200);
+    color: var(--color-slate-600); white-space: nowrap;
+  }
+  :global(.dark) th, :global(.dark) td { border-color: var(--color-slate-700); }
+  th {
+    font-weight: 600; color: var(--color-slate-900);
+    background: var(--color-slate-50);
+  }
+  :global(.dark) th { color: var(--color-white); background: var(--color-slate-800); }
+
+  .formula-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .formula-item {
+    border: 1px solid var(--color-slate-200); border-radius: 0.75rem;
+    padding: 1.1rem 1.25rem;
+  }
+  :global(.dark) .formula-item { border-color: var(--color-slate-700); }
+  .formula-item h3 {
+    font-size: 0.95rem; font-weight: 600; color: var(--color-slate-900);
+    margin-bottom: 0.4rem;
+  }
+  :global(.dark) .formula-item h3 { color: var(--color-white); }
+  .formula-item p {
+    font-size: 0.85rem; line-height: 1.7; color: var(--color-slate-500);
+  }
+  :global(.dark) .formula-item p { color: var(--color-slate-400); }
+
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-top: 1px solid var(--color-slate-200); padding: 1.35rem 0; }
+  :global(.dark) .faq-item { border-color: var(--color-slate-700); }
+  .faq-item:last-child { border-bottom: 1px solid var(--color-slate-200); }
+  :global(.dark) .faq-item:last-child { border-color: var(--color-slate-700); }
+  .faq-q {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 1.05rem; line-height: 1.45; color: var(--color-slate-900);
+  }
+  :global(.dark) .faq-q { color: var(--color-white); }
+  .faq-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem; color: var(--color-slate-500);
+    min-width: 1.8rem; padding-top: 0.2em;
+  }
+  :global(.dark) .faq-num { color: var(--color-slate-400); }
+  .faq-a {
+    margin-top: 0.6rem; padding-left: 2.55rem;
+    font-size: 0.9rem; line-height: 1.7; color: var(--color-slate-500);
+  }
+  :global(.dark) .faq-a { color: var(--color-slate-400); }
+
+  .disclaimer {
+    font-size: 0.8rem; line-height: 1.7; color: var(--color-slate-400);
+    border-top: 1px solid var(--color-slate-200); padding-top: 1.5rem;
+  }
+  :global(.dark) .disclaimer { border-color: var(--color-slate-700); color: var(--color-slate-500); }
+</style>
